@@ -2,6 +2,7 @@
 
 ## 1.1.0 — 2026-11-03
 
+- Live preview on GitHub Pages; `?theme=` and `?lang=` in the link open a theme or language directly. README screenshots are now in English, with the default and Matrix themes side by side.
 - Seven languages, in this order: English, Japanese, Simplified Chinese, Traditional Chinese, Korean, Russian, Spanish. Each has its own README; the page title and search follow the chosen language.
 - Languages, page strings and README strings now live in `data/`; `scripts/language_tool.py` checks and merges a new language with the same rules as the build.
 - Proofreading: clearer `/subtask` description in five languages; README intros list all languages; the language count on the page follows the data.

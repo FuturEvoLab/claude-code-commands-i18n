@@ -6,9 +6,15 @@
 
 > Una referencia no oficial y en lenguaje sencillo de todos los comandos de barra de Claude Code, en **7 idiomas: inglés, japonés, chino simplificado, chino tradicional, coreano, ruso y español**. Está pensada para quienes encuentran difícil leer la documentación oficial en inglés: cada comando tiene el significado de su palabra en inglés, una explicación breve y un ejemplo realista de cuándo usarlo.
 
+## Vista previa en vivo
+
+Una página estática que puedes probar ya: busca, cambia de idioma y de tema y copia comandos. No hay nada que instalar.
+
 ### [Versión web con búsqueda →](https://futurevolab.github.io/claude-code-commands-i18n/)
 
-[![Comandos de Claude Code](docs/assets/preview-en.png)](https://futurevolab.github.io/claude-code-commands-i18n/)
+| Tema predeterminado | Tema Matrix |
+|---|---|
+| [![Tema predeterminado](docs/assets/preview-en.png)](https://futurevolab.github.io/claude-code-commands-i18n/?theme=terminal) | [![Tema Matrix](docs/assets/preview-matrix.png)](https://futurevolab.github.io/claude-code-commands-i18n/?theme=matrix) |
 
 <p><img src="docs/assets/preview-search.png" alt="search" width="68%"> <img src="docs/assets/preview-mobile.png" alt="mobile" width="28%"></p>
 

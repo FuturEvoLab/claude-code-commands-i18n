@@ -6,9 +6,15 @@
 
 > 非官方的 Claude Code 斜杠命令速查手册，提供**英文、日文、简体中文、繁体中文、韩语、俄语、西班牙语**七种语言，专门写给读英文官方文档吃力的用户：每个命令都有英文原意、简单易懂的说明，以及一个真实的「什么时候用」的例子。
 
+## 在线预览
+
+一个可以直接打开试用的静态页面：搜索、切换语言和主题、复制命令，无需安装。
+
 ### [可搜索的网页版 →](https://futurevolab.github.io/claude-code-commands-i18n/)
 
-[![Claude Code 命令大全](docs/assets/preview-en.png)](https://futurevolab.github.io/claude-code-commands-i18n/)
+| 默认主题 | 黑客帝国主题 |
+|---|---|
+| [![默认主题](docs/assets/preview-en.png)](https://futurevolab.github.io/claude-code-commands-i18n/?theme=terminal) | [![黑客帝国主题](docs/assets/preview-matrix.png)](https://futurevolab.github.io/claude-code-commands-i18n/?theme=matrix) |
 
 <p><img src="docs/assets/preview-search.png" alt="search" width="68%"> <img src="docs/assets/preview-mobile.png" alt="mobile" width="28%"></p>
 

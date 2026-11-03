@@ -6,9 +6,15 @@
 
 > Неофициальный справочник простым языком по всем слэш-командам Claude Code на **7 языках: английском, японском, упрощённом китайском, традиционном китайском, корейском, русском и испанском**. Он написан для тех, кому трудно читать официальную документацию на английском: у каждой команды есть значение английского слова, короткое объяснение и реалистичный пример, когда её использовать.
 
+## Живой предпросмотр
+
+Одна статическая страница, которую можно сразу попробовать: поиск, смена языка и темы, копирование команд. Ничего не нужно устанавливать.
+
 ### [Веб-версия с поиском →](https://futurevolab.github.io/claude-code-commands-i18n/)
 
-[![Команды Claude Code](docs/assets/preview-en.png)](https://futurevolab.github.io/claude-code-commands-i18n/)
+| Тема по умолчанию | Тема «Матрица» |
+|---|---|
+| [![Тема по умолчанию](docs/assets/preview-en.png)](https://futurevolab.github.io/claude-code-commands-i18n/?theme=terminal) | [![Тема «Матрица»](docs/assets/preview-matrix.png)](https://futurevolab.github.io/claude-code-commands-i18n/?theme=matrix) |
 
 <p><img src="docs/assets/preview-search.png" alt="search" width="68%"> <img src="docs/assets/preview-mobile.png" alt="mobile" width="28%"></p>
 

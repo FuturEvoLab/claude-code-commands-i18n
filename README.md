@@ -6,9 +6,15 @@
 
 > An unofficial, plain-language reference to every Claude Code slash command, in **7 languages: English, Japanese, Simplified Chinese, Traditional Chinese, Korean, Russian and Spanish**. It is written for people who find the official English docs hard to read: each command gets a short explanation and a realistic example of when to use it.
 
+## Live preview
+
+One static page you can try right away: search, switch language and theme, copy commands. Nothing to install.
+
 ### [Searchable web version →](https://futurevolab.github.io/claude-code-commands-i18n/)
 
-[![Claude Code Commands](docs/assets/preview-en.png)](https://futurevolab.github.io/claude-code-commands-i18n/)
+| Default theme | Matrix theme |
+|---|---|
+| [![Default theme](docs/assets/preview-en.png)](https://futurevolab.github.io/claude-code-commands-i18n/?theme=terminal) | [![Matrix theme](docs/assets/preview-matrix.png)](https://futurevolab.github.io/claude-code-commands-i18n/?theme=matrix) |
 
 <p><img src="docs/assets/preview-search.png" alt="search" width="68%"> <img src="docs/assets/preview-mobile.png" alt="mobile" width="28%"></p>
 

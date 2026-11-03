@@ -24,7 +24,11 @@
   "skill": "Skill",
   "workflow": "Workflow",
   "about": "About this project",
-  "about_body": "- **Source**: paraphrased from the official [commands reference]({source}), checked {checked}. Descriptions are simplified, not official translations; where they differ, the official docs win.\n- **Data**: everything is generated from [`data/commands.json`](data/commands.json). Edit the JSON, then run `python3 scripts/build.py`.\n- **Contributing**: see [CONTRIBUTING.md](CONTRIBUTING.md).\n- **License**: content [CC BY 4.0](LICENSE-CONTENT), code [MIT](LICENSE)."
+  "about_body": "- **Source**: paraphrased from the official [commands reference]({source}), checked {checked}. Descriptions are simplified, not official translations; where they differ, the official docs win.\n- **Data**: everything is generated from [`data/commands.json`](data/commands.json). Edit the JSON, then run `python3 scripts/build.py`.\n- **Contributing**: see [CONTRIBUTING.md](CONTRIBUTING.md).\n- **License**: content [CC BY 4.0](LICENSE-CONTENT), code [MIT](LICENSE).",
+  "preview": "Live preview",
+  "preview_note": "One static page you can try right away: search, switch language and theme, copy commands. Nothing to install.",
+  "theme_default": "Default theme",
+  "theme_matrix": "Matrix theme"
  },
  "ja": {
   "risk_h": "安全マーク",
@@ -52,7 +56,11 @@
   "skill": "スキル",
   "workflow": "ワークフロー",
   "about": "このプロジェクトについて",
-  "about_body": "- **出典**：公式の[コマンドリファレンス]({source})をもとに意訳（確認日 {checked}）。説明は簡略化したもので公式の翻訳ではありません。違いがある場合は公式ドキュメントが優先です。\n- **データ**：すべて [`data/commands.json`](data/commands.json) から生成しています。JSON を編集して `python3 scripts/build.py` を実行してください。\n- **貢献**：[CONTRIBUTING.md](CONTRIBUTING.md) を参照。\n- **ライセンス**：内容は [CC BY 4.0](LICENSE-CONTENT)、コードは [MIT](LICENSE)。"
+  "about_body": "- **出典**：公式の[コマンドリファレンス]({source})をもとに意訳（確認日 {checked}）。説明は簡略化したもので公式の翻訳ではありません。違いがある場合は公式ドキュメントが優先です。\n- **データ**：すべて [`data/commands.json`](data/commands.json) から生成しています。JSON を編集して `python3 scripts/build.py` を実行してください。\n- **貢献**：[CONTRIBUTING.md](CONTRIBUTING.md) を参照。\n- **ライセンス**：内容は [CC BY 4.0](LICENSE-CONTENT)、コードは [MIT](LICENSE)。",
+  "preview": "ライブプレビュー",
+  "preview_note": "すぐに試せる静的ページです。検索、言語やテーマの切り替え、コマンドのコピーができます。インストールは不要です。",
+  "theme_default": "標準テーマ",
+  "theme_matrix": "マトリックステーマ"
  },
  "zh": {
   "risk_h": "安全标记",
@@ -80,7 +88,11 @@
   "skill": "技能",
   "workflow": "工作流",
   "about": "关于本项目",
-  "about_body": "- **来源**：依据官方[命令文档]({source})意译整理，核对日期 {checked}。说明经过简化，不是官方翻译；如有出入，以官方文档为准。\n- **数据**：所有内容由 [`data/commands.json`](data/commands.json) 生成。修改 JSON 后运行 `python3 scripts/build.py`。\n- **参与贡献**：见 [CONTRIBUTING.md](CONTRIBUTING.md)。\n- **许可**：内容 [CC BY 4.0](LICENSE-CONTENT)，代码 [MIT](LICENSE)。"
+  "about_body": "- **来源**：依据官方[命令文档]({source})意译整理，核对日期 {checked}。说明经过简化，不是官方翻译；如有出入，以官方文档为准。\n- **数据**：所有内容由 [`data/commands.json`](data/commands.json) 生成。修改 JSON 后运行 `python3 scripts/build.py`。\n- **参与贡献**：见 [CONTRIBUTING.md](CONTRIBUTING.md)。\n- **许可**：内容 [CC BY 4.0](LICENSE-CONTENT)，代码 [MIT](LICENSE)。",
+  "preview": "在线预览",
+  "preview_note": "一个可以直接打开试用的静态页面：搜索、切换语言和主题、复制命令，无需安装。",
+  "theme_default": "默认主题",
+  "theme_matrix": "黑客帝国主题"
  },
  "zh-hant": {
   "risk_h": "安全標記",
@@ -108,7 +120,11 @@
   "skill": "技能",
   "workflow": "工作流程",
   "about": "關於本專案",
-  "about_body": "- **來源**：依據官方[指令參考文件]({source})改寫，查核日期 {checked}。說明經過簡化，並非官方翻譯；如有出入，以官方文件為準。\n- **資料**：所有內容都由 [`data/commands.json`](data/commands.json) 產生。編輯 JSON 後，執行 `python3 scripts/build.py`。\n- **參與貢獻**：請見 [CONTRIBUTING.md](CONTRIBUTING.md)。\n- **授權**：內容採用 [CC BY 4.0](LICENSE-CONTENT)，程式碼採用 [MIT](LICENSE)。"
+  "about_body": "- **來源**：依據官方[指令參考文件]({source})改寫，查核日期 {checked}。說明經過簡化，並非官方翻譯；如有出入，以官方文件為準。\n- **資料**：所有內容都由 [`data/commands.json`](data/commands.json) 產生。編輯 JSON 後，執行 `python3 scripts/build.py`。\n- **參與貢獻**：請見 [CONTRIBUTING.md](CONTRIBUTING.md)。\n- **授權**：內容採用 [CC BY 4.0](LICENSE-CONTENT)，程式碼採用 [MIT](LICENSE)。",
+  "preview": "線上預覽",
+  "preview_note": "一個可以直接開啟試用的靜態頁面：搜尋、切換語言和主題、複製指令，不需要安裝。",
+  "theme_default": "預設主題",
+  "theme_matrix": "駭客任務主題"
  },
  "ko": {
   "risk_h": "안전 표시",
@@ -136,7 +152,11 @@
   "skill": "스킬",
   "workflow": "워크플로",
   "about": "이 프로젝트에 대해",
-  "about_body": "- **출처**: 공식 [명령 참고 문서]({source})를 바탕으로 풀어 썼습니다(확인일 {checked}). 설명은 간략화한 것이며 공식 번역이 아닙니다. 차이가 있으면 공식 문서가 우선합니다.\n- **데이터**: 모든 내용은 [`data/commands.json`](data/commands.json)에서 생성됩니다. JSON을 편집한 뒤 `python3 scripts/build.py`를 실행하세요.\n- **기여**: [CONTRIBUTING.md](CONTRIBUTING.md)를 참고하세요.\n- **라이선스**: 내용은 [CC BY 4.0](LICENSE-CONTENT), 코드는 [MIT](LICENSE)."
+  "about_body": "- **출처**: 공식 [명령 참고 문서]({source})를 바탕으로 풀어 썼습니다(확인일 {checked}). 설명은 간략화한 것이며 공식 번역이 아닙니다. 차이가 있으면 공식 문서가 우선합니다.\n- **데이터**: 모든 내용은 [`data/commands.json`](data/commands.json)에서 생성됩니다. JSON을 편집한 뒤 `python3 scripts/build.py`를 실행하세요.\n- **기여**: [CONTRIBUTING.md](CONTRIBUTING.md)를 참고하세요.\n- **라이선스**: 내용은 [CC BY 4.0](LICENSE-CONTENT), 코드는 [MIT](LICENSE).",
+  "preview": "라이브 미리보기",
+  "preview_note": "바로 써 볼 수 있는 정적 페이지입니다. 검색, 언어·테마 전환, 명령어 복사를 할 수 있으며 설치는 필요 없습니다.",
+  "theme_default": "기본 테마",
+  "theme_matrix": "매트릭스 테마"
  },
  "ru": {
   "risk_h": "Метки безопасности",
@@ -164,7 +184,11 @@
   "skill": "Навык",
   "workflow": "Рабочий процесс",
   "about": "О проекте",
-  "about_body": "- **Источник**: пересказ официального [справочника команд]({source}), проверено {checked}. Описания упрощены и не являются официальным переводом; если они расходятся, верна официальная документация.\n- **Данные**: всё создаётся из [`data/commands.json`](data/commands.json). Отредактируйте JSON, затем запустите `python3 scripts/build.py`.\n- **Участие**: см. [CONTRIBUTING.md](CONTRIBUTING.md).\n- **Лицензия**: контент — [CC BY 4.0](LICENSE-CONTENT), код — [MIT](LICENSE)."
+  "about_body": "- **Источник**: пересказ официального [справочника команд]({source}), проверено {checked}. Описания упрощены и не являются официальным переводом; если они расходятся, верна официальная документация.\n- **Данные**: всё создаётся из [`data/commands.json`](data/commands.json). Отредактируйте JSON, затем запустите `python3 scripts/build.py`.\n- **Участие**: см. [CONTRIBUTING.md](CONTRIBUTING.md).\n- **Лицензия**: контент — [CC BY 4.0](LICENSE-CONTENT), код — [MIT](LICENSE).",
+  "preview": "Живой предпросмотр",
+  "preview_note": "Одна статическая страница, которую можно сразу попробовать: поиск, смена языка и темы, копирование команд. Ничего не нужно устанавливать.",
+  "theme_default": "Тема по умолчанию",
+  "theme_matrix": "Тема «Матрица»"
  },
  "es": {
   "risk_h": "Etiquetas de seguridad",
@@ -192,6 +216,10 @@
   "skill": "Habilidad",
   "workflow": "Flujo de trabajo",
   "about": "Sobre este proyecto",
-  "about_body": "- **Fuente**: paráfrasis de la [referencia oficial de comandos]({source}), revisada el {checked}. Las descripciones están simplificadas y no son traducciones oficiales; si no coinciden, manda la documentación oficial.\n- **Datos**: todo se genera a partir de [`data/commands.json`](data/commands.json). Edita el JSON y luego ejecuta `python3 scripts/build.py`.\n- **Cómo colaborar**: consulta [CONTRIBUTING.md](CONTRIBUTING.md).\n- **Licencia**: contenido [CC BY 4.0](LICENSE-CONTENT), código [MIT](LICENSE)."
+  "about_body": "- **Fuente**: paráfrasis de la [referencia oficial de comandos]({source}), revisada el {checked}. Las descripciones están simplificadas y no son traducciones oficiales; si no coinciden, manda la documentación oficial.\n- **Datos**: todo se genera a partir de [`data/commands.json`](data/commands.json). Edita el JSON y luego ejecuta `python3 scripts/build.py`.\n- **Cómo colaborar**: consulta [CONTRIBUTING.md](CONTRIBUTING.md).\n- **Licencia**: contenido [CC BY 4.0](LICENSE-CONTENT), código [MIT](LICENSE).",
+  "preview": "Vista previa en vivo",
+  "preview_note": "Una página estática que puedes probar ya: busca, cambia de idioma y de tema y copia comandos. No hay nada que instalar.",
+  "theme_default": "Tema predeterminado",
+  "theme_matrix": "Tema Matrix"
  }
 }

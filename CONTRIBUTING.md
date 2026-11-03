@@ -44,6 +44,7 @@ Right-to-left languages (Arabic, Hebrew) also need layout work; open an issue fi
 - **Publish the site**: Settings → Pages → Deploy from a branch → `main` / `/docs`. The page is then live at the URL in the README.
 - **Enable private vulnerability reporting** (Settings → Code security), which `SECURITY.md` points reporters to.
 - **Refresh screenshots** after visual changes: `scripts/screenshots.sh` (needs Google Chrome).
+- **Preview links**: `?theme=<name>` and `?lang=<code>` open the page in a given theme or language, e.g. `?theme=matrix&lang=ja`.
 - **Release**: update `CHANGELOG.md` and `META.checked` in `scripts/build.py`, then tag `vX.Y.Z`.
 
 ## 日本語

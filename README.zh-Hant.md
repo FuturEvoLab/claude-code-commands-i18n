@@ -6,9 +6,15 @@
 
 > 非官方、用淺顯文字介紹 Claude Code 所有斜線指令的參考手冊，提供 **7 種語言：英文、日文、簡體中文、繁體中文、韓文、俄文、西班牙文**。專為讀英文官方文件感到吃力的人而寫：每個指令都有簡短說明，以及一個實際的使用時機範例。
 
+## 線上預覽
+
+一個可以直接開啟試用的靜態頁面：搜尋、切換語言和主題、複製指令，不需要安裝。
+
 ### [可搜尋的網頁版 →](https://futurevolab.github.io/claude-code-commands-i18n/)
 
-[![Claude Code 指令大全](docs/assets/preview-en.png)](https://futurevolab.github.io/claude-code-commands-i18n/)
+| 預設主題 | 駭客任務主題 |
+|---|---|
+| [![預設主題](docs/assets/preview-en.png)](https://futurevolab.github.io/claude-code-commands-i18n/?theme=terminal) | [![駭客任務主題](docs/assets/preview-matrix.png)](https://futurevolab.github.io/claude-code-commands-i18n/?theme=matrix) |
 
 <p><img src="docs/assets/preview-search.png" alt="search" width="68%"> <img src="docs/assets/preview-mobile.png" alt="mobile" width="28%"></p>
 

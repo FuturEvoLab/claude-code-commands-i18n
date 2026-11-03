@@ -6,9 +6,15 @@
 
 > Claude Code의 모든 슬래시 명령을 **영어, 일본어, 중국어 간체, 중국어 번체, 한국어, 러시아어, 스페인어**로 쉽게 설명하는 비공식 참고 자료입니다. 영어 공식 문서를 읽기 어려운 분들을 위해 만들었습니다. 명령마다 짧은 설명과 언제 쓰면 좋은지 보여 주는 현실적인 예시가 있습니다.
 
+## 라이브 미리보기
+
+바로 써 볼 수 있는 정적 페이지입니다. 검색, 언어·테마 전환, 명령어 복사를 할 수 있으며 설치는 필요 없습니다.
+
 ### [검색 가능한 웹 버전 →](https://futurevolab.github.io/claude-code-commands-i18n/)
 
-[![Claude Code 명령어](docs/assets/preview-en.png)](https://futurevolab.github.io/claude-code-commands-i18n/)
+| 기본 테마 | 매트릭스 테마 |
+|---|---|
+| [![기본 테마](docs/assets/preview-en.png)](https://futurevolab.github.io/claude-code-commands-i18n/?theme=terminal) | [![매트릭스 테마](docs/assets/preview-matrix.png)](https://futurevolab.github.io/claude-code-commands-i18n/?theme=matrix) |
 
 <p><img src="docs/assets/preview-search.png" alt="search" width="68%"> <img src="docs/assets/preview-mobile.png" alt="mobile" width="28%"></p>
 

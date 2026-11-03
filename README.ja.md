@@ -6,9 +6,15 @@
 
 > Claude Code のスラッシュコマンドを**英語・日本語・簡体字中国語・繁体字中国語・韓国語・ロシア語・スペイン語の 7 言語**で説明する非公式のリファレンスです。英語の公式ドキュメントが読みにくい方のために、各コマンドの英語の意味、やさしい説明、「いつ使うと便利か」の具体例を載せています。
 
+## ライブプレビュー
+
+すぐに試せる静的ページです。検索、言語やテーマの切り替え、コマンドのコピーができます。インストールは不要です。
+
 ### [検索できる Web 版 →](https://futurevolab.github.io/claude-code-commands-i18n/)
 
-[![Claude Code コマンド一覧](docs/assets/preview-en.png)](https://futurevolab.github.io/claude-code-commands-i18n/)
+| 標準テーマ | マトリックステーマ |
+|---|---|
+| [![標準テーマ](docs/assets/preview-en.png)](https://futurevolab.github.io/claude-code-commands-i18n/?theme=terminal) | [![マトリックステーマ](docs/assets/preview-matrix.png)](https://futurevolab.github.io/claude-code-commands-i18n/?theme=matrix) |
 
 <p><img src="docs/assets/preview-search.png" alt="search" width="68%"> <img src="docs/assets/preview-mobile.png" alt="mobile" width="28%"></p>
 

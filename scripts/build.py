@@ -235,8 +235,11 @@ def readme(lang, cats, groups, scens, risk_list, disc):
     ])
     out = [f"# {t['title']}", "", LANG_LINKS, "", badges, "",
            f"> {t['intro']}", "",
+           f"## {t['preview']}", "", t["preview_note"], "",
            f"### [{t['web']} →]({META['site']})", "",
-           f"[![{t['title']}](docs/assets/preview-en.png)]({META['site']})", "",
+           f"| {t['theme_default']} | {t['theme_matrix']} |", "|---|---|",
+           f"| [![{t['theme_default']}](docs/assets/preview-en.png)]({META['site']}?theme=terminal) "
+           f"| [![{t['theme_matrix']}](docs/assets/preview-matrix.png)]({META['site']}?theme=matrix) |", "",
            "<p>"
            f'<img src="docs/assets/preview-search.png" alt="search" width="68%"> '
            f'<img src="docs/assets/preview-mobile.png" alt="mobile" width="28%">'
