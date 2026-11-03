@@ -57,10 +57,10 @@
   },
   "desc": {
    "en": "Output (files, clipboard, reports) can contain conversation text, keys, passwords or personal data. Review and redact before sharing.",
-   "ja": "作られるファイル・クリップボード・レポートに、会話内容・API キー・パスワード・個人情報が含まれる場合があります。共有する前に必ず確認して削除してください。",
+   "ja": "作られるファイル・クリップボード・レポートに、会話内容・API キー・パスワード・個人情報が含まれる場合があります。共有する前に必ず確認し、該当する部分を削除・伏せ字にしてください。",
    "zh": "生成的文件、剪贴板内容或报告中可能含有对话内容、密钥、密码或个人信息。分享前务必检查并删除敏感内容。",
    "zh-hant": "輸出內容（檔案、剪貼簿、報告）可能含有對話文字、金鑰、密碼或個人資料。分享前請檢查並刪除敏感內容。",
-   "ko": "결과물(파일, 클립보드, 보고서)에 대화 내용, 키, 비밀번호, 개인정보가 들어 있을 수 있습니다. 공유하기 전에 검토하고 지우세요.",
+   "ko": "결과물(파일, 클립보드, 보고서)에 대화 내용, 키, 비밀번호, 개인정보가 들어 있을 수 있습니다. 공유하기 전에 검토하고 민감한 부분은 가리거나 지우세요.",
    "ru": "Результат (файлы, буфер обмена, отчёты) может содержать текст разговора, ключи, пароли или личные данные. Проверьте и скройте лишнее, прежде чем делиться.",
    "es": "La salida (archivos, portapapeles, informes) puede contener texto de la conversación, claves, contraseñas o datos personales. Revísala y elimina lo sensible antes de compartirla."
   }

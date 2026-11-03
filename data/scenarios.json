@@ -94,7 +94,7 @@
    "zh": "让 Claude 一直用中文回答",
    "zh-hant": "讓 Claude 一律用中文回答",
    "ko": "Claude가 항상 한국어로 답하게 하고 싶어요",
-   "ru": "Чтобы Claude всегда отвечал на моём языке",
+   "ru": "Сделать так, чтобы Claude всегда отвечал на моём языке",
    "es": "Hacer que Claude responda siempre en mi idioma"
   }
  },
@@ -113,7 +113,7 @@
    "zh-hant": "省錢、省用量",
    "ko": "비용과 사용량을 줄이고 싶어요",
    "ru": "Тратить меньше денег и лимитов",
-   "es": "Gastar menos dinero y menos uso"
+   "es": "Gastar menos dinero y consumir menos uso"
   }
  },
  {
@@ -131,7 +131,7 @@
    "zh-hant": "提交或上線前先檢查",
    "ko": "커밋이나 배포 전에 점검하고 싶어요",
    "ru": "Проверить работу перед коммитом или выпуском",
-   "es": "Revisar el trabajo antes del commit o de publicarlo"
+   "es": "Revisar el trabajo antes de hacer commit o de publicarlo"
   }
  },
  {

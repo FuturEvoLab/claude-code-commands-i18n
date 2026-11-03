@@ -32,7 +32,7 @@
    "ja": "コンテキストが空の新しい会話を始めます。プロジェクトの記憶（CLAUDE.md）は残ります。前の会話は削除されず `/resume` で戻れます。名前を付けると前の会話にラベルが付きます。",
    "zh": "开始一个上下文为空的新对话。项目记忆（CLAUDE.md）仍然有效。旧对话不会删除，可以用 `/resume` 找回；写上名字可以给旧对话加标签。",
    "zh-hant": "開始一個上下文為空的新對話，專案記憶仍然有效。舊對話會保留，可以用 `/resume` 重新開啟；加上名稱可以在清單中幫舊對話加標籤。",
-   "ko": "컨텍스트가 비어 있는 새 대화를 시작합니다. 프로젝트 메모리는 그대로 남습니다. 이전 대화는 삭제되지 않고 `/resume`으로 다시 열 수 있습니다. 이름을 붙이면 선택 목록에서 이전 대화에 라벨이 붙습니다.",
+   "ko": "컨텍스트가 비어 있는 새 대화를 시작합니다. 프로젝트 메모리는 그대로 남습니다. 이전 대화는 삭제되지 않고 `/resume`으로 다시 열 수 있습니다. 이름을 붙이면 선택 화면에서 이전 대화에 라벨이 붙습니다.",
    "ru": "Начинает новый разговор с пустым контекстом, но память проекта сохраняется. Прежний разговор не удаляется, его можно снова открыть через `/resume`; укажите имя, чтобы подписать его в списке.",
    "es": "Empieza una conversación nueva con el contexto vacío, pero conserva la memoria del proyecto. La conversación anterior se guarda y puedes volver a abrirla con `/resume`; si escribes un nombre, sirve de etiqueta en el selector."
   },
@@ -171,7 +171,7 @@
    "zh": "把对话和/或代码退回到之前的某个检查点，或者从选中的消息开始做摘要。类似游戏「读档」。",
    "zh-hant": "把對話和（或）程式碼退回到之前的檢查點，或從選取的訊息開始做摘要。",
    "ko": "대화나 코드(또는 둘 다)를 이전 체크포인트로 되돌리거나, 선택한 메시지부터 요약합니다.",
-   "ru": "Откатывает разговор и/или код к более ранней контрольной точке или делает пересказ начиная с выбранного сообщения.",
+   "ru": "Откатывает разговор и/или код к более ранней контрольной точке или делает пересказ, начиная с выбранного сообщения.",
    "es": "Devuelve la conversación, el código o ambos a un punto de control anterior, o resume a partir de un mensaje que elijas."
   },
   "use": {
@@ -612,9 +612,9 @@
   "desc": {
    "en": "Sets the effort level: `low` to `xhigh`, `max`, or `auto`; `status` prints it. `max` is session-only. `ultracode on|off` toggles ultracode.",
    "ja": "推論の深さを `low`〜`xhigh`、`max`、`auto` から設定します。`status` で現在値を表示。`max` はこのセッションのみ。`ultracode on|off` で ultracode を切り替えます。",
-   "zh": "设置推理力度：`low` 到 `xhigh`、`max` 或 `auto`；`status` 显示当前值。`max` 只对当前会话有效。`ultracode on|off` 开关 ultracode 模式。",
+   "zh": "设置思考力度：`low` 到 `xhigh`、`max` 或 `auto`；`status` 显示当前值。`max` 只对当前会话有效。`ultracode on|off` 开关 ultracode 模式。",
    "zh-hant": "設定思考力度：`low` 到 `xhigh`、`max` 或 `auto`；`status` 會顯示目前的值。`max` 只在這次工作階段有效。`ultracode on|off` 可開關 ultracode。",
-   "ko": "노력 수준을 정합니다: `low`부터 `xhigh`, `max`, `auto` 중 하나. `status`는 현재 값을 표시합니다. `max`는 이 세션에서만 유효합니다. `ultracode on|off`로 ultracode를 켜고 끕니다.",
+   "ko": "노력 수준을 정합니다: `low`부터 `xhigh`까지의 단계, `max`, `auto` 중 하나. `status`는 현재 값을 표시합니다. `max`는 이 세션에서만 유효합니다. `ultracode on|off`로 ultracode를 켜고 끕니다.",
    "ru": "Задаёт уровень усилий: от `low` до `xhigh`, `max` или `auto`; `status` показывает текущий. `max` действует только в этой сессии. `ultracode on|off` включает и выключает ultracode.",
    "es": "Define el nivel de esfuerzo: de `low` a `xhigh`, `max` o `auto`; `status` lo muestra. `max` vale solo para la sesión. `ultracode on|off` activa o desactiva ultracode."
   },
@@ -694,7 +694,7 @@
    "zh": "平时用较快的模型干活，又怕关键决策出错：`/advisor opus`。",
    "zh-hant": "平常用較快的模型工作，但在關鍵決策時取得更強模型的第二意見：`/advisor opus`。",
    "ko": "평소에는 빠른 모델로 작업하고, 중요한 판단에서만 더 강한 모델의 의견을 받을 때: `/advisor opus`.",
-   "ru": "Работайте на быстрой модели, но получайте мнение более сильной в важных решениях: `/advisor opus`.",
+   "ru": "Работайте на быстрой модели, но при важных решениях получайте второе мнение более сильной модели: `/advisor opus`.",
    "es": "Trabaja con un modelo más rápido, pero recibe una segunda opinión más potente en las decisiones clave: `/advisor opus`."
   }
  },
@@ -772,7 +772,7 @@
    "en": "First thing in a new repo: `/init`, then refine it with `/memory`.",
    "ja": "新しいプロジェクトでまず `/init`。そのあと `/memory` で「日本語で答えて」などの希望を追記します。",
    "zh": "接手新项目时第一件事：`/init`，然后用 `/memory` 补充「请用中文回答」等个人要求。",
-   "zh-hant": "接手新的程式庫時第一件事：`/init`，然後用 `/memory` 補充調整。",
+   "zh-hant": "在新的儲存庫中第一件事：`/init`，然後用 `/memory` 補充調整。",
    "ko": "새 저장소에서 가장 먼저: `/init`. 그다음 `/memory`로 내용을 다듬습니다.",
    "ru": "Первое, что стоит сделать в новом репозитории: `/init`, затем уточнить через `/memory`.",
    "es": "Lo primero en un repositorio nuevo: `/init`, y luego mejóralo con `/memory`."
@@ -904,7 +904,7 @@
   },
   "desc": {
    "en": "Imports instruction files, MCP servers, commands, subagents and skills from OpenAI Codex, Gemini CLI or Cursor. `--dry-run` previews. Unavailable on some cloud providers; Cursor import requires v2.1.265+.",
-   "ja": "OpenAI Codex・Google Gemini CLI・Cursor の設定（指示ファイル、MCP サーバー、コマンド、サブエージェント、スキル）を取り込みます。`--dry-run` はプレビューのみ。一部のクラウド環境では使えません。Cursor からは v2.1.265 以降。",
+   "ja": "OpenAI Codex・Google Gemini CLI・Cursor の設定（指示ファイル、MCP サーバー、コマンド、サブエージェント、スキル）を取り込みます。`--dry-run` はプレビューのみ。一部のクラウド環境では使えません。Cursor からの取り込みには v2.1.265 以降が必要です。",
    "zh": "把本机 OpenAI Codex、Google Gemini CLI 或 Cursor 的配置（说明文件、MCP 服务器、命令、子代理、技能）导入 Claude Code。`--dry-run` 只预览不写入。部分云平台不可用；从 Cursor 导入需 v2.1.265+。",
    "zh-hant": "從 OpenAI Codex、Gemini CLI 或 Cursor 匯入說明檔、MCP 伺服器、指令、子代理和技能。`--dry-run` 只預覽。部分雲端供應商無法使用；從 Cursor 匯入需要 v2.1.265+。",
    "ko": "OpenAI Codex, Gemini CLI, Cursor에서 지침 파일, MCP 서버, 명령, 서브에이전트, 스킬을 가져옵니다. `--dry-run`은 미리 보기만 합니다. 일부 클라우드 제공업체에서는 사용할 수 없고, Cursor 가져오기는 v2.1.265 이상이 필요합니다.",
@@ -1101,7 +1101,7 @@
   },
   "desc": {
    "en": "Four parallel agents review changed code for reuse, simplification, efficiency and abstraction level, then apply fixes. It does not look for correctness bugs; use `/code-review` for that.",
-   "ja": "4 つのレビューエージェントが並行して、既存コードの再利用・簡素化・効率・抽象度を確認し、修正まで行います。正しさのバグは対象外（それは `/code-review`）。",
+   "ja": "4 つのレビューエージェントが並行して、変更したコードを再利用・簡素化・効率・抽象度の観点で確認し、修正まで行います。正しさのバグは対象外（それは `/code-review`）。",
    "zh": "4 个审查代理并行检查改动：能否复用现有代码、能否更简单、效率、抽象层级是否合适，并直接改好。不查正确性 bug（那是 `/code-review` 的事）。",
    "zh-hant": "4 個代理平行檢查修改過的程式碼：能否重複利用、能否更簡單、效率、抽象層級，然後直接套用修正。它不會找正確性的 bug；那要用 `/code-review`。",
    "ko": "에이전트 4개가 병렬로 변경된 코드를 재사용, 단순화, 효율, 추상화 수준 관점에서 검토한 뒤 수정을 적용합니다. 정확성 버그는 찾지 않으니, 그런 용도에는 `/code-review`를 사용하세요.",
@@ -1248,7 +1248,7 @@
    "zh": "为本项目写一个专属技能，教会 `/run` 和 `/verify` 如何从干净环境构建、启动和操作你的应用。",
    "zh-hant": "為這個專案寫一個專屬技能，教 `/run` 和 `/verify` 如何從乾淨的環境建置、啟動和操作你的應用程式。",
    "ko": "깨끗한 환경에서 앱을 빌드, 실행, 조작하는 방법을 `/run`과 `/verify`에 알려 주는 프로젝트 전용 스킬을 작성합니다.",
-   "ru": "Пишет навык для проекта, который учит `/run` и `/verify` собирать, запускать и управлять вашим приложением в чистом окружении.",
+   "ru": "Пишет навык для проекта, который учит `/run` и `/verify` собирать и запускать ваше приложение и управлять им в чистом окружении.",
    "es": "Escribe una habilidad propia del proyecto que enseña a `/run` y `/verify` a compilar, iniciar y manejar tu aplicación desde un entorno limpio."
   },
   "use": {
@@ -1281,13 +1281,13 @@
    "es": "lote"
   },
   "desc": {
-   "en": "Orchestrates large changes in parallel: decomposes the work into 5–30 independent units, and after approval runs one background subagent per unit in its own worktree. Requires a git repository or a WorktreeCreate hook.",
+   "en": "Orchestrates large changes in parallel: researches the codebase, decomposes the work into 5–30 independent units and presents a plan; after approval, one background subagent per unit implements and tests it in its own worktree. Requires a git repository or a WorktreeCreate hook.",
    "ja": "大規模な変更を並列で行います。コードを調べて 5〜30 の独立した単位に分けて計画を示し、承認後は単位ごとにバックグラウンドのサブエージェントが独立した worktree で実装・テスト・反映します。Git リポジトリ（または対応する hook）が必要です。",
    "zh": "大规模并行改代码：先研究代码库，把工作拆成 5～30 个独立单元并给出计划；你批准后，每个单元由一个后台子代理在独立 worktree 中实现、测试并提交。需要 Git 仓库（或相应 hook）。",
-   "zh-hant": "平行處理大規模修改：把工作拆成 5～30 個獨立單元，經你核准後，每個單元由一個背景子代理在自己的 worktree 中執行。需要 git 儲存庫或 WorktreeCreate hook。",
-   "ko": "큰 변경을 병렬로 진행합니다: 작업을 독립된 단위 5~30개로 나누고, 승인하면 단위마다 자체 worktree에서 백그라운드 서브에이전트를 하나씩 실행합니다. git 저장소 또는 WorktreeCreate 훅이 필요합니다.",
-   "ru": "Организует большие изменения параллельно: делит работу на 5–30 независимых частей и после вашего одобрения запускает по одному фоновому субагенту на каждую часть в отдельном worktree. Нужен git-репозиторий или хук WorktreeCreate.",
-   "es": "Coordina cambios grandes en paralelo: divide el trabajo en 5–30 unidades independientes y, tras tu aprobación, ejecuta un subagente en segundo plano por unidad, cada uno en su propio worktree. Requiere un repositorio git o un hook WorktreeCreate."
+   "zh-hant": "平行處理大規模修改：先研究程式碼，把工作拆成 5～30 個獨立單元並提出計畫；經你核准後，每個單元由一個背景子代理在自己的 worktree 中實作並測試。需要 git 儲存庫或 WorktreeCreate hook。",
+   "ko": "큰 변경을 병렬로 진행합니다: 먼저 코드베이스를 조사해 작업을 독립된 단위 5~30개로 나누고 계획을 보여 줍니다. 승인하면 단위마다 백그라운드 서브에이전트가 자체 worktree에서 구현하고 테스트합니다. git 저장소 또는 WorktreeCreate 훅이 필요합니다.",
+   "ru": "Организует большие изменения параллельно: изучает код, делит работу на 5–30 независимых частей и показывает план; после вашего одобрения по одному фоновому субагенту на каждую часть реализует и тестирует её в отдельном worktree. Нужен git-репозиторий или хук WorktreeCreate.",
+   "es": "Coordina cambios grandes en paralelo: investiga el código, divide el trabajo en 5–30 unidades independientes y presenta un plan; tras tu aprobación, un subagente en segundo plano por unidad la implementa y la prueba en su propio worktree. Requiere un repositorio git o un hook WorktreeCreate."
   },
   "use": {
    "en": "`/batch migrate src/ from JavaScript to TypeScript`.",
@@ -1394,8 +1394,8 @@
    "ja": "今の会話を新しいバックグラウンドセッションに複製し、こちらは作業を続けます。指示を付けると複製がすぐ作業開始。複製は通常、自分用の worktree を作ってから編集します。",
    "zh": "把当前对话复制成一个新的后台会话，这边继续工作。带上指令则副本立即开始。副本一般会先创建自己的 worktree 再改代码。",
    "zh-hant": "把對話複製成一個新的背景工作階段，你可以繼續在這裡工作。附上指示的話，副本會立刻開始；通常會先讓它建立自己的 worktree。",
-   "ko": "대화를 새 백그라운드 세션으로 복사하고, 나는 여기서 계속 작업합니다. 프롬프트를 주면 복사본이 바로 시작하며, 보통 먼저 자체 worktree를 만들도록 지시받습니다.",
-   "ru": "Копирует разговор в новую фоновую сессию, а вы продолжаете работать здесь. С запросом копия начинает сразу; обычно ей велят сначала создать свой worktree.",
+   "ko": "대화를 새 백그라운드 세션으로 복사하고, 사용자는 여기서 계속 작업할 수 있습니다. 프롬프트를 주면 복사본이 바로 시작하며, 보통 먼저 자체 worktree를 만들도록 지시받습니다.",
+   "ru": "Копирует разговор в новую фоновую сессию, а вы продолжаете работать здесь. Если указать запрос, копия сразу приступает к работе; обычно ей велят сначала создать свой worktree.",
    "es": "Copia la conversación en una sesión nueva en segundo plano mientras tú sigues trabajando aquí. Con un prompt, la copia empieza de inmediato; normalmente se le indica que primero cree su propio worktree."
   },
   "use": {
@@ -1428,7 +1428,7 @@
    "en": "Spawns a forked subagent that inherits the conversation and reports its result back here. The difference from `/fork`: `/subtask` reports back here, while `/fork` starts a separate session.",
    "ja": "会話全体を引き継いだバックグラウンドのサブエージェントに作業を任せ、終わると結果がこの会話に戻ります。`/fork` との違い：`/subtask` は結果が戻り、`/fork` は独立したセッションです。",
    "zh": "派出一个继承完整对话的后台子代理去做任务，完成后结果回到当前对话。与 `/fork` 的区别：`/subtask` 的结果会汇报回来，`/fork` 是独立的会话。",
-   "zh-hant": "派出一個分岔的子代理，它會繼承對話內容，並把結果回報到這裡。與 `/fork` 的差別：`/subtask` 會把結果回報到這裡，`/fork` 則是另一個獨立的工作階段。",
+   "zh-hant": "派出一個分岔的子代理，它會繼承對話內容，並把結果回報到這裡。與 `/fork` 的差別：`/subtask` 會把結果回報到這裡，`/fork` 則會另開一個獨立的工作階段。",
    "ko": "대화를 물려받는 포크된 서브에이전트를 만들고, 결과를 이곳에 보고하게 합니다. `/fork`와의 차이: `/subtask`는 결과를 이곳에 보고하고, `/fork`는 별도의 세션을 만듭니다.",
    "ru": "Запускает ответвлённого субагента, который наследует разговор и сообщает результат сюда. Отличие от `/fork`: `/subtask` возвращает результат сюда, а `/fork` создаёт отдельную сессию.",
    "es": "Lanza un subagente bifurcado que hereda la conversación y devuelve su resultado aquí. La diferencia con `/fork`: `/subtask` devuelve el resultado aquí, mientras que `/fork` crea una sesión aparte."
@@ -1583,7 +1583,7 @@
    "zh-hant": "隨時留意一個執行很久的工作流程。",
    "ko": "오래 걸리는 워크플로를 지켜볼 때 사용합니다.",
    "ru": "Следить за долгим рабочим процессом.",
-   "es": "Vigilar un flujo de trabajo que tarda mucho."
+   "es": "Vigila un flujo de trabajo que tarda mucho."
   }
  },
  {
@@ -1787,7 +1787,7 @@
   "word": "artifacts",
   "gloss": {
    "zh": "成品（发布的网页）",
-   "ja": "アーティファクト（公開ページ）",
+   "ja": "アーティファクト（共有できる Web ページ）",
    "zh-hant": "成品（發布的網頁）",
    "ko": "아티팩트 (공개 페이지)",
    "ru": "артефакты (опубликованные страницы)",
@@ -1795,7 +1795,7 @@
   },
   "desc": {
    "en": "Lists artifacts you own or that are shared with you, then attaches one, opens it, or copies its link. Where artifacts are available.",
-   "ja": "自分が持っている、または共有されたアーティファクト（公開ページ）を一覧表示し、セッションへの追加・ブラウザーで開く・リンクのコピーができます。対応環境のみ。",
+   "ja": "自分が持っている、または共有されたアーティファクト（Web ページ）を一覧表示し、セッションへの追加・ブラウザーで開く・リンクのコピーができます。対応環境のみ。",
    "zh": "列出你拥有或别人分享给你的 artifact（网页成品），可以接入当前会话、在浏览器打开或复制链接。仅在支持 artifact 的环境可用。",
    "zh-hant": "列出你擁有或別人分享給你的 artifact，然後可以接入其中一個、開啟它，或複製連結。只在支援 artifact 的環境中可用。",
    "ko": "내가 소유하거나 공유받은 아티팩트를 나열하고, 하나를 연결하거나, 열거나, 링크를 복사합니다. 아티팩트를 쓸 수 있는 곳에서만 동작합니다.",
@@ -1869,7 +1869,7 @@
    "en": "Drafts UI mockups, flows, landing pages or posters as artboards on one canvas (a Claude Design artifact); edit in a desktop browser and export PNG or PDF. Unavailable on Bedrock, Vertex and other third-party platforms.",
    "ja": "UI のラフ、画面遷移、LP、ポスターを 1 枚のキャンバスに描きます（Claude Design のアーティファクト）。デスクトップのブラウザーで編集し、PNG・PDF で書き出せます。Bedrock や Vertex などでは使えません。",
    "zh": "在一张画布上绘制界面草图、页面流程、落地页或海报（Claude Design artifact），可在桌面浏览器编辑并导出 PNG 或 PDF。Bedrock、Vertex 等第三方平台不可用。",
-   "zh-hant": "在同一張畫布上以多個畫板草擬 UI 模型、操作流程、到達頁或海報（Claude Design artifact）；可在桌面瀏覽器中編輯，並匯出 PNG 或 PDF。Bedrock、Vertex 及其他第三方平台無法使用。",
+   "zh-hant": "在同一張畫布上以多個畫板草擬 UI 設計稿、操作流程、到達頁或海報（Claude Design artifact）；可在桌面瀏覽器中編輯，並匯出 PNG 或 PDF。Bedrock、Vertex 及其他第三方平台無法使用。",
    "ko": "UI 목업, 화면 흐름, 랜딩 페이지, 포스터를 하나의 캔버스 위 아트보드로 초안 작성합니다(Claude Design 아티팩트). 데스크톱 브라우저에서 편집하고 PNG나 PDF로 내보냅니다. Bedrock, Vertex 등 서드파티 플랫폼에서는 사용할 수 없습니다.",
    "ru": "Набрасывает макеты интерфейса, сценарии, лендинги или постеры в виде артбордов на одном холсте (артефакт Claude Design); редактировать можно в браузере на компьютере, экспорт в PNG или PDF. Недоступно в Bedrock, Vertex и на других сторонних платформах.",
    "es": "Crea bocetos de interfaz, flujos, páginas de aterrizaje o pósteres como mesas de trabajo en un solo lienzo (un artefacto de Claude Design); edítalos en un navegador de escritorio y expórtalos en PNG o PDF. No está disponible en Bedrock, Vertex ni otras plataformas de terceros."
@@ -1908,7 +1908,7 @@
    "zh": "授予或撤销 Claude 对 Claude Design 的访问权限。当 Claude 的回复要求你运行 `/design consent` 时，需要你自己在输入框中输入。",
    "zh-hant": "授予或撤回 Claude 對 Claude Design 的存取權。當 Claude 要求你執行 `/design consent` 時，請自己輸入。",
    "ko": "Claude의 Claude Design 접근을 허용하거나 철회합니다. Claude가 `/design consent`를 실행하라고 하면 직접 입력하세요.",
-   "ru": "Даёт или отзывает доступ Claude к Claude Design. Когда Claude просит выполнить `/design consent`, введите её сами.",
+   "ru": "Даёт или отзывает доступ Claude к Claude Design. Когда Claude просит выполнить `/design consent`, введите эту команду сами.",
    "es": "Concede o retira el acceso de Claude a Claude Design. Cuando Claude te pida ejecutar `/design consent`, escríbelo tú mismo."
   },
   "use": {
@@ -2335,7 +2335,7 @@
    "zh-hant": "撰寫擴充（mod）",
    "ko": "플러그인 작성",
    "ru": "создание плагинов",
-   "es": "creación de extensiones"
+   "es": "creación de complementos"
   },
   "desc": {
    "en": "Loads the reference for writing a mod. A skill from a built-in plugin, which you can turn off in `/plugin`.",
@@ -2523,7 +2523,7 @@
    "en": "Installs the Claude GitHub App for a repository, optionally setting up GitHub Actions workflows and secrets. github.com only.",
    "ja": "リポジトリに Claude GitHub App を入れ、必要なら GitHub Actions のワークフローとシークレットも設定します。github.com のリポジトリのみ。",
    "zh": "为仓库安装 Claude GitHub App，可选设置 GitHub Actions 工作流和密钥。仅适用于 github.com 仓库。",
-   "zh-hant": "為儲存庫安裝 Claude GitHub App，也可以順便設定 GitHub Actions 工作流程和密鑰。只適用於 github.com。",
+   "zh-hant": "為儲存庫安裝 Claude GitHub App，也可以順便設定 GitHub Actions 工作流程和機密（secrets）。只適用於 github.com。",
    "ko": "저장소에 Claude GitHub App을 설치하고, 원하면 GitHub Actions 워크플로와 시크릿도 설정합니다. github.com 전용입니다.",
    "ru": "Устанавливает приложение Claude GitHub App для репозитория и по желанию настраивает рабочие процессы GitHub Actions и секреты. Только для github.com.",
    "es": "Instala la Claude GitHub App en un repositorio y, si quieres, configura flujos de trabajo y secretos de GitHub Actions. Solo github.com."
@@ -2947,7 +2947,7 @@
    "zh": "操作生产环境的会话设成 `/color red`，时刻提醒自己小心。",
    "zh-hant": "用 `/color red` 標示正式環境的工作階段。",
    "ko": "운영 환경을 다루는 세션은 `/color red`로 표시해 둡니다.",
-   "ru": "Отметьте сессию на рабочем сервере: `/color red`.",
+   "ru": "Отметьте сессию, где вы работаете с продакшеном: `/color red`.",
    "es": "Marca una sesión de producción con `/color red`."
   }
  },
@@ -3108,13 +3108,13 @@
    "es": "TUI (interfaz de usuario de texto)"
   },
   "desc": {
-   "en": "Sets the terminal renderer and relaunches with the conversation intact. `fullscreen` is the flicker-free renderer.",
+   "en": "Sets the terminal renderer and relaunches with the conversation intact. `fullscreen` is the flicker-free renderer. No argument shows the current renderer.",
    "ja": "ターミナル UI の描画方式を設定し、会話を保ったまま再起動します。`fullscreen` はちらつかない全画面表示。引数なしで現在の方式を表示。",
    "zh": "设置终端界面渲染方式并保留对话重新启动。`fullscreen` 为不闪烁的全屏模式；不带参数显示当前方式。",
-   "zh-hant": "設定終端機的渲染方式，並在保留對話的情況下重新啟動。`fullscreen` 是不會閃爍的渲染方式。",
-   "ko": "터미널 렌더러를 정하고, 대화를 유지한 채 다시 실행합니다. `fullscreen`은 화면 깜박임이 없는 렌더러입니다.",
-   "ru": "Выбирает способ отрисовки в терминале и перезапускается, сохраняя разговор. `fullscreen` — отрисовка без мерцания.",
-   "es": "Define el renderizador de la terminal y reinicia con la conversación intacta. `fullscreen` es el renderizador sin parpadeo."
+   "zh-hant": "設定終端機的渲染方式，並在保留對話的情況下重新啟動。`fullscreen` 是不會閃爍的渲染方式。不加參數會顯示目前使用的渲染方式。",
+   "ko": "터미널 렌더러를 정하고, 대화를 유지한 채 다시 실행합니다. `fullscreen`은 화면 깜박임이 없는 렌더러입니다. 인수 없이 실행하면 현재 렌더러를 보여 줍니다.",
+   "ru": "Выбирает способ отрисовки в терминале и перезапускается, сохраняя разговор. `fullscreen` — отрисовка без мерцания. Без аргумента показывает текущий способ отрисовки.",
+   "es": "Define el renderizador de la terminal y reinicia con la conversación intacta. `fullscreen` es el renderizador sin parpadeo. Sin argumento, muestra el renderizador actual."
   },
   "use": {
    "en": "Screen flickers: `/tui fullscreen`.",
@@ -3279,7 +3279,7 @@
   "short": {
    "en": "Check cost and plan limits",
    "ja": "料金と使用量の上限を確認する",
-   "zh": "查看费用和额度",
+   "zh": "查看费用和用量上限",
    "zh-hant": "查看費用和方案上限",
    "ko": "비용과 플랜 한도 확인",
    "ru": "Проверить стоимость и лимиты тарифа",
@@ -3297,7 +3297,7 @@
   "desc": {
    "en": "Shows session cost, plan usage limits and activity stats, including what counts against plan limits on subscriptions. `/stats` opens the Stats tab.",
    "ja": "このセッションの費用、プランの使用量上限、利用統計を表示します。サブスクリプションでは上限に数えられる内訳も表示。`/stats` は統計タブで開きます。",
-   "zh": "显示本次会话费用、套餐用量上限和活动统计。订阅套餐会显示哪些消耗计入额度。`/stats` 打开统计标签页。",
+   "zh": "显示本次会话费用、套餐用量上限和活动统计。订阅套餐会显示哪些消耗计入套餐上限。`/stats` 打开统计标签页。",
    "zh-hant": "顯示這次工作階段的費用、方案用量上限和活動統計，包括訂閱方案中哪些項目會計入上限。`/stats` 會開啟統計分頁。",
    "ko": "세션 비용, 플랜 사용 한도, 활동 통계를 보여 줍니다. 구독 플랜에서 무엇이 한도에 포함되는지도 표시합니다. `/stats`는 Stats 탭을 엽니다.",
    "ru": "Показывает стоимость сессии, лимиты тарифа и статистику активности, в том числе что учитывается в лимитах подписки. `/stats` открывает вкладку Stats.",
@@ -3335,7 +3335,7 @@
    "zh": "打开设置的「状态」页：版本、模型、账号、连接情况。Claude 回复中也能运行。",
    "zh-hant": "開啟設定的「狀態」分頁：版本、模型、帳號、連線狀況。Claude 正在回答時也能使用。",
    "ko": "설정 화면의 Status 탭을 엽니다: 버전, 모델, 계정, 연결 상태. Claude가 응답하는 중에도 동작합니다.",
-   "ru": "Открывает настройки на вкладке Status: версия, модель, аккаунт, подключение. Работает, пока Claude отвечает.",
+   "ru": "Открывает настройки на вкладке Status: версия, модель, аккаунт, подключение. Работает и во время ответа Claude.",
    "es": "Abre la configuración en la pestaña Status: versión, modelo, cuenta y conectividad. Funciona mientras Claude responde."
   },
   "use": {
@@ -3414,8 +3414,8 @@
    "zh": "深夜跑任务被限额卡住：选择「重置后自动继续」，第二天醒来已完成。",
    "zh-hant": "半夜被上限擋住：選擇在重設後自動繼續。",
    "ko": "밤새 작업이 막혔다면: 한도가 초기화된 뒤 자동으로 이어서 하기를 선택합니다.",
-   "ru": "Работа остановилась на ночь: выберите автоматическое продолжение после сброса лимита.",
-   "es": "Te bloqueó de noche: elige continuar automáticamente cuando se restablezca."
+   "ru": "Ночью упёрлись в лимит: выберите автоматическое продолжение после сброса лимита.",
+   "es": "El límite te bloqueó por la noche: elige continuar automáticamente cuando se restablezca."
   }
  },
  {
@@ -3859,7 +3859,7 @@
    "ja": "インストール・設定・拡張・`CLAUDE.md` の問題を診断し、修正案を出します。確認後に Claude が修正。`prompt-audit` で指示ファイルの監査に切り替え。",
    "zh": "体检：诊断安装、设置、扩展和 `CLAUDE.md` 的问题并提出修复方案，你确认后 Claude 才会修改。`prompt-audit` 改为审查你的说明文件。",
    "zh-hant": "為安裝、設定、擴充功能和 `CLAUDE.md` 做健檢，並提出修正方案，經你確認後由 Claude 套用。`prompt-audit` 則改為審查你的說明內容。",
-   "ko": "설치, 설정, 확장 기능, `CLAUDE.md`를 점검하고 수정안을 제안하며, 확인하면 Claude가 적용합니다. `prompt-audit`를 붙이면 대신 내 지침을 점검합니다.",
+   "ko": "설치, 설정, 확장 기능, `CLAUDE.md`를 점검하고 수정안을 제안하며, 확인하면 Claude가 적용합니다. `prompt-audit`을 붙이면 대신 내 지침을 점검합니다.",
    "ru": "Проверяет установку, настройки, расширения и `CLAUDE.md` и предлагает исправления, которые Claude применит после вашего подтверждения. `prompt-audit` вместо этого проверяет ваши инструкции.",
    "es": "Hace un chequeo de la instalación, la configuración, las extensiones y `CLAUDE.md`, y propone correcciones que Claude aplica después de que confirmes. `prompt-audit` revisa en cambio tus instrucciones."
   },
@@ -4006,7 +4006,7 @@
   },
   "desc": {
    "en": "Views the changelog in a version picker; notes appear without entering Claude's context.",
-   "ja": "バージョンを選んで更新履歴を表示します。表示はされますが、Claude の会話には入りません。",
+   "ja": "バージョンを選んで更新履歴を表示します。表示はされますが、Claude のコンテキストには入りません。",
    "zh": "在版本选择器中查看更新日志。内容显示在记录里，但不会进入 Claude 的上下文。",
    "zh-hant": "在版本選擇器中查看更新紀錄；內容會顯示出來，但不會進入 Claude 的上下文。",
    "ko": "버전 선택 화면에서 변경 내역을 봅니다. 내용은 Claude의 컨텍스트에 들어가지 않습니다.",
@@ -4058,7 +4058,7 @@
    "zh-hant": "更新後底部出現提示時。",
    "ko": "업데이트 후 하단에 안내가 나올 때.",
    "ru": "Когда нижняя строка предлагает это после обновления.",
-   "es": "Cuando el pie de pantalla lo ofrece tras una actualización."
+   "es": "Cuando la barra inferior lo ofrece tras una actualización."
   }
  },
  {
@@ -4129,7 +4129,7 @@
    "ja": "JavaScript のヒープスナップショットとメモリー内訳をデスクトップに書き出し、メモリー使用量が多い問題を調べます。報告時は `-diagnostics.json` だけ添付。`.heapsnapshot` には会話全体と認証情報が含まれるので共有しないこと。メニューには出ないので全部入力。",
    "zh": "把 JavaScript 内存快照和内存明细写到桌面，用于排查内存占用过高。报告问题时只附 `-diagnostics.json`；`.heapsnapshot` 含完整对话和凭据，不要分享。菜单中隐藏，需完整输入。",
    "zh-hant": "把 heap 快照和記憶體明細寫到桌面，用來診斷記憶體用量過高的問題。只分享 `-diagnostics.json`；`.heapsnapshot` 含有你的對話和登入憑證。選單中不會顯示。",
-   "ko": "메모리 사용량이 높을 때 진단할 수 있도록 힙 스냅샷과 메모리 내역을 데스크톱에 저장합니다. `-diagnostics.json`만 공유하세요. `.heapsnapshot`에는 대화 내용과 인증 정보가 들어 있습니다. 메뉴에는 보이지 않습니다.",
+   "ko": "메모리 사용량이 높을 때 진단할 수 있도록 힙 스냅샷과 메모리 내역을 바탕 화면(Desktop 폴더)에 저장합니다. `-diagnostics.json`만 공유하세요. `.heapsnapshot`에는 대화 내용과 인증 정보가 들어 있습니다. 메뉴에는 보이지 않습니다.",
    "ru": "Записывает снимок кучи и разбивку по памяти на рабочий стол, чтобы разобраться с большим расходом памяти. Делитесь только файлом `-diagnostics.json`; файл `.heapsnapshot` содержит ваш разговор и учётные данные. Скрыта в меню.",
    "es": "Escribe en el Escritorio una instantánea del heap y un desglose de la memoria para diagnosticar un uso alto de memoria. Comparte solo el `-diagnostics.json`; el `.heapsnapshot` contiene tu conversación y tus credenciales. Está oculto en el menú."
   },
@@ -4140,7 +4140,7 @@
    "zh-hant": "回報記憶體用量暴增的問題。",
    "ko": "메모리 사용량이 폭증했을 때 신고용으로.",
    "ru": "Сообщить о резком росте расхода памяти.",
-   "es": "Informar de un consumo de memoria descontrolado."
+   "es": "Informa de un consumo de memoria descontrolado."
   }
  },
  {

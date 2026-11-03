@@ -22,7 +22,7 @@
   },
   {
    "t": "This page does not track you",
-   "b": "This page uses no cookies, analytics, third-party scripts or fonts. It stores only your language preference, locally in your browser."
+   "b": "This page uses no cookies, analytics, third-party scripts or fonts. It stores only your language and theme preferences, locally in your browser."
   },
   {
    "t": "Limitation of liability",
@@ -44,7 +44,7 @@
   },
   {
    "t": "秘密情報とプライバシーを守る",
-   "b": "API キー・パスワード・トークン・他人の個人情報をプロンプトに書かないでください。会話のエクスポート、不具合報告、メモリーの記録などのファイルにはこれらが含まれる場合があるので、共有前に必ず確認してください。"
+   "b": "API キー・パスワード・トークン・他人の個人情報をプロンプトに書かないでください。会話のエクスポート、不具合報告、メモリーのスナップショット（ヒープダンプ）などのファイルにはこれらが含まれる場合があるので、共有前に必ず確認してください。"
   },
   {
    "t": "例は参考です",
@@ -52,7 +52,7 @@
   },
   {
    "t": "このページは追跡しません",
-   "b": "このページは Cookie、アクセス解析、外部のスクリプトやフォントを使いません。言語の設定だけをブラウザー内に保存します。"
+   "b": "このページは Cookie、アクセス解析、外部のスクリプトやフォントを使いません。言語とテーマの設定だけをブラウザー内に保存します。"
   },
   {
    "t": "責任の制限",
@@ -82,7 +82,7 @@
   },
   {
    "t": "本页面不追踪你",
-   "b": "本页面不使用 Cookie、统计分析或第三方脚本、字体，只在你的浏览器本地保存语言偏好。"
+   "b": "本页面不使用 Cookie、统计分析或第三方脚本、字体，只在你的浏览器本地保存语言和主题偏好。"
   },
   {
    "t": "责任限制",
@@ -92,7 +92,7 @@
  "zh-hant": [
   {
    "t": "非官方專案",
-   "b": "這是社群專案，與 Anthropic 沒有關係，也沒有獲得 Anthropic 贊助或認可。「Claude」、「Claude Code」及相關標誌是 Anthropic 的商標，這裡只用來指出所介紹的產品。"
+   "b": "這是社群專案，與 Anthropic 沒有隸屬關係，也沒有獲得 Anthropic 贊助或認可。「Claude」、「Claude Code」及相關標示是 Anthropic 的商標，這裡只用來指出所介紹的產品。"
   },
   {
    "t": "內容可能過時或有誤",
@@ -112,7 +112,7 @@
   },
   {
    "t": "本頁面不會追蹤你",
-   "b": "本頁面不使用 Cookie、流量分析、第三方腳本或字型。只會在你的瀏覽器本機儲存語言偏好。"
+   "b": "本頁面不使用 Cookie、流量分析、第三方腳本或字型。只會在你的瀏覽器本機儲存語言和主題偏好。"
   },
   {
    "t": "責任限制",
@@ -142,7 +142,7 @@
   },
   {
    "t": "이 페이지는 사용자를 추적하지 않음",
-   "b": "이 페이지는 쿠키, 분석 도구, 서드파티 스크립트나 글꼴을 사용하지 않습니다. 언어 설정만 브라우저에 로컬로 저장합니다."
+   "b": "이 페이지는 쿠키, 분석 도구, 서드파티 스크립트나 글꼴을 사용하지 않습니다. 언어와 테마 설정만 브라우저에 로컬로 저장합니다."
   },
   {
    "t": "책임의 제한",
@@ -172,7 +172,7 @@
   },
   {
    "t": "Эта страница не следит за вами",
-   "b": "Страница не использует cookie, аналитику, сторонние скрипты или шрифты. Она хранит только выбранный вами язык, локально в вашем браузере."
+   "b": "Страница не использует cookie, аналитику, сторонние скрипты или шрифты. Она хранит только выбранные вами язык и тему, локально в вашем браузере."
   },
   {
    "t": "Ограничение ответственности",
@@ -202,7 +202,7 @@
   },
   {
    "t": "Esta página no te rastrea",
-   "b": "Esta página no usa cookies, analítica, scripts ni fuentes de terceros. Solo guarda tu preferencia de idioma, localmente en tu navegador."
+   "b": "Esta página no usa cookies, analítica, scripts ni fuentes de terceros. Solo guarda tus preferencias de idioma y tema, localmente en tu navegador."
   },
   {
    "t": "Limitación de responsabilidad",

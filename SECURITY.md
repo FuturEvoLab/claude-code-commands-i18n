@@ -13,7 +13,7 @@ We aim to reply within 7 days. Vulnerabilities in Claude Code itself are out of 
 
 **Safeguards in place**
 
-- The page loads no third-party scripts, fonts or trackers, and stores only a language preference in `localStorage`.
+- The page loads no third-party scripts, fonts or trackers, and stores only the language and theme preferences in `localStorage`.
 - `docs/index.html` ships a Content-Security-Policy that allows only its own inline style and script (by SHA-256 hash), no network requests, no forms and no `<base>`.
 - All data is HTML-escaped before display. The build rejects raw HTML, Markdown links and URLs in prose fields, and restricts command names to `/lowercase-words`.
 - CI runs with read-only repository permissions and fails if generated files are out of date.

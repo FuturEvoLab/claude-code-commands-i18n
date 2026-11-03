@@ -4,7 +4,7 @@
 
 ![Unofficial](https://img.shields.io/badge/Anthropic-unofficial-lightgrey) [![check](https://github.com/FuturEvoLab/claude-code-commands-i18n/actions/workflows/check.yml/badge.svg)](https://github.com/FuturEvoLab/claude-code-commands-i18n/actions/workflows/check.yml) [![Content: CC BY 4.0](https://img.shields.io/badge/content-CC%20BY%204.0-blue)](LICENSE-CONTENT) [![Code: MIT](https://img.shields.io/badge/code-MIT-green)](LICENSE) ![Commands](https://img.shields.io/badge/commands-115-teal)
 
-> Una referencia no oficial y en lenguaje sencillo de todos los comandos de barra de Claude Code, en **inglés, japonés, chino simplificado, chino tradicional, coreano, ruso y español**. Está pensada para quienes encuentran difícil leer la documentación oficial en inglés: cada comando tiene el significado de su palabra en inglés, una explicación breve y un ejemplo realista de cuándo usarlo.
+> Una referencia no oficial y en lenguaje sencillo de todos los comandos de barra de Claude Code, en **7 idiomas: inglés, japonés, chino simplificado, chino tradicional, coreano, ruso y español**. Está pensada para quienes encuentran difícil leer la documentación oficial en inglés: cada comando tiene el significado de su palabra en inglés, una explicación breve y un ejemplo realista de cuándo usarlo.
 
 ### [Versión web con búsqueda →](https://futurevolab.github.io/claude-code-commands-i18n/)
 
@@ -15,7 +15,7 @@
 ## Cómo leer la sintaxis
 
 - Escribe `/` en el prompt para abrir el menú de comandos; sigue escribiendo para filtrar.
-- `[ ]` = opcional, `< >` = obligatorio, `|` = uno de ellos. Puedes escribir los argumentos en español.
+- `[ ]` = opcional, `< >` = obligatorio, `|` = elegir una de las opciones. Puedes escribir los argumentos en español.
 - **Habilidad** = un prompt incluido que se le entrega a Claude. **Flujo de trabajo** = ejecuta varios agentes en segundo plano.
 - Muchos comandos dependen de la versión, el plan, la plataforma o de que una función esté activada. El menú que ves es el que vale; comprueba tu versión con `/status`.
 
@@ -50,8 +50,8 @@ Elige la situación; los comandos aparecen en el orden en que conviene probarlos
 - **Continuar el trabajo que dejé sin terminar ayer** → `/resume` · `/rename` · `/recap`
 - **Ver un plan antes de un cambio grande** → `/plan` · `/effort` · `/model`
 - **Hacer que Claude responda siempre en mi idioma** → `/init` · `/memory`
-- **Gastar menos dinero y menos uso** → `/usage` · `/model` · `/effort` · `/context`
-- **Revisar el trabajo antes del commit o de publicarlo** → `/diff` · `/code-review` · `/security-review` · `/verify`
+- **Gastar menos dinero y consumir menos uso** → `/usage` · `/model` · `/effort` · `/context`
+- **Revisar el trabajo antes de hacer commit o de publicarlo** → `/diff` · `/code-review` · `/security-review` · `/verify`
 - **Hacer varias cosas a la vez o trabajar en segundo plano** → `/fork` · `/subtask` · `/background` · `/tasks` · `/batch`
 - **Repetir una tarea o ejecutarla según un horario** → `/loop` · `/schedule` · `/goal`
 - **Demasiadas solicitudes de permiso** → `/permissions` · `/fewer-permission-prompts`
@@ -159,14 +159,14 @@ Ejecutar varios agentes a la vez o pasar trabajo a segundo plano
 |---|---|---|---|
 | `/agents` | agents<br>agentes | Muestra un recordatorio de que puedes pedirle a Claude que cree o gestione subagentes, o editar `.claude/agents/` directamente. En v2.1.197 y anteriores abría un gestor interactivo. | Simplemente pídelo: «Crea un subagente que solo escriba pruebas». |
 | `/background`<br>`[prompt]` | background<br>segundo plano | Separa la sesión para que siga como agente en segundo plano y libera la terminal. Opcionalmente, antes envía una instrucción más. Síguela con `claude agents`.<br>Alias: `/bg` | Un trabajo de 30 minutos: `/bg escribe los resultados en report.md cuando termines`. |
-| `/batch`<br>`<instruction>`<br>Habilidad · ⇄ Cambios amplios en archivos | batch<br>lote | Coordina cambios grandes en paralelo: divide el trabajo en 5–30 unidades independientes y, tras tu aprobación, ejecuta un subagente en segundo plano por unidad, cada uno en su propio worktree. Requiere un repositorio git o un hook WorktreeCreate. | `/batch migra src/ de JavaScript a TypeScript`. |
+| `/batch`<br>`<instruction>`<br>Habilidad · ⇄ Cambios amplios en archivos | batch<br>lote | Coordina cambios grandes en paralelo: investiga el código, divide el trabajo en 5–30 unidades independientes y presenta un plan; tras tu aprobación, un subagente en segundo plano por unidad la implementa y la prueba en su propio worktree. Requiere un repositorio git o un hook WorktreeCreate. | `/batch migra src/ de JavaScript a TypeScript`. |
 | `/fork`<br>`[prompt]` | fork<br>bifurcar (copia) | Copia la conversación en una sesión nueva en segundo plano mientras tú sigues trabajando aquí. Con un prompt, la copia empieza de inmediato; normalmente se le indica que primero cree su propio worktree. | Trabajas en la función A y quieres una corrección aparte en paralelo: `/fork corrige la alineación del pie de página`. |
 | `/list-agents`<br>Requiere v2.1.224+ | list agents<br>lista de agentes | Lista los subagentes, compañeros y otras sesiones a los que Claude puede enviar mensajes, con el nombre que debes usar para cada uno. Solo donde los mensajes entre sesiones están activados.<br>Alias: `/peers` | Si coordinas varias sesiones: comprueba cómo se llama cada una. |
 | `/stop` | stop<br>detener | Detiene la sesión en segundo plano a la que estás conectado; la transcripción y el worktree se conservan. Para desconectarte sin detenerla, usa `/exit` o pulsa `←`. | Un trabajo en segundo plano se desvió: `/stop`. |
 | `/subtask`<br>`<task>` | subtask<br>subtarea | Lanza un subagente bifurcado que hereda la conversación y devuelve su resultado aquí. La diferencia con `/fork`: `/subtask` devuelve el resultado aquí, mientras que `/fork` crea una sesión aparte. | `/subtask documenta estos endpoints de la API` mientras sigues programando. |
 | `/tasks` | tasks<br>tareas | Muestra y gestiona el trabajo en segundo plano de esta sesión, incluidos los subagentes que ya terminaron.<br>Alias: `/bashes` | Mira el avance de pruebas o subagentes en segundo plano con `/tasks`. |
 | `/workflow-authoring`<br>Habilidad | workflow authoring<br>creación de flujos de trabajo | Carga la referencia para escribir scripts de flujos de trabajo dinámicos. Claude normalmente la carga solo; ejecútalo antes de editar a mano un script guardado. Solo donde los flujos de trabajo dinámicos están activados. | Antes de editar a mano un script de flujo de trabajo guardado. |
-| `/workflows` | workflows<br>flujos de trabajo | Abre la vista de progreso de flujos de trabajo para ver, pausar, reanudar o guardar flujos en curso y terminados. | Vigilar un flujo de trabajo que tarda mucho. |
+| `/workflows` | workflows<br>flujos de trabajo | Abre la vista de progreso de flujos de trabajo para ver, pausar, reanudar o guardar flujos en curso y terminados. | Vigila un flujo de trabajo que tarda mucho. |
 
 ## Automatización y programación
 
@@ -209,7 +209,7 @@ Ampliar Claude con complementos, habilidades, servidores MCP e integraciones con
 | `/install-github-app`<br>↗ Envía datos fuera · ⚑ Cambia la configuración de seguridad | install GitHub app<br>instalar la app de GitHub | Instala la Claude GitHub App en un repositorio y, si quieres, configura flujos de trabajo y secretos de GitHub Actions. Solo github.com. | Para mencionar a Claude en issues y PR y que trabaje ahí. |
 | `/install-slack-app` | install Slack app<br>instalar la app de Slack | Instala la app de Claude para Slack mediante un flujo OAuth en el navegador. | Tu equipo quiere a Claude en Slack. |
 | `/plugin`<br>`[subcommand]` | plugin<br>complemento (plugin) | Gestiona complementos. Sin argumento abre el menú; `list`, `install`, `enable`, `disable` actúan directamente. Ejecuta `/reload-plugins` si el resumen de instalación lo indica. | Explora con `/plugin` e instala uno que encaje con tu trabajo. |
-| `/plugin-authoring`<br>Habilidad · Requiere v2.1.287+ | plugin authoring<br>creación de extensiones | Carga la referencia para escribir un mod. Es una habilidad de un complemento integrado, que puedes desactivar en `/plugin`. | Cuando quieres un pequeño panel lateral que se quede junto al chat. |
+| `/plugin-authoring`<br>Habilidad · Requiere v2.1.287+ | plugin authoring<br>creación de complementos | Carga la referencia para escribir un mod. Es una habilidad de un complemento integrado, que puedes desactivar en `/plugin`. | Cuando quieres un pequeño panel lateral que se quede junto al chat. |
 | `/reload-plugins`<br>`[--force]` | reload plugins<br>recargar complementos | Recarga los complementos activos sin reiniciar e informa de los errores de carga. Si la recarga cambiaría las herramientas MCP cargadas e invalidaría la caché del prompt, avisa y no la hace salvo que pases `--force`. | Justo después de instalar un complemento que lo pide. |
 | `/reload-skills` | reload skills<br>recargar habilidades | Vuelve a explorar las carpetas de habilidades y comandos para que las habilidades añadidas o cambiadas durante la sesión estén disponibles sin reiniciar. | Acabas de escribir una habilidad propia y la quieres usar ya. |
 | `/skill-doctor`<br>Requiere v2.1.252+ | skill doctor<br>chequeo de habilidades | Muestra el costo de contexto y el uso de cada habilidad para que encuentres cuáles desactivar. | Ejecútalo de vez en cuando para quitar habilidades que no usas. |
@@ -243,7 +243,7 @@ Tema, colores, línea de estado, atajos de teclado, voz
 | `/statusline` | status line<br>línea de estado | Configura la línea de estado; describe lo que quieres o ejecútalo sin argumentos para basarla en el prompt de tu shell. | `/statusline muestra el modelo y la rama de git`. |
 | `/terminal-setup` | terminal setup<br>configuración de la terminal | Instala Shift+Enter para saltos de línea en VS Code, Cursor, Devin Desktop, Alacritty o Zed; en Apple Terminal activa Option+Enter y desactiva la campana; en iTerm2 activa el acceso al portapapeles para `/copy`. | Enter envía prompts a medio escribir: ejecútalo una vez. |
 | `/theme` | theme<br>tema | Cambia el tema de colores: `auto`, claro y oscuro, aptos para daltonismo, ANSI y temas personalizados. | Cambia a un tema oscuro por la noche. |
-| `/tui`<br>`[default\|fullscreen]` | TUI (text user interface)<br>TUI (interfaz de usuario de texto) | Define el renderizador de la terminal y reinicia con la conversación intacta. `fullscreen` es el renderizador sin parpadeo. | La pantalla parpadea: `/tui fullscreen`. |
+| `/tui`<br>`[default\|fullscreen]` | TUI (text user interface)<br>TUI (interfaz de usuario de texto) | Define el renderizador de la terminal y reinicia con la conversación intacta. `fullscreen` es el renderizador sin parpadeo. Sin argumento, muestra el renderizador actual. | La pantalla parpadea: `/tui fullscreen`. |
 | `/voice`<br>`[hold\|tap\|off]` | voice<br>voz | Activa o desactiva el dictado por voz o elige un modo (`hold`, `tap`). Requiere una cuenta de Claude.ai. | Dicta instrucciones en lugar de escribirlas. |
 
 ## Cuenta y uso
@@ -256,7 +256,7 @@ Iniciar sesión, revisar límites y costos, mejorar el plan
 | `/login` | log in<br>iniciar sesión | Inicia sesión en tu cuenta de Anthropic. | En un equipo nuevo o cuando la sesión caducó. |
 | `/logout` | log out<br>cerrar sesión | Cierra la sesión de tu cuenta de Anthropic. | Después de usar un equipo compartido. |
 | `/passes` | passes<br>pases de invitación | Comparte una semana gratis de Claude Code con amigos; solo aparece en cuentas que cumplen los requisitos. | Invita a un amigo a probarlo. |
-| `/rate-limit-options` | rate limit options<br>opciones ante el límite de uso | Muestra formas de seguir trabajando cuando un límite de claude.ai te bloquea: esperar y continuar automáticamente, añadir créditos de uso o mejorar el plan. Requiere una suscripción a claude.ai. | Te bloqueó de noche: elige continuar automáticamente cuando se restablezca. |
+| `/rate-limit-options` | rate limit options<br>opciones ante el límite de uso | Muestra formas de seguir trabajando cuando un límite de claude.ai te bloquea: esperar y continuar automáticamente, añadir créditos de uso o mejorar el plan. Requiere una suscripción a claude.ai. | El límite te bloqueó por la noche: elige continuar automáticamente cuando se restablezca. |
 | `/status` | status<br>estado | Abre la configuración en la pestaña Status: versión, modelo, cuenta y conectividad. Funciona mientras Claude responde. | Haz una captura de `/status` antes de pedir ayuda. |
 | `/upgrade` | upgrade<br>mejorar el plan | Abre la página para mejorar el plan en tu navegador. | Cuando llegas a los límites una y otra vez. |
 | `/usage-credits`<br>¥ Puede costar dinero | usage credits<br>créditos de uso | Configura o solicita créditos de uso; los miembros de Team y Enterprise sin acceso a la facturación envían una solicitud a su administrador. Antes era `/extra-usage`. | Pide créditos a tu administrador cuando el equipo se queda sin ellos. |
@@ -289,9 +289,9 @@ Empieza aquí cuando algo falla
 | `/debug`<br>`[description]`<br>Habilidad | debug<br>depurar | Activa el registro de depuración desde este momento y busca el problema leyendo el registro de depuración de la sesión. Opcionalmente, describe el problema. | `/debug el servidor MCP no logra conectarse`. |
 | `/exit` | exit<br>salir | Sale de la CLI. En una sesión en segundo plano conectada, se desconecta y la sesión sigue en marcha.<br>Alias: `/quit` | Terminaste por hoy. |
 | `/feedback`<br>`[report]`<br>↗ Envía datos fuera · ⚿ Puede exponer secretos | feedback<br>comentarios | Envía comentarios sobre el producto con el mismo diálogo y el mismo paso de consentimiento que `/bug`. | Pide una función nueva. |
-| `/heapdump`<br>⚿ Puede exponer secretos | heap dump<br>volcado de heap (registro de la memoria) | Escribe en el Escritorio una instantánea del heap y un desglose de la memoria para diagnosticar un uso alto de memoria. Comparte solo el `-diagnostics.json`; el `.heapsnapshot` contiene tu conversación y tus credenciales. Está oculto en el menú. | Informar de un consumo de memoria descontrolado. |
+| `/heapdump`<br>⚿ Puede exponer secretos | heap dump<br>volcado de heap (registro de la memoria) | Escribe en el Escritorio una instantánea del heap y un desglose de la memoria para diagnosticar un uso alto de memoria. Comparte solo el `-diagnostics.json`; el `.heapsnapshot` contiene tu conversación y tus credenciales. Está oculto en el menú. | Informa de un consumo de memoria descontrolado. |
 | `/release-notes` | release notes<br>notas de la versión | Muestra el registro de cambios en un selector de versiones; las notas aparecen sin entrar en el contexto de Claude. | Mira qué hay de nuevo después de una actualización. |
-| `/restart`<br>Requiere v2.1.288+ | restart<br>reiniciar | Reinicia Claude Code y retoma la sesión para aplicar una actualización instalada. Requiere Pro, Max o Ultra y una instalación nativa en macOS o Linux (no WSL).<br>Alias: `/update` | Cuando el pie de pantalla lo ofrece tras una actualización. |
+| `/restart`<br>Requiere v2.1.288+ | restart<br>reiniciar | Reinicia Claude Code y retoma la sesión para aplicar una actualización instalada. Requiere Pro, Max o Ultra y una instalación nativa en macOS o Linux (no WSL).<br>Alias: `/update` | Cuando la barra inferior lo ofrece tras una actualización. |
 
 ## Otros
 
@@ -319,7 +319,7 @@ Aún aparecen en guías antiguas, pero ya no están disponibles
 3. **Úsalo bajo tu propio riesgo**: Algunos comandos cambian o revierten archivos, ejecutan comandos, suben código, envían datos a servicios externos o consumen uso de pago. Entiende qué hace un comando antes de ejecutarlo, haz commit o una copia de seguridad antes, y no lo uses sin revisarlo en sistemas de producción, datos importantes o repositorios de otras personas.
 4. **Protege tus secretos y tu privacidad**: No pongas en los prompts claves de API, contraseñas, tokens ni datos personales de otras personas. Las conversaciones exportadas, los informes de errores y las instantáneas de memoria pueden contenerlos; revísalos antes de compartirlos.
 5. **Los ejemplos son ilustrativos**: Los ejemplos de «mejor uso» explican el propósito; no son instrucciones para tu entorno. La disponibilidad depende de la versión, el plan, la plataforma y las políticas de tu organización.
-6. **Esta página no te rastrea**: Esta página no usa cookies, analítica, scripts ni fuentes de terceros. Solo guarda tu preferencia de idioma, localmente en tu navegador.
+6. **Esta página no te rastrea**: Esta página no usa cookies, analítica, scripts ni fuentes de terceros. Solo guarda tus preferencias de idioma y tema, localmente en tu navegador.
 7. **Limitación de responsabilidad**: En la máxima medida que permita la ley, los autores y colaboradores no son responsables de ninguna pérdida derivada del uso de este proyecto, incluidas la pérdida de datos, los cargos, los incidentes de seguridad o la interrupción del servicio.
 
 ## Sobre este proyecto

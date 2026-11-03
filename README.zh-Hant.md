@@ -4,7 +4,7 @@
 
 ![Unofficial](https://img.shields.io/badge/Anthropic-unofficial-lightgrey) [![check](https://github.com/FuturEvoLab/claude-code-commands-i18n/actions/workflows/check.yml/badge.svg)](https://github.com/FuturEvoLab/claude-code-commands-i18n/actions/workflows/check.yml) [![Content: CC BY 4.0](https://img.shields.io/badge/content-CC%20BY%204.0-blue)](LICENSE-CONTENT) [![Code: MIT](https://img.shields.io/badge/code-MIT-green)](LICENSE) ![Commands](https://img.shields.io/badge/commands-115-teal)
 
-> 非官方、用淺顯文字介紹 Claude Code 所有斜線指令的參考手冊，提供**英文、日文、簡體中文、繁體中文、韓文、俄文、西班牙文**。專為讀英文官方文件感到吃力的人而寫：每個指令都有簡短說明，以及一個實際的使用時機範例。
+> 非官方、用淺顯文字介紹 Claude Code 所有斜線指令的參考手冊，提供 **7 種語言：英文、日文、簡體中文、繁體中文、韓文、俄文、西班牙文**。專為讀英文官方文件感到吃力的人而寫：每個指令都有簡短說明，以及一個實際的使用時機範例。
 
 ### [可搜尋的網頁版 →](https://futurevolab.github.io/claude-code-commands-i18n/)
 
@@ -129,7 +129,7 @@
 
 | 指令 | 英文原意 | 功能 | 最佳用法 |
 |---|---|---|---|
-| `/init`<br>★ | initialize<br>初始化 | 為專案建立一份 `CLAUDE.md` 說明，之後每個新工作階段都會先讀它。如果發現 Codex 或 Gemini CLI 的設定，會建議使用 `/import`。 | 接手新的程式庫時第一件事：`/init`，然後用 `/memory` 補充調整。 |
+| `/init`<br>★ | initialize<br>初始化 | 為專案建立一份 `CLAUDE.md` 說明，之後每個新工作階段都會先讀它。如果發現 Codex 或 Gemini CLI 的設定，會建議使用 `/import`。 | 在新的儲存庫中第一件事：`/init`，然後用 `/memory` 補充調整。 |
 | `/add-dir`<br>`<path>` | add directory<br>新增資料夾 | 在這次工作階段中額外允許存取另一個工作資料夾，目前位置不會改變。輸入部分路徑後可以按 `Tab` 自動完成。新增的資料夾裡大部分的 `.claude/` 設定不會被讀取，而且大多數網路路徑無法新增。 | 前端和後端放在相鄰的資料夾：`/add-dir ../backend`。 |
 | `/cd`<br>`<path>` | change directory<br>切換資料夾 | 把工作階段移到新的工作資料夾，對話會保留。和 `/add-dir` 不同，`/cd` 會改變工作階段所在的位置。 | 在錯誤的資料夾開始了：`/cd ~/projects/website`，不用從頭來過。 |
 | `/diff` | difference<br>差異、修改比對 | 檢視工作目錄中的修改，包括 Claude 到目前為止做的編輯。 | 提交之前，用 `/diff` 確認到底改了什麼。 |
@@ -159,11 +159,11 @@
 |---|---|---|---|
 | `/agents` | agents<br>代理（智慧代理） | 顯示一則提醒：請直接要求 Claude 建立或管理子代理，或直接編輯 `.claude/agents/`。在 v2.1.197 及更早的版本中，會開啟互動式管理介面。 | 直接說：「建立一個只負責寫測試的子代理。」 |
 | `/background`<br>`[prompt]` | background<br>背景 | 把工作階段轉為背景代理繼續執行，並釋放終端機。可以先再傳一條指示。用 `claude agents` 查看狀態。<br>別名: `/bg` | 需要 30 分鐘的工作：`/bg 完成後把結果寫進 report.md`。 |
-| `/batch`<br>`<instruction>`<br>技能 · ⇄ 大範圍修改檔案 | batch<br>批次 | 平行處理大規模修改：把工作拆成 5～30 個獨立單元，經你核准後，每個單元由一個背景子代理在自己的 worktree 中執行。需要 git 儲存庫或 WorktreeCreate hook。 | `/batch 把 src/ 從 JavaScript 遷移到 TypeScript`。 |
+| `/batch`<br>`<instruction>`<br>技能 · ⇄ 大範圍修改檔案 | batch<br>批次 | 平行處理大規模修改：先研究程式碼，把工作拆成 5～30 個獨立單元並提出計畫；經你核准後，每個單元由一個背景子代理在自己的 worktree 中實作並測試。需要 git 儲存庫或 WorktreeCreate hook。 | `/batch 把 src/ 從 JavaScript 遷移到 TypeScript`。 |
 | `/fork`<br>`[prompt]` | fork<br>分岔（複製一份） | 把對話複製成一個新的背景工作階段，你可以繼續在這裡工作。附上指示的話，副本會立刻開始；通常會先讓它建立自己的 worktree。 | 正在做功能 A，想同時修一個小問題：`/fork 修正頁尾對齊`。 |
 | `/list-agents`<br>需要 v2.1.224+ | list agents<br>列出代理 | 列出 Claude 可以傳訊息的子代理、團隊成員和其他工作階段，以及各自要用的名稱。只在啟用跨工作階段訊息時可用。<br>別名: `/peers` | 協調多個工作階段時：確認每個工作階段的名稱。 |
 | `/stop` | stop<br>停止 | 停止你目前連接的背景工作階段；紀錄和 worktree 會保留。只想中斷連接而不停止，請用 `/exit` 或按 `←`。 | 背景工作偏離方向：`/stop`。 |
-| `/subtask`<br>`<task>` | subtask<br>子任務 | 派出一個分岔的子代理，它會繼承對話內容，並把結果回報到這裡。與 `/fork` 的差別：`/subtask` 會把結果回報到這裡，`/fork` 則是另一個獨立的工作階段。 | `/subtask 替這些 API 端點寫文件`，你這邊繼續寫程式。 |
+| `/subtask`<br>`<task>` | subtask<br>子任務 | 派出一個分岔的子代理，它會繼承對話內容，並把結果回報到這裡。與 `/fork` 的差別：`/subtask` 會把結果回報到這裡，`/fork` 則會另開一個獨立的工作階段。 | `/subtask 替這些 API 端點寫文件`，你這邊繼續寫程式。 |
 | `/tasks` | tasks<br>工作、任務 | 檢視並管理這次工作階段中的背景工作，包括已完成的子代理。<br>別名: `/bashes` | 用 `/tasks` 查看背景測試或子代理的進度。 |
 | `/workflow-authoring`<br>技能 | workflow authoring<br>撰寫工作流程 | 載入撰寫動態工作流程腳本的參考資料。Claude 通常會自己載入；手動編輯已儲存的腳本前可以先執行。只在啟用動態工作流程時可用。 | 手動編輯已儲存的工作流程腳本之前。 |
 | `/workflows` | workflows<br>工作流程 | 開啟工作流程進度畫面，可以查看、暫停、繼續或儲存正在執行和已完成的工作流程。 | 隨時留意一個執行很久的工作流程。 |
@@ -189,7 +189,7 @@
 | `/artifact-diagramming`<br>技能 · 需要 v2.1.221+ | artifact diagramming<br>成品頁面中的繪圖 | 載入在 artifact 中繪製圖表的指引：什麼時候圖有幫助、要畫什麼，以及如何寫出在淺色和深色主題下都清楚的 SVG。 | 需要一張清楚的架構圖時。 |
 | `/artifacts` | artifacts<br>成品（發布的網頁） | 列出你擁有或別人分享給你的 artifact，然後可以接入其中一個、開啟它，或複製連結。只在支援 artifact 的環境中可用。 | 找到上週做的儀表板，繼續編輯。 |
 | `/dataviz`<br>`[request]`<br>技能 | data visualization<br>資料視覺化 | 圖表設計指引：選擇圖表形式、依角色分配顏色，並用內建的腳本檢查配色是否色盲友善、對比是否足夠。 | `/dataviz 把這份每月銷售表做成趨勢圖`。 |
-| `/design`<br>`[brief]`<br>技能 · 需要 v2.1.265+ | design<br>設計 | 在同一張畫布上以多個畫板草擬 UI 模型、操作流程、到達頁或海報（Claude Design artifact）；可在桌面瀏覽器中編輯，並匯出 PNG 或 PDF。Bedrock、Vertex 及其他第三方平台無法使用。 | `/design 行動網銀 App 的設定畫面`。 |
+| `/design`<br>`[brief]`<br>技能 · 需要 v2.1.265+ | design<br>設計 | 在同一張畫布上以多個畫板草擬 UI 設計稿、操作流程、到達頁或海報（Claude Design artifact）；可在桌面瀏覽器中編輯，並匯出 PNG 或 PDF。Bedrock、Vertex 及其他第三方平台無法使用。 | `/design 行動網銀 App 的設定畫面`。 |
 | `/design consent` | consent / revoke<br>同意 / 撤銷 | 授予或撤回 Claude 對 Claude Design 的存取權。當 Claude 要求你執行 `/design consent` 時，請自己輸入。<br>別名: `/design revoke` | 出現提示時，自己輸入 `/design consent`。 |
 | `/design-login` | design login<br>設計登入 | 當 `/design-sync` 或 `/design consent` 要求時，用你的 claude.ai 帳號為 `/design-sync` 授權設計系統存取。 | `/design-sync` 要求你登入時執行。 |
 | `/design-sync`<br>`[hint]`<br>技能 · ↗ 會傳送到外部 | design sync<br>設計同步 | 把你儲存庫中的 React 設計系統轉換並上傳到 Claude Design，讓設計使用你真正的元件。大型儲存庫第一次同步可能要好幾個小時。上傳目標是獨立的 claude.ai/design 網站，該網站將在 2026 年 12 月 14 日前關閉。 | `/design-sync Acme DS`（請注意上面提到的關閉日期）。 |
@@ -206,7 +206,7 @@
 | `/claude-api`<br>`[subcommand]`<br>技能 | Claude API<br>Claude API（Claude 程式介面） | 載入適合你專案程式語言的 Claude API 和 Managed Agents 參考資料；程式碼匯入 `anthropic` 時會自動啟用。子指令包括 `migrate`、`upgrade`、`cost-optimize`、`build-eval`、`prompt-audit`。 | 降低你的應用程式的 API 花費：`/claude-api cost-optimize`。 |
 | `/claude-in-chrome`<br>`[task]`<br>技能 · ↗ 會傳送到外部 | Claude in Chrome<br>Claude in Chrome（在 Chrome 瀏覽器中使用 Claude） | 透過 Claude in Chrome 讓 Claude 在你的瀏覽器中執行工作，例如測試網頁或讀取主控台紀錄。需要啟用 Chrome 整合（例如 `claude --chrome`）。 | `/claude-in-chrome 測試我本機網站的註冊流程並回報錯誤`。 |
 | `/ide` | IDE (integrated development environment)<br>IDE（整合開發環境，程式碼編輯器） | 管理 IDE 整合並顯示狀態。 | 編輯器裡看不到修改時，檢查連線狀態。 |
-| `/install-github-app`<br>↗ 會傳送到外部 · ⚑ 會變更安全設定 | install GitHub app<br>安裝 GitHub 應用程式 | 為儲存庫安裝 Claude GitHub App，也可以順便設定 GitHub Actions 工作流程和密鑰。只適用於 github.com。 | 想在 issue 和 PR 中提及 Claude，讓它在那裡工作。 |
+| `/install-github-app`<br>↗ 會傳送到外部 · ⚑ 會變更安全設定 | install GitHub app<br>安裝 GitHub 應用程式 | 為儲存庫安裝 Claude GitHub App，也可以順便設定 GitHub Actions 工作流程和機密（secrets）。只適用於 github.com。 | 想在 issue 和 PR 中提及 Claude，讓它在那裡工作。 |
 | `/install-slack-app` | install Slack app<br>安裝 Slack 應用程式 | 透過瀏覽器的 OAuth 流程安裝 Claude Slack 應用程式。 | 團隊想在 Slack 裡使用 Claude。 |
 | `/plugin`<br>`[subcommand]` | plugin<br>外掛 | 管理外掛。不加參數會開啟選單；`list`、`install`、`enable`、`disable` 可直接操作。如果安裝摘要有提示，請執行 `/reload-plugins`。 | 用 `/plugin` 瀏覽，安裝一個適合你工作的外掛。 |
 | `/plugin-authoring`<br>技能 · 需要 v2.1.287+ | plugin authoring<br>撰寫擴充（mod） | 載入撰寫 mod 的參考資料。這是內建外掛提供的技能，可以在 `/plugin` 中關閉。 | 想做一個固定在對話旁邊的小側邊面板時。 |
@@ -243,7 +243,7 @@
 | `/statusline` | status line<br>狀態列 | 設定狀態列；描述你想顯示的內容，或不加參數，從你的 shell 提示字元自動產生。 | `/statusline 顯示模型和 git 分支`。 |
 | `/terminal-setup` | terminal setup<br>終端機設定 | 在 VS Code、Cursor、Devin Desktop、Alacritty 或 Zed 中設定 Shift+Enter 換行；在 Apple 終端機中啟用 Option+Enter 並關閉提示音；在 iTerm2 中開啟剪貼簿存取，讓 `/copy` 可以使用。 | 按 Enter 老是把寫到一半的提示送出去：執行一次這個指令。 |
 | `/theme` | theme<br>主題配色 | 更換配色主題：`auto`、淺色和深色、色盲友善、ANSI 和自訂主題。 | 晚上切換成深色主題。 |
-| `/tui`<br>`[default\|fullscreen]` | TUI (text user interface)<br>TUI（文字使用者介面） | 設定終端機的渲染方式，並在保留對話的情況下重新啟動。`fullscreen` 是不會閃爍的渲染方式。 | 畫面閃爍時：`/tui fullscreen`。 |
+| `/tui`<br>`[default\|fullscreen]` | TUI (text user interface)<br>TUI（文字使用者介面） | 設定終端機的渲染方式，並在保留對話的情況下重新啟動。`fullscreen` 是不會閃爍的渲染方式。不加參數會顯示目前使用的渲染方式。 | 畫面閃爍時：`/tui fullscreen`。 |
 | `/voice`<br>`[hold\|tap\|off]` | voice<br>語音 | 開關語音輸入，或設定模式（`hold`、`tap`）。需要 Claude.ai 帳號。 | 用說的下指示，不必打字。 |
 
 ## 帳號與用量
@@ -314,12 +314,12 @@
 
 ## 免責聲明
 
-1. **非官方專案**: 這是社群專案，與 Anthropic 沒有關係，也沒有獲得 Anthropic 贊助或認可。「Claude」、「Claude Code」及相關標誌是 Anthropic 的商標，這裡只用來指出所介紹的產品。
+1. **非官方專案**: 這是社群專案，與 Anthropic 沒有隸屬關係，也沒有獲得 Anthropic 贊助或認可。「Claude」、「Claude Code」及相關標示是 Anthropic 的商標，這裡只用來指出所介紹的產品。
 2. **內容可能過時或有誤**: 每一則說明都是官方文件的簡化改寫，依「現狀」提供，不提供任何明示或默示的保證。Claude Code 經常更新，指令會新增、改名或移除。本專案與官方文件不一致時，以官方文件為準。
 3. **使用風險請自行承擔**: 部分指令會修改或還原檔案、執行指令、推送程式碼、把資料傳送到外部服務，或消耗付費用量。執行前請先了解指令會做什麼，並先提交或備份；未經檢查，請勿用在正式環境、重要資料或別人的儲存庫上。
 4. **保護機密與隱私**: 請勿在提示中放入 API 金鑰、密碼、權杖或他人的個人資料。匯出的對話、錯誤回報和記憶體快照可能含有這些內容；分享前請先檢查。
 5. **範例僅供說明**: 「最佳用法」中的範例是用來說明用途，並不是針對你的環境的操作指示。能否使用取決於版本、方案、平台和組織政策。
-6. **本頁面不會追蹤你**: 本頁面不使用 Cookie、流量分析、第三方腳本或字型。只會在你的瀏覽器本機儲存語言偏好。
+6. **本頁面不會追蹤你**: 本頁面不使用 Cookie、流量分析、第三方腳本或字型。只會在你的瀏覽器本機儲存語言和主題偏好。
 7. **責任限制**: 在法律允許的最大範圍內，作者和貢獻者對於使用本專案所造成的任何損失不負責任，包括資料遺失、費用、安全事件或服務中斷。
 
 ## 關於本專案

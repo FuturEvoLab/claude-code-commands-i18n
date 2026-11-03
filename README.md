@@ -159,7 +159,7 @@ Run several agents at once or detach work to the background
 |---|---|---|
 | `/agents` | Prints a reminder to ask Claude to create or manage subagents, or to edit `.claude/agents/` directly. On v2.1.197 and earlier, opened an interactive manager. | Just ask: “Create a subagent that only writes tests.” |
 | `/background`<br>`[prompt]` | Detaches the session to run as a background agent and frees the terminal. Optionally sends one more instruction first. Monitor with `claude agents`.<br>Aliases: `/bg` | A 30-minute job: `/bg write the results to report.md when done`. |
-| `/batch`<br>`<instruction>`<br>Skill · ⇄ Broad file changes | Orchestrates large changes in parallel: decomposes the work into 5–30 independent units, and after approval runs one background subagent per unit in its own worktree. Requires a git repository or a WorktreeCreate hook. | `/batch migrate src/ from JavaScript to TypeScript`. |
+| `/batch`<br>`<instruction>`<br>Skill · ⇄ Broad file changes | Orchestrates large changes in parallel: researches the codebase, decomposes the work into 5–30 independent units and presents a plan; after approval, one background subagent per unit implements and tests it in its own worktree. Requires a git repository or a WorktreeCreate hook. | `/batch migrate src/ from JavaScript to TypeScript`. |
 | `/fork`<br>`[prompt]` | Copies the conversation into a new background session while you keep working here. With a prompt, the copy starts immediately; it is normally told to create its own worktree first. | Working on feature A and want a side fix in parallel: `/fork fix the footer alignment`. |
 | `/list-agents`<br>Requires v2.1.224+ | Lists subagents, teammates and other sessions Claude can message, with the name to use for each. Only where cross-session messaging is enabled.<br>Aliases: `/peers` | Coordinating several sessions: check what each is called. |
 | `/stop` | Stops the background session you're attached to; transcript and worktree are kept. To detach without stopping, use `/exit` or press `←`. | A background job went off course: `/stop`. |
@@ -243,7 +243,7 @@ Theme, colors, status line, keybindings, voice
 | `/statusline` | Configures the status line; describe what you want, or run without arguments to derive it from your shell prompt. | `/statusline show the model and git branch`. |
 | `/terminal-setup` | Installs Shift+Enter for newlines in VS Code, Cursor, Devin Desktop, Alacritty or Zed; in Apple Terminal enables Option+Enter and disables the bell; in iTerm2 enables clipboard access for `/copy`. | Enter keeps sending half-written prompts: run this once. |
 | `/theme` | Changes the color theme: `auto`, light and dark, colorblind-accessible, ANSI and custom themes. | Switch to a dark theme at night. |
-| `/tui`<br>`[default\|fullscreen]` | Sets the terminal renderer and relaunches with the conversation intact. `fullscreen` is the flicker-free renderer. | Screen flickers: `/tui fullscreen`. |
+| `/tui`<br>`[default\|fullscreen]` | Sets the terminal renderer and relaunches with the conversation intact. `fullscreen` is the flicker-free renderer. No argument shows the current renderer. | Screen flickers: `/tui fullscreen`. |
 | `/voice`<br>`[hold\|tap\|off]` | Toggles voice dictation or sets a mode (`hold`, `tap`). Requires a Claude.ai account. | Dictate instructions instead of typing. |
 
 ## Account & usage
@@ -319,7 +319,7 @@ Still mentioned in older guides but no longer available
 3. **Use at your own risk**: Some commands change or revert files, run commands, push code, send data to external services or consume paid usage. Understand what a command does before running it, commit or back up first, and do not use it on production systems, important data or other people's repositories without review.
 4. **Protect secrets and privacy**: Do not put API keys, passwords, tokens or other people's personal data in prompts. Exported conversations, bug reports and memory snapshots can contain them; review before sharing.
 5. **Examples are illustrative**: The “best use” examples explain purpose; they are not instructions for your environment. Availability depends on version, plan, platform and organization policy.
-6. **This page does not track you**: This page uses no cookies, analytics, third-party scripts or fonts. It stores only your language preference, locally in your browser.
+6. **This page does not track you**: This page uses no cookies, analytics, third-party scripts or fonts. It stores only your language and theme preferences, locally in your browser.
 7. **Limitation of liability**: To the maximum extent permitted by law, the authors and contributors are not liable for any loss arising from use of this project, including data loss, charges, security incidents or service interruption.
 
 ## About this project
