@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.0 — 2026-11-03
+
+- Three more color themes besides the default Terminal: Graphite, Indigo and Paper (Paper stays light even in system dark mode). The choice is remembered per browser.
+- Language and theme switches are dropdowns; the language one stays in the top bar on phones.
+- The hero's terminal demo keeps a fixed height, so the headline no longer shifts while it types.
+
 ## 1.0.0 — 2026-11-03
 
 First public release.
