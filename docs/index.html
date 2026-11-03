@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'sha256-kQhxyrfmfWW+CoVXdhHKNceMQrjUCO3+s4AzJItvUvQ='; script-src 'sha256-aKimGwImP+BYlT7am7CQ+8l8nCG17Xb1m5qrLiQMZxg='; base-uri 'none'; form-action 'none'">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Claude Code Commands · English / 日本語 / 中文">
+<meta property="og:description" content="Every Claude Code slash command explained in English, Japanese and Chinese. Unofficial.">
+<meta property="og:url" content="https://futurevolab.github.io/claude-code-commands-i18n/">
+<meta name="twitter:card" content="summary">
+<title>Claude Code Commands · English / 日本語 / 中文</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="An unofficial trilingual (English / Japanese / Chinese) plain-language reference to every Claude Code slash command.">
+<meta name="referrer" content="no-referrer">
+<style>
+/* Layout: terminal-style hero band → onboarding + scenarios → sticky prompt bar → sidebar nav + card grid → disclaimer footer.
+   Category hues come from static .h0–.h14 classes so the page needs no inline style attributes (CSP-safe). */
+:root{
+  --bg:#f4f6f8; --surface:#ffffff; --surface-2:#eef1f5; --ink:#141a24; --muted:#586374; --line:#dbe0e8;
+  --accent:#0f766e; --accent-ink:#ffffff; --accent-soft:#dcf2ef;
+  --hero:#111827; --hero-2:#1b2537; --hero-ink:#e8edf6; --hero-muted:#93a1b8; --hero-line:#2a3650; --phos:#5eead4; --amber:#fbbf24;
+  --star:#a15c00; --star-soft:#fdf0d9; --info:#3557b7; --info-soft:#e3e9fa;
+  --r-cost:#a15c00; --r-cost-bg:#fdf0d9; --r-external:#2f5fc4; --r-external-bg:#e2eafb; --r-secrets:#7c3aed; --r-secrets-bg:#efe7fd;
+  --r-files:#c2410c; --r-files-bg:#fde8dc; --r-perms:#b42318; --r-perms-bg:#fde3e1;
+  --hue-s:52%; --hue-l:40%; --shadow:0 1px 2px rgba(20,26,36,.06),0 6px 18px rgba(20,26,36,.06);
+  --font-zh:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC","Source Han Sans SC",sans-serif;
+  --font-ja:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic","Meiryo","Noto Sans CJK JP",sans-serif;
+  --font-en:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+  --font-mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0c1118; --surface:#141b26; --surface-2:#1a2330; --ink:#e6ebf3; --muted:#97a3b6; --line:#263142;
+  --accent:#5eead4; --accent-ink:#06201d; --accent-soft:#12302d;
+  --hero:#0a0f17; --hero-2:#121a27; --hero-line:#223047;
+  --star:#f5b94a; --star-soft:#3a2b12; --info:#9db4f0; --info-soft:#1d2741;
+  --r-cost:#f5b94a; --r-cost-bg:#3a2b12; --r-external:#8fb0f5; --r-external-bg:#1b2742; --r-secrets:#c4a5fb; --r-secrets-bg:#2a1f45;
+  --r-files:#fb9a6b; --r-files-bg:#3d2216; --r-perms:#f38b82; --r-perms-bg:#3f1c1a;
+  --hue-s:62%; --hue-l:68%; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 22px rgba(0,0,0,.25); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c1118; --surface:#141b26; --surface-2:#1a2330; --ink:#e6ebf3; --muted:#97a3b6; --line:#263142;
+  --accent:#5eead4; --accent-ink:#06201d; --accent-soft:#12302d;
+  --hero:#0a0f17; --hero-2:#121a27; --hero-line:#223047;
+  --star:#f5b94a; --star-soft:#3a2b12; --info:#9db4f0; --info-soft:#1d2741;
+  --r-cost:#f5b94a; --r-cost-bg:#3a2b12; --r-external:#8fb0f5; --r-external-bg:#1b2742; --r-secrets:#c4a5fb; --r-secrets-bg:#2a1f45;
+  --r-files:#fb9a6b; --r-files-bg:#3d2216; --r-perms:#f38b82; --r-perms-bg:#3f1c1a;
+  --hue-s:62%; --hue-l:68%; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 22px rgba(0,0,0,.25); color-scheme:dark}
+.h0{--h:168}.h1{--h:212}.h2{--h:262}.h3{--h:350}.h4{--h:24}.h5{--h:42}.h6{--h:140}.h7{--h:300}
+.h8{--h:4}.h9{--h:196}.h10{--h:226}.h11{--h:88}.h12{--h:30}.h13{--h:220}.h14{--h:0}
+[class*=" h"],[class^="h"]{--c:hsl(var(--h) var(--hue-s) var(--hue-l))}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-zh);font-size:15px;line-height:1.7;margin:0;-webkit-font-smoothing:antialiased}
+html[lang="ja"] body{font-family:var(--font-ja)}
+html[lang="en"] body{font-family:var(--font-en)}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+code{font-family:var(--font-mono);font-size:.86em;background:var(--accent-soft);color:var(--accent);padding:1px 5px;border-radius:4px;word-break:break-word}
+kbd{font-family:var(--font-mono);font-size:.8em;border:1px solid currentColor;border-bottom-width:2px;border-radius:4px;padding:0 5px;opacity:.85}
+button{font:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:20;background:var(--bg)}
+
+/* Hero: always dark, a deliberate terminal look in both themes */
+.hero{background:radial-gradient(1200px 400px at 85% -10%,rgba(94,234,212,.16),transparent 60%),linear-gradient(var(--hero),var(--hero));color:var(--hero-ink);position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--hero-line) 1px,transparent 1px),linear-gradient(90deg,var(--hero-line) 1px,transparent 1px);background-size:32px 32px;opacity:.35;mask-image:linear-gradient(180deg,#000,transparent 85%);-webkit-mask-image:linear-gradient(180deg,#000,transparent 85%);pointer-events:none}
+.hero .wrap{position:relative;z-index:1;padding-block:20px 72px}
+.topline{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.badge{font-size:12px;color:var(--hero-muted);border:1px solid var(--hero-line);border-radius:999px;padding:3px 12px;background:rgba(255,255,255,.03)}
+.badge::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--amber);margin-right:7px;vertical-align:1px}
+.langs{display:flex;border:1px solid var(--hero-line);border-radius:10px;overflow:hidden;background:rgba(255,255,255,.04)}
+.langs button{border:0;background:transparent;color:var(--hero-ink);padding:6px 14px;cursor:pointer;font-size:14px}
+.langs button[aria-pressed="true"]{background:var(--phos);color:#06201d;font-weight:700}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:40px;align-items:center;margin-top:34px}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr;gap:26px;margin-top:24px}}
+h1{font-size:clamp(32px,5.4vw,58px);font-weight:900;line-height:1.08;margin:0 0 14px;letter-spacing:-.02em;text-wrap:balance}
+h1 .slash{font-family:var(--font-mono);color:var(--phos);font-weight:700;margin-right:.08em;text-shadow:0 0 24px rgba(94,234,212,.45)}
+.lead{color:var(--hero-muted);margin:0;max-width:60ch;font-size:15.5px}
+.lead small{display:block;margin-top:10px;font-size:13px}
+.stats{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:22px}
+.stat b{display:block;font-family:var(--font-mono);font-size:30px;line-height:1.1;color:var(--hero-ink);font-variant-numeric:tabular-nums}
+.stat span{font-size:12.5px;color:var(--hero-muted);letter-spacing:.04em}
+.term{background:linear-gradient(var(--hero-2),var(--hero-2));border:1px solid var(--hero-line);border-radius:14px;box-shadow:0 20px 50px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.05);overflow:hidden;min-width:0}
+.term-bar{display:flex;align-items:center;gap:7px;padding:10px 14px;border-bottom:1px solid var(--hero-line);font-size:12px;color:var(--hero-muted)}
+.term-bar i{width:11px;height:11px;border-radius:50%;background:#3a465c;display:inline-block}
+.term-bar i:nth-child(1){background:#f87171}.term-bar i:nth-child(2){background:#fbbf24}.term-bar i:nth-child(3){background:#34d399}
+.term-bar span{margin-left:8px;font-family:var(--font-mono)}
+.term-body{padding:18px 18px 20px;font-family:var(--font-mono);font-size:14px;min-height:226px}
+.prompt-line{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.prompt-line .p{color:var(--phos)}
+.typed{color:var(--hero-ink);font-weight:700}
+.caret{display:inline-block;width:8px;height:1.1em;background:var(--phos);vertical-align:-2px;margin-left:2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.menu{margin:12px 0 0;padding:0;list-style:none;border-left:2px solid var(--hero-line)}
+.menu li{display:flex;gap:14px;padding:4px 12px;font-size:13px;color:var(--hero-muted);min-width:0}
+.menu li b{color:var(--hero-ink);font-weight:600;flex:none;min-width:8.5em}
+.menu li.on{background:rgba(94,234,212,.1);border-left:2px solid var(--phos);margin-left:-2px}
+.menu li.on b{color:var(--phos)}
+.menu li span{min-width:0;font-family:var(--font-zh)}
+html[lang="ja"] .menu li span{font-family:var(--font-ja)}
+html[lang="en"] .menu li span{font-family:var(--font-en)}
+
+/* Onboarding */
+.intro{padding-block:28px 6px}
+.howto{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:-58px;position:relative;z-index:2}
+@media (max-width:1000px){.howto{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.howto{grid-template-columns:1fr}}
+.howto div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow);min-width:0}
+.howto .ic{font-family:var(--font-mono);font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:8px;display:inline-grid;place-items:center;min-width:34px;height:30px;padding:0 6px;font-size:13px;margin-bottom:8px}
+.howto b{display:block;font-size:14.5px;margin-bottom:3px}
+.howto p{margin:0;color:var(--muted);font-size:13.5px}
+.h-sec{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:38px 0 14px}
+.h-sec h2{font-size:21px;margin:0;letter-spacing:-.01em}
+.h-sec p{margin:0;color:var(--muted);font-size:13.5px}
+.scens{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,268px),1fr));gap:10px}
+.scen{text-align:left;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:13px 15px;cursor:pointer;display:flex;flex-direction:column;gap:8px;min-width:0;transition:transform .15s,border-color .15s,box-shadow .15s}
+.scen:hover{transform:translateY(-2px);border-color:var(--accent);box-shadow:var(--shadow)}
+.scen[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.scen .q{font-weight:600;font-size:14.5px;display:flex;justify-content:space-between;gap:8px}
+.scen .q::after{content:"→";color:var(--accent);font-family:var(--font-mono)}
+.scen .pills{display:flex;flex-wrap:wrap;gap:4px}
+.scen .pills span{font-family:var(--font-mono);font-size:11.5px;background:var(--surface-2);color:var(--muted);border-radius:5px;padding:0 6px}
+@media (max-width:560px){.howto{gap:10px}.howto div{display:grid;grid-template-columns:auto 1fr;column-gap:12px;padding:12px 14px}.howto .ic{margin:0;grid-row:span 2}.howto p{grid-column:2}}
+.safety{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:0;padding:0}
+@media (max-width:1000px){.safety{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.safety{grid-template-columns:1fr}}
+.safety li{list-style:none;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:13px;color:var(--muted);min-width:0}
+.safety li b{display:flex;align-items:center;gap:8px;color:var(--ink);font-size:13.5px;margin-bottom:4px}
+.safety ul{margin:0;padding:0;display:contents}
+
+/* Prompt bar: pinned to the top from the first frame */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--hero) 92%,transparent);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--hero-line)}
+.bar-row{display:flex;align-items:center;gap:14px;padding-block:10px}
+.brand{flex:none;border:0;background:transparent;color:var(--hero-ink);font-family:var(--font-mono);font-weight:700;font-size:17px;cursor:pointer;padding:6px 4px}
+.brand span{color:var(--phos)}
+.bar .search{flex:1;min-width:0}
+.bar-langs{flex:none}
+.hero-langs{display:none}
+@media (max-width:720px){.brand,.bar-langs,.khint{display:none}.hero-langs{display:flex}}
+.qclear{flex:none;border:0;background:var(--hero-line);color:var(--hero-ink);width:28px;height:28px;border-radius:8px;cursor:pointer;font-size:16px;line-height:1}
+.khint{color:var(--hero-muted);margin-right:6px;flex:none}
+.hint{display:none;font-size:12px;color:var(--hero-muted);padding:0 2px 8px;font-family:var(--font-mono)}
+body.searching .hint{display:block}
+@media (pointer:coarse){.hint{display:none!important}}
+body.searching .hero,body.searching .intro{display:none}
+.search{display:flex;align-items:center;gap:10px;background:var(--hero);border:1px solid var(--hero-line);border-radius:12px;padding:4px 6px 4px 14px;box-shadow:var(--shadow)}
+.search:focus-within{border-color:var(--phos);box-shadow:0 0 0 3px rgba(94,234,212,.25)}
+.search .p{font-family:var(--font-mono);color:var(--phos);font-weight:700}
+#q{flex:1;min-width:0;font:inherit;font-size:16px;padding:8px 4px;border:0;background:transparent;color:var(--hero-ink);outline:none}
+#q::placeholder{color:var(--hero-muted)}
+#count{color:var(--hero-muted);font-size:12.5px;white-space:nowrap;font-variant-numeric:tabular-nums;padding-right:4px}
+.chips{display:none;gap:6px;overflow-x:auto;padding-bottom:10px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+@media (max-width:900px){.chips{display:flex}}
+.chip{flex:none;font-size:13px;padding:5px 12px;border-radius:999px;border:1px solid var(--hero-line);background:rgba(255,255,255,.04);color:var(--hero-ink);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.chip[aria-pressed="true"]{background:var(--phos);border-color:var(--phos);color:#06201d}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--c,var(--muted));flex:none}
+
+/* Body: sidebar + list */
+.body{display:grid;grid-template-columns:230px minmax(0,1fr);gap:32px;padding-block:28px 40px}
+@media (max-width:900px){.body{grid-template-columns:1fr}.side{display:none}}
+.side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 76px);align-self:start;max-height:calc(100vh - 96px);overflow:auto;padding-right:4px}
+.side button{display:flex;align-items:center;gap:9px;width:100%;text-align:left;border:0;background:transparent;color:var(--muted);padding:6px 10px;border-radius:8px;cursor:pointer;font-size:13.5px}
+.side button:hover{background:var(--surface-2);color:var(--ink)}
+.side button[aria-pressed="true"]{background:var(--surface);color:var(--ink);font-weight:700;box-shadow:var(--shadow)}
+.side button em{margin-left:auto;font-style:normal;font-family:var(--font-mono);font-size:11.5px;color:var(--muted)}
+.side hr{border:0;border-top:1px solid var(--line);margin:8px 0}
+main section{margin-bottom:40px}
+.sec-head{display:flex;align-items:center;gap:12px;margin-bottom:4px;flex-wrap:wrap}
+.sec-head .sw{width:12px;height:12px;border-radius:4px;background:var(--c);box-shadow:0 0 0 4px color-mix(in srgb,var(--c) 22%,transparent)}
+.sec-head h2{font-size:21px;margin:0;letter-spacing:-.01em}
+.sec-head small{font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.sec-desc{color:var(--muted);font-size:13.5px;margin:0 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:0;display:flex;flex-direction:column;min-width:0;overflow:hidden;transition:transform .15s,box-shadow .15s;scroll-margin-top:84px;border-top:3px solid var(--c,var(--line))}
+.card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.card.flash,.card.active{outline:3px solid var(--accent);outline-offset:3px}
+mark{background:color-mix(in srgb,var(--amber) 45%,transparent);color:inherit;border-radius:3px;padding:0 1px}
+.cmd mark{background:rgba(251,191,36,.35);color:var(--phos)}
+.empty-s{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}
+.empty-s button{font-size:13px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 14px;cursor:pointer}
+@media (pointer:coarse){.chip{padding:8px 14px;font-size:14px}.link{padding:6px 12px;font-size:13px}.langs button{padding:9px 14px}.scen{padding:15px 16px}.side button{padding:10px}.cmd{padding:7px 13px}.qclear{width:34px;height:34px}}
+.card-head{padding:14px 16px 10px;display:flex;flex-direction:column;gap:8px}
+.top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.cmd{font-family:var(--font-mono);font-weight:700;font-size:16px;background:var(--hero);color:var(--phos);padding:4px 11px;border-radius:7px;cursor:pointer;border:0;text-align:left;position:relative}
+.cmd:hover::after{content:"⧉";margin-left:8px;font-size:12px;color:var(--hero-muted)}
+.args{font-family:var(--font-mono);font-size:12.5px;color:var(--muted);word-break:break-word;min-width:0}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{font-size:11.5px;padding:1px 8px;border-radius:999px;white-space:nowrap;font-weight:600}
+.tag.pick{background:var(--star-soft);color:var(--star)}
+.tag.skill,.tag.workflow{background:var(--accent-soft);color:var(--accent)}
+.tag.removed{background:var(--r-perms-bg);color:var(--r-perms)}
+.tag.ver{background:var(--info-soft);color:var(--info);font-family:var(--font-mono);font-weight:500}
+.tag.risk{cursor:help}
+.r-cost{background:var(--r-cost-bg);color:var(--r-cost)}.r-external{background:var(--r-external-bg);color:var(--r-external)}
+.r-secrets{background:var(--r-secrets-bg);color:var(--r-secrets)}.r-files{background:var(--r-files-bg);color:var(--r-files)}
+.r-perms{background:var(--r-perms-bg);color:var(--r-perms)}
+.ri{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:6px;font-size:12px;flex:none}
+.gloss{font-size:12.5px;color:var(--muted)}
+.gloss b{font-family:var(--font-mono);font-weight:600;color:var(--ink)}
+.what{margin:0 16px 12px}
+.ex{margin:0 16px 14px;background:var(--surface-2);border-radius:10px;padding:10px 12px;font-size:13.5px}
+.ex .lbl{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.08em;display:block;margin-bottom:2px;text-transform:uppercase}
+.ex code{background:transparent;padding:0;color:var(--ink);font-weight:700}
+.card-foot{margin-top:auto;display:flex;align-items:center;gap:8px;padding:9px 16px;border-top:1px dashed var(--line);font-size:12.5px;color:var(--muted)}
+.card-foot code{background:transparent;color:var(--muted);padding:0}
+.link{margin-left:auto;font-size:12px;color:var(--muted);background:transparent;border:1px solid var(--line);border-radius:6px;padding:1px 8px;cursor:pointer;white-space:nowrap}
+.link:hover{color:var(--accent);border-color:var(--accent)}
+.scen-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.scen-bar h2{margin:0;font-size:21px}
+.clear{font-size:13px;border:1px solid var(--line);background:var(--surface);color:var(--accent);border-radius:999px;padding:3px 12px;cursor:pointer}
+.empty{color:var(--muted);text-align:center;padding:60px 0;font-family:var(--font-mono)}
+
+footer{border-top:1px solid var(--line);background:var(--surface);color:var(--muted);font-size:13px}
+footer .wrap{padding-block:30px 48px}
+footer h2{font-size:18px;color:var(--ink);margin:0 0 14px}
+.disc{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:12px;margin:0 0 22px;padding:0;list-style:none;counter-reset:d}
+.disc li{counter-increment:d;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--bg);min-width:0}
+.disc li b{display:block;color:var(--ink);font-size:13.5px;margin-bottom:3px}
+.disc li b::before{content:counter(d,decimal-leading-zero) "  ";font-family:var(--font-mono);color:var(--accent)}
+footer p{margin:8px 0;max-width:100ch}
+footer a{color:var(--accent);word-break:break-all}
+.toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom,0px));transform:translate(-50%,10px);background:var(--hero);color:var(--phos);font-family:var(--font-mono);padding:9px 16px;border-radius:10px;font-size:13.5px;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;z-index:30;border:1px solid var(--hero-line);max-width:calc(100vw - 32px);overflow-wrap:anywhere}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.totop{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(22px + env(safe-area-inset-bottom,0px));z-index:15;width:42px;height:42px;border-radius:12px;border:1px solid var(--hero-line);background:var(--hero);color:var(--phos);font-family:var(--font-mono);font-size:18px;cursor:pointer;box-shadow:var(--shadow)}
+.noscript{background:var(--r-perms-bg);color:var(--r-perms);padding:12px 16px;border-radius:8px;margin-top:16px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.caret{animation:none}.card,.scen,.toast{transition:none}.card:hover,.scen:hover{transform:none}}
+</style>
+
+<div class="bar" id="bar">
+  <div class="wrap bar-row">
+    <button type="button" class="brand" id="brand" aria-label="Top"><span>/</span>cc</button>
+    <div class="search" role="search">
+      <span class="p" aria-hidden="true">❯ /</span>
+      <input id="q" type="search" autocomplete="off" spellcheck="false" enterkeyhint="search">
+      <span id="count" aria-live="polite"></span>
+      <button type="button" class="qclear" id="qclear" hidden>×</button>
+      <kbd class="khint" id="khint">/</kbd>
+    </div>
+    <div class="langs bar-langs" role="group" aria-label="Language">
+      <button type="button" data-lang="en">English</button><button type="button" data-lang="ja">日本語</button><button type="button" data-lang="zh">中文</button>
+    </div>
+  </div>
+  <div class="wrap"><div class="hint" id="hint"></div><div class="chips" id="chips" role="group"></div></div>
+</div>
+
+<div class="hero" id="hero">
+<div class="wrap">
+  <div class="topline">
+    <span class="badge" id="badge"></span>
+    <div class="langs hero-langs" role="group" aria-label="Language">
+      <button type="button" data-lang="en">English</button><button type="button" data-lang="ja">日本語</button><button type="button" data-lang="zh">中文</button>
+    </div>
+  </div>
+  <div class="hero-grid">
+    <div>
+      <h1><span class="slash">/</span><span id="h1"></span></h1>
+      <p class="lead" id="lead"></p>
+      <noscript><p class="noscript">This page needs JavaScript. このページには JavaScript が必要です。 本页需要 JavaScript。 → README.md / README.ja.md / README.zh-CN.md</p></noscript>
+      <div class="stats" id="stats"></div>
+    </div>
+    <div class="term" aria-hidden="true">
+      <div class="term-bar"><i></i><i></i><i></i><span>claude</span></div>
+      <div class="term-body">
+        <div class="prompt-line"><span class="p">❯</span><span><span class="typed" id="typed"></span><span class="caret"></span></span></div>
+        <ul class="menu" id="menu"></ul>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="wrap intro" id="intro">
+  <div class="howto" id="howto"></div>
+  <div class="h-sec"><h2 id="scen-h"></h2><p id="scen-d"></p></div>
+  <div class="scens" id="scens"></div>
+  <div class="h-sec"><h2 id="safety-h"></h2><p id="safety-d"></p></div>
+  <ul class="safety" id="safety"></ul>
+</div>
+
+
+<div class="wrap body">
+  <nav class="side" id="side" aria-label="Categories"></nav>
+  <main id="list"></main>
+</div>
+<footer><div class="wrap" id="foot"></div></footer>
+<button type="button" class="totop" id="totop" hidden>↑</button>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const META = {"source":"https://code.claude.com/docs/en/commands","checked":"2026-11-03","repo":"https://github.com/FuturEvoLab/claude-code-commands-i18n","site":"https://futurevolab.github.io/claude-code-commands-i18n/"};
+const CATS = [{"id":"session","name":{"zh":"对话与上下文","ja":"会話とコンテキスト","en":"Conversation & context"},"desc":{"zh":"新开、压缩、撤销、找回对话，管理 Claude 的「记忆空间」","ja":"会話の新規作成・圧縮・巻き戻し・再開、Claude の「記憶の容量」の管理","en":"Start, compact, rewind and resume conversations; manage the context window"}},{"id":"model","name":{"zh":"模型与推理","ja":"モデルと推論","en":"Model & reasoning"},"desc":{"zh":"换模型、调思考力度、调速度","ja":"モデルの切り替え、考える深さや速度の調整","en":"Switch models, reasoning effort and speed"}},{"id":"project","name":{"zh":"项目与文件","ja":"プロジェクトとファイル","en":"Project & files"},"desc":{"zh":"让 Claude 认识你的项目、访问文件夹、查看改动","ja":"プロジェクトを Claude に理解させる、フォルダーを追加する、変更を確認する","en":"Set up project memory, add directories, review changes"}},{"id":"quality","name":{"zh":"审查与验证","ja":"レビューと検証","en":"Review & verification"},"desc":{"zh":"找 bug、找安全漏洞、清理代码、实际运行验证","ja":"バグ・脆弱性の検出、コード整理、実際に動かして確認","en":"Find bugs and vulnerabilities, clean up code, run the app to verify"}},{"id":"parallel","name":{"zh":"并行与后台","ja":"並列・バックグラウンド","en":"Parallel & background work"},"desc":{"zh":"同时让多个 Claude 干活，或放到后台运行","ja":"複数の Claude を同時に動かす、バックグラウンドで実行する","en":"Run several agents at once or detach work to the background"}},{"id":"automation","name":{"zh":"定时与自动化","ja":"自動化とスケジュール","en":"Automation & scheduling"},"desc":{"zh":"让它按间隔反复做、按时间表做、自动修 PR","ja":"一定間隔で繰り返す、決まった時刻に実行する、PR を自動修正する","en":"Repeat on an interval, run on a schedule, auto-fix pull requests"}},{"id":"create","name":{"zh":"网页、幻灯片与设计","ja":"ページ・スライド・デザイン","en":"Artifacts, slides & design"},"desc":{"zh":"产出可以分享的网页、演示文稿、设计稿和图表","ja":"共有できるページ、スライド、デザイン、グラフを作る","en":"Produce shareable pages, decks, designs and charts"}},{"id":"extend","name":{"zh":"插件、技能与外部连接","ja":"プラグイン・スキル・外部連携","en":"Plugins, skills & integrations"},"desc":{"zh":"给 Claude 装新能力：插件、技能、MCP 连接器、浏览器、编辑器","ja":"Claude に新しい機能を追加：プラグイン、スキル、MCP、ブラウザー、エディター","en":"Extend Claude with plugins, skills, MCP servers, browser and IDE integrations"}},{"id":"safety","name":{"zh":"权限与安全","ja":"権限とセキュリティ","en":"Permissions & safety"},"desc":{"zh":"控制 Claude 能做什么、什么要先问你","ja":"Claude にできること・事前確認が必要なことを決める","en":"Control what Claude may do and what needs your approval"}},{"id":"ui","name":{"zh":"设置与界面","ja":"設定と表示","en":"Settings & interface"},"desc":{"zh":"主题、颜色、状态栏、快捷键、语音输入","ja":"テーマ、色、ステータスライン、ショートカット、音声入力","en":"Theme, colors, status line, keybindings, voice"}},{"id":"account","name":{"zh":"账号与用量","ja":"アカウントと使用量","en":"Account & usage"},"desc":{"zh":"登录、查额度、看费用、升级套餐","ja":"ログイン、使用量や料金の確認、プランのアップグレード","en":"Sign in, check limits and cost, upgrade"}},{"id":"remote","name":{"zh":"云端、远程与其他设备","ja":"クラウド・リモート・他のデバイス","en":"Cloud, remote & other devices"},"desc":{"zh":"在桌面 App、手机、网页、云端之间接力","ja":"デスクトップアプリ、スマホ、Web、クラウドの間で作業を引き継ぐ","en":"Hand work between desktop, mobile, web and cloud"}},{"id":"support","name":{"zh":"诊断与反馈","ja":"診断とフィードバック","en":"Diagnostics & feedback"},"desc":{"zh":"出问题时先看这里","ja":"困ったときはここから","en":"Start here when something is wrong"}},{"id":"misc","name":{"zh":"其他","ja":"その他","en":"Other"},"desc":{"zh":"与日常工作无关的小功能","ja":"作業には直接関係しない小さな機能","en":"Small extras"}},{"id":"removed","name":{"zh":"已移除","ja":"削除済み","en":"Removed"},"desc":{"zh":"旧教程里可能还有，但新版本已经不能用","ja":"古い解説には出てくるが、新しいバージョンでは使えない","en":"Still mentioned in older guides but no longer available"}}];
+const CMDS = [{"cmd":"/clear","args":"[name]","cat":"session","kind":"builtin","pick":true,"aliases":["/reset","/new"],"short":{"zh":"开始全新对话，旧对话可找回","ja":"会話をリセットして新しく始める（前の会話は戻せる）","en":"Start a fresh conversation (the old one stays resumable)"},"word":"clear","gloss":{"zh":"清空","ja":"消去・クリア"},"desc":{"zh":"开始一个上下文为空的新对话。项目记忆（CLAUDE.md）仍然有效。旧对话不会删除，可以用 `/resume` 找回；写上名字可以给旧对话加标签。","ja":"コンテキストが空の新しい会話を始めます。プロジェクトの記憶（CLAUDE.md）は残ります。前の会話は削除されず `/resume` で戻れます。名前を付けると前の会話にラベルが付きます。","en":"Starts a new conversation with empty context while keeping project memory. The previous conversation is kept and can be reopened with `/resume`; pass a name to label it in the picker."},"use":{"zh":"做完一个功能、要开始一件无关的新任务时：`/clear 登录功能`。避免旧内容干扰，也更省用量。","ja":"ある機能が終わり、関係のない次の作業に移るとき：`/clear ログイン機能`。前の内容に引きずられず、使用量も節約できます。","en":"When you finish one feature and move to an unrelated task: `/clear login-feature`. Old context stops interfering and usage drops."}},{"cmd":"/compact","args":"[instructions]","cat":"session","kind":"builtin","pick":true,"aliases":[],"short":{"zh":"压缩长对话，腾出空间继续聊","ja":"長い会話を要約して空きを作り、続ける","en":"Summarize a long conversation to free space"},"word":"compact","gloss":{"zh":"压缩","ja":"圧縮"},"desc":{"zh":"把到目前为止的对话总结成摘要，腾出上下文空间，对话继续。可以附上「摘要要重点保留什么」。","ja":"これまでの会話を要約してコンテキストの空きを作り、同じ会話を続けます。「要約で何を残すか」を指示できます。","en":"Summarizes the conversation so far to free context space, continuing the same conversation. Optional instructions steer what the summary keeps."},"use":{"zh":"长时间对话后：`/compact 保留数据库结构和尚未修复的 bug 列表`。","ja":"長い会話のあとで：`/compact データベース構造と未修正のバグ一覧を残して`。","en":"After a long session: `/compact keep the database schema and the list of open bugs`."}},{"cmd":"/context","args":"[all]","cat":"session","kind":"builtin","pick":true,"aliases":[],"short":{"zh":"查看记忆空间被什么占满","ja":"コンテキストを何が埋めているか見る","en":"See what is filling the context window"},"word":"context","gloss":{"zh":"上下文（Claude 当前能「记住」的内容）","ja":"コンテキスト（Claude が今「覚えている」内容）"},"desc":{"zh":"用彩色方格图显示上下文用了多少、被什么占用，并给出节省建议和容量警告。`all` 展开全部明细。","ja":"コンテキストの使用量と内訳を色付きのマス目で表示し、節約のヒントや容量の警告を出します。`all` で詳細をすべて表示します。","en":"Shows context usage as a colored grid with optimization suggestions and capacity warnings. `all` expands the per-item breakdown."},"use":{"zh":"感觉 Claude 变「健忘」或用量涨得快时，先 `/context` 看是不是被大文件或工具输出占满。","ja":"Claude が「忘れっぽく」なった、使用量の増えが速いと感じたら、まず `/context` で大きなファイルやツール出力が原因か確認します。","en":"When Claude seems forgetful or usage climbs fast, run `/context` to see whether large files or tool output are filling the window."}},{"cmd":"/plan","args":"[description]","cat":"session","kind":"builtin","pick":true,"aliases":[],"short":{"zh":"先出方案、你批准后再动手","ja":"先に計画を出し、承認後に作業する","en":"Get a plan first; edits wait for your approval"},"word":"plan","gloss":{"zh":"计划","ja":"計画"},"desc":{"zh":"直接进入计划模式：Claude 先调查并提出方案，你批准后才开始修改文件。可附上任务描述立即开始。","ja":"プランモードに入ります。Claude はまず調査して計画を示し、承認されてからファイルを変更します。作業内容を添えるとすぐ開始。","en":"Enters plan mode, where Claude researches and proposes a plan before editing. Pass a description to start on that task immediately."},"use":{"zh":"大改动之前：`/plan 修复登录报错`，看完方案再放手让它改。","ja":"大きな変更の前に：`/plan ログインのエラーを直して`。計画を確認してから任せます。","en":"Before a big change: `/plan fix the auth bug`, review, then approve."}},{"cmd":"/resume","args":"[session]","cat":"session","kind":"builtin","pick":true,"aliases":["/continue"],"short":{"zh":"回到以前的对话","ja":"以前の会話に戻る","en":"Go back to an earlier conversation"},"word":"resume","gloss":{"zh":"继续、恢复","ja":"再開"},"desc":{"zh":"按 ID 或名字恢复以前的对话，不写参数则打开对话列表。后台会话会标记为 `bg`。","ja":"ID か名前で以前の会話を再開します。引数なしなら一覧が開きます。バックグラウンドの会話には `bg` と表示されます。","en":"Resumes a conversation by ID or name, or opens the session picker. Background sessions are marked `bg`."},"use":{"zh":"昨天没做完就关了电脑：今天 `/resume`，选昨天的对话接着做。","ja":"昨日途中でパソコンを閉じたら：今日 `/resume` で昨日の会話を選んで続きから。","en":"You closed the laptop mid-task yesterday: `/resume` and pick yesterday's conversation."}},{"cmd":"/rewind","args":"","cat":"session","kind":"builtin","pick":true,"aliases":["/checkpoint","/undo"],"short":{"zh":"撤销：把代码和对话退回之前","ja":"元に戻す：コードと会話を以前の状態へ","en":"Undo: roll code and conversation back"},"risk":["files"],"word":"rewind","gloss":{"zh":"倒带","ja":"巻き戻し"},"desc":{"zh":"把对话和/或代码退回到之前的某个检查点，或者从选中的消息开始做摘要。类似游戏「读档」。","ja":"会話とコード（片方だけも可）を以前のチェックポイントに戻します。選んだメッセージ以降を要約することもできます。ゲームの「セーブデータを読み込む」に近い機能です。","en":"Rolls the conversation and/or code back to an earlier checkpoint, or summarizes from a selected message."},"use":{"zh":"Claude 把文件改坏了：`/rewind`，选择改动之前的那条消息，代码和对话一起恢复。","ja":"Claude がファイルを壊してしまったら：`/rewind` で変更前のメッセージを選ぶと、コードと会話がまとめて元に戻ります。","en":"Claude broke several files: run `/rewind`, pick the message before the edits, and restore both code and conversation."}},{"cmd":"/autocompact","args":"[auto|<tokens>]","cat":"session","kind":"builtin","pick":false,"aliases":[],"since":"2.1.221","word":"auto compact","gloss":{"zh":"自动压缩","ja":"自動圧縮"},"desc":{"zh":"设置上下文用到多满时自动压缩，例如 `500k`；`auto` 恢复为模型默认值。保存到用户设置并立即生效。","ja":"コンテキストがどれだけ埋まったら自動圧縮するかを設定します（例：`500k`）。`auto` でモデルの既定値に戻ります。ユーザー設定に保存され、すぐ反映されます。","en":"Sets how full the context window gets before automatic compaction, e.g. `500k`; `auto` restores the model-tuned default. Saved to user settings and applied immediately."},"use":{"zh":"长任务不想被频繁压缩打断：`/autocompact 500k`。","ja":"長い作業で圧縮が頻繁に入るのを避けたいとき：`/autocompact 500k`。","en":"Long task interrupted by frequent compaction: `/autocompact 500k`."}},{"cmd":"/branch","args":"[name]","cat":"session","kind":"builtin","pick":false,"aliases":[],"word":"branch","gloss":{"zh":"分支","ja":"分岐・ブランチ"},"desc":{"zh":"在当前位置为对话建一个分支并切换过去，用来尝试另一个方向；原对话保留，可用 `/resume` 回去。（这是对话分支，不是 Git 分支。）","ja":"今の時点で会話の分岐を作って切り替え、別の方向を試せます。元の会話は残り `/resume` で戻れます。（Git のブランチではなく会話の分岐です。）","en":"Creates a branch of the conversation at this point and switches into it; the original is preserved and reachable via `/resume`. (A conversation branch, not a Git branch.)"},"use":{"zh":"方案 A 和 B 拿不准：`/branch 试方案B`，不行就回到原对话继续 A。","ja":"案 A と案 B で迷ったら：`/branch 案Bを試す`。だめなら元の会話で A を続けます。","en":"Unsure between two approaches: `/branch try-plan-b`; if it fails, go back and continue plan A."}},{"cmd":"/btw","args":"[question]","cat":"session","kind":"builtin","pick":false,"aliases":[],"word":"by the way","gloss":{"zh":"顺便问一下","ja":"ところで"},"desc":{"zh":"就当前会话问一个旁支问题，答案不会加入对话历史。不带问题则显示最近一次旁支问答。","ja":"今の会話について、履歴に残さない「ついでの質問」をします。質問なしで実行すると直近の質問と回答を表示します。","en":"Asks a side question about the current session without adding it to the conversation. Without a question, shows your most recent side question."},"use":{"zh":"Claude 正在写代码，你想知道一个报错的意思：`/btw 这个 404 是什么意思`，不打乱主任务。","ja":"作業中にエラーの意味だけ知りたいとき：`/btw この 404 は何の意味？`。本題の流れを乱しません。","en":"Mid-task you want to understand an error: `/btw what does this 404 mean` without derailing the main thread."}},{"cmd":"/copy","args":"[N]","cat":"session","kind":"builtin","pick":false,"aliases":[],"word":"copy","gloss":{"zh":"复制","ja":"コピー"},"desc":{"zh":"把最近一条回答复制到剪贴板；`/copy 2` 复制倒数第二条。有代码块时会弹出选择器，可只复制某一块；按 `w` 写入文件（SSH 远程时有用）。","ja":"直前の回答をクリップボードにコピーします。`/copy 2` で 2 つ前の回答。コードブロックがあれば選択画面が出て、一部だけコピーできます。`w` でファイルに書き出し（SSH 接続時に便利）。","en":"Copies the last response to the clipboard; `/copy 2` copies the second-to-last. With code blocks, a picker lets you copy one block; press `w` to write to a file instead (useful over SSH)."},"use":{"zh":"Claude 写好一段文案或命令，`/copy` 直接粘贴到别处。","ja":"Claude が書いた文章やコマンドを `/copy` でそのまま貼り付け。","en":"Claude drafted a snippet or command: `/copy` and paste it wherever you need it."}},{"cmd":"/export","args":"[filename]","cat":"session","kind":"builtin","pick":false,"aliases":[],"risk":["secrets"],"word":"export","gloss":{"zh":"导出","ja":"エクスポート・書き出し"},"desc":{"zh":"把当前对话导出为纯文本。写文件名则直接保存，不写则弹出「复制或保存」对话框。","ja":"今の会話をプレーンテキストで書き出します。ファイル名を指定すると直接保存、なしならコピーか保存かを選べます。","en":"Exports the conversation as plain text, directly to a file if you give a name, otherwise via a copy/save dialog."},"use":{"zh":"一次很有价值的排错过程：`/export 排错记录.txt` 存档或发给同事。","ja":"役に立ったトラブル対応の記録を `/export 対応記録.txt` で保存して共有。","en":"Archive a valuable debugging session: `/export debugging-notes.txt`."}},{"cmd":"/goal","args":"[condition|clear]","cat":"session","kind":"builtin","pick":false,"aliases":[],"word":"goal","gloss":{"zh":"目标","ja":"目標・ゴール"},"desc":{"zh":"设定一个完成条件，Claude 会跨多轮持续工作，直到条件满足或目标被清除。不带参数显示当前目标；`clear`、`stop`、`off` 等可提前取消。","ja":"完了条件を設定すると、条件を満たすか解除されるまで Claude が複数ターンにわたり作業を続けます。引数なしで現在の目標を表示、`clear`・`stop`・`off` などで途中解除。","en":"Sets a goal: Claude keeps working across turns until the condition is met or the goal clears. No argument shows the current goal; `clear` (or `stop`, `off`, …) removes it."},"use":{"zh":"`/goal 所有测试都通过`，然后让它自己一轮轮修，直到全绿。","ja":"`/goal すべてのテストが通る` と設定し、全部通るまで任せます。","en":"`/goal all tests pass`, then let it iterate until the suite is green."}},{"cmd":"/memory","args":"","cat":"session","kind":"builtin","pick":false,"aliases":[],"word":"memory","gloss":{"zh":"记忆","ja":"記憶・メモリー"},"desc":{"zh":"编辑 `CLAUDE.md` 记忆文件，开关「自动记忆」，查看自动记住的条目。","ja":"記憶ファイル `CLAUDE.md` の編集、「自動メモリー」のオン・オフ、自動で記憶した内容の確認ができます。","en":"Edits `CLAUDE.md` memory files, toggles auto memory, and shows auto memory entries."},"use":{"zh":"想让 Claude 每次都用中文回答：`/memory` 打开 CLAUDE.md，写入「请始终用简体中文回答」。","ja":"いつも日本語で答えてほしいなら：`/memory` で CLAUDE.md を開き「常に日本語で回答して」と書きます。","en":"Want every answer in your language: open `/memory` and add a line such as “Always reply in Japanese.”"}},{"cmd":"/recap","args":"","cat":"session","kind":"builtin","pick":false,"aliases":[],"word":"recap","gloss":{"zh":"回顾、概括","ja":"振り返り・要約"},"desc":{"zh":"立即生成当前会话的一句话总结。","ja":"今のセッションの内容を一文で要約します。","en":"Generates a one-line summary of the current session on demand."},"use":{"zh":"开完会回来忘了做到哪：`/recap`。","ja":"会議から戻ってどこまで進んだか忘れたら：`/recap`。","en":"Back from a meeting and lost track: `/recap`."}},{"cmd":"/rename","args":"[name]","cat":"session","kind":"builtin","pick":false,"aliases":[],"word":"rename","gloss":{"zh":"重命名","ja":"名前の変更"},"desc":{"zh":"给当前会话改名，并显示在输入栏上方。不写名字则根据对话内容自动生成。","ja":"今のセッションの名前を変え、入力欄の上に表示します。名前なしなら会話内容から自動で付けます。","en":"Renames the session and shows the name on the prompt bar; without a name, generates one from the conversation."},"use":{"zh":"同时开着多个会话时：`/rename 量化回测`，之后在 `/resume` 里一眼认出。","ja":"複数のセッションを開いているとき：`/rename 株価バックテスト` にしておくと `/resume` で見つけやすい。","en":"With many sessions open: `/rename backtest` so it stands out in `/resume`."}},{"cmd":"/model","args":"[model]","cat":"model","kind":"builtin","pick":true,"aliases":[],"short":{"zh":"切换模型","ja":"モデルを切り替える","en":"Switch models"},"word":"model","gloss":{"zh":"模型","ja":"モデル"},"desc":{"zh":"切换 AI 模型，并保存为新会话的默认模型。不带参数打开选择器；支持的模型可用左右方向键调思考力度；在某一行按 `s` 只对当前会话生效。","ja":"AI モデルを切り替え、新しいセッションの既定にも保存します。引数なしで選択画面。対応モデルでは左右キーで推論の深さを調整、行で `s` を押すとこのセッションだけ切り替えます。","en":"Switches the model and saves it as the default for new sessions. No argument opens a picker; left/right adjusts effort on supported models; press `s` on a row to switch for this session only."},"use":{"zh":"简单改文案用较快较省的模型；遇到难 bug 时 `/model opus` 换更强的模型。","ja":"簡単な修正は速くて安いモデル、難しいバグは `/model opus` で強いモデルに。","en":"Use a faster model for small edits; switch with `/model opus` when a bug gets hard."}},{"cmd":"/advisor","args":"[model|off]","cat":"model","kind":"builtin","pick":false,"aliases":[],"word":"advisor","gloss":{"zh":"顾问","ja":"アドバイザー"},"desc":{"zh":"开关「顾问工具」：任务关键时刻请第二个模型提供建议。可填 `fable`、`opus`、`sonnet` 或完整模型 ID（`fable` 需要相应权限）。不带参数打开选择器。","ja":"「アドバイザー」を切り替えます。作業の重要な場面で別のモデルに助言を求めます。`fable`・`opus`・`sonnet` または完全なモデル ID を指定（`fable` は利用権限が必要）。引数なしで選択画面。","en":"Enables or disables the advisor tool, which consults a second model at key moments. Accepts `fable`, `opus`, `sonnet` or a full model ID (`fable` requires access). No argument opens a picker."},"use":{"zh":"平时用较快的模型干活，又怕关键决策出错：`/advisor opus`。","ja":"普段は速いモデルで作業し、重要な判断だけ強いモデルに見てもらう：`/advisor opus`。","en":"Work on a faster model but get a stronger second opinion at key decisions: `/advisor opus`."}},{"cmd":"/effort","args":"[level|auto|status|ultracode [on|off]]","cat":"model","kind":"builtin","pick":false,"aliases":[],"word":"effort","gloss":{"zh":"努力程度（思考力度）","ja":"努力の度合い（推論の深さ）"},"desc":{"zh":"设置推理力度：`low` 到 `xhigh`、`max` 或 `auto`；`status` 显示当前值。`max` 只对当前会话有效。`ultracode on|off` 开关 ultracode 模式。","ja":"推論の深さを `low`〜`xhigh`、`max`、`auto` から設定します。`status` で現在値を表示。`max` はこのセッションのみ。`ultracode on|off` で ultracode を切り替えます。","en":"Sets the effort level: `low` to `xhigh`, `max`, or `auto`; `status` prints it. `max` is session-only. `ultracode on|off` toggles ultracode."},"use":{"zh":"排查难以复现的 bug：`/effort high`；只是改错别字：`/effort low`。","ja":"再現しにくいバグの調査：`/effort high`、誤字の修正だけ：`/effort low`。","en":"Hunting a flaky bug: `/effort high`; fixing a typo: `/effort low`."}},{"cmd":"/fast","args":"[on|off]","cat":"model","kind":"builtin","pick":false,"aliases":[],"word":"fast","gloss":{"zh":"快速","ja":"高速"},"desc":{"zh":"开关快速模式（同一个模型，输出更快）。在 Claude 回复中途也能切换，但正在进行的这一轮仍按原速度完成。计费方式请以官方 fast mode 说明为准。","ja":"高速モード（同じモデルで出力が速くなる）を切り替えます。応答中でも切り替えられますが、進行中のターンは元の速度のまま終わります。料金は公式の fast mode の説明を確認してください。","en":"Toggles fast mode (same model, faster output). It can be toggled mid-response; the running turn finishes at its original speed. See the official fast mode docs for pricing."},"use":{"zh":"赶时间需要大量生成时 `/fast on`，不急时 `/fast off`。","ja":"急ぎで大量に生成したいとき `/fast on`、急がないときは `/fast off`。","en":"Under time pressure: `/fast on`; otherwise `/fast off`."}},{"cmd":"/output-style","args":"[style]","cat":"model","kind":"builtin","pick":false,"aliases":[],"since":"2.1.269","word":"output style","gloss":{"zh":"输出风格","ja":"出力スタイル"},"desc":{"zh":"列出或切换输出风格（回答的写法），例如 `/output-style concise`。","ja":"出力スタイル（回答の書き方）を一覧表示・切り替えします。例：`/output-style concise`。","en":"Lists output styles or switches to one, e.g. `/output-style concise`."},"use":{"zh":"先不带参数运行 `/output-style` 看有哪些风格，再选一个适合你的（例如更简洁的）。","ja":"まず引数なしの `/output-style` で一覧を見て、自分に合うもの（例：簡潔なもの）を選びます。","en":"Run `/output-style` with no argument to see what is available, then pick one (for example a more concise style)."}},{"cmd":"/init","args":"","cat":"project","kind":"builtin","pick":true,"aliases":[],"short":{"zh":"生成项目说明书 CLAUDE.md","ja":"プロジェクトの説明書 CLAUDE.md を作る","en":"Create the project's CLAUDE.md"},"word":"initialize","gloss":{"zh":"初始化","ja":"初期化"},"desc":{"zh":"读取项目并生成 `CLAUDE.md`「项目说明书」，之后每次新对话都会先读它。如果发现 Codex 或 Gemini CLI 的配置，会提议用 `/import` 迁移。","ja":"プロジェクトを読み込んで `CLAUDE.md`（プロジェクトの説明書）を作ります。以降の新しい会話は毎回これを読みます。Codex や Gemini CLI の設定があれば `/import` での移行を提案します。","en":"Initializes the project with a `CLAUDE.md` guide that every new session reads. Offers `/import` if it finds Codex or Gemini CLI configuration."},"use":{"zh":"接手新项目时第一件事：`/init`，然后用 `/memory` 补充「请用中文回答」等个人要求。","ja":"新しいプロジェクトでまず `/init`。そのあと `/memory` で「日本語で答えて」などの希望を追記します。","en":"First thing in a new repo: `/init`, then refine it with `/memory`."}},{"cmd":"/add-dir","args":"<path>","cat":"project","kind":"builtin","pick":false,"aliases":[],"word":"add directory","gloss":{"zh":"添加文件夹","ja":"フォルダーの追加"},"desc":{"zh":"本次会话额外允许访问另一个文件夹，当前工作位置不变。输入部分路径会提示补全，按 `Tab` 接受。被添加文件夹里的大部分 `.claude/` 配置不会被读取；多数网络路径不能添加。","ja":"このセッションで別のフォルダーへのアクセスを追加します（作業場所はそのまま）。パスの途中まで入力すると候補が出て `Tab` で確定。追加したフォルダーの `.claude/` 設定はほとんど読み込まれず、ネットワークパスの多くは追加できません。","en":"Adds a working directory for file access this session without moving. Partial paths autocomplete with `Tab`. Most `.claude/` config in the added directory isn't discovered, and most network paths can't be added."},"use":{"zh":"前端和后端分在两个文件夹：`/add-dir ../backend`，让它同时看两边。","ja":"フロントとバックエンドが別フォルダーなら：`/add-dir ../backend` で両方を見せます。","en":"Frontend and backend live side by side: `/add-dir ../backend`."}},{"cmd":"/cd","args":"<path>","cat":"project","kind":"builtin","pick":false,"aliases":[],"word":"change directory","gloss":{"zh":"切换文件夹","ja":"フォルダーの移動"},"desc":{"zh":"把当前会话移到另一个工作文件夹，对话保留。和 `/add-dir` 的区别：`/cd` 是搬家，`/add-dir` 是多开一扇门。","ja":"会話を残したまま、セッションを別のフォルダーに移します。`/add-dir` との違い：`/cd` は引っ越し、`/add-dir` は入り口を一つ増やすイメージです。","en":"Moves the session to a new working directory, keeping the conversation. Unlike `/add-dir`, `/cd` changes where the session lives."},"use":{"zh":"在错误的文件夹里开始了对话：`/cd ~/projects/website`，不用重来。","ja":"違うフォルダーで始めてしまったら：`/cd ~/projects/website` でやり直し不要。","en":"Started in the wrong folder: `/cd ~/projects/website` instead of starting over."}},{"cmd":"/diff","args":"","cat":"project","kind":"builtin","pick":false,"aliases":[],"word":"difference","gloss":{"zh":"差异、改动对比","ja":"差分"},"desc":{"zh":"查看工作区的改动，包括 Claude 目前做的修改。","ja":"作業ツリーの変更（Claude がこれまでに行った編集を含む）を確認します。","en":"Reviews changes in your working tree, including Claude's edits so far."},"use":{"zh":"Claude 说「改好了」后，提交前先 `/diff` 亲眼确认改了什么。","ja":"「できました」と言われたら、コミット前に `/diff` で中身を自分の目で確認。","en":"Before committing, `/diff` to see exactly what changed."}},{"cmd":"/import","args":"[codex|gemini|cursor] [--dry-run] [--yes]","cat":"project","kind":"builtin","pick":false,"aliases":[],"risk":["files"],"word":"import","gloss":{"zh":"导入","ja":"インポート・取り込み"},"desc":{"zh":"把本机 OpenAI Codex、Google Gemini CLI 或 Cursor 的配置（说明文件、MCP 服务器、命令、子代理、技能）导入 Claude Code。`--dry-run` 只预览不写入。部分云平台不可用；从 Cursor 导入需 v2.1.265+。","ja":"OpenAI Codex・Google Gemini CLI・Cursor の設定（指示ファイル、MCP サーバー、コマンド、サブエージェント、スキル）を取り込みます。`--dry-run` はプレビューのみ。一部のクラウド環境では使えません。Cursor からは v2.1.265 以降。","en":"Imports instruction files, MCP servers, commands, subagents and skills from OpenAI Codex, Gemini CLI or Cursor. `--dry-run` previews. Unavailable on some cloud providers; Cursor import requires v2.1.265+."},"use":{"zh":"从 Cursor 转过来：先 `/import cursor --dry-run` 看会导入什么，没问题再正式导入。","ja":"Cursor から移るとき：まず `/import cursor --dry-run` で内容を確認してから本番の取り込み。","en":"Moving from Cursor: `/import cursor --dry-run` first, then import for real."}},{"cmd":"/insights","args":"","cat":"project","kind":"builtin","pick":false,"aliases":[],"word":"insights","gloss":{"zh":"洞察、分析","ja":"インサイト・分析"},"desc":{"zh":"生成一份 HTML 报告，分析你在本机的近期使用：常用项目、使用方式、容易出错的地方、值得尝试的功能。云端会话中不可用。","ja":"このマシンでの最近の使い方（よく使うプロジェクト、使い方、つまずきやすい点、試すとよい機能）を分析した HTML レポートを作ります。クラウドセッションでは使えません。","en":"Generates an HTML report of your recent sessions on this machine: projects, habits, where things go wrong, features to try. Not available in cloud sessions."},"use":{"zh":"用了一段时间后 `/insights`，发现自己从没用过的好功能。","ja":"しばらく使ったら `/insights` で、まだ使っていない便利な機能を見つけます。","en":"After a few weeks, run `/insights` to discover features you never tried."}},{"cmd":"/team-onboarding","args":"","cat":"project","kind":"builtin","pick":false,"aliases":[],"risk":["secrets"],"word":"team onboarding","gloss":{"zh":"团队新人入门","ja":"チームへの新人受け入れ"},"desc":{"zh":"分析你过去 30 天的会话、命令和 MCP 使用情况，生成一份 Markdown 入门指南，新同事可以直接作为第一条消息粘贴。","ja":"過去 30 日のセッション・コマンド・MCP の使い方を分析し、新しいメンバーが最初のメッセージとして貼り付けられる Markdown のガイドを作ります。","en":"Analyzes your last 30 days of sessions, commands and MCP usage and writes a Markdown guide a teammate can paste as their first message."},"use":{"zh":"团队来了新人：`/team-onboarding`，把生成的指南发给 TA。","ja":"新メンバーが来たら：`/team-onboarding` でガイドを作って渡します。","en":"A new teammate joins: run `/team-onboarding` and send them the guide."}},{"cmd":"/code-review","args":"[low|medium|high|xhigh|max|ultra] [--fix] [--comment] [--max-findings n|all|default] [pr#|branch|path]","cat":"quality","kind":"skill","pick":true,"aliases":["/review"],"short":{"zh":"提交前检查 bug，可自动修复","ja":"コミット前にバグを確認し、自動修正も可能","en":"Check for bugs before committing, optionally fix them"},"risk":["cost","external","files"],"word":"code review","gloss":{"zh":"代码审查","ja":"コードレビュー"},"desc":{"zh":"检查当前改动（或指定的 PR、分支、路径）有没有正确性 bug。可选力度；`--fix` 让 Claude 直接修，`--comment` 发到 GitHub PR 或 GitLab MR；`ultra` 在云端做深度审查。","ja":"現在の変更（または指定した PR・ブランチ・パス）に正しさのバグがないか調べます。深さを選べ、`--fix` で修正まで、`--comment` で GitHub PR／GitLab MR にコメント、`ultra` でクラウドの詳細レビュー。","en":"Reviews the current diff, or a PR, branch or path, for correctness bugs. `--fix` applies findings, `--comment` posts to the GitHub PR or GitLab MR, `ultra` runs a deep cloud review."},"use":{"zh":"提交前：`/code-review high --fix`，找出问题并顺手修好。审查别人的 PR：`/code-review high 1234`。","ja":"コミット前に：`/code-review high --fix`。他人の PR なら：`/code-review high 1234`。","en":"Before committing: `/code-review high --fix`. For a PR: `/code-review high 1234`."}},{"cmd":"/run","args":"","cat":"quality","kind":"skill","pick":false,"aliases":[],"word":"run","gloss":{"zh":"运行","ja":"実行"},"desc":{"zh":"启动并操作你的项目应用，看改动的实际效果。","ja":"プロジェクトのアプリを起動・操作して、変更の実際の動きを見ます。","en":"Launches and drives your project's app to see a change working."},"use":{"zh":"`/run`，让它启动网站并截图新首页给你看。","ja":"`/run` でサイトを起動し、新しいトップページのスクリーンショットを見せてもらう。","en":"`/run` to start the site and screenshot the new homepage."}},{"cmd":"/run-skill-generator","args":"","cat":"quality","kind":"skill","pick":false,"aliases":[],"word":"skill generator","gloss":{"zh":"技能生成器","ja":"スキル生成"},"desc":{"zh":"为本项目写一个专属技能，教会 `/run` 和 `/verify` 如何从干净环境构建、启动和操作你的应用。","ja":"このプロジェクト専用のスキルを書き、`/run` と `/verify` にクリーンな環境からのビルド・起動・操作方法を教えます。","en":"Writes a per-project skill that teaches `/run` and `/verify` how to build, launch and drive your app from a clean environment."},"use":{"zh":"项目启动步骤复杂（要先起数据库等），跑一次，以后 `/run` 一步到位。","ja":"起動手順が複雑（先に DB を起動など）なら一度実行。以後は `/run` だけで済みます。","en":"Startup needs several steps (database first, etc.): run this once, then `/run` just works."}},{"cmd":"/security-review","args":"","cat":"quality","kind":"builtin","pick":false,"aliases":[],"word":"security review","gloss":{"zh":"安全审查","ja":"セキュリティレビュー"},"desc":{"zh":"对比当前分支与远程默认分支的差异，找出安全隐患，如注入、认证问题、数据泄露。需要名为 `origin` 的远程仓库。","ja":"現在のブランチとリモートの既定ブランチの差分から、インジェクション・認証の問題・データ漏えいなどの危険を探します。`origin` リモートが必要です。","en":"Analyzes your branch's diff against origin's default branch for vulnerabilities such as injection, auth issues and data exposure. Needs an `origin` remote."},"use":{"zh":"涉及登录、支付、用户数据的改动上线前跑一次。","ja":"ログイン・決済・個人情報に関わる変更を公開する前に一度実行。","en":"Before shipping anything touching auth, payments or user data."}},{"cmd":"/simplify","args":"[target]","cat":"quality","kind":"skill","pick":false,"aliases":[],"risk":["files"],"word":"simplify","gloss":{"zh":"简化","ja":"簡素化"},"desc":{"zh":"4 个审查代理并行检查改动：能否复用现有代码、能否更简单、效率、抽象层级是否合适，并直接改好。不查正确性 bug（那是 `/code-review` 的事）。","ja":"4 つのレビューエージェントが並行して、既存コードの再利用・簡素化・効率・抽象度を確認し、修正まで行います。正しさのバグは対象外（それは `/code-review`）。","en":"Four parallel agents review changed code for reuse, simplification, efficiency and abstraction level, then apply fixes. It does not look for correctness bugs; use `/code-review` for that."},"use":{"zh":"功能已经能跑，想让代码更好维护：`/simplify`。","ja":"動くようになったあと、保守しやすくしたいとき：`/simplify`。","en":"The feature works and you want cleaner code: `/simplify`."}},{"cmd":"/ultrareview","args":"[PR or branch]","cat":"quality","kind":"builtin","pick":false,"aliases":[],"risk":["cost"],"word":"ultra review","gloss":{"zh":"超深度审查","ja":"超詳細レビュー"},"desc":{"zh":"在云端沙箱里用多个代理深度审查代码。推荐写法是 `/code-review ultra`，`/ultrareview` 是别名。Pro、Max、Ultra 含 3 次免费，之后需要用量额度。","ja":"クラウドのサンドボックスで複数エージェントによる詳細レビューを行います。推奨は `/code-review ultra`（`/ultrareview` は別名）。Pro・Max・Ultra は 3 回無料、その後は使用量クレジットが必要です。","en":"Deep multi-agent review in a cloud sandbox. The preferred form is `/code-review ultra`; `/ultrareview` is an alias. Includes 3 free runs on Pro, Max and Ultra, then requires usage credits."},"use":{"zh":"重要版本发布前：`/code-review ultra`。","ja":"重要なリリースの前に：`/code-review ultra`。","en":"Before a major release: `/code-review ultra`."}},{"cmd":"/verify","args":"","cat":"quality","kind":"skill","pick":false,"aliases":[],"word":"verify","gloss":{"zh":"验证","ja":"検証"},"desc":{"zh":"真正构建并运行你的应用、观察结果，确认改动有效，而不是只看测试或类型检查。只在你手动调用时运行。","ja":"アプリを実際にビルド・起動して結果を観察し、変更が意図どおりか確認します（テストや型チェックだけに頼らない）。手動で呼んだときだけ動きます。","en":"Builds, runs and observes your app to confirm a change works, rather than relying on tests or type checks. Runs only when you invoke it."},"use":{"zh":"改了按钮逻辑：`/verify`，让它亲自打开应用点一下。","ja":"ボタンの動作を変えたら：`/verify` で実際に開いて押して確認。","en":"Changed a button's behavior: `/verify` so it actually clicks it."}},{"cmd":"/agents","args":"","cat":"parallel","kind":"builtin","pick":false,"aliases":[],"word":"agents","gloss":{"zh":"代理（智能体）","ja":"エージェント"},"desc":{"zh":"新版本中只显示一条提示：直接让 Claude 创建或管理子代理，或编辑 `.claude/agents/` 文件夹。v2.1.197 及更早版本会打开管理界面。","ja":"新しいバージョンでは案内が表示されるだけです：Claude にサブエージェントの作成・管理を頼むか、`.claude/agents/` を直接編集します。v2.1.197 以前は管理画面が開きます。","en":"Prints a reminder to ask Claude to create or manage subagents, or to edit `.claude/agents/` directly. On v2.1.197 and earlier, opened an interactive manager."},"use":{"zh":"直接说：「帮我建一个专门写测试的子代理」。","ja":"「テスト専門のサブエージェントを作って」と頼むだけで OK。","en":"Just ask: “Create a subagent that only writes tests.”"}},{"cmd":"/background","args":"[prompt]","cat":"parallel","kind":"builtin","pick":false,"aliases":["/bg"],"word":"background","gloss":{"zh":"后台","ja":"バックグラウンド"},"desc":{"zh":"把当前会话转为后台代理继续运行，释放终端。可附带最后一条指令。用 `claude agents` 查看。","ja":"今のセッションをバックグラウンドのエージェントとして動かし続け、ターミナルを空けます。最後の指示を添えることもできます。確認は `claude agents`。","en":"Detaches the session to run as a background agent and frees the terminal. Optionally sends one more instruction first. Monitor with `claude agents`."},"use":{"zh":"一个要跑半小时的整理任务：`/bg 完成后把结果写进 report.md`。","ja":"30 分かかる作業なら：`/bg 終わったら結果を report.md に書いて`。","en":"A 30-minute job: `/bg write the results to report.md when done`."}},{"cmd":"/batch","args":"<instruction>","cat":"parallel","kind":"skill","pick":false,"aliases":[],"risk":["files"],"word":"batch","gloss":{"zh":"批量","ja":"一括処理"},"desc":{"zh":"大规模并行改代码：先研究代码库，把工作拆成 5～30 个独立单元并给出计划；你批准后，每个单元由一个后台子代理在独立 worktree 中实现、测试并提交。需要 Git 仓库（或相应 hook）。","ja":"大規模な変更を並列で行います。コードを調べて 5〜30 の独立した単位に分けて計画を示し、承認後は単位ごとにバックグラウンドのサブエージェントが独立した worktree で実装・テスト・反映します。Git リポジトリ（または対応する hook）が必要です。","en":"Orchestrates large changes in parallel: decomposes the work into 5–30 independent units, and after approval runs one background subagent per unit in its own worktree. Requires a git repository or a WorktreeCreate hook."},"use":{"zh":"`/batch 把 src/ 从 JavaScript 迁移到 TypeScript`。","ja":"`/batch src/ を JavaScript から TypeScript に移行`。","en":"`/batch migrate src/ from JavaScript to TypeScript`."}},{"cmd":"/fork","args":"[prompt]","cat":"parallel","kind":"builtin","pick":false,"aliases":[],"word":"fork","gloss":{"zh":"分叉（复制一份）","ja":"フォーク（複製）"},"desc":{"zh":"把当前对话复制成一个新的后台会话，这边继续工作。带上指令则副本立即开始。副本一般会先创建自己的 worktree 再改代码。","ja":"今の会話を新しいバックグラウンドセッションに複製し、こちらは作業を続けます。指示を付けると複製がすぐ作業開始。複製は通常、自分用の worktree を作ってから編集します。","en":"Copies the conversation into a new background session while you keep working here. With a prompt, the copy starts immediately; it is normally told to create its own worktree first."},"use":{"zh":"正在做功能 A，想同时修一个小问题：`/fork 修复页脚错位`。","ja":"機能 A の作業中に小さな不具合も直したいとき：`/fork フッターのずれを直して`。","en":"Working on feature A and want a side fix in parallel: `/fork fix the footer alignment`."}},{"cmd":"/list-agents","args":"","cat":"parallel","kind":"builtin","pick":false,"aliases":["/peers"],"since":"2.1.224","word":"list agents","gloss":{"zh":"列出代理","ja":"エージェント一覧"},"desc":{"zh":"列出 Claude 可以发消息的子代理、团队成员和其他会话，以及各自的名字。仅在启用跨会话消息时可用。","ja":"Claude がメッセージを送れるサブエージェント・チームメイト・他のセッションと、その名前を一覧表示します。セッション間メッセージが有効な場合のみ。","en":"Lists subagents, teammates and other sessions Claude can message, with the name to use for each. Only where cross-session messaging is enabled."},"use":{"zh":"多个会话协作时，确认彼此的名字。","ja":"複数のセッションで連携するとき、お互いの名前を確認。","en":"Coordinating several sessions: check what each is called."}},{"cmd":"/stop","args":"","cat":"parallel","kind":"builtin","pick":false,"aliases":[],"word":"stop","gloss":{"zh":"停止","ja":"停止"},"desc":{"zh":"停止你当前连接的后台会话，记录和 worktree 保留。只想断开不停止，用 `/exit` 或按 `←`。","ja":"接続中のバックグラウンドセッションを停止します（記録と worktree は残ります）。止めずに離れたいだけなら `/exit` か `←`。","en":"Stops the background session you're attached to; transcript and worktree are kept. To detach without stopping, use `/exit` or press `←`."},"use":{"zh":"后台任务方向跑偏：`/stop`。","ja":"バックグラウンドの作業が方向違いになったら：`/stop`。","en":"A background job went off course: `/stop`."}},{"cmd":"/subtask","args":"<task>","cat":"parallel","kind":"builtin","pick":false,"aliases":[],"word":"subtask","gloss":{"zh":"子任务","ja":"サブタスク"},"desc":{"zh":"派出一个继承完整对话的后台子代理去做任务，完成后结果回到当前对话。与 `/fork` 的区别：`/subtask` 的结果会汇报回来，`/fork` 是独立的会话。","ja":"会話全体を引き継いだバックグラウンドのサブエージェントに作業を任せ、終わると結果がこの会話に戻ります。`/fork` との違い：`/subtask` は結果が戻り、`/fork` は独立したセッションです。","en":"Spawns a forked subagent that inherits the conversation and reports its result back here. Unlike `/subtask`, `/fork` creates a separate session."},"use":{"zh":"`/subtask 为这些接口写 API 文档`，你这边继续写代码。","ja":"`/subtask これらの API のドキュメントを書いて`、自分はコードを書き続けます。","en":"`/subtask document these API endpoints` while you keep coding."}},{"cmd":"/tasks","args":"","cat":"parallel","kind":"builtin","pick":false,"aliases":["/bashes"],"word":"tasks","gloss":{"zh":"任务","ja":"タスク"},"desc":{"zh":"查看和管理当前会话的后台工作，包括已完成的子代理。","ja":"このセッションのバックグラウンド作業（完了したサブエージェントを含む）を確認・管理します。","en":"Views and manages background work in this session, including finished subagents."},"use":{"zh":"后台跑着测试或子代理时，用 `/tasks` 看进度。","ja":"テストやサブエージェントを裏で動かしている間に `/tasks` で進み具合を確認。","en":"Check progress on background tests or subagents with `/tasks`."}},{"cmd":"/workflow-authoring","args":"","cat":"parallel","kind":"skill","pick":false,"aliases":[],"word":"workflow authoring","gloss":{"zh":"编写工作流","ja":"ワークフローの作成"},"desc":{"zh":"加载编写动态工作流脚本的参考资料。Claude 一般会自动加载；手动修改已保存脚本前可以自己运行。仅在启用动态工作流时可用。","ja":"動的ワークフローのスクリプトを書くための資料を読み込みます。通常は Claude が自動で読み込みます。保存済みスクリプトを手で直す前に実行するとよいでしょう。動的ワークフローが有効な場合のみ。","en":"Loads the reference for writing dynamic workflow scripts. Claude normally loads it itself; run it before hand-editing a saved script. Only where dynamic workflows are enabled."},"use":{"zh":"想手动调整一个保存的工作流脚本前。","ja":"保存したワークフローを手で調整する前に。","en":"Before hand-editing a saved workflow script."}},{"cmd":"/workflows","args":"","cat":"parallel","kind":"builtin","pick":false,"aliases":[],"word":"workflows","gloss":{"zh":"工作流","ja":"ワークフロー"},"desc":{"zh":"打开工作流进度视图，查看、暂停、继续、保存正在运行或已完成的多代理工作流。","ja":"ワークフローの進行画面を開き、実行中・完了済みのワークフローの確認・一時停止・再開・保存ができます。","en":"Opens the workflow progress view to watch, pause, resume or save running and completed workflows."},"use":{"zh":"跑大型研究或改造工作流时，用它盯进度。","ja":"大きな調査や改修のワークフローを動かしているとき、進み具合を見るのに使います。","en":"Keep an eye on a long-running workflow."}},{"cmd":"/loop","args":"[interval] [prompt]","cat":"automation","kind":"skill","pick":true,"aliases":["/proactive"],"short":{"zh":"按间隔重复执行一条指令","ja":"一定間隔で指示を繰り返す","en":"Repeat a prompt on an interval"},"word":"loop","gloss":{"zh":"循环","ja":"ループ・繰り返し"},"desc":{"zh":"在会话开着时反复执行一条指令。不写间隔则由 Claude 自己掌握节奏；不写指令则运行内置维护提示或你的 `loop.md`。关闭会话就停止。","ja":"セッションが開いている間、指示を繰り返し実行します。間隔を省略すると Claude がペースを決め、指示を省略すると組み込みの保守用プロンプトか `loop.md` を実行します。セッションを閉じると止まります。","en":"Runs a prompt repeatedly while the session stays open. Omit the interval and Claude self-paces; omit the prompt and it runs the built-in maintenance prompt or your `loop.md`."},"use":{"zh":"`/loop 5m 检查部署是否完成`。需要电脑关机也执行的话用 `/schedule`。","ja":"`/loop 5m デプロイが終わったか確認`。パソコンを閉じても動かしたいなら `/schedule`。","en":"`/loop 5m check if the deploy finished`. For runs that continue when your computer is off, use `/schedule`."}},{"cmd":"/autofix-pr","args":"[prompt]","cat":"automation","kind":"builtin","pick":false,"aliases":[],"risk":["external"],"word":"auto-fix PR","gloss":{"zh":"自动修复 PR","ja":"PR の自動修正"},"desc":{"zh":"开一个云端会话盯住当前分支的 PR，CI 失败或有人留评审意见时自动推送修复。需要 `gh` 命令行工具和云端会话权限。","ja":"現在のブランチの PR をクラウドセッションが見張り、CI の失敗やレビューコメントがあれば修正を push します。`gh` CLI とクラウドセッションの利用権が必要です。","en":"Spawns a cloud session that watches the current branch's PR and pushes fixes on CI failures or review comments. Requires the `gh` CLI and cloud sessions."},"use":{"zh":"只想让它修格式问题：`/autofix-pr 只修 lint 和类型错误`。","ja":"lint だけ任せたいなら：`/autofix-pr lint と型エラーだけ直して`。","en":"`/autofix-pr only fix lint and type errors`."}},{"cmd":"/deep-research","args":"<question>","cat":"automation","kind":"workflow","pick":false,"aliases":[],"word":"deep research","gloss":{"zh":"深度研究","ja":"詳細リサーチ"},"desc":{"zh":"多代理工作流：大量搜索网页、抓取并交叉核对来源，写成带引用的报告。在后台运行。","ja":"マルチエージェントのワークフローです。Web を広く検索し、情報源を取得・照合して、出典付きのレポートにまとめます。バックグラウンドで動きます。","en":"A bundled workflow that fans out web searches, fetches and cross-checks sources, and writes a cited report. Runs in the background."},"use":{"zh":"`/deep-research 主流 AI 视频生成工具的价格与画质对比`。","ja":"`/deep-research 主要な AI 動画生成ツールの料金と画質の比較`。","en":"`/deep-research compare pricing and quality of leading AI video tools`."}},{"cmd":"/schedule","args":"[description]","cat":"automation","kind":"builtin","pick":false,"aliases":["/routines"],"word":"schedule","gloss":{"zh":"日程、定时","ja":"スケジュール"},"desc":{"zh":"创建、修改、列出或运行云端定时任务（以前叫 routines），通过对话引导设置，也可以问最近的运行记录。使用 Console API 密钥时不可用。","ja":"クラウドの定期実行タスク（旧 routines）を作成・変更・一覧・実行します。会話形式で設定でき、最近の実行結果も聞けます。Console の API キーでは使えません。","en":"Creates, updates, lists or runs cloud scheduled tasks (formerly routines) through a guided conversation. Not available with a Console API key."},"use":{"zh":"`/schedule 每个工作日早上 9 点检查仓库新 issue 并总结`。","ja":"`/schedule 平日の毎朝 9 時に新しい issue をまとめて`。","en":"`/schedule every weekday at 9am, summarize new issues in the repo`."}},{"cmd":"/artifact-capabilities","args":"","cat":"create","kind":"skill","pick":false,"aliases":[],"word":"artifact capabilities","gloss":{"zh":"成品页面的高级能力","ja":"アーティファクトの機能"},"desc":{"zh":"加载 artifact 运行时可用能力的参考，例如调用你的连接器、给访客提供文件下载，以及你的账号有哪些。Claude 一般会自动加载。","ja":"アーティファクトで使える実行時機能（コネクターの呼び出し、ファイルのダウンロード提供など）と、自分のアカウントで使えるものの資料を読み込みます。通常は Claude が自動で読み込みます。","en":"Loads the reference for artifact runtime capabilities, such as calling connectors or offering downloads, and which your account has. Claude usually loads it itself."},"use":{"zh":"打算做一个多人填写的报名表页面之前。","ja":"複数人が入力できる申込ページを作る前に。","en":"Before building a page that many people fill in."}},{"cmd":"/artifact-diagramming","args":"","cat":"create","kind":"skill","pick":false,"aliases":[],"since":"2.1.221","word":"artifact diagramming","gloss":{"zh":"成品页面中的绘图","ja":"アーティファクトの図解"},"desc":{"zh":"加载在 artifact 中画示意图的规范：何时需要图、画什么、如何写出在浅色和深色主题下都清楚的 SVG。","ja":"アーティファクトで図を描くためのガイドを読み込みます。図が必要な場面、何を描くか、明暗どちらのテーマでも見やすい SVG の書き方。","en":"Loads diagramming guidance for artifacts: when a diagram helps, what to draw, and SVG that stays legible in light and dark themes."},"use":{"zh":"需要一张清楚的系统流程图时。","ja":"わかりやすいシステム構成図がほしいとき。","en":"When you need a clear architecture diagram."}},{"cmd":"/artifacts","args":"","cat":"create","kind":"builtin","pick":false,"aliases":[],"word":"artifacts","gloss":{"zh":"成品（发布的网页）","ja":"アーティファクト（公開ページ）"},"desc":{"zh":"列出你拥有或别人分享给你的 artifact（网页成品），可以接入当前会话、在浏览器打开或复制链接。仅在支持 artifact 的环境可用。","ja":"自分が持っている、または共有されたアーティファクト（公開ページ）を一覧表示し、セッションへの追加・ブラウザーで開く・リンクのコピーができます。対応環境のみ。","en":"Lists artifacts you own or that are shared with you, then attaches one, opens it, or copies its link. Where artifacts are available."},"use":{"zh":"找回上周做的那个仪表盘页面，接着修改。","ja":"先週作ったダッシュボードを探して続きを編集。","en":"Find last week's dashboard and keep editing it."}},{"cmd":"/dataviz","args":"[request]","cat":"create","kind":"skill","pick":false,"aliases":[],"word":"data visualization","gloss":{"zh":"数据可视化","ja":"データ可視化"},"desc":{"zh":"图表设计指南：为数据选择合适的图表形式、按用途配色，用自带脚本检查色盲友好和对比度。","ja":"グラフ作成のガイドです。データに合う形を選び、役割ごとに色を割り当て、付属スクリプトで色覚多様性への配慮とコントラストを確認します。","en":"Chart design guidance: picks the chart form, assigns color by role, and validates the palette for colorblind safety and contrast with a bundled script."},"use":{"zh":"`/dataviz 把这份月度销售表做成趋势图`。","ja":"`/dataviz この月次売上表を推移グラフにして`。","en":"`/dataviz turn this monthly sales table into a trend chart`."}},{"cmd":"/design","args":"[brief]","cat":"create","kind":"skill","pick":false,"aliases":[],"since":"2.1.265","word":"design","gloss":{"zh":"设计","ja":"デザイン"},"desc":{"zh":"在一张画布上绘制界面草图、页面流程、落地页或海报（Claude Design artifact），可在桌面浏览器编辑并导出 PNG 或 PDF。Bedrock、Vertex 等第三方平台不可用。","ja":"UI のラフ、画面遷移、LP、ポスターを 1 枚のキャンバスに描きます（Claude Design のアーティファクト）。デスクトップのブラウザーで編集し、PNG・PDF で書き出せます。Bedrock や Vertex などでは使えません。","en":"Drafts UI mockups, flows, landing pages or posters as artboards on one canvas (a Claude Design artifact); edit in a desktop browser and export PNG or PDF. Unavailable on Bedrock, Vertex and other third-party platforms."},"use":{"zh":"`/design 手机记账 App 的设置页`。","ja":"`/design 家計簿アプリの設定画面`。","en":"`/design a settings screen for a mobile banking app`."}},{"cmd":"/design consent","args":"","cat":"create","kind":"builtin","pick":false,"aliases":["/design revoke"],"word":"consent / revoke","gloss":{"zh":"同意授权 / 撤销","ja":"同意 / 取り消し"},"desc":{"zh":"授予或撤销 Claude 对 Claude Design 的访问权限。当 Claude 的回复要求你运行 `/design consent` 时，需要你自己在输入框中输入。","ja":"Claude Design へのアクセスを許可・取り消します。Claude の返答で `/design consent` を求められたら、自分で入力してください。","en":"Grants or withdraws Claude's access to Claude Design. When Claude asks you to run `/design consent`, type it yourself."},"use":{"zh":"Claude 提示需要授权时，手动输入 `/design consent`。","ja":"許可を求められたら自分で `/design consent` と入力。","en":"When prompted, type `/design consent` yourself."}},{"cmd":"/design-login","args":"","cat":"create","kind":"builtin","pick":false,"aliases":[],"word":"design login","gloss":{"zh":"设计登录","ja":"デザインのログイン"},"desc":{"zh":"为 `/design-sync` 用 claude.ai 账号授权。当 `/design-sync` 或 `/design consent` 提示时使用。","ja":"`/design-sync` 用に claude.ai アカウントで認可します。`/design-sync` や `/design consent` に求められたときに使います。","en":"Authorizes design-system access for `/design-sync` with your claude.ai account, when `/design-sync` or `/design consent` asks you to."},"use":{"zh":"`/design-sync` 提示需要登录时运行。","ja":"`/design-sync` にログインを求められたら実行。","en":"Run it when `/design-sync` asks you to sign in."}},{"cmd":"/design-sync","args":"[hint]","cat":"create","kind":"skill","pick":false,"aliases":[],"risk":["external"],"word":"design sync","gloss":{"zh":"设计同步","ja":"デザインの同期"},"desc":{"zh":"把仓库中的 React 设计系统转换并上传到 Claude Design，让生成的设计使用你真实的组件。首次同步会逐个验证组件，大仓库可能要几个小时。上传目标是独立的 claude.ai/design 网站，该网站将于 2026 年 12 月 14 日前关闭。","ja":"リポジトリの React デザインシステムを変換して Claude Design にアップロードし、実際のコンポーネントでデザインできるようにします。初回は全コンポーネントを検証するため、大きなリポジトリでは数時間かかることも。アップロード先の claude.ai/design は 2026 年 12 月 14 日までに終了予定です。","en":"Converts and uploads your repo's React design system to Claude Design so designs use your real components. First sync can take hours on large repos. It targets the standalone claude.ai/design site, which closes by December 14, 2026."},"use":{"zh":"公司有自己的组件库：`/design-sync Acme DS`。注意上述关闭日期。","ja":"自社のコンポーネント集があるなら：`/design-sync Acme DS`。上記の終了日に注意。","en":"`/design-sync Acme DS` (mind the closing date above)."}},{"cmd":"/slides","args":"[brief]","cat":"create","kind":"skill","pick":false,"aliases":[],"since":"2.1.265","word":"slides","gloss":{"zh":"幻灯片","ja":"スライド"},"desc":{"zh":"根据你的描述生成一套 Claude Slides 演示文稿（artifact）。需要支持 artifact 的会话和可用的 Slides 模板。","ja":"説明をもとに Claude Slides のプレゼン（アーティファクト）を作ります。アーティファクト対応のセッションと Slides テンプレートが必要です。","en":"Makes a Claude Slides artifact from your brief. Requires a session with artifacts and an account where the Slides template is available."},"use":{"zh":"`/slides 季度业绩回顾，8 页，面向管理层`。","ja":"`/slides 四半期の業績レビュー、8 枚、経営層向け`。","en":"`/slides a quarterly review for leadership, 8 slides`."}},{"cmd":"/mcp","args":"[reconnect (<server>|all)|enable|disable [<server>|all]]","cat":"extend","kind":"builtin","pick":true,"aliases":[],"short":{"zh":"管理外部工具连接","ja":"外部ツールとの接続を管理する","en":"Manage external tool connections"},"word":"MCP (Model Context Protocol)","gloss":{"zh":"模型上下文协议（连接外部工具的标准）","ja":"Model Context Protocol（外部ツール連携の標準）"},"desc":{"zh":"管理 MCP 服务器连接和 OAuth 登录。不带参数打开列表；`reconnect`、`enable`、`disable` 加服务器名或 `all` 可直接操作。","ja":"MCP サーバーの接続と OAuth 認証を管理します。引数なしで一覧、`reconnect`・`enable`・`disable` とサーバー名か `all` で直接操作。","en":"Manages MCP server connections and OAuth. No argument opens the list; `reconnect`, `enable` or `disable` with a server name or `all` acts directly."},"use":{"zh":"连接器报错或需要登录：`/mcp reconnect all`。","ja":"コネクターのエラーや再ログインが必要なとき：`/mcp reconnect all`。","en":"A connector failed or needs auth: `/mcp reconnect all`."}},{"cmd":"/chrome","args":"","cat":"extend","kind":"builtin","pick":false,"aliases":[],"word":"Chrome","gloss":{"zh":"Chrome 浏览器","ja":"Chrome ブラウザー"},"desc":{"zh":"配置 Claude in Chrome 的设置。","ja":"Claude in Chrome の設定を行います。","en":"Configures Claude in Chrome settings."},"use":{"zh":"第一次连接 Chrome 扩展时。","ja":"Chrome 拡張と初めて接続するとき。","en":"When first connecting the Chrome extension."}},{"cmd":"/claude-api","args":"[subcommand]","cat":"extend","kind":"skill","pick":false,"aliases":[],"word":"Claude API","gloss":{"zh":"Claude 编程接口","ja":"Claude の API"},"desc":{"zh":"加载与你项目语言对应的 Claude API 和 Managed Agents 资料；代码导入 `anthropic` 时会自动启用。子命令包括 `migrate`、`upgrade`、`cost-optimize`、`build-eval`、`prompt-audit` 等。","ja":"プロジェクトの言語に合った Claude API と Managed Agents の資料を読み込みます。コードが `anthropic` を import していると自動で有効。サブコマンドは `migrate`・`upgrade`・`cost-optimize`・`build-eval`・`prompt-audit` など。","en":"Loads Claude API and Managed Agents reference for your project's language; activates automatically when code imports `anthropic`. Subcommands include `migrate`, `upgrade`, `cost-optimize`, `build-eval`, `prompt-audit`."},"use":{"zh":"自己开发 AI 应用、想降低 API 费用：`/claude-api cost-optimize`。","ja":"自作 AI アプリの API 費用を下げたい：`/claude-api cost-optimize`。","en":"Cut API spend in your app: `/claude-api cost-optimize`."}},{"cmd":"/claude-in-chrome","args":"[task]","cat":"extend","kind":"skill","pick":false,"aliases":[],"risk":["external"],"word":"Claude in Chrome","gloss":{"zh":"在 Chrome 浏览器中使用 Claude","ja":"Chrome で動く Claude"},"desc":{"zh":"通过 Claude in Chrome 扩展让 Claude 在你的浏览器里执行任务，如测试页面、填写表单、读取控制台日志。需启用 Chrome 集成（如 `claude --chrome`）。","ja":"Claude in Chrome 拡張を通して、ページのテスト・フォーム入力・コンソールログの確認などをブラウザーで行います。Chrome 連携の有効化（例：`claude --chrome`）が必要です。","en":"Has Claude carry out a task in your browser through Claude in Chrome, such as testing a page or reading console logs. Requires Chrome integration (e.g. `claude --chrome`)."},"use":{"zh":"`/claude-in-chrome 打开本地网站，测试注册流程并报告错误`。","ja":"`/claude-in-chrome ローカルのサイトで会員登録の流れを試してエラーを報告して`。","en":"`/claude-in-chrome test the sign-up flow on my local site and report errors`."}},{"cmd":"/ide","args":"","cat":"extend","kind":"builtin","pick":false,"aliases":[],"word":"IDE (integrated development environment)","gloss":{"zh":"集成开发环境（代码编辑器）","ja":"統合開発環境（コードエディター）"},"desc":{"zh":"管理与 VS Code、JetBrains 等编辑器的集成并显示状态。","ja":"VS Code や JetBrains などのエディターとの連携を管理し、状態を表示します。","en":"Manages IDE integrations and shows status."},"use":{"zh":"编辑器里看不到 Claude 的改动时，检查是否连上。","ja":"エディターに Claude の変更が出ないとき、接続を確認。","en":"Check the connection when edits don't show in your editor."}},{"cmd":"/install-github-app","args":"","cat":"extend","kind":"builtin","pick":false,"aliases":[],"risk":["external","perms"],"word":"install GitHub app","gloss":{"zh":"安装 GitHub 应用","ja":"GitHub アプリのインストール"},"desc":{"zh":"为仓库安装 Claude GitHub App，可选设置 GitHub Actions 工作流和密钥。仅适用于 github.com 仓库。","ja":"リポジトリに Claude GitHub App を入れ、必要なら GitHub Actions のワークフローとシークレットも設定します。github.com のリポジトリのみ。","en":"Installs the Claude GitHub App for a repository, optionally setting up GitHub Actions workflows and secrets. github.com only."},"use":{"zh":"希望在 GitHub 的 issue 或 PR 中 @claude 让它干活。","ja":"GitHub の issue や PR で @claude と呼んで作業させたいとき。","en":"To mention Claude in issues and PRs and have it work there."}},{"cmd":"/install-slack-app","args":"","cat":"extend","kind":"builtin","pick":false,"aliases":[],"word":"install Slack app","gloss":{"zh":"安装 Slack 应用","ja":"Slack アプリのインストール"},"desc":{"zh":"安装 Claude Slack 应用，会打开浏览器完成 OAuth 授权。","ja":"Claude の Slack アプリを入れます。ブラウザーが開き OAuth 認可を行います。","en":"Installs the Claude Slack app via a browser OAuth flow."},"use":{"zh":"团队想在 Slack 里直接叫 Claude。","ja":"チームが Slack から Claude を呼びたいとき。","en":"Your team wants Claude in Slack."}},{"cmd":"/plugin","args":"[subcommand]","cat":"extend","kind":"builtin","pick":false,"aliases":[],"word":"plugin","gloss":{"zh":"插件","ja":"プラグイン"},"desc":{"zh":"管理插件（一包命令、技能、代理、工具）。不带参数打开菜单，或用 `list`、`install`、`enable`、`disable` 直接操作。安装后若提示，需要 `/reload-plugins`。","ja":"プラグイン（コマンド・スキル・エージェント・ツールのセット）を管理します。引数なしでメニュー、`list`・`install`・`enable`・`disable` で直接操作。案内が出たら `/reload-plugins`。","en":"Manages plugins. No argument opens the menu; `list`, `install`, `enable`, `disable` act directly. Run `/reload-plugins` if the install summary says so."},"use":{"zh":"`/plugin` 浏览插件市场，装一个适合你工作的插件。","ja":"`/plugin` でマーケットプレイスを見て、仕事に合うものを入れます。","en":"Browse with `/plugin` and install one that fits your work."}},{"cmd":"/plugin-authoring","args":"","cat":"extend","kind":"skill","pick":false,"aliases":[],"since":"2.1.287","word":"plugin authoring","gloss":{"zh":"编写扩展","ja":"拡張の作成"},"desc":{"zh":"加载编写「mod」（修改 Claude 界面或行为的小扩展）的参考资料。来自内置插件，可在 `/plugin` 中关闭。","ja":"「mod」（Claude の画面や動作を変える小さな拡張）を書くための資料を読み込みます。組み込みプラグインのスキルで、`/plugin` でオフにできます。","en":"Loads the reference for writing a mod. A skill from a built-in plugin, which you can turn off in `/plugin`."},"use":{"zh":"想做一个常驻侧边栏的小面板时。","ja":"常に横に表示される小さなパネルを作りたいとき。","en":"When you want a small side panel that stays beside the chat."}},{"cmd":"/reload-plugins","args":"[--force]","cat":"extend","kind":"builtin","pick":false,"aliases":[],"word":"reload plugins","gloss":{"zh":"重新加载插件","ja":"プラグインの再読み込み"},"desc":{"zh":"不重启就应用插件改动，并报告加载数量和错误。如果会改变已加载的 MCP 工具（导致提示缓存失效），会警告并跳过，除非加 `--force`。","ja":"再起動せずにプラグインの変更を反映し、読み込み数とエラーを報告します。読み込む MCP ツールが変わる（プロンプトキャッシュが無効になる）場合は警告して中止、`--force` で強制。","en":"Reloads active plugins without restarting and reports load errors. If the reload would change loaded MCP tools and invalidate the prompt cache, it warns and skips unless you pass `--force`."},"use":{"zh":"刚装完插件、提示需要重新加载时。","ja":"プラグインを入れて再読み込みを促されたとき。","en":"Right after installing a plugin that asks for it."}},{"cmd":"/reload-skills","args":"","cat":"extend","kind":"builtin","pick":false,"aliases":[],"word":"reload skills","gloss":{"zh":"重新加载技能","ja":"スキルの再読み込み"},"desc":{"zh":"重新扫描技能和命令文件夹，让会话中新增或修改的技能立即可用，并报告增减数量。","ja":"スキルとコマンドのフォルダーを再スキャンし、セッション中に追加・変更したスキルをすぐ使えるようにします。増減の数も表示。","en":"Re-scans skill and command directories so skills added or changed during the session are available without restarting."},"use":{"zh":"刚写好一个自定义技能文件，不重启就想用。","ja":"自作スキルを書いたばかりで、再起動せずに使いたいとき。","en":"You just wrote a custom skill and want it now."}},{"cmd":"/skill-doctor","args":"","cat":"extend","kind":"builtin","pick":false,"aliases":[],"since":"2.1.252","word":"skill doctor","gloss":{"zh":"技能体检","ja":"スキルの健康診断"},"desc":{"zh":"显示每个技能占用多少上下文、使用频率如何，帮你找出可以关闭的技能。","ja":"各スキルのコンテキスト消費量と使用頻度を表示し、オフにしてよいスキルを見つけます。","en":"Shows each skill's context cost and usage so you can find skills to turn off."},"use":{"zh":"定期体检，清理长期不用的技能。","ja":"定期的に実行して、使っていないスキルを整理。","en":"Run periodically to prune unused skills."}},{"cmd":"/skills","args":"","cat":"extend","kind":"builtin","pick":false,"aliases":[],"word":"skills","gloss":{"zh":"技能","ja":"スキル"},"desc":{"zh":"列出可用技能，可按名称、描述、来源筛选；按 `t` 按占用 token 排序；`Space`/`Enter` 切换技能对 Claude 和 `/` 菜单是否可见；`Esc` 保存关闭。","ja":"使えるスキルを一覧表示し、名前・説明・提供元で絞り込めます。`t` でトークン数順、`Space`/`Enter` で Claude や `/` メニューへの表示を切り替え、`Esc` で保存して閉じます。","en":"Lists skills with filtering. `t` sorts by token count, `Space`/`Enter` cycles a skill's visibility to Claude and the `/` menu, `Esc` saves and closes."},"use":{"zh":"技能太多占空间：`/skills` 按 `t` 排序，隐藏用不到的。","ja":"スキルが多すぎるとき：`/skills` で `t` を押して並べ替え、使わないものを非表示に。","en":"Too many skills: `/skills`, press `t`, hide the heavy unused ones."}},{"cmd":"/permissions","args":"","cat":"safety","kind":"builtin","pick":true,"aliases":["/allowed-tools"],"short":{"zh":"设置哪些操作可以直接做","ja":"どの操作を確認なしで許可するか決める","en":"Decide what Claude may do without asking"},"risk":["perms"],"word":"permissions","gloss":{"zh":"权限","ja":"権限"},"desc":{"zh":"管理工具权限的「允许 / 询问 / 禁止」规则：按范围查看、增删规则、管理工作目录、查看自动模式最近的拦截记录和分类规则。","ja":"ツール権限の「許可・確認・拒否」ルールを管理します。範囲ごとの確認、ルールの追加・削除、作業ディレクトリの管理、自動モードの最近の拒否と分類ルールの確認ができます。","en":"Manages allow, ask and deny rules for tools: view by scope, add or remove rules, manage working directories, review recent auto mode denials and classifier rules."},"use":{"zh":"每次都被问「能否运行 npm test」很烦：在这里把它设为允许。","ja":"毎回「npm test を実行してよいか」と聞かれるのが面倒なら、ここで許可に。","en":"Tired of approving `npm test` every time: allow it here."}},{"cmd":"/auto-mode-setup","args":"","cat":"safety","kind":"builtin","pick":false,"aliases":[],"risk":["perms"],"word":"auto mode setup","gloss":{"zh":"自动模式设置","ja":"自動モードの設定"},"desc":{"zh":"根据你的项目和近期会话起草 `autoMode.environment` 条目，审核后保存到用户设置，帮助自动模式更准确地判断。有版本和套餐要求。","ja":"プロジェクトと最近のセッションから `autoMode.environment` の項目を下書きし、確認後ユーザー設定に保存します。自動モードの判断精度が上がります。バージョンとプランの条件あり。","en":"Drafts `autoMode.environment` entries from your project and recent sessions for you to review and save. Has version and plan requirements."},"use":{"zh":"自动模式总是误拦你常用的操作时。","ja":"自動モードがいつもの操作を誤って止めるとき。","en":"When auto mode keeps blocking routine actions."}},{"cmd":"/fewer-permission-prompts","args":"","cat":"safety","kind":"skill","pick":false,"aliases":[],"risk":["perms"],"word":"fewer permission prompts","gloss":{"zh":"减少权限弹窗","ja":"確認ダイアログを減らす"},"desc":{"zh":"扫描历史记录中常用的只读 Bash 和 MCP 调用，把它们按优先级加入项目 `.claude/settings.json` 的允许清单。","ja":"履歴からよく使う読み取り専用の Bash・MCP 呼び出しを探し、優先度順にプロジェクトの `.claude/settings.json` の許可リストへ追加します。","en":"Scans transcripts for common read-only Bash and MCP calls and adds a prioritized allowlist to project `.claude/settings.json`."},"use":{"zh":"被权限确认打断太多次时跑一次。","ja":"確認ダイアログで何度も止められるときに一度実行。","en":"Run once when approval prompts keep interrupting you."}},{"cmd":"/hooks","args":"","cat":"safety","kind":"builtin","pick":false,"aliases":[],"word":"hooks","gloss":{"zh":"钩子（特定时刻自动运行的脚本）","ja":"フック（決まったタイミングで自動実行されるスクリプト）"},"desc":{"zh":"查看 hook 配置。","ja":"フックの設定を確認します。","en":"Views hook configurations."},"use":{"zh":"怀疑某个 hook 导致每次编辑都报错时，先看看配置了什么。","ja":"フックのせいで編集のたびにエラーが出ていそうなとき、設定内容を確認。","en":"Check what's configured when a hook seems to break every edit."}},{"cmd":"/privacy-settings","args":"","cat":"safety","kind":"builtin","pick":false,"aliases":[],"word":"privacy settings","gloss":{"zh":"隐私设置","ja":"プライバシー設定"},"desc":{"zh":"查看和修改隐私设置，仅限 Pro、Max、Ultra 订阅用户。","ja":"プライバシー設定を確認・変更します。Pro・Max・Ultra のみ。","en":"Views and updates privacy settings. Pro, Max and Ultra only."},"use":{"zh":"想确认自己的数据使用设置时。","ja":"データの扱いに関する設定を確認したいとき。","en":"To check how your data is used."}},{"cmd":"/sandbox","args":"","cat":"safety","kind":"builtin","pick":false,"aliases":[],"risk":["perms"],"word":"sandbox","gloss":{"zh":"沙箱（隔离环境）","ja":"サンドボックス（隔離環境）"},"desc":{"zh":"开关沙箱模式，仅在支持的平台上可用。","ja":"サンドボックスモードを切り替えます。対応プラットフォームのみ。","en":"Toggles sandbox mode, on supported platforms only."},"use":{"zh":"要运行来源不太熟悉的脚本时先开启。","ja":"よく知らないスクリプトを動かす前にオンに。","en":"Turn it on before running unfamiliar scripts."}},{"cmd":"/update-config","args":"[request]","cat":"safety","kind":"skill","pick":false,"aliases":[],"risk":["perms"],"word":"update config","gloss":{"zh":"更新配置","ja":"設定の更新"},"desc":{"zh":"用自然语言描述设置改动（允许某命令、设置环境变量、添加 hook），Claude 修改对应的 `settings.json`。主题、模型等用 `/config`。","ja":"設定の変更（コマンドの許可、環境変数、フックの追加）を言葉で伝えると、Claude が該当の `settings.json` を編集します。テーマやモデルは `/config`。","en":"Describe a settings change (allow a command, set an env var, add a hook) and Claude edits the matching `settings.json`. Use `/config` for theme and model."},"use":{"zh":"`/update-config 每次编辑文件后自动运行 prettier`。","ja":"`/update-config ファイル編集のたびに prettier を自動実行`。","en":"`/update-config run prettier after every file edit`."}},{"cmd":"/color","args":"[color|default]","cat":"ui","kind":"builtin","pick":false,"aliases":[],"word":"color","gloss":{"zh":"颜色","ja":"色"},"desc":{"zh":"设置当前会话输入栏的颜色：`red`、`blue`、`green`、`yellow`、`purple`、`orange`、`pink`、`cyan`；`default` 恢复；不带参数随机。","ja":"このセッションの入力欄の色を設定します：`red`・`blue`・`green`・`yellow`・`purple`・`orange`・`pink`・`cyan`。`default` で戻し、引数なしでランダム。","en":"Sets the prompt bar color for this session: `red`, `blue`, `green`, `yellow`, `purple`, `orange`, `pink` or `cyan`; `default` resets, no argument picks a random color."},"use":{"zh":"操作生产环境的会话设成 `/color red`，时刻提醒自己小心。","ja":"本番環境を扱うセッションは `/color red` にして注意を促す。","en":"Mark a production session with `/color red`."}},{"cmd":"/config","args":"[key=value ...]","cat":"ui","kind":"builtin","pick":false,"aliases":["/settings"],"word":"config","gloss":{"zh":"配置、设置","ja":"設定"},"desc":{"zh":"打开设置界面（主题、模型、输出风格等）。也可直接写 `key=value` 修改，例如 `/config theme=dark`。`/config --help` 列出可用的键。","ja":"設定画面（テーマ、モデル、出力スタイルなど）を開きます。`key=value` で直接変更も可能（例：`/config theme=dark`）。`/config --help` で使えるキーを表示。","en":"Opens Settings for theme, model, output style and more, or sets `key=value` pairs directly, e.g. `/config theme=dark`. `/config --help` lists keys."},"use":{"zh":"`/config theme=dark`，一步切换深色主题。","ja":"`/config theme=dark` で一発でダークテーマに。","en":"`/config theme=dark`."}},{"cmd":"/focus","args":"","cat":"ui","kind":"builtin","pick":false,"aliases":[],"word":"focus","gloss":{"zh":"专注视图","ja":"フォーカス表示"},"desc":{"zh":"切换专注视图：只显示你的最后一条提问、一行工具调用摘要和最终回答。仅全屏渲染模式可用。","ja":"フォーカス表示を切り替えます。最後の指示、ツール呼び出しの 1 行要約、最終回答だけを表示。フルスクリーン表示でのみ使えます。","en":"Toggles a view showing only your last prompt, a one-line tool summary and the final response. Fullscreen rendering only."},"use":{"zh":"不想看大量中间过程，只看结论。","ja":"途中経過は見ず、結果だけ見たいとき。","en":"Hide intermediate steps and see only the result."}},{"cmd":"/keybindings","args":"","cat":"ui","kind":"builtin","pick":false,"aliases":[],"word":"keybindings","gloss":{"zh":"快捷键","ja":"キー割り当て"},"desc":{"zh":"打开快捷键配置文件。","ja":"キーボードショートカットの設定ファイルを開きます。","en":"Opens your keyboard shortcuts file."},"use":{"zh":"把常用操作改成你习惯的按键。","ja":"よく使う操作を慣れたキーに変更。","en":"Rebind actions to keys you're used to."}},{"cmd":"/scroll-speed","args":"","cat":"ui","kind":"builtin","pick":false,"aliases":[],"word":"scroll speed","gloss":{"zh":"滚动速度","ja":"スクロール速度"},"desc":{"zh":"交互式调整鼠标滚轮速度。仅全屏渲染模式可用，JetBrains 终端中不可用。","ja":"マウスホイールの速度を調整します。フルスクリーン表示のみ、JetBrains のターミナルでは不可。","en":"Adjusts mouse wheel scroll speed. Fullscreen rendering only; not in the JetBrains terminal."},"use":{"zh":"滚一下跳太多行时调慢。","ja":"一回で飛びすぎるときに遅く。","en":"Slow it down when one notch jumps too far."}},{"cmd":"/statusline","args":"","cat":"ui","kind":"builtin","pick":false,"aliases":[],"word":"status line","gloss":{"zh":"状态栏","ja":"ステータスライン"},"desc":{"zh":"配置底部状态栏。用文字描述想显示的内容，或不带参数从你的 shell 提示符自动配置。","ja":"下部のステータスラインを設定します。表示したい内容を言葉で伝えるか、引数なしでシェルのプロンプトから自動設定。","en":"Configures the status line; describe what you want, or run without arguments to derive it from your shell prompt."},"use":{"zh":"`/statusline 显示当前模型和 git 分支`。","ja":"`/statusline 現在のモデルと git ブランチを表示`。","en":"`/statusline show the model and git branch`."}},{"cmd":"/terminal-setup","args":"","cat":"ui","kind":"builtin","pick":false,"aliases":[],"word":"terminal setup","gloss":{"zh":"终端设置","ja":"ターミナルの設定"},"desc":{"zh":"在 VS Code、Cursor、Devin Desktop、Alacritty、Zed 中安装 Shift+Enter 换行；Apple 终端改为 Option+Enter 并关闭提示音；iTerm2 中开启剪贴板权限让 `/copy` 可用。","ja":"VS Code・Cursor・Devin Desktop・Alacritty・Zed で Shift+Enter の改行を設定します。Apple のターミナルでは Option+Enter の改行とビープ音のオフ、iTerm2 では `/copy` 用のクリップボード許可を設定。","en":"Installs Shift+Enter for newlines in VS Code, Cursor, Devin Desktop, Alacritty or Zed; in Apple Terminal enables Option+Enter and disables the bell; in iTerm2 enables clipboard access for `/copy`."},"use":{"zh":"一按回车就把没写完的需求发出去了？跑一次它。","ja":"Enter で書きかけの指示が送られてしまうなら一度実行。","en":"Enter keeps sending half-written prompts: run this once."}},{"cmd":"/theme","args":"","cat":"ui","kind":"builtin","pick":false,"aliases":[],"word":"theme","gloss":{"zh":"主题配色","ja":"テーマ"},"desc":{"zh":"更换配色主题：`auto` 跟随终端、浅色/深色、色觉友好主题、ANSI 主题和自定义主题。","ja":"配色テーマを変えます：`auto`（ターミナルに合わせる）、ライト／ダーク、色覚多様性に配慮したテーマ、ANSI テーマ、カスタムテーマ。","en":"Changes the color theme: `auto`, light and dark, colorblind-accessible, ANSI and custom themes."},"use":{"zh":"晚上看屏幕累，换深色主题。","ja":"夜に目が疲れたらダークテーマに。","en":"Switch to a dark theme at night."}},{"cmd":"/tui","args":"[default|fullscreen]","cat":"ui","kind":"builtin","pick":false,"aliases":[],"word":"TUI (text user interface)","gloss":{"zh":"终端文字界面","ja":"テキスト UI"},"desc":{"zh":"设置终端界面渲染方式并保留对话重新启动。`fullscreen` 为不闪烁的全屏模式；不带参数显示当前方式。","ja":"ターミナル UI の描画方式を設定し、会話を保ったまま再起動します。`fullscreen` はちらつかない全画面表示。引数なしで現在の方式を表示。","en":"Sets the terminal renderer and relaunches with the conversation intact. `fullscreen` is the flicker-free renderer."},"use":{"zh":"终端画面闪烁时：`/tui fullscreen`。","ja":"画面がちらつくなら：`/tui fullscreen`。","en":"Screen flickers: `/tui fullscreen`."}},{"cmd":"/voice","args":"[hold|tap|off]","cat":"ui","kind":"builtin","pick":false,"aliases":[],"word":"voice","gloss":{"zh":"语音","ja":"音声"},"desc":{"zh":"开关语音输入，或指定模式：`hold` 按住说话、`tap` 点按开始。需要 Claude.ai 账号。","ja":"音声入力を切り替えます。`hold`（押している間）・`tap`（タップで開始）を指定可能。Claude.ai アカウントが必要。","en":"Toggles voice dictation or sets a mode (`hold`, `tap`). Requires a Claude.ai account."},"use":{"zh":"打字慢、英文键盘不熟时，直接说中文下指令。","ja":"入力が遅いときは日本語で話して指示。","en":"Dictate instructions instead of typing."}},{"cmd":"/usage","args":"","cat":"account","kind":"builtin","pick":true,"aliases":["/cost","/stats"],"short":{"zh":"查看费用和额度","ja":"料金と使用量の上限を確認する","en":"Check cost and plan limits"},"word":"usage","gloss":{"zh":"用量","ja":"使用量"},"desc":{"zh":"显示本次会话费用、套餐用量上限和活动统计。订阅套餐会显示哪些消耗计入额度。`/stats` 打开统计标签页。","ja":"このセッションの費用、プランの使用量上限、利用統計を表示します。サブスクリプションでは上限に数えられる内訳も表示。`/stats` は統計タブで開きます。","en":"Shows session cost, plan usage limits and activity stats, including what counts against plan limits on subscriptions. `/stats` opens the Stats tab."},"use":{"zh":"担心额度不够时 `/usage` 看一眼，再决定是否换较省的模型。","ja":"上限が心配なら `/usage` で確認し、安いモデルに替えるか判断。","en":"Check `/usage` before deciding whether to switch to a cheaper model."}},{"cmd":"/login","args":"","cat":"account","kind":"builtin","pick":false,"aliases":[],"word":"log in","gloss":{"zh":"登录","ja":"ログイン"},"desc":{"zh":"登录 Anthropic 账号。","ja":"Anthropic アカウントにログインします。","en":"Signs in to your Anthropic account."},"use":{"zh":"换电脑或登录过期时。","ja":"パソコンを替えたとき、ログインが切れたとき。","en":"New machine or expired session."}},{"cmd":"/logout","args":"","cat":"account","kind":"builtin","pick":false,"aliases":[],"word":"log out","gloss":{"zh":"退出登录","ja":"ログアウト"},"desc":{"zh":"退出 Anthropic 账号。","ja":"Anthropic アカウントからログアウトします。","en":"Signs out of your Anthropic account."},"use":{"zh":"在共用电脑上用完后。","ja":"共用パソコンで使い終わったとき。","en":"After using a shared computer."}},{"cmd":"/passes","args":"","cat":"account","kind":"builtin","pick":false,"aliases":[],"word":"passes","gloss":{"zh":"体验券","ja":"招待パス"},"desc":{"zh":"把一周免费 Claude Code 分享给朋友。仅在账号符合条件时显示。","ja":"Claude Code の 1 週間無料体験を友人に共有します。対象アカウントのみ表示。","en":"Shares a free week of Claude Code with friends; only shown to eligible accounts."},"use":{"zh":"推荐朋友试用。","ja":"友人に試してもらう。","en":"Invite a friend to try it."}},{"cmd":"/rate-limit-options","args":"","cat":"account","kind":"builtin","pick":false,"aliases":[],"word":"rate limit options","gloss":{"zh":"用量上限的应对选项","ja":"使用量上限への対処"},"desc":{"zh":"claude.ai 用量上限阻止请求时显示选项：等待重置后自动继续、添加用量额度或升级套餐。需要 claude.ai 订阅。","ja":"claude.ai の使用量上限で止まったときの選択肢を表示します：リセット後に自動で続ける、クレジットを追加、プランを上げる。claude.ai のサブスクリプションが必要。","en":"Shows ways to keep working when a claude.ai limit blocks you: wait and auto-continue, add usage credits, or upgrade. Requires a claude.ai subscription."},"use":{"zh":"深夜跑任务被限额卡住：选择「重置后自动继续」，第二天醒来已完成。","ja":"夜間の作業が上限で止まったら「リセット後に自動で続ける」を選ぶ。","en":"Blocked overnight: choose auto-continue after reset."}},{"cmd":"/status","args":"","cat":"account","kind":"builtin","pick":false,"aliases":[],"word":"status","gloss":{"zh":"状态","ja":"ステータス"},"desc":{"zh":"打开设置的「状态」页：版本、模型、账号、连接情况。Claude 回复中也能运行。","ja":"設定の「ステータス」タブを開き、バージョン・モデル・アカウント・接続状況を表示します。応答中でも使えます。","en":"Opens Settings on the Status tab: version, model, account, connectivity. Works while Claude is responding."},"use":{"zh":"向别人求助前先截一张 `/status` 的图。","ja":"人に相談する前に `/status` の画面を撮っておく。","en":"Screenshot `/status` before asking for help."}},{"cmd":"/upgrade","args":"","cat":"account","kind":"builtin","pick":false,"aliases":[],"word":"upgrade","gloss":{"zh":"升级","ja":"アップグレード"},"desc":{"zh":"在浏览器打开升级套餐的页面。","ja":"上位プランへのアップグレードページをブラウザーで開きます。","en":"Opens the upgrade page in your browser."},"use":{"zh":"额度经常不够用时。","ja":"いつも使用量が足りないとき。","en":"When you keep hitting limits."}},{"cmd":"/usage-credits","args":"","cat":"account","kind":"builtin","pick":false,"aliases":[],"risk":["cost"],"word":"usage credits","gloss":{"zh":"用量额度","ja":"使用量クレジット"},"desc":{"zh":"达到上限时配置或申请用量额度：打开账单设置页；Team/Enterprise 无账单权限的成员则向管理员发送申请。旧名 `/extra-usage`。","ja":"上限に達したときにクレジットを設定・申請します。請求設定ページを開くか、Team／Enterprise で請求権限がない場合は管理者に申請を送ります。旧名 `/extra-usage`。","en":"Configures or requests usage credits; Team and Enterprise members without billing access send a request to their admin. Previously `/extra-usage`."},"use":{"zh":"团队账号用完额度，向管理员申请。","ja":"チームの上限に達したら管理者に申請。","en":"Request credits from your admin when the team runs out."}},{"cmd":"/desktop","args":"","cat":"remote","kind":"builtin","pick":false,"aliases":["/app"],"word":"desktop","gloss":{"zh":"桌面应用","ja":"デスクトップアプリ"},"desc":{"zh":"在 Claude Code 桌面 App 中继续当前会话。需要 macOS 或 x64 Windows 及 Claude 订阅。","ja":"今のセッションを Claude Code のデスクトップアプリで続けます。macOS か x64 Windows と Claude のサブスクリプションが必要。","en":"Continues the session in the Claude Code Desktop app. Requires macOS or x64 Windows and a Claude subscription."},"use":{"zh":"终端里聊着想换成有图形界面的 App。","ja":"ターミナルからグラフィカルなアプリに移りたいとき。","en":"Move from the terminal to the desktop app."}},{"cmd":"/mobile","args":"","cat":"remote","kind":"builtin","pick":false,"aliases":["/ios","/android"],"word":"mobile","gloss":{"zh":"手机","ja":"スマートフォン"},"desc":{"zh":"显示下载 Claude 手机 App 的二维码。","ja":"Claude モバイルアプリのダウンロード用 QR コードを表示します。","en":"Shows a QR code to download the Claude mobile app."},"use":{"zh":"想在手机上查看进度或远程操作。","ja":"スマホで進み具合を見たり操作したりしたいとき。","en":"To follow along from your phone."}},{"cmd":"/remote-control","args":"","cat":"remote","kind":"builtin","pick":false,"aliases":["/rc"],"risk":["external"],"word":"remote control","gloss":{"zh":"远程控制","ja":"リモート操作"},"desc":{"zh":"让本会话可以从 claude.ai（网页或手机）远程操作。需要 claude.ai 订阅。","ja":"このセッションを claude.ai（Web やスマホ）から操作できるようにします。claude.ai のサブスクリプションが必要。","en":"Makes this session available for Remote Control from claude.ai. Requires a claude.ai subscription."},"use":{"zh":"电脑上开着任务出门，用手机继续指挥：`/rc`。","ja":"パソコンで作業を動かしたまま外出し、スマホから指示：`/rc`。","en":"Leave the task running and steer it from your phone: `/rc`."}},{"cmd":"/remote-env","args":"","cat":"remote","kind":"builtin","pick":false,"aliases":[],"word":"remote environment","gloss":{"zh":"云端环境","ja":"リモート環境"},"desc":{"zh":"选择从命令行启动云端会话时默认使用的云端环境。","ja":"CLI からクラウドセッションを始めるときの既定の環境を選びます。","en":"Chooses the default cloud environment for cloud sessions started from the CLI."},"use":{"zh":"有多个云端环境时设一个默认值。","ja":"複数のクラウド環境があるとき既定を決める。","en":"Pick a default when you have several environments."}},{"cmd":"/setup-bedrock","args":"","cat":"remote","kind":"builtin","pick":false,"aliases":[],"word":"set up Bedrock","gloss":{"zh":"配置 Amazon Bedrock","ja":"Amazon Bedrock の設定"},"desc":{"zh":"通过向导配置 Amazon Bedrock 的认证、区域和模型。设置 `CLAUDE_CODE_USE_BEDROCK=1` 之前不会出现在菜单中，需要完整输入。","ja":"ウィザードで Amazon Bedrock の認証・リージョン・モデルを設定します。`CLAUDE_CODE_USE_BEDROCK=1` を設定するまでメニューに出ないので、全部入力します。","en":"Configures Amazon Bedrock auth, region and model pins via a wizard. Hidden from the menu until `CLAUDE_CODE_USE_BEDROCK=1` is set; type it in full."},"use":{"zh":"公司通过 AWS 使用 Claude 时。","ja":"会社で AWS 経由で Claude を使うとき。","en":"Your company uses Claude through AWS."}},{"cmd":"/setup-vertex","args":"","cat":"remote","kind":"builtin","pick":false,"aliases":[],"word":"set up Vertex","gloss":{"zh":"配置 Google Cloud","ja":"Google Cloud の設定"},"desc":{"zh":"通过向导配置 Google Cloud Agent Platform 的认证、项目、区域和模型。设置 `CLAUDE_CODE_USE_VERTEX=1` 之前不会出现在菜单中，需要完整输入。","ja":"ウィザードで Google Cloud Agent Platform の認証・プロジェクト・リージョン・モデルを設定します。`CLAUDE_CODE_USE_VERTEX=1` を設定するまでメニューに出ないので、全部入力します。","en":"Configures Google Cloud's Agent Platform via a wizard. Hidden until `CLAUDE_CODE_USE_VERTEX=1` is set; type it in full."},"use":{"zh":"公司通过 Google Cloud 使用 Claude 时。","ja":"会社で Google Cloud 経由で Claude を使うとき。","en":"Your company uses Claude through Google Cloud."}},{"cmd":"/teleport","args":"","cat":"remote","kind":"builtin","pick":false,"aliases":["/tp"],"word":"teleport","gloss":{"zh":"瞬间移动","ja":"テレポート"},"desc":{"zh":"把云端会话拉到本地终端：选择后获取分支和对话。需要 claude.ai 订阅。","ja":"クラウドのセッションをこのターミナルに取り込みます（ブランチと会話を取得）。claude.ai のサブスクリプションが必要。","en":"Pulls a cloud session into this terminal, fetching its branch and conversation. Requires a claude.ai subscription."},"use":{"zh":"在网页版开始的任务，拉回本地继续。","ja":"Web 版で始めた作業をローカルで続ける。","en":"Continue a web-started task locally."}},{"cmd":"/web-setup","args":"","cat":"remote","kind":"builtin","pick":false,"aliases":[],"word":"web setup","gloss":{"zh":"网页版设置","ja":"Web 版の設定"},"desc":{"zh":"用本地 `gh` 命令行的登录信息，为云端会话连接 GitHub 账号。","ja":"ローカルの `gh` CLI の認証情報を使って、クラウドセッション用に GitHub アカウントを接続します。","en":"Connects GitHub for cloud sessions using your local `gh` credentials."},"use":{"zh":"第一次使用云端会话前。","ja":"クラウドセッションを初めて使う前に。","en":"Before your first cloud session."}},{"cmd":"/doctor","args":"[prompt-audit [path]]","cat":"support","kind":"skill","pick":true,"aliases":["/checkup"],"short":{"zh":"出问题时先体检","ja":"困ったらまず健康診断","en":"Run a checkup when something is wrong"},"word":"doctor","gloss":{"zh":"医生（体检）","ja":"ドクター（健康診断）"},"desc":{"zh":"体检：诊断安装、设置、扩展和 `CLAUDE.md` 的问题并提出修复方案，你确认后 Claude 才会修改。`prompt-audit` 改为审查你的说明文件。","ja":"インストール・設定・拡張・`CLAUDE.md` の問題を診断し、修正案を出します。確認後に Claude が修正。`prompt-audit` で指示ファイルの監査に切り替え。","en":"Runs a setup checkup for installation, settings, extensions and `CLAUDE.md`, proposing fixes Claude applies after you confirm. `prompt-audit` audits your instructions instead."},"use":{"zh":"Claude Code 出现莫名其妙的问题时，第一步 `/doctor`。","ja":"原因不明の不具合が起きたら、まず `/doctor`。","en":"Something feels broken: start with `/doctor`."}},{"cmd":"/help","args":"","cat":"support","kind":"builtin","pick":true,"aliases":[],"short":{"zh":"查看帮助和全部命令","ja":"ヘルプとコマンド一覧を見る","en":"Show help and all commands"},"word":"help","gloss":{"zh":"帮助","ja":"ヘルプ"},"desc":{"zh":"显示帮助和可用命令。","ja":"ヘルプと使えるコマンドを表示します。","en":"Shows help and available commands."},"use":{"zh":"忘了命令名时先打 `/help`，或打 `/` 加几个字母筛选。","ja":"コマンド名を忘れたら `/help`、または `/` と数文字で絞り込み。","en":"Forgot a command: `/help`, or type `/` plus a few letters."}},{"cmd":"/powerup","args":"","cat":"support","kind":"builtin","pick":true,"aliases":[],"short":{"zh":"互动课程，系统学习功能","ja":"対話型レッスンで機能を学ぶ","en":"Learn features through interactive lessons"},"word":"power up","gloss":{"zh":"能力提升","ja":"パワーアップ"},"desc":{"zh":"通过带动画演示的互动小课程学习 Claude Code 的功能。","ja":"アニメーション付きの短い対話型レッスンで Claude Code の機能を学べます。","en":"Interactive lessons with animated demos that teach Claude Code features."},"use":{"zh":"新手系统学习的最佳入口。","ja":"初心者がまとめて学ぶのに最適。","en":"The best structured starting point for newcomers."}},{"cmd":"/bug","args":"[report]","cat":"support","kind":"builtin","pick":false,"aliases":["/share"],"risk":["external","secrets"],"word":"bug","gloss":{"zh":"程序缺陷","ja":"不具合・バグ"},"desc":{"zh":"报告 bug 或分享对话。你可以选择附带多少会话记录，并在同意页面确认后才会发送。","ja":"不具合の報告や会話の共有をします。添付する履歴の量を選び、同意画面で確認してから送信されます。","en":"Reports a bug or shares your conversation; you choose how much history to include and confirm before anything is sent."},"use":{"zh":"遇到明显是 Claude Code 本身的故障时。","ja":"明らかに Claude Code 自体の不具合に出会ったとき。","en":"When Claude Code itself misbehaves."}},{"cmd":"/debug","args":"[description]","cat":"support","kind":"skill","pick":false,"aliases":[],"word":"debug","gloss":{"zh":"调试","ja":"デバッグ"},"desc":{"zh":"为当前会话开启调试日志，并通过阅读日志排查问题。从运行时刻开始记录；可附上问题描述。","ja":"このセッションのデバッグログを有効にし、ログを読んで問題を調べます。実行した時点から記録。問題の説明を添えられます。","en":"Enables debug logging from this point and troubleshoots by reading the session debug log. Optionally describe the issue."},"use":{"zh":"`/debug MCP 服务器一直连不上`。","ja":"`/debug MCP サーバーにつながらない`。","en":"`/debug the MCP server keeps failing to connect`."}},{"cmd":"/exit","args":"","cat":"support","kind":"builtin","pick":false,"aliases":["/quit"],"word":"exit","gloss":{"zh":"退出","ja":"終了"},"desc":{"zh":"退出命令行。在已连接的后台会话中，它只是断开，会话继续运行。","ja":"CLI を終了します。接続中のバックグラウンドセッションでは切断だけで、セッションは動き続けます。","en":"Exits the CLI. In an attached background session it detaches and the session keeps running."},"use":{"zh":"今天收工。","ja":"今日の作業を終えるとき。","en":"Done for the day."}},{"cmd":"/feedback","args":"[report]","cat":"support","kind":"builtin","pick":false,"aliases":[],"risk":["external","secrets"],"word":"feedback","gloss":{"zh":"反馈","ja":"フィードバック"},"desc":{"zh":"发送产品反馈，使用与 `/bug` 相同的对话框和同意步骤。","ja":"製品へのフィードバックを送ります。`/bug` と同じ画面・同意手順です。","en":"Sends product feedback using the same dialog and consent step as `/bug`."},"use":{"zh":"想要某个新功能时告诉官方。","ja":"ほしい機能があれば伝える。","en":"Request a feature."}},{"cmd":"/heapdump","args":"","cat":"support","kind":"builtin","pick":false,"aliases":[],"risk":["secrets"],"word":"heap dump","gloss":{"zh":"内存快照","ja":"ヒープダンプ（メモリーの記録）"},"desc":{"zh":"把 JavaScript 内存快照和内存明细写到桌面，用于排查内存占用过高。报告问题时只附 `-diagnostics.json`；`.heapsnapshot` 含完整对话和凭据，不要分享。菜单中隐藏，需完整输入。","ja":"JavaScript のヒープスナップショットとメモリー内訳をデスクトップに書き出し、メモリー使用量が多い問題を調べます。報告時は `-diagnostics.json` だけ添付。`.heapsnapshot` には会話全体と認証情報が含まれるので共有しないこと。メニューには出ないので全部入力。","en":"Writes a heap snapshot and memory breakdown to the Desktop for diagnosing high memory. Share only the `-diagnostics.json`; the `.heapsnapshot` contains your conversation and credentials. Hidden from the menu."},"use":{"zh":"Claude Code 占用好几 GB 内存时，用于向官方报告。","ja":"数 GB のメモリーを使っているとき、報告用に。","en":"Report a memory blow-up."}},{"cmd":"/release-notes","args":"","cat":"support","kind":"builtin","pick":false,"aliases":[],"word":"release notes","gloss":{"zh":"版本更新说明","ja":"リリースノート"},"desc":{"zh":"在版本选择器中查看更新日志。内容显示在记录里，但不会进入 Claude 的上下文。","ja":"バージョンを選んで更新履歴を表示します。表示はされますが、Claude の会話には入りません。","en":"Views the changelog in a version picker; notes appear without entering Claude's context."},"use":{"zh":"升级后看看有什么新功能。","ja":"アップデート後に新機能を確認。","en":"See what's new after an update."}},{"cmd":"/restart","args":"","cat":"support","kind":"builtin","pick":false,"aliases":["/update"],"since":"2.1.288","word":"restart","gloss":{"zh":"重启","ja":"再起動"},"desc":{"zh":"重启 Claude Code 并恢复当前会话，以应用已安装的更新。需要 Pro、Max 或 Ultra，以及 macOS/Linux 的原生安装（不支持 WSL）。","ja":"Claude Code を再起動してこのセッションを再開し、インストール済みの更新を反映します。Pro・Max・Ultra と、macOS／Linux のネイティブインストールが必要（WSL 不可）。","en":"Restarts Claude Code and resumes the session to apply an installed update. Requires Pro, Max or Ultra and a native macOS or Linux install (not WSL)."},"use":{"zh":"底部提示更新已安装时运行。","ja":"下部に更新の案内が出たら実行。","en":"When the footer offers it after an update."}},{"cmd":"/radio","args":"","cat":"misc","kind":"builtin","pick":false,"aliases":[],"word":"radio","gloss":{"zh":"电台","ja":"ラジオ"},"desc":{"zh":"在浏览器打开 Claude FM 低保真音乐电台；无浏览器时打印音频流地址。","ja":"ブラウザーで Claude FM（lo-fi ラジオ）を開きます。ブラウザーがない場合はストリームの URL を表示。","en":"Opens Claude FM lo-fi radio in your browser, or prints the stream URL."},"use":{"zh":"写代码时来点背景音乐。","ja":"作業中の BGM に。","en":"Background music while you work."}},{"cmd":"/stickers","args":"","cat":"misc","kind":"builtin","pick":false,"aliases":[],"word":"stickers","gloss":{"zh":"贴纸","ja":"ステッカー"},"desc":{"zh":"订购 Claude Code 贴纸。","ja":"Claude Code のステッカーを注文します。","en":"Orders Claude Code stickers."},"use":{"zh":"装饰笔记本电脑。","ja":"ノートパソコンに貼る。","en":"Decorate your laptop."}},{"cmd":"/pr-comments","args":"[PR]","cat":"removed","kind":"removed","pick":false,"aliases":[],"removedIn":"2.1.91","word":"PR comments","gloss":{"zh":"PR 评论","ja":"PR のコメント"},"desc":{"zh":"v2.1.91 起移除。直接对 Claude 说「查看这个 PR 的评论」即可。","ja":"v2.1.91 で削除。「この PR のコメントを見て」と直接頼めば OK。","en":"Removed in v2.1.91. Ask Claude directly to view pull request comments."},"use":{"zh":"直接用中文请求。","ja":"日本語で直接頼みます。","en":"Ask in plain language."}},{"cmd":"/ultraplan","args":"<prompt>","cat":"removed","kind":"removed","pick":false,"aliases":[],"word":"ultra plan","gloss":{"zh":"超级计划","ja":"ウルトラプラン"},"desc":{"zh":"已移除。请改用计划模式 `/plan`。","ja":"削除済み。プランモード `/plan` を使います。","en":"Removed. Use plan mode (`/plan`) instead."},"use":{"zh":"改用 `/plan`。","ja":"`/plan` を使います。","en":"Use `/plan`."}},{"cmd":"/vim","args":"","cat":"removed","kind":"removed","pick":false,"aliases":[],"removedIn":"2.1.92","word":"Vim","gloss":{"zh":"Vim（一种键盘编辑方式）","ja":"Vim（キーボード中心の編集方式）"},"desc":{"zh":"v2.1.92 起移除。切换 Vim/普通编辑模式请用 `/config` → Editor mode。","ja":"v2.1.92 で削除。Vim と通常の編集モードの切り替えは `/config` → Editor mode で。","en":"Removed in v2.1.92. Use `/config` → Editor mode."},"use":{"zh":"改用 `/config`。","ja":"`/config` を使います。","en":"Use `/config`."}}];
+const SCENS = [{"id":"undo","cmds":["/rewind","/diff"],"q":{"zh":"Claude 改坏了，我想撤销","ja":"Claude が壊したので元に戻したい","en":"Claude broke something and I want to undo it"}},{"id":"new-task","cmds":["/clear","/resume"],"q":{"zh":"换一件不相关的事，从头开始","ja":"関係のない別の作業を最初から始めたい","en":"Start an unrelated task from scratch"}},{"id":"long-chat","cmds":["/context","/compact","/autocompact"],"q":{"zh":"对话太长，Claude 变慢或开始忘事","ja":"会話が長くなり、遅い・忘れっぽい","en":"The conversation is long and Claude is slow or forgetful"}},{"id":"come-back","cmds":["/resume","/rename","/recap"],"q":{"zh":"接着做昨天没做完的","ja":"昨日の続きをやりたい","en":"Continue yesterday's unfinished work"}},{"id":"think-first","cmds":["/plan","/effort","/model"],"q":{"zh":"大改动前，想先看方案再让它动手","ja":"大きな変更の前に、まず計画を見たい","en":"See a plan before a big change"}},{"id":"language","cmds":["/init","/memory"],"q":{"zh":"让 Claude 一直用中文回答","ja":"Claude にいつも日本語で答えてほしい","en":"Make Claude always answer in my language"}},{"id":"cost","cmds":["/usage","/model","/effort","/context"],"q":{"zh":"省钱、省额度","ja":"料金や使用量を節約したい","en":"Spend less money and usage"}},{"id":"ship","cmds":["/diff","/code-review","/security-review","/verify"],"q":{"zh":"提交或上线前做检查","ja":"コミットや公開の前にチェックしたい","en":"Check work before committing or shipping"}},{"id":"parallel","cmds":["/fork","/subtask","/background","/tasks","/batch"],"q":{"zh":"同时做几件事 / 放后台跑","ja":"複数の作業を同時に / 裏で動かしたい","en":"Do several things at once or run in the background"}},{"id":"repeat","cmds":["/loop","/schedule","/goal"],"q":{"zh":"让它反复做或定时做","ja":"繰り返し・決まった時刻に実行したい","en":"Repeat a task or run it on a schedule"}},{"id":"prompts","cmds":["/permissions","/fewer-permission-prompts"],"q":{"zh":"权限确认弹窗太多","ja":"許可の確認ダイアログが多すぎる","en":"Too many permission prompts"}},{"id":"connect","cmds":["/mcp","/plugin","/skills"],"q":{"zh":"连接外部工具或安装新能力","ja":"外部ツールの接続や機能の追加をしたい","en":"Connect tools or add new abilities"}},{"id":"make","cmds":["/slides","/design","/dataviz","/artifacts"],"q":{"zh":"做幻灯片、设计稿或图表","ja":"スライド・デザイン・グラフを作りたい","en":"Make slides, designs or charts"}},{"id":"phone","cmds":["/remote-control","/mobile","/desktop"],"q":{"zh":"离开电脑，用手机继续","ja":"パソコンを離れてスマホで続けたい","en":"Leave the computer and continue on my phone"}},{"id":"broken","cmds":["/doctor","/status","/debug","/bug"],"q":{"zh":"Claude Code 本身出问题了","ja":"Claude Code 自体の調子が悪い","en":"Claude Code itself is misbehaving"}},{"id":"learn","cmds":["/powerup","/help","/insights"],"q":{"zh":"系统学习怎么用","ja":"使い方を体系的に学びたい","en":"Learn Claude Code properly"}}];
+const RISKS = [{"id":"cost","icon":"¥","name":{"zh":"可能产生费用","ja":"費用が発生する場合あり","en":"May cost money"},"desc":{"zh":"可能消耗付费额度或产生额外费用。使用前用 `/usage` 确认额度，并查看官方价格说明。","ja":"有料の使用量を消費したり、追加料金が発生したりする場合があります。使う前に `/usage` で確認し、公式の料金説明を確認してください。","en":"Can consume paid usage or incur extra charges. Check `/usage` and the official pricing first."}},{"id":"external","icon":"↗","name":{"zh":"会发送到外部","ja":"外部に送信","en":"Sends data out"},"desc":{"zh":"会把对话、代码或评论发送到其他服务（如 Anthropic、GitHub、云端会话、浏览器中的网站），或推送到远程仓库。确认内容和目标后再运行。","ja":"会話・コード・コメントを他のサービス（Anthropic、GitHub、クラウドセッション、ブラウザー上のサイトなど）に送ったり、リモートに push したりします。内容と送信先を確認してから実行してください。","en":"Sends conversation, code or comments to another service (Anthropic, GitHub, cloud sessions, sites in your browser) or pushes to a remote. Check what goes where first."}},{"id":"secrets","icon":"⚿","name":{"zh":"可能包含敏感信息","ja":"機密情報を含む場合あり","en":"May expose secrets"},"desc":{"zh":"生成的文件、剪贴板内容或报告中可能含有对话内容、密钥、密码或个人信息。分享前务必检查并删除敏感内容。","ja":"作られるファイル・クリップボード・レポートに、会話内容・API キー・パスワード・個人情報が含まれる場合があります。共有する前に必ず確認して削除してください。","en":"Output (files, clipboard, reports) can contain conversation text, keys, passwords or personal data. Review and redact before sharing."}},{"id":"files","icon":"⇄","name":{"zh":"会大范围修改文件","ja":"ファイルを広く変更","en":"Broad file changes"},"desc":{"zh":"可能一次修改或还原很多文件。运行前先用 Git 提交或备份，运行后用 `/diff` 检查。","ja":"多くのファイルを一度に変更・復元する場合があります。実行前に Git でコミットかバックアップをし、実行後は `/diff` で確認してください。","en":"Can change or revert many files at once. Commit or back up first, and review with `/diff` afterwards."}},{"id":"perms","icon":"⚑","name":{"zh":"会改变安全设置","ja":"安全設定を変更","en":"Changes safety settings"},"desc":{"zh":"会改变 Claude 无需询问就能执行的操作范围，或其他安全相关设置。只放行你理解且信任的操作。","ja":"Claude が確認なしで実行できる範囲など、安全に関わる設定を変えます。理解して信頼できる操作だけを許可してください。","en":"Changes what Claude may do without asking, or other safety settings. Only allow actions you understand and trust."}}];
+const DISC = {"zh":[{"t":"非官方项目","b":"本项目由社区制作，与 Anthropic 无关联，也未获其赞助或认可。「Claude」「Claude Code」及相关标识是 Anthropic 的商标，此处仅用于说明所介绍的产品。"},{"t":"内容可能过时或有误","b":"所有说明均为对官方文档的意译和简化，按「现状」提供，不作任何明示或默示的保证。Claude Code 更新频繁，命令可能新增、改名或移除。如与官方文档不一致，以官方文档为准。"},{"t":"使用风险由你自行承担","b":"部分命令会修改或还原文件、执行命令、推送代码、把数据发送到外部服务，或消耗付费额度。运行前请确认你理解它会做什么；先用 Git 提交或备份；不要在未经审查的情况下对生产环境、重要数据或他人的仓库使用。"},{"t":"保护密钥和隐私","b":"不要把 API 密钥、密码、令牌或他人的个人信息写进提示词。导出的对话、问题报告、内存快照等文件可能包含这些内容，分享前务必检查。"},{"t":"示例仅供参考","b":"「最佳用法」中的例子用于说明用途，不是针对你的环境的操作指令。命令是否可用取决于版本、套餐、平台和组织策略。"},{"t":"本页面不追踪你","b":"本页面不使用 Cookie、统计分析或第三方脚本、字体，只在你的浏览器本地保存语言偏好。"},{"t":"责任限制","b":"在法律允许的最大范围内，作者和贡献者不对因使用本项目内容而导致的任何损失负责，包括数据丢失、费用、安全事件或服务中断。"}],"ja":[{"t":"非公式のプロジェクト","b":"このプロジェクトはコミュニティが作成したもので、Anthropic とは関係がなく、後援や承認も受けていません。「Claude」「Claude Code」と関連する表示は Anthropic の商標で、ここでは製品を説明する目的でのみ使っています。"},{"t":"内容が古い・誤っている可能性","b":"説明はすべて公式ドキュメントを意訳・簡略化したもので、「現状のまま」提供され、明示・黙示を問わず一切の保証はありません。Claude Code は頻繁に更新され、コマンドの追加・名称変更・削除があります。公式ドキュメントと食い違う場合は公式が優先です。"},{"t":"自己責任でご利用ください","b":"一部のコマンドはファイルの変更・復元、コマンドの実行、コードの push、外部サービスへのデータ送信、有料の使用量の消費を行います。何が起きるか理解してから実行し、事前に Git でコミットかバックアップをしてください。本番環境・重要なデータ・他人のリポジトリには、確認なしで使わないでください。"},{"t":"秘密情報とプライバシーを守る","b":"API キー・パスワード・トークン・他人の個人情報をプロンプトに書かないでください。会話のエクスポート、不具合報告、メモリーの記録などのファイルにはこれらが含まれる場合があるので、共有前に必ず確認してください。"},{"t":"例は参考です","b":"「おすすめの使い方」の例は用途の説明で、あなたの環境向けの手順ではありません。コマンドが使えるかどうかは、バージョン・プラン・プラットフォーム・組織のポリシーによって異なります。"},{"t":"このページは追跡しません","b":"このページは Cookie、アクセス解析、外部のスクリプトやフォントを使いません。言語の設定だけをブラウザー内に保存します。"},{"t":"責任の制限","b":"法律で認められる最大限の範囲で、作者および貢献者は、このプロジェクトの内容の利用によって生じた損害（データの消失、費用、セキュリティ事故、サービスの中断を含む）について一切責任を負いません。"}],"en":[{"t":"Unofficial project","b":"A community project, not affiliated with, sponsored or endorsed by Anthropic. “Claude”, “Claude Code” and related marks are trademarks of Anthropic, used here only to identify the product being described."},{"t":"May be outdated or wrong","b":"Every description is a simplified paraphrase of the official documentation, provided “as is” without warranty of any kind, express or implied. Claude Code changes often; commands are added, renamed and removed. Where this project and the official docs disagree, the official docs win."},{"t":"Use at your own risk","b":"Some commands change or revert files, run commands, push code, send data to external services or consume paid usage. Understand what a command does before running it, commit or back up first, and do not use it on production systems, important data or other people's repositories without review."},{"t":"Protect secrets and privacy","b":"Do not put API keys, passwords, tokens or other people's personal data in prompts. Exported conversations, bug reports and memory snapshots can contain them; review before sharing."},{"t":"Examples are illustrative","b":"The “best use” examples explain purpose; they are not instructions for your environment. Availability depends on version, plan, platform and organization policy."},{"t":"This page does not track you","b":"This page uses no cookies, analytics, third-party scripts or fonts. It stores only your language preference, locally in your browser."},{"t":"Limitation of liability","b":"To the maximum extent permitted by law, the authors and contributors are not liable for any loss arising from use of this project, including data loss, charges, security incidents or service interruption."}]};
+const RISK = Object.fromEntries(RISKS.map(r => [r.id, r]));
+const HUE = Object.fromEntries(CATS.map((c, i) => [c.id, "h" + (i % 15)]));
+
+const UI = {
+  zh: {
+    badge: "非官方 · 社区整理",
+    results: "搜索结果",
+    hint: "↑↓ 选择 · Enter 复制命令 · Esc 清空", qclear: "清空搜索", suggest: "试试这些场景：",
+    h1: "Claude Code 命令大全",
+    lead: "Claude Code 里所有以 / 开头的命令，用简单中文逐条讲清楚：英文原意、能做什么、什么时候用最合适。",
+    keys: "随时按 <kbd>/</kbd> 或 <kbd>⌘K</kbd> 搜索 · 点命令名复制",
+    stats: ["个命令", "个场景", "个风险标记", "种语言"],
+    howto: [
+      ["/", "打开命令列表", "在输入框输入 <code>/</code> 就会弹出命令列表；继续输入几个字母可以筛选，例如 <code>/mo</code> 只剩 /model。"],
+      ["[ ]", "看懂参数写法", "命令后空一格再写的内容叫「参数」。<code>[ ]</code> 可写可不写，<code>&lt; &gt;</code> 必须写，<code>|</code> 几选一。参数可以直接用中文写。"],
+      ["◇", "命令、技能、工作流", "普通命令是程序内置功能；「技能」是一套写好的提示流程，交给 Claude 执行；「工作流」会派出多个代理在后台运行。"],
+      ["?", "看不到某个命令？", "很多命令只在特定版本、套餐、平台或开启某功能后才出现。以你自己输入 <code>/</code> 看到的列表为准；先用 <code>/status</code> 查看版本。"]
+    ],
+    scen: "按场景找命令", scenD: "选你想做的事，命令按建议尝试的顺序排列。", back: "× 显示全部命令",
+    safety: "安全标记", safetyD: "带这些标记的命令请格外小心。",
+    link: "复制链接", copiedLink: "已复制本命令的链接",
+    riskChip: "需注意", disc: "免责声明", nav: "分类", top: "回到顶部",
+    search: "搜索命令、中文说明或英文，例如：撤销、省钱、model",
+    all: "全部命令", picks: "新手推荐", count: n => `${n} 个`,
+    pick: "★ 新手推荐", skill: "技能", workflow: "工作流", removed: "已移除",
+    since: v => `v${v}+`, removedIn: v => `v${v} 移除`,
+    word: "英文", use: "最佳用法", alias: "同义命令",
+    empty: "没有找到。换个关键词试试，例如「撤销」「模型」「后台」。",
+    copied: c => `已复制 ${c}`, selected: "已选中，请按 ⌘C / Ctrl+C 复制",
+    foot: m => `<p><b>数据来源：</b>依据 Claude Code 官方命令文档 <a href="${m.source}" target="_blank" rel="noopener noreferrer">${m.source}</a> 整理，核对日期 ${m.checked}。说明为意译和简化，不是官方翻译；如有出入，以官方文档为准。</p><p><b>参与改进：</b>发现错误或命令有更新，欢迎在仓库提交 Issue 或 Pull Request。<a href="${m.repo}" target="_blank" rel="noopener noreferrer">${m.repo}</a> · 内容许可 CC BY 4.0，代码许可 MIT。</p>`
+  },
+  ja: {
+    badge: "非公式 · コミュニティ作成",
+    results: "検索結果",
+    hint: "↑↓ で選択 · Enter でコマンドをコピー · Esc でクリア", qclear: "検索をクリア", suggest: "こんな場面から探す：",
+    h1: "Claude Code コマンド一覧",
+    lead: "Claude Code の / で始まるコマンドすべてを、やさしい日本語で説明します。英語の意味、できること、いちばん役立つ使い方がわかります。",
+    keys: "いつでも <kbd>/</kbd> か <kbd>⌘K</kbd> で検索 · コマンド名をクリックでコピー",
+    stats: ["コマンド", "シーン", "注意マーク", "言語"],
+    howto: [
+      ["/", "コマンド一覧を出す", "入力欄に <code>/</code> と打つと一覧が出ます。続けて数文字打つと絞り込めます。例：<code>/mo</code> で /model だけに。"],
+      ["[ ]", "引数の読み方", "コマンドの後ろにスペースを空けて書く内容が「引数」です。<code>[ ]</code> は省略可、<code>&lt; &gt;</code> は必須、<code>|</code> は「どれか 1 つ」。日本語で書いてかまいません。"],
+      ["◇", "コマンド・スキル・ワークフロー", "普通のコマンドは組み込みの機能。「スキル」は Claude に渡す手順書、「ワークフロー」は複数のエージェントをバックグラウンドで動かします。"],
+      ["?", "コマンドが見つからない？", "バージョン・プラン・環境・機能の有効化によって表示が変わります。自分で <code>/</code> と打って出る一覧が正です。まず <code>/status</code> でバージョンを確認。"]
+    ],
+    scen: "やりたいことから探す", scenD: "状況を選んでください。コマンドは試す順に並んでいます。", back: "× すべてのコマンドを表示",
+    safety: "安全マーク", safetyD: "次のマークが付いたコマンドは慎重に使ってください。",
+    link: "リンクをコピー", copiedLink: "このコマンドへのリンクをコピーしました",
+    riskChip: "注意が必要", disc: "免責事項", nav: "カテゴリー", top: "ページの先頭へ",
+    search: "コマンド名・日本語・英語で検索（例：巻き戻し、使用量、model）",
+    all: "すべてのコマンド", picks: "初心者向け", count: n => `${n} 件`,
+    pick: "★ 初心者向け", skill: "スキル", workflow: "ワークフロー", removed: "削除済み",
+    since: v => `v${v} 以降`, removedIn: v => `v${v} で削除`,
+    word: "英語", use: "おすすめの使い方", alias: "別名",
+    empty: "見つかりませんでした。「巻き戻し」「モデル」「バックグラウンド」などで試してください。",
+    copied: c => `${c} をコピーしました`, selected: "選択しました。⌘C / Ctrl+C でコピーしてください",
+    foot: m => `<p><b>出典：</b>Claude Code 公式のコマンドリファレンス <a href="${m.source}" target="_blank" rel="noopener noreferrer">${m.source}</a> をもとに作成（確認日 ${m.checked}）。説明は意訳・簡略化したもので、公式の翻訳ではありません。違いがある場合は公式ドキュメントが優先です。</p><p><b>改善への参加：</b>誤りやコマンドの変更に気づいたら、Issue や Pull Request を歓迎します。<a href="${m.repo}" target="_blank" rel="noopener noreferrer">${m.repo}</a> · 内容は CC BY 4.0、コードは MIT ライセンス。</p>`
+  },
+  en: {
+    badge: "Unofficial · Community-maintained",
+    results: "Results",
+    hint: "↑↓ to select · Enter to copy the command · Esc to clear", qclear: "Clear search", suggest: "Try one of these:",
+    h1: "Claude Code Commands",
+    lead: "Every Claude Code slash command in plain language: what it does, and when it is most useful.",
+    keys: "Press <kbd>/</kbd> or <kbd>⌘K</kbd> to search anytime · click a command to copy",
+    stats: ["commands", "scenarios", "safety labels", "languages"],
+    howto: [
+      ["/", "Open the menu", "Type <code>/</code> in the prompt to open the command menu; keep typing to filter, e.g. <code>/mo</code> narrows to /model."],
+      ["[ ]", "Read the syntax", "Text after the command is its argument. <code>[ ]</code> optional, <code>&lt; &gt;</code> required, <code>|</code> one of. Arguments can be in any language."],
+      ["◇", "Commands, skills, workflows", "Built-in commands are coded into the CLI. Skills are bundled prompts handed to Claude. Workflows fan work out to several background agents."],
+      ["?", "Missing a command?", "Many commands depend on version, plan, platform or an enabled feature. The list you see after typing <code>/</code> is authoritative; check your version with <code>/status</code>."]
+    ],
+    scen: "Find a command by what you want to do", scenD: "Pick a situation; commands are listed in the order to try them.", back: "× Show all commands",
+    safety: "Safety labels", safetyD: "Take extra care with commands marked like this.",
+    link: "Copy link", copiedLink: "Copied a link to this command",
+    riskChip: "Use with care", disc: "Disclaimer", nav: "Categories", top: "Back to top",
+    search: "Search commands or descriptions, e.g. rewind, cost, background",
+    all: "All commands", picks: "Start here", count: n => `${n}`,
+    pick: "★ Start here", skill: "Skill", workflow: "Workflow", removed: "Removed",
+    since: v => `v${v}+`, removedIn: v => `removed in v${v}`,
+    word: "", use: "Best use", alias: "Aliases",
+    empty: "No matches. Try another word, such as “rewind”, “model” or “background”.",
+    copied: c => `Copied ${c}`, selected: "Selected. Press ⌘C / Ctrl+C to copy",
+    foot: m => `<p><b>Source:</b> paraphrased from the official Claude Code commands reference, <a href="${m.source}" target="_blank" rel="noopener noreferrer">${m.source}</a>, checked ${m.checked}. Descriptions are simplified; where they differ, the official docs win.</p><p><b>Contribute:</b> corrections and updates are welcome as issues or pull requests at <a href="${m.repo}" target="_blank" rel="noopener noreferrer">${m.repo}</a>. Content CC BY 4.0, code MIT.</p>`
+  }
+};
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const md = s => esc(s).replace(/`([^`]+)`/g, "<code>$1</code>");
+const LANGS = ["en","ja","zh"];
+const REDUCED = matchMedia("(prefers-reduced-motion: reduce)").matches;
+let lang = "en", cat = "all", scen = null;
+
+const slug = c => c.cmd.slice(1).replace(/ /g, "-");
+const HASH = /^(zh|ja|en)(?:-([a-z0-9-]+))?$/.exec(location.hash.slice(1)) || [];
+const TARGET = HASH[2] && CMDS.find(c => slug(c) === HASH[2]);
+
+function pickLang(){
+  if (HASH[1]) return HASH[1];
+  // A link's #en/#ja/#zh or the visitor's last choice wins; otherwise English.
+  try { const s = localStorage.getItem("lang"); if (LANGS.includes(s)) return s; } catch(e) {}
+  return "en";
+}
+
+function riskTag(r, withName){
+  const k = RISK[r];
+  return `<span class="tag risk r-${r}" title="${esc(k.desc[lang].replace(/`/g, ""))}">${esc(k.icon)}${withName ? " " + esc(k.name[lang]) : ""}</span>`;
+}
+
+function setLang(l){
+  lang = l;
+  document.documentElement.lang = l === "zh" ? "zh-CN" : l;
+  try { localStorage.setItem("lang", l); } catch(e) {}
+  document.querySelectorAll(".langs button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === l));
+  const t = UI[l];
+  $("hint").textContent = t.hint;
+  $("qclear").setAttribute("aria-label", t.qclear); $("qclear").title = t.qclear;
+  $("badge").textContent = t.badge;
+  $("h1").textContent = t.h1;
+  $("lead").innerHTML = esc(t.lead) + "<small>" + t.keys + "</small>";
+  const live = CMDS.filter(c => c.kind !== "removed");
+  const nums = [live.length, SCENS.length, CMDS.filter(c => (c.risk || []).length).length, 3];
+  $("stats").innerHTML = nums.map((n, i) => `<div class="stat"><b>${n}</b><span>${esc(t.stats[i])}</span></div>`).join("");
+  $("howto").innerHTML = t.howto.map(([ic, b, p]) => `<div><span class="ic">${esc(ic)}</span><b>${b}</b><p>${p}</p></div>`).join("");
+  $("scen-h").textContent = t.scen; $("scen-d").textContent = t.scenD;
+  $("safety-h").textContent = t.safety; $("safety-d").textContent = t.safetyD;
+  $("safety").innerHTML = RISKS.map(r => `<li><b><span class="ri r-${r.id}">${esc(r.icon)}</span>${esc(r.name[l])}</b>${md(r.desc[l])}</li>`).join("");
+  buildScens();
+  $("q").placeholder = t.search;
+  $("q").setAttribute("aria-label", t.search);
+  $("totop").setAttribute("aria-label", t.top); $("totop").title = t.top;
+  $("side").setAttribute("aria-label", t.nav);
+  $("foot").innerHTML = `<h2>${t.disc}</h2><ol class="disc">${DISC[l].map(d => `<li><b>${esc(d.t)}</b>${esc(d.b)}</li>`).join("")}</ol>` + t.foot(META);
+  buildNav();
+  render();
+  demoReset();
+}
+
+function buildScens(){
+  $("scens").innerHTML = SCENS.map(s => `<button type="button" class="scen" data-s="${esc(s.id)}" aria-pressed="${s.id === scen}"><span class="q">${esc(s.q[lang])}</span><span class="pills">${s.cmds.map(c => `<span>${esc(c)}</span>`).join("")}</span></button>`).join("");
+}
+$("scens").addEventListener("click", e => {
+  const b = e.target.closest(".scen"); if (!b) return;
+  scen = scen === b.dataset.s ? null : b.dataset.s;
+  buildScens(); render();
+  if (scen) scrollToList();
+});
+
+// One nav model, drawn as sidebar (desktop) and chips (phone).
+function navItems(){
+  const t = UI[lang];
+  return [
+    {id: "all", label: t.all, n: CMDS.length},
+    {id: "picks", label: "★ " + t.picks, n: CMDS.filter(c => c.pick).length},
+    {id: "risky", label: "⚠ " + t.riskChip, n: CMDS.filter(c => (c.risk || []).length).length},
+    null,
+    ...CATS.map(c => ({id: c.id, label: c.name[lang], n: CMDS.filter(x => x.cat === c.id).length, hue: HUE[c.id]}))
+  ];
+}
+function buildNav(){
+  const items = navItems();
+  const btn = (it, cls) => `<button type="button" class="${cls}${it.hue ? " " + it.hue : ""}" data-cat="${it.id}" aria-pressed="${it.id === cat}">${it.hue ? '<span class="dot"></span>' : ""}<span>${esc(it.label)}</span>${cls === "" ? `<em>${it.n}</em>` : ""}</button>`;
+  $("side").innerHTML = items.map(it => it ? btn(it, "") : "<hr>").join("");
+  $("chips").innerHTML = items.filter(Boolean).map(it => btn(it, "chip")).join("");
+}
+function pickCat(id){
+  cat = id; if (scen) { scen = null; buildScens(); }
+  document.querySelectorAll("[data-cat]").forEach(b => b.setAttribute("aria-pressed", b.dataset.cat === id));
+  render();
+  scrollToList();
+}
+["side", "chips"].forEach(id => $(id).addEventListener("click", e => { const b = e.target.closest("[data-cat]"); if (b) pickCat(b.dataset.cat); }));
+
+function card(c){
+  const t = UI[lang];
+  const tags = [
+    c.pick ? `<span class="tag pick">${t.pick}</span>` : "",
+    c.kind === "skill" ? `<span class="tag skill">${t.skill}</span>` : "",
+    c.kind === "workflow" ? `<span class="tag workflow">${t.workflow}</span>` : "",
+    c.kind === "removed" ? `<span class="tag removed">${c.removedIn ? t.removedIn(c.removedIn) : t.removed}</span>` : "",
+    c.since ? `<span class="tag ver">${t.since(c.since)}</span>` : "",
+    ...(c.risk || []).map(r => riskTag(r, true))
+  ].join("");
+  const gloss = lang === "en" ? "" : `<div class="gloss">${t.word} <b>${esc(c.word)}</b> ＝ ${esc(c.gloss[lang])}</div>`;
+  const alias = c.aliases.length ? `<span>${t.alias}: ${c.aliases.map(a => `<code>${esc(a)}</code>`).join(" · ")}</span>` : "";
+  return `<article class="card ${HUE[c.cat]}" id="c-${slug(c)}">
+    <div class="card-head">
+      <div class="top"><button class="cmd" type="button" data-c="${esc(c.cmd)}" title="${esc(t.copied(c.cmd))}">${esc(c.cmd)}</button>${c.args ? `<span class="args">${esc(c.args)}</span>` : ""}</div>
+      ${tags ? `<div class="tags">${tags}</div>` : ""}
+      ${gloss}
+    </div>
+    <p class="what">${md(c.desc[lang])}</p>
+    <div class="ex"><span class="lbl">${t.use}</span>${md(c.use[lang])}</div>
+    <div class="card-foot">${alias}<button class="link" type="button" data-l="${slug(c)}" aria-label="${t.link}: ${esc(c.cmd)}">${t.link}</button></div>
+  </article>`;
+}
+
+function matches(c, k){
+  if (!k) return true;
+  const scenQ = SCENS.filter(s => s.cmds.includes(c.cmd)).map(s => s.q[lang]);
+  const hay = [c.cmd, c.args, c.word, ...c.aliases, ...(c.risk || []).map(r => RISK[r].name[lang]), c.desc[lang], c.use[lang], c.short ? c.short[lang] : "", ...scenQ, lang !== "en" ? c.gloss[lang] : "", c.desc.en].join(" ").toLowerCase();
+  return k.split(/\s+/).every(w => hay.includes(w));
+}
+
+function render(){
+  const t = UI[lang], k = $("q").value.trim().toLowerCase().replace(/^\//, "");
+  let html = "", n = 0;
+  const sc = SCENS.find(s => s.id === scen);
+  if (sc) {
+    const rows = sc.cmds.map(name => CMDS.find(c => c.cmd === name));
+    $("list").innerHTML = `<section><div class="scen-bar"><h2>${esc(sc.q[lang])}</h2><button type="button" class="clear" id="clear-scen">${t.back}</button></div><div class="grid">${rows.map(card).join("")}</div></section>`;
+    $("count").textContent = t.count(rows.length);
+    $("clear-scen").onclick = () => { scen = null; buildScens(); render(); };
+    return;
+  }
+  if (k) {
+    // While searching: one flat grid, best matches first (name, then alias, then text).
+    const inCat = c => ["all", "picks", "risky"].includes(cat) || c.cat === cat;
+    const rank = c => { const n = c.cmd.slice(1); return n.startsWith(k) ? 0 : n.includes(k) ? 1 : c.aliases.some(a => a.includes(k)) ? 2 : c.pick ? 3 : 4; };
+    const rows = CMDS.filter(c => inCat(c) && (cat !== "picks" || c.pick) && (cat !== "risky" || (c.risk || []).length) && matches(c, k))
+      .sort((a, b) => rank(a) - rank(b));
+    n = rows.length;
+    if (n) html = `<section><div class="sec-head"><h2>${t.results}</h2><small>${t.count(n)}</small></div><div class="grid">${rows.map(card).join("")}</div></section>`;
+  } else CATS.forEach(cg => {
+    if (!["all", "picks", "risky"].includes(cat) && cat !== cg.id) return;
+    const rows = CMDS.filter(c => c.cat === cg.id && (cat !== "picks" || c.pick) && (cat !== "risky" || (c.risk || []).length) && matches(c, k));
+    if (!rows.length) return;
+    n += rows.length;
+    html += `<section class="${HUE[cg.id]}"><div class="sec-head"><span class="sw"></span><h2>${esc(cg.name[lang])}</h2><small>${t.count(rows.length)}</small></div><p class="sec-desc">${esc(cg.desc[lang])}</p><div class="grid">${rows.map(card).join("")}</div></section>`;
+  });
+  $("list").innerHTML = html || `<div class="empty"><p>${t.empty}</p><p>${t.suggest}</p><div class="empty-s">${SCENS.slice(0, 6).map(s => `<button type="button" data-s="${esc(s.id)}">${esc(s.q[lang])}</button>`).join("")}</div></div>`;
+  $("count").textContent = t.count(n);
+  active = -1;
+  if (k) highlight(k.split(/\s+/).filter(Boolean));
+}
+
+// Wrap matches in <mark> by splitting text nodes, never by rewriting HTML.
+function highlight(words){
+  const re = new RegExp("(" + words.map(w => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|") + ")", "gi");
+  $("list").querySelectorAll(".cmd, .what, .ex, .gloss").forEach(root => {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    const nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(node => {
+      const parts = node.nodeValue.split(re);
+      if (parts.length < 2) return;
+      const frag = document.createDocumentFragment();
+      parts.forEach((part, i) => {
+        if (!part) return;
+        if (i % 2) { const m = document.createElement("mark"); m.textContent = part; frag.appendChild(m); }
+        else frag.appendChild(document.createTextNode(part));
+      });
+      node.parentNode.replaceChild(frag, node);
+    });
+  });
+}
+
+// Search mode: while there is a query, hide the intro so results sit right under the bar.
+let active = -1;
+function syncSearchMode(){
+  const on = $("q").value.trim() !== "";
+  const was = document.body.classList.contains("searching");
+  document.body.classList.toggle("searching", on);
+  $("qclear").hidden = !on;
+  $("khint").hidden = on;
+  if (on && !was) scrollTo({top: 0, behavior: "instant"});
+}
+function setActive(i){
+  const cards = [...$("list").querySelectorAll(".card")];
+  if (!cards.length) return;
+  active = Math.max(0, Math.min(cards.length - 1, i));
+  cards.forEach((c, j) => c.classList.toggle("active", j === active));
+  cards[active].scrollIntoView({block: "nearest", behavior: "instant"});
+}
+function copyCmd(c){
+  try { navigator.clipboard.writeText(c).then(() => say(UI[lang].copied(c))).catch(() => say(c)); } catch(err) { say(c); }
+}
+function clearSearch(){ $("q").value = ""; syncSearchMode(); render(); }
+function scrollToList(){
+  const y = $("list").getBoundingClientRect().top + scrollY - $("bar").offsetHeight - 12;
+  if (scrollY > y || y - scrollY > innerHeight * .4) scrollTo({top: y, behavior: REDUCED ? "auto" : "smooth"});
+}
+
+// Hero terminal: types an editor's pick, then shows a slash-menu of related commands.
+const DEMO = CMDS.filter(c => c.pick);
+let demoI = 0, demoTimer = null;
+function menuFor(c){
+  const rest = CMDS.filter(x => x.cat === c.cat && x !== c && x.kind !== "removed").slice(0, 3);
+  return [c, ...rest].map((x, i) => `<li class="${i ? "" : "on"}"><b>${esc(x.cmd)}</b><span>${esc((x.short || x.desc)[lang].replace(/`/g, "").split(/[。．.]\s?/)[0])}</span></li>`).join("");
+}
+function demoShow(c, typed){ $("typed").textContent = typed; $("menu").innerHTML = typed === c.cmd ? menuFor(c) : ""; }
+function demoReset(){
+  clearTimeout(demoTimer);
+  const c = DEMO[demoI % DEMO.length];
+  demoShow(c, c.cmd);  // complete at rest
+  if (!REDUCED) demoTimer = setTimeout(demoNext, 3200);
+}
+function demoNext(){
+  const c = DEMO[++demoI % DEMO.length];
+  let i = 1;
+  const step = () => {
+    demoShow(c, c.cmd.slice(0, i));
+    if (i++ < c.cmd.length) demoTimer = setTimeout(step, 70);
+    else demoTimer = setTimeout(demoNext, 3200);
+  };
+  step();
+}
+
+document.querySelectorAll(".langs button").forEach(b => b.onclick = () => setLang(b.dataset.lang));
+$("list").addEventListener("click", e => {
+  const s = e.target.closest(".empty-s button"); if (!s) return;
+  $("q").value = ""; syncSearchMode(); scen = s.dataset.s; buildScens(); render();
+});
+$("q").addEventListener("input", () => { if (scen) { scen = null; buildScens(); } syncSearchMode(); render(); });
+$("q").addEventListener("keydown", e => {
+  const cards = $("list").querySelectorAll(".card");
+  if (e.key === "ArrowDown") { e.preventDefault(); setActive(active + 1); }
+  else if (e.key === "ArrowUp") { e.preventDefault(); setActive(active - 1); }
+  else if (e.key === "Enter" && !e.isComposing && cards.length) { e.preventDefault(); copyCmd(cards[Math.max(active, 0)].querySelector(".cmd").dataset.c); }
+  else if (e.key === "Escape") { if ($("q").value) clearSearch(); else $("q").blur(); }
+});
+$("qclear").onclick = () => { clearSearch(); $("q").focus(); };
+$("brand").onclick = () => { clearSearch(); scrollTo({top: 0, behavior: REDUCED ? "auto" : "smooth"}); };
+const toast = $("toast"); let tt;
+function say(s){ toast.textContent = s; toast.classList.add("on"); clearTimeout(tt); tt = setTimeout(() => toast.classList.remove("on"), 1600); }
+$("list").addEventListener("click", e => {
+  const lk = e.target.closest(".link");
+  if (lk) {
+    const url = META.site + "#" + lang + "-" + lk.dataset.l;
+    try { navigator.clipboard.writeText(url).then(() => say(UI[lang].copiedLink)).catch(() => say(url)); } catch(err) { say(url); }
+    return;
+  }
+  const b = e.target.closest(".cmd"); if (!b) return;
+  const c = b.dataset.c;
+  const fallback = () => { const r = document.createRange(); r.selectNodeContents(b); const s = getSelection(); s.removeAllRanges(); s.addRange(r); say(UI[lang].selected); };
+  try { navigator.clipboard.writeText(c).then(() => say(UI[lang].copied(c))).catch(fallback); } catch(err) { fallback(); }
+});
+document.addEventListener("keydown", e => {
+  const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName);
+  if ((e.key === "/" && !typing && !e.metaKey && !e.ctrlKey) || (e.key.toLowerCase() === "k" && (e.metaKey || e.ctrlKey))) { e.preventDefault(); $("q").focus(); $("q").select(); }
+});
+const totop = $("totop");
+addEventListener("scroll", () => { totop.hidden = scrollY < 900; }, {passive: true});
+totop.onclick = () => scrollTo({top: 0, behavior: REDUCED ? "auto" : "smooth"});
+setLang(pickLang());
+if (TARGET) {
+  const el = $("c-" + slug(TARGET));
+  if (el) { el.scrollIntoView({block: "start", behavior: "instant"}); el.classList.add("flash"); setTimeout(() => el.classList.remove("flash"), 2500); }
+}
+</script>
+
+</html>

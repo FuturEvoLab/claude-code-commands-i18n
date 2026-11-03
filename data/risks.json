@@ -1,0 +1,17 @@
+[
+  {"id": "cost", "icon": "¥",
+   "name": {"zh": "可能产生费用", "ja": "費用が発生する場合あり", "en": "May cost money"},
+   "desc": {"zh": "可能消耗付费额度或产生额外费用。使用前用 `/usage` 确认额度，并查看官方价格说明。", "ja": "有料の使用量を消費したり、追加料金が発生したりする場合があります。使う前に `/usage` で確認し、公式の料金説明を確認してください。", "en": "Can consume paid usage or incur extra charges. Check `/usage` and the official pricing first."}},
+  {"id": "external", "icon": "↗",
+   "name": {"zh": "会发送到外部", "ja": "外部に送信", "en": "Sends data out"},
+   "desc": {"zh": "会把对话、代码或评论发送到其他服务（如 Anthropic、GitHub、云端会话、浏览器中的网站），或推送到远程仓库。确认内容和目标后再运行。", "ja": "会話・コード・コメントを他のサービス（Anthropic、GitHub、クラウドセッション、ブラウザー上のサイトなど）に送ったり、リモートに push したりします。内容と送信先を確認してから実行してください。", "en": "Sends conversation, code or comments to another service (Anthropic, GitHub, cloud sessions, sites in your browser) or pushes to a remote. Check what goes where first."}},
+  {"id": "secrets", "icon": "⚿",
+   "name": {"zh": "可能包含敏感信息", "ja": "機密情報を含む場合あり", "en": "May expose secrets"},
+   "desc": {"zh": "生成的文件、剪贴板内容或报告中可能含有对话内容、密钥、密码或个人信息。分享前务必检查并删除敏感内容。", "ja": "作られるファイル・クリップボード・レポートに、会話内容・API キー・パスワード・個人情報が含まれる場合があります。共有する前に必ず確認して削除してください。", "en": "Output (files, clipboard, reports) can contain conversation text, keys, passwords or personal data. Review and redact before sharing."}},
+  {"id": "files", "icon": "⇄",
+   "name": {"zh": "会大范围修改文件", "ja": "ファイルを広く変更", "en": "Broad file changes"},
+   "desc": {"zh": "可能一次修改或还原很多文件。运行前先用 Git 提交或备份，运行后用 `/diff` 检查。", "ja": "多くのファイルを一度に変更・復元する場合があります。実行前に Git でコミットかバックアップをし、実行後は `/diff` で確認してください。", "en": "Can change or revert many files at once. Commit or back up first, and review with `/diff` afterwards."}},
+  {"id": "perms", "icon": "⚑",
+   "name": {"zh": "会改变安全设置", "ja": "安全設定を変更", "en": "Changes safety settings"},
+   "desc": {"zh": "会改变 Claude 无需询问就能执行的操作范围，或其他安全相关设置。只放行你理解且信任的操作。", "ja": "Claude が確認なしで実行できる範囲など、安全に関わる設定を変えます。理解して信頼できる操作だけを許可してください。", "en": "Changes what Claude may do without asking, or other safety settings. Only allow actions you understand and trust."}}
+]
