@@ -16,5 +16,29 @@
   "name": "简体中文",
   "html": "zh-CN",
   "readme": "README.zh-CN.md"
+ },
+ {
+  "code": "zh-hant",
+  "name": "繁體中文",
+  "html": "zh-Hant",
+  "readme": "README.zh-Hant.md"
+ },
+ {
+  "code": "ko",
+  "name": "한국어",
+  "html": "ko",
+  "readme": "README.ko.md"
+ },
+ {
+  "code": "ru",
+  "name": "Русский",
+  "html": "ru",
+  "readme": "README.ru.md"
+ },
+ {
+  "code": "es",
+  "name": "Español",
+  "html": "es",
+  "readme": "README.es.md"
  }
 ]

@@ -1,29 +1,212 @@
 {
-  "zh": [
-    {"t": "非官方项目", "b": "本项目由社区制作，与 Anthropic 无关联，也未获其赞助或认可。「Claude」「Claude Code」及相关标识是 Anthropic 的商标，此处仅用于说明所介绍的产品。"},
-    {"t": "内容可能过时或有误", "b": "所有说明均为对官方文档的意译和简化，按「现状」提供，不作任何明示或默示的保证。Claude Code 更新频繁，命令可能新增、改名或移除。如与官方文档不一致，以官方文档为准。"},
-    {"t": "使用风险由你自行承担", "b": "部分命令会修改或还原文件、执行命令、推送代码、把数据发送到外部服务，或消耗付费额度。运行前请确认你理解它会做什么；先用 Git 提交或备份；不要在未经审查的情况下对生产环境、重要数据或他人的仓库使用。"},
-    {"t": "保护密钥和隐私", "b": "不要把 API 密钥、密码、令牌或他人的个人信息写进提示词。导出的对话、问题报告、内存快照等文件可能包含这些内容，分享前务必检查。"},
-    {"t": "示例仅供参考", "b": "「最佳用法」中的例子用于说明用途，不是针对你的环境的操作指令。命令是否可用取决于版本、套餐、平台和组织策略。"},
-    {"t": "本页面不追踪你", "b": "本页面不使用 Cookie、统计分析或第三方脚本、字体，只在你的浏览器本地保存语言偏好。"},
-    {"t": "责任限制", "b": "在法律允许的最大范围内，作者和贡献者不对因使用本项目内容而导致的任何损失负责，包括数据丢失、费用、安全事件或服务中断。"}
-  ],
-  "ja": [
-    {"t": "非公式のプロジェクト", "b": "このプロジェクトはコミュニティが作成したもので、Anthropic とは関係がなく、後援や承認も受けていません。「Claude」「Claude Code」と関連する表示は Anthropic の商標で、ここでは製品を説明する目的でのみ使っています。"},
-    {"t": "内容が古い・誤っている可能性", "b": "説明はすべて公式ドキュメントを意訳・簡略化したもので、「現状のまま」提供され、明示・黙示を問わず一切の保証はありません。Claude Code は頻繁に更新され、コマンドの追加・名称変更・削除があります。公式ドキュメントと食い違う場合は公式が優先です。"},
-    {"t": "自己責任でご利用ください", "b": "一部のコマンドはファイルの変更・復元、コマンドの実行、コードの push、外部サービスへのデータ送信、有料の使用量の消費を行います。何が起きるか理解してから実行し、事前に Git でコミットかバックアップをしてください。本番環境・重要なデータ・他人のリポジトリには、確認なしで使わないでください。"},
-    {"t": "秘密情報とプライバシーを守る", "b": "API キー・パスワード・トークン・他人の個人情報をプロンプトに書かないでください。会話のエクスポート、不具合報告、メモリーの記録などのファイルにはこれらが含まれる場合があるので、共有前に必ず確認してください。"},
-    {"t": "例は参考です", "b": "「おすすめの使い方」の例は用途の説明で、あなたの環境向けの手順ではありません。コマンドが使えるかどうかは、バージョン・プラン・プラットフォーム・組織のポリシーによって異なります。"},
-    {"t": "このページは追跡しません", "b": "このページは Cookie、アクセス解析、外部のスクリプトやフォントを使いません。言語の設定だけをブラウザー内に保存します。"},
-    {"t": "責任の制限", "b": "法律で認められる最大限の範囲で、作者および貢献者は、このプロジェクトの内容の利用によって生じた損害（データの消失、費用、セキュリティ事故、サービスの中断を含む）について一切責任を負いません。"}
-  ],
-  "en": [
-    {"t": "Unofficial project", "b": "A community project, not affiliated with, sponsored or endorsed by Anthropic. “Claude”, “Claude Code” and related marks are trademarks of Anthropic, used here only to identify the product being described."},
-    {"t": "May be outdated or wrong", "b": "Every description is a simplified paraphrase of the official documentation, provided “as is” without warranty of any kind, express or implied. Claude Code changes often; commands are added, renamed and removed. Where this project and the official docs disagree, the official docs win."},
-    {"t": "Use at your own risk", "b": "Some commands change or revert files, run commands, push code, send data to external services or consume paid usage. Understand what a command does before running it, commit or back up first, and do not use it on production systems, important data or other people's repositories without review."},
-    {"t": "Protect secrets and privacy", "b": "Do not put API keys, passwords, tokens or other people's personal data in prompts. Exported conversations, bug reports and memory snapshots can contain them; review before sharing."},
-    {"t": "Examples are illustrative", "b": "The “best use” examples explain purpose; they are not instructions for your environment. Availability depends on version, plan, platform and organization policy."},
-    {"t": "This page does not track you", "b": "This page uses no cookies, analytics, third-party scripts or fonts. It stores only your language preference, locally in your browser."},
-    {"t": "Limitation of liability", "b": "To the maximum extent permitted by law, the authors and contributors are not liable for any loss arising from use of this project, including data loss, charges, security incidents or service interruption."}
-  ]
+ "en": [
+  {
+   "t": "Unofficial project",
+   "b": "A community project, not affiliated with, sponsored or endorsed by Anthropic. “Claude”, “Claude Code” and related marks are trademarks of Anthropic, used here only to identify the product being described."
+  },
+  {
+   "t": "May be outdated or wrong",
+   "b": "Every description is a simplified paraphrase of the official documentation, provided “as is” without warranty of any kind, express or implied. Claude Code changes often; commands are added, renamed and removed. Where this project and the official docs disagree, the official docs win."
+  },
+  {
+   "t": "Use at your own risk",
+   "b": "Some commands change or revert files, run commands, push code, send data to external services or consume paid usage. Understand what a command does before running it, commit or back up first, and do not use it on production systems, important data or other people's repositories without review."
+  },
+  {
+   "t": "Protect secrets and privacy",
+   "b": "Do not put API keys, passwords, tokens or other people's personal data in prompts. Exported conversations, bug reports and memory snapshots can contain them; review before sharing."
+  },
+  {
+   "t": "Examples are illustrative",
+   "b": "The “best use” examples explain purpose; they are not instructions for your environment. Availability depends on version, plan, platform and organization policy."
+  },
+  {
+   "t": "This page does not track you",
+   "b": "This page uses no cookies, analytics, third-party scripts or fonts. It stores only your language preference, locally in your browser."
+  },
+  {
+   "t": "Limitation of liability",
+   "b": "To the maximum extent permitted by law, the authors and contributors are not liable for any loss arising from use of this project, including data loss, charges, security incidents or service interruption."
+  }
+ ],
+ "ja": [
+  {
+   "t": "非公式のプロジェクト",
+   "b": "このプロジェクトはコミュニティが作成したもので、Anthropic とは関係がなく、後援や承認も受けていません。「Claude」「Claude Code」と関連する表示は Anthropic の商標で、ここでは製品を説明する目的でのみ使っています。"
+  },
+  {
+   "t": "内容が古い・誤っている可能性",
+   "b": "説明はすべて公式ドキュメントを意訳・簡略化したもので、「現状のまま」提供され、明示・黙示を問わず一切の保証はありません。Claude Code は頻繁に更新され、コマンドの追加・名称変更・削除があります。公式ドキュメントと食い違う場合は公式が優先です。"
+  },
+  {
+   "t": "自己責任でご利用ください",
+   "b": "一部のコマンドはファイルの変更・復元、コマンドの実行、コードの push、外部サービスへのデータ送信、有料の使用量の消費を行います。何が起きるか理解してから実行し、事前に Git でコミットかバックアップをしてください。本番環境・重要なデータ・他人のリポジトリには、確認なしで使わないでください。"
+  },
+  {
+   "t": "秘密情報とプライバシーを守る",
+   "b": "API キー・パスワード・トークン・他人の個人情報をプロンプトに書かないでください。会話のエクスポート、不具合報告、メモリーの記録などのファイルにはこれらが含まれる場合があるので、共有前に必ず確認してください。"
+  },
+  {
+   "t": "例は参考です",
+   "b": "「おすすめの使い方」の例は用途の説明で、あなたの環境向けの手順ではありません。コマンドが使えるかどうかは、バージョン・プラン・プラットフォーム・組織のポリシーによって異なります。"
+  },
+  {
+   "t": "このページは追跡しません",
+   "b": "このページは Cookie、アクセス解析、外部のスクリプトやフォントを使いません。言語の設定だけをブラウザー内に保存します。"
+  },
+  {
+   "t": "責任の制限",
+   "b": "法律で認められる最大限の範囲で、作者および貢献者は、このプロジェクトの内容の利用によって生じた損害（データの消失、費用、セキュリティ事故、サービスの中断を含む）について一切責任を負いません。"
+  }
+ ],
+ "zh": [
+  {
+   "t": "非官方项目",
+   "b": "本项目由社区制作，与 Anthropic 无关联，也未获其赞助或认可。「Claude」「Claude Code」及相关标识是 Anthropic 的商标，此处仅用于说明所介绍的产品。"
+  },
+  {
+   "t": "内容可能过时或有误",
+   "b": "所有说明均为对官方文档的意译和简化，按「现状」提供，不作任何明示或默示的保证。Claude Code 更新频繁，命令可能新增、改名或移除。如与官方文档不一致，以官方文档为准。"
+  },
+  {
+   "t": "使用风险由你自行承担",
+   "b": "部分命令会修改或还原文件、执行命令、推送代码、把数据发送到外部服务，或消耗付费额度。运行前请确认你理解它会做什么；先用 Git 提交或备份；不要在未经审查的情况下对生产环境、重要数据或他人的仓库使用。"
+  },
+  {
+   "t": "保护密钥和隐私",
+   "b": "不要把 API 密钥、密码、令牌或他人的个人信息写进提示词。导出的对话、问题报告、内存快照等文件可能包含这些内容，分享前务必检查。"
+  },
+  {
+   "t": "示例仅供参考",
+   "b": "「最佳用法」中的例子用于说明用途，不是针对你的环境的操作指令。命令是否可用取决于版本、套餐、平台和组织策略。"
+  },
+  {
+   "t": "本页面不追踪你",
+   "b": "本页面不使用 Cookie、统计分析或第三方脚本、字体，只在你的浏览器本地保存语言偏好。"
+  },
+  {
+   "t": "责任限制",
+   "b": "在法律允许的最大范围内，作者和贡献者不对因使用本项目内容而导致的任何损失负责，包括数据丢失、费用、安全事件或服务中断。"
+  }
+ ],
+ "zh-hant": [
+  {
+   "t": "非官方專案",
+   "b": "這是社群專案，與 Anthropic 沒有關係，也沒有獲得 Anthropic 贊助或認可。「Claude」、「Claude Code」及相關標誌是 Anthropic 的商標，這裡只用來指出所介紹的產品。"
+  },
+  {
+   "t": "內容可能過時或有誤",
+   "b": "每一則說明都是官方文件的簡化改寫，依「現狀」提供，不提供任何明示或默示的保證。Claude Code 經常更新，指令會新增、改名或移除。本專案與官方文件不一致時，以官方文件為準。"
+  },
+  {
+   "t": "使用風險請自行承擔",
+   "b": "部分指令會修改或還原檔案、執行指令、推送程式碼、把資料傳送到外部服務，或消耗付費用量。執行前請先了解指令會做什麼，並先提交或備份；未經檢查，請勿用在正式環境、重要資料或別人的儲存庫上。"
+  },
+  {
+   "t": "保護機密與隱私",
+   "b": "請勿在提示中放入 API 金鑰、密碼、權杖或他人的個人資料。匯出的對話、錯誤回報和記憶體快照可能含有這些內容；分享前請先檢查。"
+  },
+  {
+   "t": "範例僅供說明",
+   "b": "「最佳用法」中的範例是用來說明用途，並不是針對你的環境的操作指示。能否使用取決於版本、方案、平台和組織政策。"
+  },
+  {
+   "t": "本頁面不會追蹤你",
+   "b": "本頁面不使用 Cookie、流量分析、第三方腳本或字型。只會在你的瀏覽器本機儲存語言偏好。"
+  },
+  {
+   "t": "責任限制",
+   "b": "在法律允許的最大範圍內，作者和貢獻者對於使用本專案所造成的任何損失不負責任，包括資料遺失、費用、安全事件或服務中斷。"
+  }
+ ],
+ "ko": [
+  {
+   "t": "비공식 프로젝트",
+   "b": "커뮤니티가 만든 프로젝트로, Anthropic과 제휴하거나 후원 또는 보증을 받지 않았습니다. “Claude”, “Claude Code” 및 관련 표장은 Anthropic의 상표이며, 여기서는 설명하는 제품을 가리키기 위해서만 사용합니다."
+  },
+  {
+   "t": "오래되었거나 틀릴 수 있음",
+   "b": "모든 설명은 공식 문서를 쉽게 풀어 쓴 것이며, 명시적이든 묵시적이든 어떠한 보증도 없이 “있는 그대로” 제공됩니다. Claude Code는 자주 바뀌며, 명령이 추가되거나 이름이 바뀌거나 제거됩니다. 이 프로젝트와 공식 문서가 다르면 공식 문서가 우선합니다."
+  },
+  {
+   "t": "사용에 따른 책임은 본인에게 있음",
+   "b": "일부 명령은 파일을 바꾸거나 되돌리고, 명령을 실행하고, 코드를 푸시하고, 외부 서비스로 데이터를 보내거나, 유료 사용량을 소비합니다. 명령이 무엇을 하는지 이해한 뒤 실행하고, 먼저 커밋하거나 백업하세요. 검토 없이 운영 시스템, 중요한 데이터, 다른 사람의 저장소에 사용하지 마세요."
+  },
+  {
+   "t": "비밀 정보와 개인정보 보호",
+   "b": "API 키, 비밀번호, 토큰, 다른 사람의 개인정보를 프롬프트에 넣지 마세요. 내보낸 대화, 버그 신고, 메모리 스냅샷에 이런 정보가 들어 있을 수 있으니 공유하기 전에 검토하세요."
+  },
+  {
+   "t": "예시는 참고용",
+   "b": "“추천 사용법”의 예시는 용도를 설명하기 위한 것이며, 사용자 환경에 맞춘 지시가 아닙니다. 사용할 수 있는지는 버전, 플랜, 플랫폼, 조직 정책에 따라 다릅니다."
+  },
+  {
+   "t": "이 페이지는 사용자를 추적하지 않음",
+   "b": "이 페이지는 쿠키, 분석 도구, 서드파티 스크립트나 글꼴을 사용하지 않습니다. 언어 설정만 브라우저에 로컬로 저장합니다."
+  },
+  {
+   "t": "책임의 제한",
+   "b": "법이 허용하는 최대 범위에서, 작성자와 기여자는 이 프로젝트의 사용으로 생긴 어떠한 손해(데이터 손실, 요금, 보안 사고, 서비스 중단 포함)에 대해서도 책임지지 않습니다."
+  }
+ ],
+ "ru": [
+  {
+   "t": "Неофициальный проект",
+   "b": "Это проект сообщества. Он не связан с Anthropic, не спонсируется и не одобрен ею. «Claude», «Claude Code» и связанные с ними обозначения являются товарными знаками Anthropic и используются здесь только для указания на описываемый продукт."
+  },
+  {
+   "t": "Может быть устаревшим или неточным",
+   "b": "Каждое описание — упрощённый пересказ официальной документации, предоставляется «как есть», без каких-либо явных или подразумеваемых гарантий. Claude Code часто меняется: команды добавляют, переименовывают и удаляют. Если этот проект расходится с официальной документацией, верна официальная документация."
+  },
+  {
+   "t": "Используйте на свой риск",
+   "b": "Некоторые команды изменяют или откатывают файлы, выполняют команды, отправляют код в удалённый репозиторий, передают данные внешним сервисам или расходуют платные лимиты. Поймите, что делает команда, прежде чем её запускать, сначала сделайте коммит или резервную копию и не применяйте её без проверки к рабочим системам, важным данным или чужим репозиториям."
+  },
+  {
+   "t": "Берегите секреты и личные данные",
+   "b": "Не вставляйте в запросы API-ключи, пароли, токены или личные данные других людей. Экспортированные разговоры, отчёты об ошибках и снимки памяти могут их содержать; проверяйте их, прежде чем делиться."
+  },
+  {
+   "t": "Примеры приведены для наглядности",
+   "b": "Примеры «лучшего применения» объясняют назначение команды; это не инструкции для вашего окружения. Доступность зависит от версии, тарифа, платформы и политики организации."
+  },
+  {
+   "t": "Эта страница не следит за вами",
+   "b": "Страница не использует cookie, аналитику, сторонние скрипты или шрифты. Она хранит только выбранный вами язык, локально в вашем браузере."
+  },
+  {
+   "t": "Ограничение ответственности",
+   "b": "В максимальной степени, допустимой законом, авторы и участники проекта не несут ответственности за любой ущерб от использования этого проекта, включая потерю данных, расходы, инциденты безопасности или перебои в работе сервисов."
+  }
+ ],
+ "es": [
+  {
+   "t": "Proyecto no oficial",
+   "b": "Es un proyecto de la comunidad, sin relación con Anthropic y sin su patrocinio ni respaldo. «Claude», «Claude Code» y las marcas relacionadas son marcas comerciales de Anthropic y aquí se usan solo para identificar el producto descrito."
+  },
+  {
+   "t": "Puede estar desactualizado o tener errores",
+   "b": "Cada descripción es una paráfrasis simplificada de la documentación oficial, ofrecida «tal cual», sin garantía de ningún tipo, ni expresa ni implícita. Claude Code cambia a menudo: se añaden, renombran y eliminan comandos. Si este proyecto y la documentación oficial no coinciden, manda la documentación oficial."
+  },
+  {
+   "t": "Úsalo bajo tu propio riesgo",
+   "b": "Algunos comandos cambian o revierten archivos, ejecutan comandos, suben código, envían datos a servicios externos o consumen uso de pago. Entiende qué hace un comando antes de ejecutarlo, haz commit o una copia de seguridad antes, y no lo uses sin revisarlo en sistemas de producción, datos importantes o repositorios de otras personas."
+  },
+  {
+   "t": "Protege tus secretos y tu privacidad",
+   "b": "No pongas en los prompts claves de API, contraseñas, tokens ni datos personales de otras personas. Las conversaciones exportadas, los informes de errores y las instantáneas de memoria pueden contenerlos; revísalos antes de compartirlos."
+  },
+  {
+   "t": "Los ejemplos son ilustrativos",
+   "b": "Los ejemplos de «mejor uso» explican el propósito; no son instrucciones para tu entorno. La disponibilidad depende de la versión, el plan, la plataforma y las políticas de tu organización."
+  },
+  {
+   "t": "Esta página no te rastrea",
+   "b": "Esta página no usa cookies, analítica, scripts ni fuentes de terceros. Solo guarda tu preferencia de idioma, localmente en tu navegador."
+  },
+  {
+   "t": "Limitación de responsabilidad",
+   "b": "En la máxima medida que permita la ley, los autores y colaboradores no son responsables de ninguna pérdida derivada del uso de este proyecto, incluidas la pérdida de datos, los cargos, los incidentes de seguridad o la interrupción del servicio."
+  }
+ ]
 }

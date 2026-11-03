@@ -259,5 +259,353 @@
   "copied": "已复制 {c}",
   "selected": "已选中，请按 ⌘C / Ctrl+C 复制",
   "foot": "<p><b>数据来源：</b>依据 Claude Code 官方命令文档 {sourceLink} 整理，核对日期 {checked}。说明为意译和简化，不是官方翻译；如有出入，以官方文档为准。</p><p><b>参与改进：</b>发现错误或命令有更新，欢迎在仓库提交 Issue 或 Pull Request。{repoLink} · 内容许可 CC BY 4.0，代码许可 MIT。</p>"
+ },
+ "zh-hant": {
+  "badge": "非官方 · 社群維護",
+  "langLabel": "語言",
+  "skin": "主題",
+  "skins": {
+   "terminal": "終端機",
+   "graphite": "石墨",
+   "indigo": "靛藍",
+   "ocean": "海洋",
+   "ember": "餘燼",
+   "rose": "玫瑰",
+   "mono": "黑白",
+   "paper": "紙白",
+   "frost": "霜白",
+   "cyberpunk": "賽博龐克",
+   "matrix": "駭客任務",
+   "midnight": "午夜"
+  },
+  "skinGroups": {
+   "dark": "深色橫幅",
+   "light": "淺色",
+   "full": "全深色"
+  },
+  "results": "搜尋結果",
+  "hint": "↑↓ 選擇 · Enter 複製指令 · Esc 清除",
+  "qclear": "清除搜尋",
+  "suggest": "試試這些：",
+  "h1": "Claude Code 指令大全",
+  "lead": "用淺顯的中文說明 Claude Code 的每一個斜線指令：英文原意、能做什麼，以及什麼時候最好用。",
+  "keys": "隨時按 <kbd>/</kbd> 或 <kbd>⌘K</kbd> 搜尋 · 點一下指令即可複製",
+  "stats": [
+   "個指令",
+   "個情境",
+   "個安全標記",
+   "種語言"
+  ],
+  "howto": [
+   [
+    "/",
+    "開啟選單",
+    "在輸入框輸入 <code>/</code> 會開啟指令選單；繼續輸入可以篩選，例如 <code>/mo</code> 會縮小到 /model。"
+   ],
+   [
+    "[ ]",
+    "看懂語法",
+    "指令後面的文字是它的參數。<code>[ ]</code> 可省略，<code>&lt; &gt;</code> 必填，<code>|</code> 擇一。參數可以直接用中文寫。"
+   ],
+   [
+    "◇",
+    "指令、技能、工作流程",
+    "內建指令是寫在 CLI 裡的功能。技能是一組預先寫好、交給 Claude 的提示。工作流程會把工作分給好幾個背景代理。"
+   ],
+   [
+    "?",
+    "找不到某個指令？",
+    "許多指令取決於版本、方案、平台或是否啟用某項功能。以你輸入 <code>/</code> 後看到的清單為準；用 <code>/status</code> 查看你的版本。"
+   ]
+  ],
+  "scen": "依你想做的事找指令",
+  "scenD": "選一個情境；指令會依建議嘗試的順序列出。",
+  "back": "× 顯示全部指令",
+  "safety": "安全標記",
+  "safetyD": "標有這些記號的指令，使用時請特別小心。",
+  "link": "複製連結",
+  "copiedLink": "已複製這個指令的連結",
+  "riskChip": "請小心使用",
+  "disc": "免責聲明",
+  "nav": "分類",
+  "top": "回到頂端",
+  "search": "搜尋指令或說明，例如：復原、費用、背景、model",
+  "all": "全部指令",
+  "picks": "新手推薦",
+  "count": "{n} 個",
+  "pick": "★ 新手推薦",
+  "skill": "技能",
+  "workflow": "工作流程",
+  "removed": "已移除",
+  "since": "v{v}+",
+  "removedIn": "v{v} 已移除",
+  "word": "英文",
+  "use": "最佳用法",
+  "alias": "別名",
+  "empty": "找不到符合的結果。換個關鍵字試試，例如「復原」、「模型」或「背景」。",
+  "copied": "已複製 {c}",
+  "selected": "已選取，請按 ⌘C / Ctrl+C 複製",
+  "foot": "<p><b>資料來源：</b>依據 Claude Code 官方指令參考文件 {sourceLink} 改寫，查核日期 {checked}。說明經過簡化；如有出入，以官方文件為準。</p><p><b>參與貢獻：</b>歡迎在 {repoLink} 以 issue 或 pull request 提出更正和更新。內容採用 CC BY 4.0，程式碼採用 MIT。</p>"
+ },
+ "ko": {
+  "badge": "비공식 · 커뮤니티 관리",
+  "langLabel": "언어",
+  "skin": "테마",
+  "skins": {
+   "terminal": "터미널",
+   "graphite": "그래파이트",
+   "indigo": "인디고",
+   "ocean": "오션",
+   "ember": "엠버",
+   "rose": "로즈",
+   "mono": "모노",
+   "paper": "페이퍼",
+   "frost": "프로스트",
+   "cyberpunk": "사이버펑크",
+   "matrix": "매트릭스",
+   "midnight": "미드나잇"
+  },
+  "skinGroups": {
+   "dark": "어두운 배너",
+   "light": "밝은 테마",
+   "full": "어두운 페이지"
+  },
+  "results": "검색 결과",
+  "hint": "↑↓ 선택 · Enter 명령 복사 · Esc 지우기",
+  "qclear": "검색 지우기",
+  "suggest": "이런 상황에서 찾아보세요:",
+  "h1": "Claude Code 명령어",
+  "lead": "Claude Code의 모든 슬래시 명령을 쉬운 말로 설명합니다. 무엇을 하는지, 언제 가장 유용한지 알 수 있습니다.",
+  "keys": "언제든 <kbd>/</kbd> 또는 <kbd>⌘K</kbd>로 검색 · 명령을 클릭하면 복사",
+  "stats": [
+   "명령",
+   "상황",
+   "안전 표시",
+   "언어"
+  ],
+  "howto": [
+   [
+    "/",
+    "메뉴 열기",
+    "입력창에 <code>/</code>를 입력하면 명령 메뉴가 열립니다. 계속 입력하면 좁혀집니다. 예: <code>/mo</code>를 입력하면 /model만 남습니다."
+   ],
+   [
+    "[ ]",
+    "문법 읽는 법",
+    "명령 뒤에 쓰는 내용이 인수입니다. <code>[ ]</code>는 생략 가능, <code>&lt; &gt;</code>는 필수, <code>|</code>는 그중 하나. 인수는 한국어로 써도 됩니다."
+   ],
+   [
+    "◇",
+    "명령, 스킬, 워크플로",
+    "기본 제공 명령은 CLI에 내장되어 있습니다. 스킬은 Claude에게 건네는 묶음 프롬프트입니다. 워크플로는 작업을 여러 백그라운드 에이전트에게 나눠 줍니다."
+   ],
+   [
+    "?",
+    "명령이 안 보이나요?",
+    "많은 명령은 버전, 플랜, 플랫폼, 기능 활성화 여부에 따라 다릅니다. <code>/</code>를 입력했을 때 보이는 목록이 정답입니다. <code>/status</code>로 버전을 확인하세요."
+   ]
+  ],
+  "scen": "하고 싶은 일로 명령 찾기",
+  "scenD": "상황을 고르세요. 명령은 시도할 순서대로 나열됩니다.",
+  "back": "× 모든 명령 보기",
+  "safety": "안전 표시",
+  "safetyD": "이런 표시가 붙은 명령은 특히 조심해서 사용하세요.",
+  "link": "링크 복사",
+  "copiedLink": "이 명령의 링크를 복사했습니다",
+  "riskChip": "주의해서 사용",
+  "disc": "면책 조항",
+  "nav": "카테고리",
+  "top": "맨 위로",
+  "search": "명령이나 설명 검색 (예: 되감기, 비용, background)",
+  "all": "모든 명령",
+  "picks": "여기서 시작",
+  "count": "{n}개",
+  "pick": "★ 여기서 시작",
+  "skill": "스킬",
+  "workflow": "워크플로",
+  "removed": "제거됨",
+  "since": "v{v} 이상",
+  "removedIn": "v{v}에서 제거됨",
+  "word": "영어",
+  "use": "추천 사용법",
+  "alias": "별칭",
+  "empty": "결과가 없습니다. “되감기”, “모델”, “백그라운드” 같은 다른 단어로 검색해 보세요.",
+  "copied": "{c} 복사됨",
+  "selected": "선택했습니다. ⌘C / Ctrl+C로 복사하세요",
+  "foot": "<p><b>출처:</b> Claude Code 공식 명령 참고 문서 {sourceLink}를 바탕으로 풀어 썼습니다(확인일 {checked}). 설명은 간략화한 것이며, 공식 번역이 아닙니다. 차이가 있으면 공식 문서가 우선합니다.</p><p><b>참여하기:</b> 수정과 업데이트는 {repoLink}의 Issue나 Pull Request로 환영합니다. 내용은 CC BY 4.0, 코드는 MIT.</p>"
+ },
+ "ru": {
+  "badge": "Неофициально · Поддерживается сообществом",
+  "langLabel": "Язык",
+  "skin": "Тема",
+  "skins": {
+   "terminal": "Терминал",
+   "graphite": "Графит",
+   "indigo": "Индиго",
+   "ocean": "Океан",
+   "ember": "Угли",
+   "rose": "Роза",
+   "mono": "Моно",
+   "paper": "Бумага",
+   "frost": "Иней",
+   "cyberpunk": "Киберпанк",
+   "matrix": "Матрица",
+   "midnight": "Полночь"
+  },
+  "skinGroups": {
+   "dark": "Тёмная шапка",
+   "light": "Светлые",
+   "full": "Тёмная страница"
+  },
+  "results": "Результаты",
+  "hint": "↑↓ — выбор · Enter — скопировать команду · Esc — очистить",
+  "qclear": "Очистить поиск",
+  "suggest": "Попробуйте одно из этих:",
+  "h1": "Команды Claude Code",
+  "lead": "Все слэш-команды Claude Code простым языком: что делает команда и когда она особенно полезна.",
+  "keys": "Нажмите <kbd>/</kbd> или <kbd>⌘K</kbd>, чтобы искать в любой момент · нажмите на команду, чтобы скопировать",
+  "stats": [
+   "команды",
+   "ситуации",
+   "метки безопасности",
+   "языки"
+  ],
+  "howto": [
+   [
+    "/",
+    "Откройте меню",
+    "Введите <code>/</code> в строке ввода, чтобы открыть меню команд; продолжайте печатать, чтобы отфильтровать, например <code>/mo</code> оставит /model."
+   ],
+   [
+    "[ ]",
+    "Как читать синтаксис",
+    "Текст после команды — её аргумент. <code>[ ]</code> — необязательно, <code>&lt; &gt;</code> — обязательно, <code>|</code> — один из вариантов. Аргументы можно писать на любом языке, в том числе по-русски."
+   ],
+   [
+    "◇",
+    "Команды, навыки, рабочие процессы",
+    "Встроенные команды заложены в сам CLI. Навыки — готовые запросы, которые передаются Claude. Рабочие процессы распределяют работу между несколькими фоновыми агентами."
+   ],
+   [
+    "?",
+    "Не видите команду?",
+    "Многие команды зависят от версии, тарифа, платформы или включённой функции. Верен тот список, который вы видите после ввода <code>/</code>; свою версию можно узнать через <code>/status</code>."
+   ]
+  ],
+  "scen": "Найдите команду по задаче",
+  "scenD": "Выберите ситуацию; команды перечислены в том порядке, в котором их стоит пробовать.",
+  "back": "× Показать все команды",
+  "safety": "Метки безопасности",
+  "safetyD": "Будьте особенно осторожны с командами, отмеченными так.",
+  "link": "Копировать ссылку",
+  "copiedLink": "Ссылка на эту команду скопирована",
+  "riskChip": "Осторожно",
+  "disc": "Отказ от ответственности",
+  "nav": "Категории",
+  "top": "Наверх",
+  "search": "Поиск по командам и описаниям, например rewind, стоимость, фон",
+  "all": "Все команды",
+  "picks": "С чего начать",
+  "count": "Всего: {n}",
+  "pick": "★ С чего начать",
+  "skill": "Навык",
+  "workflow": "Рабочий процесс",
+  "removed": "Удалена",
+  "since": "v{v}+",
+  "removedIn": "удалена в v{v}",
+  "word": "англ.",
+  "use": "Лучшее применение",
+  "alias": "Псевдонимы",
+  "empty": "Ничего не найдено. Попробуйте другое слово, например «rewind», «model» или «фон».",
+  "copied": "Скопировано: {c}",
+  "selected": "Выбрано. Нажмите ⌘C / Ctrl+C, чтобы скопировать",
+  "foot": "<p><b>Источник:</b> пересказ официального справочника команд Claude Code, {sourceLink}, проверено {checked}. Описания упрощены; если они расходятся, верна официальная документация.</p><p><b>Участие:</b> исправления и обновления принимаются в виде issues или pull request на {repoLink}. Контент — CC BY 4.0, код — MIT.</p>"
+ },
+ "es": {
+  "badge": "No oficial · Mantenido por la comunidad",
+  "langLabel": "Idioma",
+  "skin": "Tema",
+  "skins": {
+   "terminal": "Terminal",
+   "graphite": "Grafito",
+   "indigo": "Índigo",
+   "ocean": "Océano",
+   "ember": "Brasa",
+   "rose": "Rosa",
+   "mono": "Monocromo",
+   "paper": "Papel",
+   "frost": "Escarcha",
+   "cyberpunk": "Cyberpunk",
+   "matrix": "Matrix",
+   "midnight": "Medianoche"
+  },
+  "skinGroups": {
+   "dark": "Banner oscuro",
+   "light": "Claro",
+   "full": "Página oscura"
+  },
+  "results": "Resultados",
+  "hint": "↑↓ para elegir · Enter para copiar el comando · Esc para borrar",
+  "qclear": "Borrar búsqueda",
+  "suggest": "Prueba con una de estas:",
+  "h1": "Comandos de Claude Code",
+  "lead": "Todos los comandos de barra de Claude Code explicados con palabras sencillas: qué hacen y cuándo son más útiles.",
+  "keys": "Pulsa <kbd>/</kbd> o <kbd>⌘K</kbd> para buscar cuando quieras · haz clic en un comando para copiarlo",
+  "stats": [
+   "comandos",
+   "situaciones",
+   "etiquetas de seguridad",
+   "idiomas"
+  ],
+  "howto": [
+   [
+    "/",
+    "Abre el menú",
+    "Escribe <code>/</code> en el prompt para abrir el menú de comandos; sigue escribiendo para filtrar, por ejemplo <code>/mo</code> deja solo /model."
+   ],
+   [
+    "[ ]",
+    "Lee la sintaxis",
+    "El texto después del comando es su argumento. <code>[ ]</code> opcional, <code>&lt; &gt;</code> obligatorio, <code>|</code> uno de ellos. Puedes escribir los argumentos en cualquier idioma."
+   ],
+   [
+    "◇",
+    "Comandos, habilidades, flujos de trabajo",
+    "Los comandos integrados están programados en la CLI. Las habilidades son prompts incluidos que se le entregan a Claude. Los flujos de trabajo reparten el trabajo entre varios agentes en segundo plano."
+   ],
+   [
+    "?",
+    "¿Falta un comando?",
+    "Muchos comandos dependen de la versión, el plan, la plataforma o de que una función esté activada. La lista que ves al escribir <code>/</code> es la que vale; comprueba tu versión con <code>/status</code>."
+   ]
+  ],
+  "scen": "Busca un comando según lo que quieres hacer",
+  "scenD": "Elige una situación; los comandos aparecen en el orden en que conviene probarlos.",
+  "back": "× Mostrar todos los comandos",
+  "safety": "Etiquetas de seguridad",
+  "safetyD": "Ten especial cuidado con los comandos marcados así.",
+  "link": "Copiar enlace",
+  "copiedLink": "Se copió un enlace a este comando",
+  "riskChip": "Úsalo con cuidado",
+  "disc": "Aviso legal",
+  "nav": "Categorías",
+  "top": "Volver arriba",
+  "search": "Busca comandos o descripciones, p. ej. rebobinar, costo, segundo plano",
+  "all": "Todos los comandos",
+  "picks": "Empieza aquí",
+  "count": "{n}",
+  "pick": "★ Empieza aquí",
+  "skill": "Habilidad",
+  "workflow": "Flujo de trabajo",
+  "removed": "Eliminado",
+  "since": "v{v}+",
+  "removedIn": "eliminado en v{v}",
+  "word": "Inglés",
+  "use": "Mejor uso",
+  "alias": "Alias",
+  "empty": "Sin resultados. Prueba con otra palabra, como «rewind», «model» o «background».",
+  "copied": "Copiado: {c}",
+  "selected": "Seleccionado. Pulsa ⌘C / Ctrl+C para copiar",
+  "foot": "<p><b>Fuente:</b> paráfrasis de la referencia oficial de comandos de Claude Code, {sourceLink}, revisada el {checked}. Las descripciones están simplificadas; si no coinciden, manda la documentación oficial.</p><p><b>Colabora:</b> las correcciones y actualizaciones son bienvenidas como issues o pull requests en {repoLink}. Contenido CC BY 4.0, código MIT.</p>"
  }
 }

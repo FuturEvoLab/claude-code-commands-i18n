@@ -1,32 +1,317 @@
 [
-  {"id": "session", "name": {"zh": "对话与上下文", "ja": "会話とコンテキスト", "en": "Conversation & context"},
-   "desc": {"zh": "新开、压缩、撤销、找回对话，管理 Claude 的「记忆空间」", "ja": "会話の新規作成・圧縮・巻き戻し・再開、Claude の「記憶の容量」の管理", "en": "Start, compact, rewind and resume conversations; manage the context window"}},
-  {"id": "model", "name": {"zh": "模型与推理", "ja": "モデルと推論", "en": "Model & reasoning"},
-   "desc": {"zh": "换模型、调思考力度、调速度", "ja": "モデルの切り替え、考える深さや速度の調整", "en": "Switch models, reasoning effort and speed"}},
-  {"id": "project", "name": {"zh": "项目与文件", "ja": "プロジェクトとファイル", "en": "Project & files"},
-   "desc": {"zh": "让 Claude 认识你的项目、访问文件夹、查看改动", "ja": "プロジェクトを Claude に理解させる、フォルダーを追加する、変更を確認する", "en": "Set up project memory, add directories, review changes"}},
-  {"id": "quality", "name": {"zh": "审查与验证", "ja": "レビューと検証", "en": "Review & verification"},
-   "desc": {"zh": "找 bug、找安全漏洞、清理代码、实际运行验证", "ja": "バグ・脆弱性の検出、コード整理、実際に動かして確認", "en": "Find bugs and vulnerabilities, clean up code, run the app to verify"}},
-  {"id": "parallel", "name": {"zh": "并行与后台", "ja": "並列・バックグラウンド", "en": "Parallel & background work"},
-   "desc": {"zh": "同时让多个 Claude 干活，或放到后台运行", "ja": "複数の Claude を同時に動かす、バックグラウンドで実行する", "en": "Run several agents at once or detach work to the background"}},
-  {"id": "automation", "name": {"zh": "定时与自动化", "ja": "自動化とスケジュール", "en": "Automation & scheduling"},
-   "desc": {"zh": "让它按间隔反复做、按时间表做、自动修 PR", "ja": "一定間隔で繰り返す、決まった時刻に実行する、PR を自動修正する", "en": "Repeat on an interval, run on a schedule, auto-fix pull requests"}},
-  {"id": "create", "name": {"zh": "网页、幻灯片与设计", "ja": "ページ・スライド・デザイン", "en": "Artifacts, slides & design"},
-   "desc": {"zh": "产出可以分享的网页、演示文稿、设计稿和图表", "ja": "共有できるページ、スライド、デザイン、グラフを作る", "en": "Produce shareable pages, decks, designs and charts"}},
-  {"id": "extend", "name": {"zh": "插件、技能与外部连接", "ja": "プラグイン・スキル・外部連携", "en": "Plugins, skills & integrations"},
-   "desc": {"zh": "给 Claude 装新能力：插件、技能、MCP 连接器、浏览器、编辑器", "ja": "Claude に新しい機能を追加：プラグイン、スキル、MCP、ブラウザー、エディター", "en": "Extend Claude with plugins, skills, MCP servers, browser and IDE integrations"}},
-  {"id": "safety", "name": {"zh": "权限与安全", "ja": "権限とセキュリティ", "en": "Permissions & safety"},
-   "desc": {"zh": "控制 Claude 能做什么、什么要先问你", "ja": "Claude にできること・事前確認が必要なことを決める", "en": "Control what Claude may do and what needs your approval"}},
-  {"id": "ui", "name": {"zh": "设置与界面", "ja": "設定と表示", "en": "Settings & interface"},
-   "desc": {"zh": "主题、颜色、状态栏、快捷键、语音输入", "ja": "テーマ、色、ステータスライン、ショートカット、音声入力", "en": "Theme, colors, status line, keybindings, voice"}},
-  {"id": "account", "name": {"zh": "账号与用量", "ja": "アカウントと使用量", "en": "Account & usage"},
-   "desc": {"zh": "登录、查额度、看费用、升级套餐", "ja": "ログイン、使用量や料金の確認、プランのアップグレード", "en": "Sign in, check limits and cost, upgrade"}},
-  {"id": "remote", "name": {"zh": "云端、远程与其他设备", "ja": "クラウド・リモート・他のデバイス", "en": "Cloud, remote & other devices"},
-   "desc": {"zh": "在桌面 App、手机、网页、云端之间接力", "ja": "デスクトップアプリ、スマホ、Web、クラウドの間で作業を引き継ぐ", "en": "Hand work between desktop, mobile, web and cloud"}},
-  {"id": "support", "name": {"zh": "诊断与反馈", "ja": "診断とフィードバック", "en": "Diagnostics & feedback"},
-   "desc": {"zh": "出问题时先看这里", "ja": "困ったときはここから", "en": "Start here when something is wrong"}},
-  {"id": "misc", "name": {"zh": "其他", "ja": "その他", "en": "Other"},
-   "desc": {"zh": "与日常工作无关的小功能", "ja": "作業には直接関係しない小さな機能", "en": "Small extras"}},
-  {"id": "removed", "name": {"zh": "已移除", "ja": "削除済み", "en": "Removed"},
-   "desc": {"zh": "旧教程里可能还有，但新版本已经不能用", "ja": "古い解説には出てくるが、新しいバージョンでは使えない", "en": "Still mentioned in older guides but no longer available"}}
+ {
+  "id": "session",
+  "name": {
+   "en": "Conversation & context",
+   "ja": "会話とコンテキスト",
+   "zh": "对话与上下文",
+   "zh-hant": "對話與上下文",
+   "ko": "대화와 컨텍스트",
+   "ru": "Разговор и контекст",
+   "es": "Conversación y contexto"
+  },
+  "desc": {
+   "en": "Start, compact, rewind and resume conversations; manage the context window",
+   "ja": "会話の新規作成・圧縮・巻き戻し・再開、Claude の「記憶の容量」の管理",
+   "zh": "新开、压缩、撤销、找回对话，管理 Claude 的「记忆空间」",
+   "zh-hant": "開新對話、壓縮、倒帶、恢復對話；管理上下文視窗",
+   "ko": "대화를 새로 시작, 압축, 되감기, 재개하고 컨텍스트 창을 관리합니다",
+   "ru": "Начинать, сжимать, откатывать и возобновлять разговоры; управлять окном контекста",
+   "es": "Empezar, compactar, rebobinar y retomar conversaciones; gestionar la ventana de contexto"
+  }
+ },
+ {
+  "id": "model",
+  "name": {
+   "en": "Model & reasoning",
+   "ja": "モデルと推論",
+   "zh": "模型与推理",
+   "zh-hant": "模型與推理",
+   "ko": "모델과 추론",
+   "ru": "Модель и рассуждения",
+   "es": "Modelo y razonamiento"
+  },
+  "desc": {
+   "en": "Switch models, reasoning effort and speed",
+   "ja": "モデルの切り替え、考える深さや速度の調整",
+   "zh": "换模型、调思考力度、调速度",
+   "zh-hant": "切換模型、調整思考力度和速度",
+   "ko": "모델, 추론 노력 수준, 속도를 바꿉니다",
+   "ru": "Переключать модель, уровень усилий и скорость",
+   "es": "Cambiar de modelo, el esfuerzo de razonamiento y la velocidad"
+  }
+ },
+ {
+  "id": "project",
+  "name": {
+   "en": "Project & files",
+   "ja": "プロジェクトとファイル",
+   "zh": "项目与文件",
+   "zh-hant": "專案與檔案",
+   "ko": "프로젝트와 파일",
+   "ru": "Проект и файлы",
+   "es": "Proyecto y archivos"
+  },
+  "desc": {
+   "en": "Set up project memory, add directories, review changes",
+   "ja": "プロジェクトを Claude に理解させる、フォルダーを追加する、変更を確認する",
+   "zh": "让 Claude 认识你的项目、访问文件夹、查看改动",
+   "zh-hant": "設定專案記憶、新增資料夾、檢視修改",
+   "ko": "프로젝트 메모리를 설정하고, 폴더를 추가하고, 변경 사항을 검토합니다",
+   "ru": "Настроить память проекта, добавить папки, просмотреть изменения",
+   "es": "Configurar la memoria del proyecto, añadir carpetas, revisar cambios"
+  }
+ },
+ {
+  "id": "quality",
+  "name": {
+   "en": "Review & verification",
+   "ja": "レビューと検証",
+   "zh": "审查与验证",
+   "zh-hant": "審查與驗證",
+   "ko": "리뷰와 검증",
+   "ru": "Ревью и проверка",
+   "es": "Revisión y verificación"
+  },
+  "desc": {
+   "en": "Find bugs and vulnerabilities, clean up code, run the app to verify",
+   "ja": "バグ・脆弱性の検出、コード整理、実際に動かして確認",
+   "zh": "找 bug、找安全漏洞、清理代码、实际运行验证",
+   "zh-hant": "找出 bug 和漏洞、整理程式碼、實際執行應用程式來驗證",
+   "ko": "버그와 취약점을 찾고, 코드를 정리하고, 앱을 실행해 확인합니다",
+   "ru": "Находить ошибки и уязвимости, приводить код в порядок, запускать приложение для проверки",
+   "es": "Encontrar errores y vulnerabilidades, limpiar el código, ejecutar la aplicación para verificar"
+  }
+ },
+ {
+  "id": "parallel",
+  "name": {
+   "en": "Parallel & background work",
+   "ja": "並列・バックグラウンド",
+   "zh": "并行与后台",
+   "zh-hant": "平行與背景工作",
+   "ko": "병렬 작업과 백그라운드",
+   "ru": "Параллельная и фоновая работа",
+   "es": "Trabajo en paralelo y en segundo plano"
+  },
+  "desc": {
+   "en": "Run several agents at once or detach work to the background",
+   "ja": "複数の Claude を同時に動かす、バックグラウンドで実行する",
+   "zh": "同时让多个 Claude 干活，或放到后台运行",
+   "zh-hant": "同時執行多個代理，或把工作移到背景",
+   "ko": "여러 에이전트를 동시에 실행하거나 작업을 백그라운드로 보냅니다",
+   "ru": "Запускать несколько агентов сразу или переводить работу в фон",
+   "es": "Ejecutar varios agentes a la vez o pasar trabajo a segundo plano"
+  }
+ },
+ {
+  "id": "automation",
+  "name": {
+   "en": "Automation & scheduling",
+   "ja": "自動化とスケジュール",
+   "zh": "定时与自动化",
+   "zh-hant": "自動化與排程",
+   "ko": "자동화와 예약",
+   "ru": "Автоматизация и расписание",
+   "es": "Automatización y programación"
+  },
+  "desc": {
+   "en": "Repeat on an interval, run on a schedule, auto-fix pull requests",
+   "ja": "一定間隔で繰り返す、決まった時刻に実行する、PR を自動修正する",
+   "zh": "让它按间隔反复做、按时间表做、自动修 PR",
+   "zh-hant": "依間隔重複、依排程執行、自動修正 pull request",
+   "ko": "일정 간격으로 반복하고, 예약 실행하고, Pull Request를 자동 수정합니다",
+   "ru": "Повторять через интервал, запускать по расписанию, автоматически исправлять pull request",
+   "es": "Repetir cada cierto tiempo, ejecutar según un horario, corregir pull requests automáticamente"
+  }
+ },
+ {
+  "id": "create",
+  "name": {
+   "en": "Artifacts, slides & design",
+   "ja": "ページ・スライド・デザイン",
+   "zh": "网页、幻灯片与设计",
+   "zh-hant": "網頁、投影片與設計",
+   "ko": "아티팩트, 슬라이드, 디자인",
+   "ru": "Артефакты, слайды и дизайн",
+   "es": "Artefactos, diapositivas y diseño"
+  },
+  "desc": {
+   "en": "Produce shareable pages, decks, designs and charts",
+   "ja": "共有できるページ、スライド、デザイン、グラフを作る",
+   "zh": "产出可以分享的网页、演示文稿、设计稿和图表",
+   "zh-hant": "製作可以分享的網頁、簡報、設計和圖表",
+   "ko": "공유할 수 있는 페이지, 발표 자료, 디자인, 차트를 만듭니다",
+   "ru": "Создавать страницы для общего доступа, презентации, макеты и графики",
+   "es": "Crear páginas, presentaciones, diseños y gráficos para compartir"
+  }
+ },
+ {
+  "id": "extend",
+  "name": {
+   "en": "Plugins, skills & integrations",
+   "ja": "プラグイン・スキル・外部連携",
+   "zh": "插件、技能与外部连接",
+   "zh-hant": "外掛、技能與整合",
+   "ko": "플러그인, 스킬, 연동",
+   "ru": "Плагины, навыки и интеграции",
+   "es": "Complementos, habilidades e integraciones"
+  },
+  "desc": {
+   "en": "Extend Claude with plugins, skills, MCP servers, browser and IDE integrations",
+   "ja": "Claude に新しい機能を追加：プラグイン、スキル、MCP、ブラウザー、エディター",
+   "zh": "给 Claude 装新能力：插件、技能、MCP 连接器、浏览器、编辑器",
+   "zh-hant": "用外掛、技能、MCP 伺服器、瀏覽器和 IDE 整合擴充 Claude",
+   "ko": "플러그인, 스킬, MCP 서버, 브라우저와 IDE 연동으로 Claude의 기능을 넓힙니다",
+   "ru": "Расширять Claude плагинами, навыками, серверами MCP, интеграциями с браузером и IDE",
+   "es": "Ampliar Claude con complementos, habilidades, servidores MCP e integraciones con el navegador y el IDE"
+  }
+ },
+ {
+  "id": "safety",
+  "name": {
+   "en": "Permissions & safety",
+   "ja": "権限とセキュリティ",
+   "zh": "权限与安全",
+   "zh-hant": "權限與安全",
+   "ko": "권한과 안전",
+   "ru": "Разрешения и безопасность",
+   "es": "Permisos y seguridad"
+  },
+  "desc": {
+   "en": "Control what Claude may do and what needs your approval",
+   "ja": "Claude にできること・事前確認が必要なことを決める",
+   "zh": "控制 Claude 能做什么、什么要先问你",
+   "zh-hant": "控制 Claude 可以做什麼、哪些事需要你核准",
+   "ko": "Claude가 할 수 있는 일과 내 승인이 필요한 일을 정합니다",
+   "ru": "Решать, что Claude может делать сам, а что требует вашего одобрения",
+   "es": "Controlar qué puede hacer Claude y qué necesita tu aprobación"
+  }
+ },
+ {
+  "id": "ui",
+  "name": {
+   "en": "Settings & interface",
+   "ja": "設定と表示",
+   "zh": "设置与界面",
+   "zh-hant": "設定與介面",
+   "ko": "설정과 화면",
+   "ru": "Настройки и интерфейс",
+   "es": "Configuración e interfaz"
+  },
+  "desc": {
+   "en": "Theme, colors, status line, keybindings, voice",
+   "ja": "テーマ、色、ステータスライン、ショートカット、音声入力",
+   "zh": "主题、颜色、状态栏、快捷键、语音输入",
+   "zh-hant": "主題、顏色、狀態列、快速鍵、語音",
+   "ko": "테마, 색, 상태 표시줄, 단축키, 음성",
+   "ru": "Тема, цвета, строка состояния, сочетания клавиш, голос",
+   "es": "Tema, colores, línea de estado, atajos de teclado, voz"
+  }
+ },
+ {
+  "id": "account",
+  "name": {
+   "en": "Account & usage",
+   "ja": "アカウントと使用量",
+   "zh": "账号与用量",
+   "zh-hant": "帳號與用量",
+   "ko": "계정과 사용량",
+   "ru": "Аккаунт и использование",
+   "es": "Cuenta y uso"
+  },
+  "desc": {
+   "en": "Sign in, check limits and cost, upgrade",
+   "ja": "ログイン、使用量や料金の確認、プランのアップグレード",
+   "zh": "登录、查额度、看费用、升级套餐",
+   "zh-hant": "登入、查看上限和費用、升級",
+   "ko": "로그인, 한도와 비용 확인, 업그레이드",
+   "ru": "Вход, проверка лимитов и стоимости, повышение тарифа",
+   "es": "Iniciar sesión, revisar límites y costos, mejorar el plan"
+  }
+ },
+ {
+  "id": "remote",
+  "name": {
+   "en": "Cloud, remote & other devices",
+   "ja": "クラウド・リモート・他のデバイス",
+   "zh": "云端、远程与其他设备",
+   "zh-hant": "雲端、遠端與其他裝置",
+   "ko": "클라우드, 원격, 다른 기기",
+   "ru": "Облако, удалённая работа и другие устройства",
+   "es": "Nube, acceso remoto y otros dispositivos"
+  },
+  "desc": {
+   "en": "Hand work between desktop, mobile, web and cloud",
+   "ja": "デスクトップアプリ、スマホ、Web、クラウドの間で作業を引き継ぐ",
+   "zh": "在桌面 App、手机、网页、云端之间接力",
+   "zh-hant": "在桌面、手機、網頁和雲端之間接續工作",
+   "ko": "데스크톱, 모바일, 웹, 클라우드 사이에서 작업을 넘겨받습니다",
+   "ru": "Передавать работу между компьютером, телефоном, веб-версией и облаком",
+   "es": "Pasar el trabajo entre escritorio, móvil, web y nube"
+  }
+ },
+ {
+  "id": "support",
+  "name": {
+   "en": "Diagnostics & feedback",
+   "ja": "診断とフィードバック",
+   "zh": "诊断与反馈",
+   "zh-hant": "診斷與意見回饋",
+   "ko": "진단과 피드백",
+   "ru": "Диагностика и отзывы",
+   "es": "Diagnóstico y comentarios"
+  },
+  "desc": {
+   "en": "Start here when something is wrong",
+   "ja": "困ったときはここから",
+   "zh": "出问题时先看这里",
+   "zh-hant": "出問題時先看這裡",
+   "ko": "문제가 생기면 여기서 시작하세요",
+   "ru": "Начните отсюда, если что-то не так",
+   "es": "Empieza aquí cuando algo falla"
+  }
+ },
+ {
+  "id": "misc",
+  "name": {
+   "en": "Other",
+   "ja": "その他",
+   "zh": "其他",
+   "zh-hant": "其他",
+   "ko": "기타",
+   "ru": "Прочее",
+   "es": "Otros"
+  },
+  "desc": {
+   "en": "Small extras",
+   "ja": "作業には直接関係しない小さな機能",
+   "zh": "与日常工作无关的小功能",
+   "zh-hant": "小功能",
+   "ko": "작은 부가 기능",
+   "ru": "Небольшие дополнения",
+   "es": "Pequeños extras"
+  }
+ },
+ {
+  "id": "removed",
+  "name": {
+   "en": "Removed",
+   "ja": "削除済み",
+   "zh": "已移除",
+   "zh-hant": "已移除",
+   "ko": "제거됨",
+   "ru": "Удалённые",
+   "es": "Eliminados"
+  },
+  "desc": {
+   "en": "Still mentioned in older guides but no longer available",
+   "ja": "古い解説には出てくるが、新しいバージョンでは使えない",
+   "zh": "旧教程里可能还有，但新版本已经不能用",
+   "zh-hant": "舊的教學中可能還看得到，但已經無法使用",
+   "ko": "예전 가이드에는 나오지만 이제는 쓸 수 없습니다",
+   "ru": "Ещё упоминаются в старых руководствах, но больше недоступны",
+   "es": "Aún aparecen en guías antiguas, pero ya no están disponibles"
+  }
+ }
 ]

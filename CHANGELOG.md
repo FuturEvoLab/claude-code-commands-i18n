@@ -2,6 +2,9 @@
 
 ## 1.1.0 — 2026-11-03
 
+- Seven languages, in this order: English, Japanese, Simplified Chinese, Traditional Chinese, Korean, Russian, Spanish. Each has its own README; the page title and search follow the chosen language.
+- Languages, page strings and README strings now live in `data/`; `scripts/language_tool.py` checks and merges a new language with the same rules as the build.
+- Proofreading: clearer `/subtask` description in five languages; README intros list all languages; the language count on the page follows the data.
 - Full-dark themes Cyberpunk, Matrix (with a digital-rain banner that respects reduced motion) and Midnight keep the whole page dark.
 - Eight more color themes besides the default Terminal: Graphite, Indigo, Ocean, Ember, Rose and Mono with a dark banner, and Paper and Frost, which stay light even in system dark mode. The choice is remembered per browser.
 - Language and theme switches are dropdowns; the language one stays in the top bar on phones.

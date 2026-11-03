@@ -1,6 +1,6 @@
-<title>Claude Code Commands · English / 日本語 / 中文</title>
+<title>Claude Code Commands in 7 Languages</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="An unofficial trilingual (English / Japanese / Chinese) plain-language reference to every Claude Code slash command.">
+<meta name="description" content="An unofficial plain-language reference, in 7 languages, to every Claude Code slash command.">
 <meta name="referrer" content="no-referrer">
 <style>
 /* Layout: terminal-style hero band → onboarding + scenarios → sticky prompt bar → sidebar nav + card grid → disclaimer footer.
@@ -445,9 +445,10 @@ function setLang(l){
   $("qclear").setAttribute("aria-label", t.qclear); $("qclear").title = t.qclear;
   $("badge").textContent = t.badge;
   $("h1").textContent = t.h1;
+  document.title = t.h1;
   $("lead").innerHTML = esc(t.lead) + "<small>" + t.keys + "</small>";
   const live = CMDS.filter(c => c.kind !== "removed");
-  const nums = [live.length, SCENS.length, CMDS.filter(c => (c.risk || []).length).length, 3];
+  const nums = [live.length, SCENS.length, CMDS.filter(c => (c.risk || []).length).length, LANGINFO.length];
   $("stats").innerHTML = nums.map((n, i) => `<div class="stat"><b>${n}</b><span>${esc(t.stats[i])}</span></div>`).join("");
   $("howto").innerHTML = t.howto.map(([ic, b, p]) => `<div><span class="ic">${esc(ic)}</span><b>${b}</b><p>${p}</p></div>`).join("");
   $("scen-h").textContent = t.scen; $("scen-d").textContent = t.scenD;

@@ -1,17 +1,112 @@
 [
-  {"id": "cost", "icon": "¥",
-   "name": {"zh": "可能产生费用", "ja": "費用が発生する場合あり", "en": "May cost money"},
-   "desc": {"zh": "可能消耗付费额度或产生额外费用。使用前用 `/usage` 确认额度，并查看官方价格说明。", "ja": "有料の使用量を消費したり、追加料金が発生したりする場合があります。使う前に `/usage` で確認し、公式の料金説明を確認してください。", "en": "Can consume paid usage or incur extra charges. Check `/usage` and the official pricing first."}},
-  {"id": "external", "icon": "↗",
-   "name": {"zh": "会发送到外部", "ja": "外部に送信", "en": "Sends data out"},
-   "desc": {"zh": "会把对话、代码或评论发送到其他服务（如 Anthropic、GitHub、云端会话、浏览器中的网站），或推送到远程仓库。确认内容和目标后再运行。", "ja": "会話・コード・コメントを他のサービス（Anthropic、GitHub、クラウドセッション、ブラウザー上のサイトなど）に送ったり、リモートに push したりします。内容と送信先を確認してから実行してください。", "en": "Sends conversation, code or comments to another service (Anthropic, GitHub, cloud sessions, sites in your browser) or pushes to a remote. Check what goes where first."}},
-  {"id": "secrets", "icon": "⚿",
-   "name": {"zh": "可能包含敏感信息", "ja": "機密情報を含む場合あり", "en": "May expose secrets"},
-   "desc": {"zh": "生成的文件、剪贴板内容或报告中可能含有对话内容、密钥、密码或个人信息。分享前务必检查并删除敏感内容。", "ja": "作られるファイル・クリップボード・レポートに、会話内容・API キー・パスワード・個人情報が含まれる場合があります。共有する前に必ず確認して削除してください。", "en": "Output (files, clipboard, reports) can contain conversation text, keys, passwords or personal data. Review and redact before sharing."}},
-  {"id": "files", "icon": "⇄",
-   "name": {"zh": "会大范围修改文件", "ja": "ファイルを広く変更", "en": "Broad file changes"},
-   "desc": {"zh": "可能一次修改或还原很多文件。运行前先用 Git 提交或备份，运行后用 `/diff` 检查。", "ja": "多くのファイルを一度に変更・復元する場合があります。実行前に Git でコミットかバックアップをし、実行後は `/diff` で確認してください。", "en": "Can change or revert many files at once. Commit or back up first, and review with `/diff` afterwards."}},
-  {"id": "perms", "icon": "⚑",
-   "name": {"zh": "会改变安全设置", "ja": "安全設定を変更", "en": "Changes safety settings"},
-   "desc": {"zh": "会改变 Claude 无需询问就能执行的操作范围，或其他安全相关设置。只放行你理解且信任的操作。", "ja": "Claude が確認なしで実行できる範囲など、安全に関わる設定を変えます。理解して信頼できる操作だけを許可してください。", "en": "Changes what Claude may do without asking, or other safety settings. Only allow actions you understand and trust."}}
+ {
+  "id": "cost",
+  "icon": "¥",
+  "name": {
+   "en": "May cost money",
+   "ja": "費用が発生する場合あり",
+   "zh": "可能产生费用",
+   "zh-hant": "可能產生費用",
+   "ko": "비용이 들 수 있음",
+   "ru": "Может стоить денег",
+   "es": "Puede costar dinero"
+  },
+  "desc": {
+   "en": "Can consume paid usage or incur extra charges. Check `/usage` and the official pricing first.",
+   "ja": "有料の使用量を消費したり、追加料金が発生したりする場合があります。使う前に `/usage` で確認し、公式の料金説明を確認してください。",
+   "zh": "可能消耗付费额度或产生额外费用。使用前用 `/usage` 确认额度，并查看官方价格说明。",
+   "zh-hant": "可能消耗付費用量或產生額外費用。請先查看 `/usage` 和官方價格說明。",
+   "ko": "유료 사용량을 소비하거나 추가 요금이 발생할 수 있습니다. 먼저 `/usage`와 공식 요금 안내를 확인하세요.",
+   "ru": "Может расходовать платные лимиты или приводить к дополнительной оплате. Сначала проверьте `/usage` и официальные цены.",
+   "es": "Puede consumir uso de pago o generar cargos extra. Revisa primero `/usage` y los precios oficiales."
+  }
+ },
+ {
+  "id": "external",
+  "icon": "↗",
+  "name": {
+   "en": "Sends data out",
+   "ja": "外部に送信",
+   "zh": "会发送到外部",
+   "zh-hant": "會傳送到外部",
+   "ko": "외부로 데이터 전송",
+   "ru": "Отправляет данные наружу",
+   "es": "Envía datos fuera"
+  },
+  "desc": {
+   "en": "Sends conversation, code or comments to another service (Anthropic, GitHub, cloud sessions, sites in your browser) or pushes to a remote. Check what goes where first.",
+   "ja": "会話・コード・コメントを他のサービス（Anthropic、GitHub、クラウドセッション、ブラウザー上のサイトなど）に送ったり、リモートに push したりします。内容と送信先を確認してから実行してください。",
+   "zh": "会把对话、代码或评论发送到其他服务（如 Anthropic、GitHub、云端会话、浏览器中的网站），或推送到远程仓库。确认内容和目标后再运行。",
+   "zh-hant": "會把對話、程式碼或留言傳送到其他服務（Anthropic、GitHub、雲端工作階段、你瀏覽器中的網站），或推送到遠端。請先確認什麼內容會送到哪裡。",
+   "ko": "대화, 코드, 댓글을 다른 서비스(Anthropic, GitHub, 클라우드 세션, 브라우저 안의 사이트)로 보내거나 원격 저장소에 푸시합니다. 무엇이 어디로 가는지 먼저 확인하세요.",
+   "ru": "Отправляет разговор, код или комментарии в другой сервис (Anthropic, GitHub, облачные сессии, сайты в вашем браузере) или отправляет изменения в удалённый репозиторий. Сначала проверьте, что и куда уходит.",
+   "es": "Envía la conversación, el código o comentarios a otro servicio (Anthropic, GitHub, sesiones en la nube, sitios abiertos en tu navegador) o hace push a un remoto. Comprueba primero qué se envía y adónde."
+  }
+ },
+ {
+  "id": "secrets",
+  "icon": "⚿",
+  "name": {
+   "en": "May expose secrets",
+   "ja": "機密情報を含む場合あり",
+   "zh": "可能包含敏感信息",
+   "zh-hant": "可能洩漏機密",
+   "ko": "비밀 정보 노출 가능",
+   "ru": "Может раскрыть секреты",
+   "es": "Puede exponer secretos"
+  },
+  "desc": {
+   "en": "Output (files, clipboard, reports) can contain conversation text, keys, passwords or personal data. Review and redact before sharing.",
+   "ja": "作られるファイル・クリップボード・レポートに、会話内容・API キー・パスワード・個人情報が含まれる場合があります。共有する前に必ず確認して削除してください。",
+   "zh": "生成的文件、剪贴板内容或报告中可能含有对话内容、密钥、密码或个人信息。分享前务必检查并删除敏感内容。",
+   "zh-hant": "輸出內容（檔案、剪貼簿、報告）可能含有對話文字、金鑰、密碼或個人資料。分享前請檢查並刪除敏感內容。",
+   "ko": "결과물(파일, 클립보드, 보고서)에 대화 내용, 키, 비밀번호, 개인정보가 들어 있을 수 있습니다. 공유하기 전에 검토하고 지우세요.",
+   "ru": "Результат (файлы, буфер обмена, отчёты) может содержать текст разговора, ключи, пароли или личные данные. Проверьте и скройте лишнее, прежде чем делиться.",
+   "es": "La salida (archivos, portapapeles, informes) puede contener texto de la conversación, claves, contraseñas o datos personales. Revísala y elimina lo sensible antes de compartirla."
+  }
+ },
+ {
+  "id": "files",
+  "icon": "⇄",
+  "name": {
+   "en": "Broad file changes",
+   "ja": "ファイルを広く変更",
+   "zh": "会大范围修改文件",
+   "zh-hant": "大範圍修改檔案",
+   "ko": "파일을 대량 변경",
+   "ru": "Массовые изменения файлов",
+   "es": "Cambios amplios en archivos"
+  },
+  "desc": {
+   "en": "Can change or revert many files at once. Commit or back up first, and review with `/diff` afterwards.",
+   "ja": "多くのファイルを一度に変更・復元する場合があります。実行前に Git でコミットかバックアップをし、実行後は `/diff` で確認してください。",
+   "zh": "可能一次修改或还原很多文件。运行前先用 Git 提交或备份，运行后用 `/diff` 检查。",
+   "zh-hant": "可能一次修改或還原很多檔案。請先提交或備份，之後用 `/diff` 檢查。",
+   "ko": "한 번에 많은 파일을 바꾸거나 되돌릴 수 있습니다. 먼저 커밋하거나 백업하고, 실행 후에는 `/diff`로 검토하세요.",
+   "ru": "Может изменить или откатить сразу много файлов. Сначала сделайте коммит или резервную копию, а после проверьте изменения через `/diff`.",
+   "es": "Puede cambiar o revertir muchos archivos a la vez. Haz commit o una copia de seguridad antes, y revisa con `/diff` después."
+  }
+ },
+ {
+  "id": "perms",
+  "icon": "⚑",
+  "name": {
+   "en": "Changes safety settings",
+   "ja": "安全設定を変更",
+   "zh": "会改变安全设置",
+   "zh-hant": "會變更安全設定",
+   "ko": "안전 설정 변경",
+   "ru": "Меняет настройки безопасности",
+   "es": "Cambia la configuración de seguridad"
+  },
+  "desc": {
+   "en": "Changes what Claude may do without asking, or other safety settings. Only allow actions you understand and trust.",
+   "ja": "Claude が確認なしで実行できる範囲など、安全に関わる設定を変えます。理解して信頼できる操作だけを許可してください。",
+   "zh": "会改变 Claude 无需询问就能执行的操作范围，或其他安全相关设置。只放行你理解且信任的操作。",
+   "zh-hant": "會改變 Claude 不必詢問就能做的事，或其他安全設定。只允許你了解且信任的操作。",
+   "ko": "Claude가 묻지 않고 할 수 있는 일이나 다른 안전 관련 설정을 바꿉니다. 이해하고 신뢰하는 작업만 허용하세요.",
+   "ru": "Меняет то, что Claude может делать без вопросов, или другие настройки безопасности. Разрешайте только те действия, которые вы понимаете и которым доверяете.",
+   "es": "Cambia lo que Claude puede hacer sin preguntar u otras opciones de seguridad. Permite solo acciones que entiendas y en las que confíes."
+  }
+ }
 ]

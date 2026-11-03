@@ -1,34 +1,276 @@
 [
-  {"id": "undo", "cmds": ["/rewind", "/diff"],
-   "q": {"zh": "Claude 改坏了，我想撤销", "ja": "Claude が壊したので元に戻したい", "en": "Claude broke something and I want to undo it"}},
-  {"id": "new-task", "cmds": ["/clear", "/resume"],
-   "q": {"zh": "换一件不相关的事，从头开始", "ja": "関係のない別の作業を最初から始めたい", "en": "Start an unrelated task from scratch"}},
-  {"id": "long-chat", "cmds": ["/context", "/compact", "/autocompact"],
-   "q": {"zh": "对话太长，Claude 变慢或开始忘事", "ja": "会話が長くなり、遅い・忘れっぽい", "en": "The conversation is long and Claude is slow or forgetful"}},
-  {"id": "come-back", "cmds": ["/resume", "/rename", "/recap"],
-   "q": {"zh": "接着做昨天没做完的", "ja": "昨日の続きをやりたい", "en": "Continue yesterday's unfinished work"}},
-  {"id": "think-first", "cmds": ["/plan", "/effort", "/model"],
-   "q": {"zh": "大改动前，想先看方案再让它动手", "ja": "大きな変更の前に、まず計画を見たい", "en": "See a plan before a big change"}},
-  {"id": "language", "cmds": ["/init", "/memory"],
-   "q": {"zh": "让 Claude 一直用中文回答", "ja": "Claude にいつも日本語で答えてほしい", "en": "Make Claude always answer in my language"}},
-  {"id": "cost", "cmds": ["/usage", "/model", "/effort", "/context"],
-   "q": {"zh": "省钱、省额度", "ja": "料金や使用量を節約したい", "en": "Spend less money and usage"}},
-  {"id": "ship", "cmds": ["/diff", "/code-review", "/security-review", "/verify"],
-   "q": {"zh": "提交或上线前做检查", "ja": "コミットや公開の前にチェックしたい", "en": "Check work before committing or shipping"}},
-  {"id": "parallel", "cmds": ["/fork", "/subtask", "/background", "/tasks", "/batch"],
-   "q": {"zh": "同时做几件事 / 放后台跑", "ja": "複数の作業を同時に / 裏で動かしたい", "en": "Do several things at once or run in the background"}},
-  {"id": "repeat", "cmds": ["/loop", "/schedule", "/goal"],
-   "q": {"zh": "让它反复做或定时做", "ja": "繰り返し・決まった時刻に実行したい", "en": "Repeat a task or run it on a schedule"}},
-  {"id": "prompts", "cmds": ["/permissions", "/fewer-permission-prompts"],
-   "q": {"zh": "权限确认弹窗太多", "ja": "許可の確認ダイアログが多すぎる", "en": "Too many permission prompts"}},
-  {"id": "connect", "cmds": ["/mcp", "/plugin", "/skills"],
-   "q": {"zh": "连接外部工具或安装新能力", "ja": "外部ツールの接続や機能の追加をしたい", "en": "Connect tools or add new abilities"}},
-  {"id": "make", "cmds": ["/slides", "/design", "/dataviz", "/artifacts"],
-   "q": {"zh": "做幻灯片、设计稿或图表", "ja": "スライド・デザイン・グラフを作りたい", "en": "Make slides, designs or charts"}},
-  {"id": "phone", "cmds": ["/remote-control", "/mobile", "/desktop"],
-   "q": {"zh": "离开电脑，用手机继续", "ja": "パソコンを離れてスマホで続けたい", "en": "Leave the computer and continue on my phone"}},
-  {"id": "broken", "cmds": ["/doctor", "/status", "/debug", "/bug"],
-   "q": {"zh": "Claude Code 本身出问题了", "ja": "Claude Code 自体の調子が悪い", "en": "Claude Code itself is misbehaving"}},
-  {"id": "learn", "cmds": ["/powerup", "/help", "/insights"],
-   "q": {"zh": "系统学习怎么用", "ja": "使い方を体系的に学びたい", "en": "Learn Claude Code properly"}}
+ {
+  "id": "undo",
+  "cmds": [
+   "/rewind",
+   "/diff"
+  ],
+  "q": {
+   "en": "Claude broke something and I want to undo it",
+   "ja": "Claude が壊したので元に戻したい",
+   "zh": "Claude 改坏了，我想撤销",
+   "zh-hant": "Claude 把東西改壞了，我想復原",
+   "ko": "Claude가 뭔가를 망가뜨려서 되돌리고 싶어요",
+   "ru": "Claude что-то сломал, и я хочу это отменить",
+   "es": "Claude rompió algo y quiero deshacerlo"
+  }
+ },
+ {
+  "id": "new-task",
+  "cmds": [
+   "/clear",
+   "/resume"
+  ],
+  "q": {
+   "en": "Start an unrelated task from scratch",
+   "ja": "関係のない別の作業を最初から始めたい",
+   "zh": "换一件不相关的事，从头开始",
+   "zh-hant": "從頭開始一件不相關的工作",
+   "ko": "관계없는 작업을 처음부터 시작하고 싶어요",
+   "ru": "Начать несвязанную задачу с нуля",
+   "es": "Empezar desde cero una tarea sin relación"
+  }
+ },
+ {
+  "id": "long-chat",
+  "cmds": [
+   "/context",
+   "/compact",
+   "/autocompact"
+  ],
+  "q": {
+   "en": "The conversation is long and Claude is slow or forgetful",
+   "ja": "会話が長くなり、遅い・忘れっぽい",
+   "zh": "对话太长，Claude 变慢或开始忘事",
+   "zh-hant": "對話太長，Claude 變慢或開始忘東忘西",
+   "ko": "대화가 길어져서 Claude가 느리거나 자꾸 잊어버려요",
+   "ru": "Разговор длинный, Claude стал медленным или забывчивым",
+   "es": "La conversación es larga y Claude va lento u olvida cosas"
+  }
+ },
+ {
+  "id": "come-back",
+  "cmds": [
+   "/resume",
+   "/rename",
+   "/recap"
+  ],
+  "q": {
+   "en": "Continue yesterday's unfinished work",
+   "ja": "昨日の続きをやりたい",
+   "zh": "接着做昨天没做完的",
+   "zh-hant": "繼續昨天沒做完的工作",
+   "ko": "어제 끝내지 못한 작업을 이어서 하고 싶어요",
+   "ru": "Продолжить вчерашнюю незаконченную работу",
+   "es": "Continuar el trabajo que dejé sin terminar ayer"
+  }
+ },
+ {
+  "id": "think-first",
+  "cmds": [
+   "/plan",
+   "/effort",
+   "/model"
+  ],
+  "q": {
+   "en": "See a plan before a big change",
+   "ja": "大きな変更の前に、まず計画を見たい",
+   "zh": "大改动前，想先看方案再让它动手",
+   "zh-hant": "大幅修改前，先看計畫",
+   "ko": "큰 변경 전에 계획부터 보고 싶어요",
+   "ru": "Увидеть план перед крупным изменением",
+   "es": "Ver un plan antes de un cambio grande"
+  }
+ },
+ {
+  "id": "language",
+  "cmds": [
+   "/init",
+   "/memory"
+  ],
+  "q": {
+   "en": "Make Claude always answer in my language",
+   "ja": "Claude にいつも日本語で答えてほしい",
+   "zh": "让 Claude 一直用中文回答",
+   "zh-hant": "讓 Claude 一律用中文回答",
+   "ko": "Claude가 항상 한국어로 답하게 하고 싶어요",
+   "ru": "Чтобы Claude всегда отвечал на моём языке",
+   "es": "Hacer que Claude responda siempre en mi idioma"
+  }
+ },
+ {
+  "id": "cost",
+  "cmds": [
+   "/usage",
+   "/model",
+   "/effort",
+   "/context"
+  ],
+  "q": {
+   "en": "Spend less money and usage",
+   "ja": "料金や使用量を節約したい",
+   "zh": "省钱、省额度",
+   "zh-hant": "省錢、省用量",
+   "ko": "비용과 사용량을 줄이고 싶어요",
+   "ru": "Тратить меньше денег и лимитов",
+   "es": "Gastar menos dinero y menos uso"
+  }
+ },
+ {
+  "id": "ship",
+  "cmds": [
+   "/diff",
+   "/code-review",
+   "/security-review",
+   "/verify"
+  ],
+  "q": {
+   "en": "Check work before committing or shipping",
+   "ja": "コミットや公開の前にチェックしたい",
+   "zh": "提交或上线前做检查",
+   "zh-hant": "提交或上線前先檢查",
+   "ko": "커밋이나 배포 전에 점검하고 싶어요",
+   "ru": "Проверить работу перед коммитом или выпуском",
+   "es": "Revisar el trabajo antes del commit o de publicarlo"
+  }
+ },
+ {
+  "id": "parallel",
+  "cmds": [
+   "/fork",
+   "/subtask",
+   "/background",
+   "/tasks",
+   "/batch"
+  ],
+  "q": {
+   "en": "Do several things at once or run in the background",
+   "ja": "複数の作業を同時に / 裏で動かしたい",
+   "zh": "同时做几件事 / 放后台跑",
+   "zh-hant": "同時做好幾件事，或放到背景執行",
+   "ko": "여러 작업을 동시에 하거나 백그라운드로 돌리고 싶어요",
+   "ru": "Делать несколько дел сразу или работать в фоне",
+   "es": "Hacer varias cosas a la vez o trabajar en segundo plano"
+  }
+ },
+ {
+  "id": "repeat",
+  "cmds": [
+   "/loop",
+   "/schedule",
+   "/goal"
+  ],
+  "q": {
+   "en": "Repeat a task or run it on a schedule",
+   "ja": "繰り返し・決まった時刻に実行したい",
+   "zh": "让它反复做或定时做",
+   "zh-hant": "重複執行或依排程執行工作",
+   "ko": "작업을 반복하거나 예약해서 실행하고 싶어요",
+   "ru": "Повторять задачу или запускать её по расписанию",
+   "es": "Repetir una tarea o ejecutarla según un horario"
+  }
+ },
+ {
+  "id": "prompts",
+  "cmds": [
+   "/permissions",
+   "/fewer-permission-prompts"
+  ],
+  "q": {
+   "en": "Too many permission prompts",
+   "ja": "許可の確認ダイアログが多すぎる",
+   "zh": "权限确认弹窗太多",
+   "zh-hant": "權限確認提示太多",
+   "ko": "권한 확인 요청이 너무 많아요",
+   "ru": "Слишком много запросов разрешений",
+   "es": "Demasiadas solicitudes de permiso"
+  }
+ },
+ {
+  "id": "connect",
+  "cmds": [
+   "/mcp",
+   "/plugin",
+   "/skills"
+  ],
+  "q": {
+   "en": "Connect tools or add new abilities",
+   "ja": "外部ツールの接続や機能の追加をしたい",
+   "zh": "连接外部工具或安装新能力",
+   "zh-hant": "連接工具或增加新能力",
+   "ko": "도구를 연결하거나 새 기능을 추가하고 싶어요",
+   "ru": "Подключить инструменты или добавить новые возможности",
+   "es": "Conectar herramientas o añadir nuevas capacidades"
+  }
+ },
+ {
+  "id": "make",
+  "cmds": [
+   "/slides",
+   "/design",
+   "/dataviz",
+   "/artifacts"
+  ],
+  "q": {
+   "en": "Make slides, designs or charts",
+   "ja": "スライド・デザイン・グラフを作りたい",
+   "zh": "做幻灯片、设计稿或图表",
+   "zh-hant": "製作投影片、設計或圖表",
+   "ko": "슬라이드, 디자인, 차트를 만들고 싶어요",
+   "ru": "Сделать слайды, макеты или графики",
+   "es": "Crear diapositivas, diseños o gráficos"
+  }
+ },
+ {
+  "id": "phone",
+  "cmds": [
+   "/remote-control",
+   "/mobile",
+   "/desktop"
+  ],
+  "q": {
+   "en": "Leave the computer and continue on my phone",
+   "ja": "パソコンを離れてスマホで続けたい",
+   "zh": "离开电脑，用手机继续",
+   "zh-hant": "離開電腦，用手機繼續",
+   "ko": "컴퓨터를 떠나 휴대폰으로 이어서 하고 싶어요",
+   "ru": "Отойти от компьютера и продолжить с телефона",
+   "es": "Dejar el equipo y seguir en el teléfono"
+  }
+ },
+ {
+  "id": "broken",
+  "cmds": [
+   "/doctor",
+   "/status",
+   "/debug",
+   "/bug"
+  ],
+  "q": {
+   "en": "Claude Code itself is misbehaving",
+   "ja": "Claude Code 自体の調子が悪い",
+   "zh": "Claude Code 本身出问题了",
+   "zh-hant": "Claude Code 本身運作異常",
+   "ko": "Claude Code 자체가 이상하게 동작해요",
+   "ru": "Сам Claude Code работает неправильно",
+   "es": "El propio Claude Code funciona mal"
+  }
+ },
+ {
+  "id": "learn",
+  "cmds": [
+   "/powerup",
+   "/help",
+   "/insights"
+  ],
+  "q": {
+   "en": "Learn Claude Code properly",
+   "ja": "使い方を体系的に学びたい",
+   "zh": "系统学习怎么用",
+   "zh-hant": "有系統地學會使用 Claude Code",
+   "ko": "Claude Code를 제대로 배우고 싶어요",
+   "ru": "Как следует изучить Claude Code",
+   "es": "Aprender Claude Code a fondo"
+  }
+ }
 ]

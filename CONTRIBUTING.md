@@ -31,6 +31,14 @@ Field reference (one object per command):
 | `word`, `gloss.zh/ja` | The English word(s) behind the name, and their meaning |
 | `desc`, `use`, `short` | Description, best-use example, one-line summary, each in `zh`, `ja`, `en` |
 
+### Add a language
+
+1. Copy the shape of an existing language into `data/i18n/<code>.json`: `language` (`code`, `name`, `html`, `readme`), then every string keyed by command, category, scenario and risk id, plus `disclaimer`, `ui` and `readme`. The fastest way is to ask in an issue and a maintainer will generate a template.
+2. Run `python3 scripts/language_tool.py check data/i18n/<code>.json` until it prints OK. It runs every build check with your language added.
+3. Run `python3 scripts/language_tool.py merge data/i18n/<code>.json`, place the language where it belongs in `data/languages.json`, delete the `data/i18n/` file, then run the build and tests.
+
+Right-to-left languages (Arabic, Hebrew) also need layout work; open an issue first.
+
 ## Maintainers
 
 - **Publish the site**: Settings → Pages → Deploy from a branch → `main` / `/docs`. The page is then live at the URL in the README.

@@ -1,10 +1,10 @@
 # Claude Code Commands
 
-[English](README.md) · [日本語](README.ja.md) · [简体中文](README.zh-CN.md)
+[English](README.md) · [日本語](README.ja.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-Hant.md) · [한국어](README.ko.md) · [Русский](README.ru.md) · [Español](README.es.md)
 
 ![Unofficial](https://img.shields.io/badge/Anthropic-unofficial-lightgrey) [![check](https://github.com/FuturEvoLab/claude-code-commands-i18n/actions/workflows/check.yml/badge.svg)](https://github.com/FuturEvoLab/claude-code-commands-i18n/actions/workflows/check.yml) [![Content: CC BY 4.0](https://img.shields.io/badge/content-CC%20BY%204.0-blue)](LICENSE-CONTENT) [![Code: MIT](https://img.shields.io/badge/code-MIT-green)](LICENSE) ![Commands](https://img.shields.io/badge/commands-115-teal)
 
-> An unofficial, plain-language reference to every Claude Code slash command, in **English, Japanese and Chinese**. It is written for people who find the official English docs hard to read: each command gets a short explanation and a realistic example of when to use it.
+> An unofficial, plain-language reference to every Claude Code slash command, in **7 languages: English, Japanese, Simplified Chinese, Traditional Chinese, Korean, Russian and Spanish**. It is written for people who find the official English docs hard to read: each command gets a short explanation and a realistic example of when to use it.
 
 ### [Searchable web version →](https://futurevolab.github.io/claude-code-commands-i18n/)
 
@@ -163,7 +163,7 @@ Run several agents at once or detach work to the background
 | `/fork`<br>`[prompt]` | Copies the conversation into a new background session while you keep working here. With a prompt, the copy starts immediately; it is normally told to create its own worktree first. | Working on feature A and want a side fix in parallel: `/fork fix the footer alignment`. |
 | `/list-agents`<br>Requires v2.1.224+ | Lists subagents, teammates and other sessions Claude can message, with the name to use for each. Only where cross-session messaging is enabled.<br>Aliases: `/peers` | Coordinating several sessions: check what each is called. |
 | `/stop` | Stops the background session you're attached to; transcript and worktree are kept. To detach without stopping, use `/exit` or press `←`. | A background job went off course: `/stop`. |
-| `/subtask`<br>`<task>` | Spawns a forked subagent that inherits the conversation and reports its result back here. Unlike `/subtask`, `/fork` creates a separate session. | `/subtask document these API endpoints` while you keep coding. |
+| `/subtask`<br>`<task>` | Spawns a forked subagent that inherits the conversation and reports its result back here. The difference from `/fork`: `/subtask` reports back here, while `/fork` starts a separate session. | `/subtask document these API endpoints` while you keep coding. |
 | `/tasks` | Views and manages background work in this session, including finished subagents.<br>Aliases: `/bashes` | Check progress on background tests or subagents with `/tasks`. |
 | `/workflow-authoring`<br>Skill | Loads the reference for writing dynamic workflow scripts. Claude normally loads it itself; run it before hand-editing a saved script. Only where dynamic workflows are enabled. | Before hand-editing a saved workflow script. |
 | `/workflows` | Opens the workflow progress view to watch, pause, resume or save running and completed workflows. | Keep an eye on a long-running workflow. |

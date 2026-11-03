@@ -1,10 +1,10 @@
 # Claude Code コマンド一覧
 
-[English](README.md) · [日本語](README.ja.md) · [简体中文](README.zh-CN.md)
+[English](README.md) · [日本語](README.ja.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-Hant.md) · [한국어](README.ko.md) · [Русский](README.ru.md) · [Español](README.es.md)
 
 ![Unofficial](https://img.shields.io/badge/Anthropic-unofficial-lightgrey) [![check](https://github.com/FuturEvoLab/claude-code-commands-i18n/actions/workflows/check.yml/badge.svg)](https://github.com/FuturEvoLab/claude-code-commands-i18n/actions/workflows/check.yml) [![Content: CC BY 4.0](https://img.shields.io/badge/content-CC%20BY%204.0-blue)](LICENSE-CONTENT) [![Code: MIT](https://img.shields.io/badge/code-MIT-green)](LICENSE) ![Commands](https://img.shields.io/badge/commands-115-teal)
 
-> Claude Code のスラッシュコマンドを**英語・日本語・中国語**で説明する非公式のリファレンスです。英語の公式ドキュメントが読みにくい方のために、各コマンドの英語の意味、やさしい説明、「いつ使うと便利か」の具体例を載せています。
+> Claude Code のスラッシュコマンドを**英語・日本語・簡体字中国語・繁体字中国語・韓国語・ロシア語・スペイン語の 7 言語**で説明する非公式のリファレンスです。英語の公式ドキュメントが読みにくい方のために、各コマンドの英語の意味、やさしい説明、「いつ使うと便利か」の具体例を載せています。
 
 ### [検索できる Web 版 →](https://futurevolab.github.io/claude-code-commands-i18n/)
 
