@@ -1,6 +1,6 @@
 # Claude Code コマンド一覧
 
-[English](README.md) · [日本語](README.ja.md) · [中文](README.zh-CN.md)
+[English](README.md) · [日本語](README.ja.md) · [简体中文](README.zh-CN.md)
 
 ![Unofficial](https://img.shields.io/badge/Anthropic-unofficial-lightgrey) [![check](https://github.com/FuturEvoLab/claude-code-commands-i18n/actions/workflows/check.yml/badge.svg)](https://github.com/FuturEvoLab/claude-code-commands-i18n/actions/workflows/check.yml) [![Content: CC BY 4.0](https://img.shields.io/badge/content-CC%20BY%204.0-blue)](LICENSE-CONTENT) [![Code: MIT](https://img.shields.io/badge/code-MIT-green)](LICENSE) ![Commands](https://img.shields.io/badge/commands-115-teal)
 

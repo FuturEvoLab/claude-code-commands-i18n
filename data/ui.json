@@ -1,0 +1,263 @@
+{
+ "en": {
+  "badge": "Unofficial · Community-maintained",
+  "langLabel": "Language",
+  "skin": "Theme",
+  "skins": {
+   "terminal": "Terminal",
+   "graphite": "Graphite",
+   "indigo": "Indigo",
+   "ocean": "Ocean",
+   "ember": "Ember",
+   "rose": "Rose",
+   "mono": "Mono",
+   "paper": "Paper",
+   "frost": "Frost",
+   "cyberpunk": "Cyberpunk",
+   "matrix": "Matrix",
+   "midnight": "Midnight"
+  },
+  "skinGroups": {
+   "dark": "Dark banner",
+   "light": "Light",
+   "full": "Dark page"
+  },
+  "results": "Results",
+  "hint": "↑↓ to select · Enter to copy the command · Esc to clear",
+  "qclear": "Clear search",
+  "suggest": "Try one of these:",
+  "h1": "Claude Code Commands",
+  "lead": "Every Claude Code slash command in plain language: what it does, and when it is most useful.",
+  "keys": "Press <kbd>/</kbd> or <kbd>⌘K</kbd> to search anytime · click a command to copy",
+  "stats": [
+   "commands",
+   "scenarios",
+   "safety labels",
+   "languages"
+  ],
+  "howto": [
+   [
+    "/",
+    "Open the menu",
+    "Type <code>/</code> in the prompt to open the command menu; keep typing to filter, e.g. <code>/mo</code> narrows to /model."
+   ],
+   [
+    "[ ]",
+    "Read the syntax",
+    "Text after the command is its argument. <code>[ ]</code> optional, <code>&lt; &gt;</code> required, <code>|</code> one of. Arguments can be in any language."
+   ],
+   [
+    "◇",
+    "Commands, skills, workflows",
+    "Built-in commands are coded into the CLI. Skills are bundled prompts handed to Claude. Workflows fan work out to several background agents."
+   ],
+   [
+    "?",
+    "Missing a command?",
+    "Many commands depend on version, plan, platform or an enabled feature. The list you see after typing <code>/</code> is authoritative; check your version with <code>/status</code>."
+   ]
+  ],
+  "scen": "Find a command by what you want to do",
+  "scenD": "Pick a situation; commands are listed in the order to try them.",
+  "back": "× Show all commands",
+  "safety": "Safety labels",
+  "safetyD": "Take extra care with commands marked like this.",
+  "link": "Copy link",
+  "copiedLink": "Copied a link to this command",
+  "riskChip": "Use with care",
+  "disc": "Disclaimer",
+  "nav": "Categories",
+  "top": "Back to top",
+  "search": "Search commands or descriptions, e.g. rewind, cost, background",
+  "all": "All commands",
+  "picks": "Start here",
+  "count": "{n}",
+  "pick": "★ Start here",
+  "skill": "Skill",
+  "workflow": "Workflow",
+  "removed": "Removed",
+  "since": "v{v}+",
+  "removedIn": "removed in v{v}",
+  "word": "",
+  "use": "Best use",
+  "alias": "Aliases",
+  "empty": "No matches. Try another word, such as “rewind”, “model” or “background”.",
+  "copied": "Copied {c}",
+  "selected": "Selected. Press ⌘C / Ctrl+C to copy",
+  "foot": "<p><b>Source:</b> paraphrased from the official Claude Code commands reference, {sourceLink}, checked {checked}. Descriptions are simplified; where they differ, the official docs win.</p><p><b>Contribute:</b> corrections and updates are welcome as issues or pull requests at {repoLink}. Content CC BY 4.0, code MIT.</p>"
+ },
+ "ja": {
+  "badge": "非公式 · コミュニティ作成",
+  "langLabel": "言語",
+  "skin": "テーマ",
+  "skins": {
+   "terminal": "ターミナル",
+   "graphite": "グラファイト",
+   "indigo": "インディゴ",
+   "ocean": "オーシャン",
+   "ember": "エンバー",
+   "rose": "ローズ",
+   "mono": "モノ",
+   "paper": "ペーパー",
+   "frost": "フロスト",
+   "cyberpunk": "サイバーパンク",
+   "matrix": "マトリックス",
+   "midnight": "ミッドナイト"
+  },
+  "skinGroups": {
+   "dark": "ダーク系",
+   "light": "ライト系",
+   "full": "全面ダーク"
+  },
+  "results": "検索結果",
+  "hint": "↑↓ で選択 · Enter でコマンドをコピー · Esc でクリア",
+  "qclear": "検索をクリア",
+  "suggest": "こんな場面から探す：",
+  "h1": "Claude Code コマンド一覧",
+  "lead": "Claude Code の / で始まるコマンドすべてを、やさしい日本語で説明します。英語の意味、できること、いちばん役立つ使い方がわかります。",
+  "keys": "いつでも <kbd>/</kbd> か <kbd>⌘K</kbd> で検索 · コマンド名をクリックでコピー",
+  "stats": [
+   "コマンド",
+   "シーン",
+   "注意マーク",
+   "言語"
+  ],
+  "howto": [
+   [
+    "/",
+    "コマンド一覧を出す",
+    "入力欄に <code>/</code> と打つと一覧が出ます。続けて数文字打つと絞り込めます。例：<code>/mo</code> で /model だけに。"
+   ],
+   [
+    "[ ]",
+    "引数の読み方",
+    "コマンドの後ろにスペースを空けて書く内容が「引数」です。<code>[ ]</code> は省略可、<code>&lt; &gt;</code> は必須、<code>|</code> は「どれか 1 つ」。日本語で書いてかまいません。"
+   ],
+   [
+    "◇",
+    "コマンド・スキル・ワークフロー",
+    "普通のコマンドは組み込みの機能。「スキル」は Claude に渡す手順書、「ワークフロー」は複数のエージェントをバックグラウンドで動かします。"
+   ],
+   [
+    "?",
+    "コマンドが見つからない？",
+    "バージョン・プラン・環境・機能の有効化によって表示が変わります。自分で <code>/</code> と打って出る一覧が正です。まず <code>/status</code> でバージョンを確認。"
+   ]
+  ],
+  "scen": "やりたいことから探す",
+  "scenD": "状況を選んでください。コマンドは試す順に並んでいます。",
+  "back": "× すべてのコマンドを表示",
+  "safety": "安全マーク",
+  "safetyD": "次のマークが付いたコマンドは慎重に使ってください。",
+  "link": "リンクをコピー",
+  "copiedLink": "このコマンドへのリンクをコピーしました",
+  "riskChip": "注意が必要",
+  "disc": "免責事項",
+  "nav": "カテゴリー",
+  "top": "ページの先頭へ",
+  "search": "コマンド名・日本語・英語で検索（例：巻き戻し、使用量、model）",
+  "all": "すべてのコマンド",
+  "picks": "初心者向け",
+  "count": "{n} 件",
+  "pick": "★ 初心者向け",
+  "skill": "スキル",
+  "workflow": "ワークフロー",
+  "removed": "削除済み",
+  "since": "v{v} 以降",
+  "removedIn": "v{v} で削除",
+  "word": "英語",
+  "use": "おすすめの使い方",
+  "alias": "別名",
+  "empty": "見つかりませんでした。「巻き戻し」「モデル」「バックグラウンド」などで試してください。",
+  "copied": "{c} をコピーしました",
+  "selected": "選択しました。⌘C / Ctrl+C でコピーしてください",
+  "foot": "<p><b>出典：</b>Claude Code 公式のコマンドリファレンス {sourceLink} をもとに作成（確認日 {checked}）。説明は意訳・簡略化したもので、公式の翻訳ではありません。違いがある場合は公式ドキュメントが優先です。</p><p><b>改善への参加：</b>誤りやコマンドの変更に気づいたら、Issue や Pull Request を歓迎します。{repoLink} · 内容は CC BY 4.0、コードは MIT ライセンス。</p>"
+ },
+ "zh": {
+  "badge": "非官方 · 社区整理",
+  "langLabel": "语言",
+  "skin": "主题",
+  "skins": {
+   "terminal": "终端",
+   "graphite": "石墨",
+   "indigo": "靛蓝",
+   "ocean": "海洋",
+   "ember": "琥珀",
+   "rose": "玫瑰",
+   "mono": "黑白",
+   "paper": "纸白",
+   "frost": "霜白",
+   "cyberpunk": "赛博朋克",
+   "matrix": "黑客帝国",
+   "midnight": "午夜"
+  },
+  "skinGroups": {
+   "dark": "深色横幅",
+   "light": "浅色",
+   "full": "全深色"
+  },
+  "results": "搜索结果",
+  "hint": "↑↓ 选择 · Enter 复制命令 · Esc 清空",
+  "qclear": "清空搜索",
+  "suggest": "试试这些场景：",
+  "h1": "Claude Code 命令大全",
+  "lead": "Claude Code 里所有以 / 开头的命令，用简单中文逐条讲清楚：英文原意、能做什么、什么时候用最合适。",
+  "keys": "随时按 <kbd>/</kbd> 或 <kbd>⌘K</kbd> 搜索 · 点命令名复制",
+  "stats": [
+   "个命令",
+   "个场景",
+   "个风险标记",
+   "种语言"
+  ],
+  "howto": [
+   [
+    "/",
+    "打开命令列表",
+    "在输入框输入 <code>/</code> 就会弹出命令列表；继续输入几个字母可以筛选，例如 <code>/mo</code> 只剩 /model。"
+   ],
+   [
+    "[ ]",
+    "看懂参数写法",
+    "命令后空一格再写的内容叫「参数」。<code>[ ]</code> 可写可不写，<code>&lt; &gt;</code> 必须写，<code>|</code> 几选一。参数可以直接用中文写。"
+   ],
+   [
+    "◇",
+    "命令、技能、工作流",
+    "普通命令是程序内置功能；「技能」是一套写好的提示流程，交给 Claude 执行；「工作流」会派出多个代理在后台运行。"
+   ],
+   [
+    "?",
+    "看不到某个命令？",
+    "很多命令只在特定版本、套餐、平台或开启某功能后才出现。以你自己输入 <code>/</code> 看到的列表为准；先用 <code>/status</code> 查看版本。"
+   ]
+  ],
+  "scen": "按场景找命令",
+  "scenD": "选你想做的事，命令按建议尝试的顺序排列。",
+  "back": "× 显示全部命令",
+  "safety": "安全标记",
+  "safetyD": "带这些标记的命令请格外小心。",
+  "link": "复制链接",
+  "copiedLink": "已复制本命令的链接",
+  "riskChip": "需注意",
+  "disc": "免责声明",
+  "nav": "分类",
+  "top": "回到顶部",
+  "search": "搜索命令、中文说明或英文，例如：撤销、省钱、model",
+  "all": "全部命令",
+  "picks": "新手推荐",
+  "count": "{n} 个",
+  "pick": "★ 新手推荐",
+  "skill": "技能",
+  "workflow": "工作流",
+  "removed": "已移除",
+  "since": "v{v}+",
+  "removedIn": "v{v} 移除",
+  "word": "英文",
+  "use": "最佳用法",
+  "alias": "同义命令",
+  "empty": "没有找到。换个关键词试试，例如「撤销」「模型」「后台」。",
+  "copied": "已复制 {c}",
+  "selected": "已选中，请按 ⌘C / Ctrl+C 复制",
+  "foot": "<p><b>数据来源：</b>依据 Claude Code 官方命令文档 {sourceLink} 整理，核对日期 {checked}。说明为意译和简化，不是官方翻译；如有出入，以官方文档为准。</p><p><b>参与改进：</b>发现错误或命令有更新，欢迎在仓库提交 Issue 或 Pull Request。{repoLink} · 内容许可 CC BY 4.0，代码许可 MIT。</p>"
+ }
+}

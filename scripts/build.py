@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Validate data/*.json and generate the three READMEs and the web page.
+"""Validate data/*.json and generate one README per language and the web page.
 
 Usage: python3 scripts/build.py [--repo OWNER/NAME]
-Outputs: README.md, README.zh-CN.md, README.ja.md, docs/index.html, dist/artifact.html
+Outputs: README*.md (see data/languages.json), docs/index.html, dist/artifact.html
 """
 import argparse
 import base64
@@ -13,7 +13,6 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-LANGS = ("en", "ja", "zh")
 KINDS = ("builtin", "skill", "workflow", "removed")
 
 META = {
@@ -22,79 +21,21 @@ META = {
 }
 REPO_FILE = ROOT / "repo.txt"  # holds OWNER/NAME so later builds remember it
 
-# Strings used in the generated Markdown, one entry per language.
-T = {
-    "en": {
-        "file": "README.md",
-        "risk_h": "Safety labels",
-        "risk_d": "Commands marked with these labels need extra care.",
-        "disc_h": "Disclaimer",
-        "scen": "Find a command by what you want to do",
-        "scen_desc": "Pick the situation; the commands are listed in the order to try them.",
-        "title": "Claude Code Commands",
-        "intro": "An unofficial, plain-language reference to every Claude Code slash command, in **English, Japanese and Chinese**. It is written for people who find the official English docs hard to read: each command gets a short explanation and a realistic example of when to use it.",
-        "web": "Searchable web version",
-        "start": "Start here",
-        "start_desc": "The editor's picks for a first week with Claude Code.",
-        "toc": "Contents",
-        "syntax": "How to read the syntax",
-        "syntax_body": "- Type `/` in the prompt to open the command menu; keep typing to filter.\n- `[ ]` = optional, `< >` = required, `|` = one of.\n- **Skill** = a bundled prompt handed to Claude. **Workflow** = runs several agents in the background.\n- Many commands depend on version, plan, platform or an enabled feature. The menu you see is authoritative; check your version with `/status`.",
-        "cols": ("Command", "What it does", "Best use"),
-        "alias": "Aliases", "since": "Requires v{}+", "removed_in": "Removed in v{}",
-        "skill": "Skill", "workflow": "Workflow",
-        "about": "About this project",
-        "about_body": "- **Source**: paraphrased from the official [commands reference]({source}), checked {checked}. Descriptions are simplified, not official translations; where they differ, the official docs win.\n- **Data**: everything is generated from [`data/commands.json`](data/commands.json). Edit the JSON, then run `python3 scripts/build.py`.\n- **Contributing**: see [CONTRIBUTING.md](CONTRIBUTING.md).\n- **License**: content [CC BY 4.0](LICENSE-CONTENT), code [MIT](LICENSE).",
-    },
-    "zh": {
-        "file": "README.zh-CN.md",
-        "risk_h": "安全标记",
-        "risk_d": "带有以下标记的命令需要格外小心。",
-        "disc_h": "免责声明",
-        "scen": "按场景找命令",
-        "scen_desc": "按你想做的事来找，命令按建议尝试的顺序排列。",
-        "title": "Claude Code 命令大全",
-        "intro": "非官方的 Claude Code 斜杠命令速查手册，提供**英文、日文、中文**三种语言，专门写给读英文官方文档吃力的用户：每个命令都有英文原意、简单易懂的说明，以及一个真实的「什么时候用」的例子。",
-        "web": "可搜索的网页版",
-        "start": "新手推荐",
-        "start_desc": "编者为刚开始使用 Claude Code 的人挑选的命令。",
-        "toc": "目录",
-        "syntax": "如何看懂命令写法",
-        "syntax_body": "- 在输入框输入 `/` 会弹出命令列表，继续输入字母可以筛选。\n- `[ ]` 表示可写可不写，`< >` 表示必须写，`|` 表示几选一。参数可以直接用中文写。\n- **技能**：交给 Claude 执行的一套提示流程。**工作流**：派出多个代理在后台运行。\n- 很多命令只在特定版本、套餐、平台或开启某功能后才出现。以你自己看到的列表为准，可用 `/status` 查看版本。",
-        "cols": ("命令", "英文原意", "说明", "最佳用法"),
-        "alias": "同义命令", "since": "需 v{}+", "removed_in": "v{} 移除",
-        "skill": "技能", "workflow": "工作流",
-        "about": "关于本项目",
-        "about_body": "- **来源**：依据官方[命令文档]({source})意译整理，核对日期 {checked}。说明经过简化，不是官方翻译；如有出入，以官方文档为准。\n- **数据**：所有内容由 [`data/commands.json`](data/commands.json) 生成。修改 JSON 后运行 `python3 scripts/build.py`。\n- **参与贡献**：见 [CONTRIBUTING.md](CONTRIBUTING.md)。\n- **许可**：内容 [CC BY 4.0](LICENSE-CONTENT)，代码 [MIT](LICENSE)。",
-    },
-    "ja": {
-        "file": "README.ja.md",
-        "risk_h": "安全マーク",
-        "risk_d": "次のマークが付いたコマンドは特に注意が必要です。",
-        "disc_h": "免責事項",
-        "scen": "やりたいことから探す",
-        "scen_desc": "状況を選んでください。コマンドは試す順に並んでいます。",
-        "title": "Claude Code コマンド一覧",
-        "intro": "Claude Code のスラッシュコマンドを**英語・日本語・中国語**で説明する非公式のリファレンスです。英語の公式ドキュメントが読みにくい方のために、各コマンドの英語の意味、やさしい説明、「いつ使うと便利か」の具体例を載せています。",
-        "web": "検索できる Web 版",
-        "start": "初心者向け",
-        "start_desc": "Claude Code を使い始めた方向けに編者が選んだコマンドです。",
-        "toc": "目次",
-        "syntax": "書き方の読み方",
-        "syntax_body": "- 入力欄に `/` と打つと一覧が出ます。続けて文字を打つと絞り込めます。\n- `[ ]` は省略可、`< >` は必須、`|` は「どれか 1 つ」。引数は日本語で書いてかまいません。\n- **スキル**：Claude に渡す決まった手順書。**ワークフロー**：複数のエージェントをバックグラウンドで動かします。\n- 多くのコマンドはバージョン・プラン・環境・機能の有効化によって表示が変わります。自分の画面に出る一覧が正です。バージョンは `/status` で確認できます。",
-        "cols": ("コマンド", "英語の意味", "説明", "おすすめの使い方"),
-        "alias": "別名", "since": "v{} 以降", "removed_in": "v{} で削除",
-        "skill": "スキル", "workflow": "ワークフロー",
-        "about": "このプロジェクトについて",
-        "about_body": "- **出典**：公式の[コマンドリファレンス]({source})をもとに意訳（確認日 {checked}）。説明は簡略化したもので公式の翻訳ではありません。違いがある場合は公式ドキュメントが優先です。\n- **データ**：すべて [`data/commands.json`](data/commands.json) から生成しています。JSON を編集して `python3 scripts/build.py` を実行してください。\n- **貢献**：[CONTRIBUTING.md](CONTRIBUTING.md) を参照。\n- **ライセンス**：内容は [CC BY 4.0](LICENSE-CONTENT)、コードは [MIT](LICENSE)。",
-    },
-}
+def _read(name):
+    return json.loads((ROOT / "data" / name).read_text(encoding="utf-8"))
 
-LANG_LINKS = "[English](README.md) · [日本語](README.ja.md) · [中文](README.zh-CN.md)"
+
+# Languages, in display order, come from data/languages.json; README strings from data/readme.json.
+LANGINFO = _read("languages.json")
+LANGS = tuple(x["code"] for x in LANGINFO)
+T = {l: {**_read("readme.json")[l], "file": x["readme"]} for x in LANGINFO for l in [x["code"]]}
+LANG_LINKS = " · ".join(f"[{x['name']}]({x['readme']})" for x in LANGINFO)
+
 
 
 def load():
     read = lambda f: json.loads((ROOT / "data" / f).read_text(encoding="utf-8"))
-    return {k: read(f"{k}.json") for k in ("categories", "commands", "scenarios", "risks", "disclaimer")}
+    return {k: read(f"{k}.json") for k in ("categories", "commands", "scenarios", "risks", "disclaimer", "ui", "readme")}
 
 
 # Prose fields may use `code` spans but no raw HTML, Markdown links or URLs, so a
@@ -118,9 +59,66 @@ def check_prose(errors, where, field):
             errors.append(f"{where}.{l}: raw HTML, link or URL is not allowed")
 
 
+# UI strings may carry a little markup; nothing else.
+UI_TAGS = {"b", "code", "kbd", "p", "small"}
+LINK_TARGETS = {"{source}", "data/commands.json", "CONTRIBUTING.md", "LICENSE-CONTENT", "LICENSE"}
+
+
+def placeholders(text):
+    return sorted(re.findall(r"\{[a-zA-Z]*\}", text))
+
+
+def flat(v, path=""):
+    """Yield (path, string) for every string inside nested lists/dicts."""
+    if isinstance(v, str):
+        yield path, v
+    elif isinstance(v, list):
+        for i, x in enumerate(v):
+            yield from flat(x, f"{path}[{i}]")
+    elif isinstance(v, dict):
+        for k, x in v.items():
+            yield from flat(x, f"{path}.{k}")
+
+
+def check_strings(errors, where, table, check):
+    # README tables have one more column (the English word) outside English.
+    skip = lambda p: p.startswith(".cols")
+    ref = {k: v for k, v in flat(table.get("en", {})) if not skip(k)}
+    for l in LANGS:
+        got = {k: v for k, v in flat(table.get(l, {})) if not skip(k)}
+        if "cols" in table.get(l, {}) and len(table[l]["cols"]) != (3 if l == "en" else 4):
+            errors.append(f"{where}.{l}.cols: expected {3 if l == 'en' else 4} columns")
+        if set(got) != set(ref):
+            errors.append(f"{where}.{l}: keys differ from en (missing {sorted(set(ref) - set(got))[:5]}, extra {sorted(set(got) - set(ref))[:5]})")
+            continue
+        for path, text in got.items():
+            if not text.strip() and l != "en":  # English may leave a label empty (e.g. no "English word" gloss)
+                errors.append(f"{where}.{l}{path}: empty")
+            elif placeholders(text) != placeholders(ref[path]):
+                errors.append(f"{where}.{l}{path}: placeholders {placeholders(text)} != en {placeholders(ref[path])}")
+            else:
+                check(errors, f"{where}.{l}{path}", text)
+
+
+def check_ui_markup(errors, where, text):
+    tags = set(re.findall(r"</?([a-zA-Z]+)[^>]*>", text))
+    if tags - UI_TAGS or re.search(r"<[a-zA-Z]+\s", text) or re.search(r"https?:|javascript:", text, re.I):
+        errors.append(f"{where}: only <b>, <code>, <kbd>, <p>, <small> without attributes are allowed")
+
+
+def check_readme_markup(errors, where, text):
+    if re.search(r"<|>|javascript:", re.sub(r"`[^`]*`", "", text)):
+        errors.append(f"{where}: HTML is not allowed")
+    for target in re.findall(r"\]\(([^)]*)\)", text):
+        if target not in LINK_TARGETS:
+            errors.append(f"{where}: link target {target!r} is not allowed")
+
+
 def validate(d):
     cats, cmds, scens, risks, disc = (d[k] for k in ("categories", "commands", "scenarios", "risks", "disclaimer"))
     errors = []
+    check_strings(errors, "ui", d["ui"], check_ui_markup)
+    check_strings(errors, "readme", d["readme"], check_readme_markup)
     risk_ids = {r["id"] for r in risks}
     for r in risks:
         check_prose(errors, f"risk {r['id']}.name", r.get("name"))
@@ -163,7 +161,7 @@ def validate(d):
             errors.append(f"{name}: unknown kind {c.get('kind')}")
         if not c.get("word"):
             errors.append(f"{name}: missing word")
-        for l in ("zh", "ja"):
+        for l in LANGS[1:]:
             g = c.get("gloss", {}).get(l)
             if not g or unsafe(g):
                 errors.append(f"{name}: missing or unsafe gloss.{l}")
@@ -171,12 +169,12 @@ def validate(d):
             check_prose(errors, f"{name}.{f}", c.get(f))
         # Translations must mention the same commands, flags and values.
         spans = {l: sorted(set(re.findall(r"`([^`]+)`", c.get("desc", {}).get(l, "")))) for l in LANGS}
-        if not spans["zh"] == spans["ja"] == spans["en"]:
+        if len({tuple(v) for v in spans.values()}) != 1:
             errors.append(f"{name}.desc: `code` spans differ between languages {spans}")
         if c.get("short"):
             check_prose(errors, f"{name}.short", c["short"])
         if c.get("pick") and not all(c.get("short", {}).get(l) for l in LANGS):
-            errors.append(f"{name}: editor's pick needs short.zh/ja/en")
+            errors.append(f"{name}: editor's pick needs short in every language")
         for f in ("since", "removedIn"):
             if c.get(f) and not re.fullmatch(r"\d+\.\d+\.\d+", c[f]):
                 errors.append(f"{name}: bad version in {f}")
@@ -284,7 +282,7 @@ def readme(lang, cats, groups, scens, risk_list, disc):
     return "\n".join(out)
 
 
-def page(cats, groups, scens, risks, disc):
+def page(cats, groups, scens, risks, disc, ui):
     flat = [c for _, rows in groups for c in rows]
     tpl = (ROOT / "site/template.html").read_text(encoding="utf-8")
     dump = lambda x: json.dumps(x, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
@@ -293,15 +291,18 @@ def page(cats, groups, scens, risks, disc):
                .replace("/*CMDS*/[]", dump(flat))
                .replace("/*SCENS*/[]", dump(scens))
                .replace("/*RISKS*/[]", dump(risks))
-               .replace("/*DISC*/null", dump(disc)))
+               .replace("/*DISC*/null", dump(disc))
+               .replace("/*UI*/null", dump({l: ui[l] for l in LANGS}))
+               .replace("/*LANGS*/[]", dump(LANGINFO)))
 
 
 def social():
     """Link-preview tags for community posts (Open Graph / Twitter)."""
-    desc = "Every Claude Code slash command explained in English, Japanese and Chinese. Unofficial."
+    names = " / ".join(x["name"] for x in LANGINFO)
+    desc = f"Every Claude Code slash command explained in {len(LANGINFO)} languages: {names}. Unofficial."
     return "".join(f'<meta {k}="{n}" content="{v}">\n' for k, n, v in (
         ("property", "og:type", "website"),
-        ("property", "og:title", "Claude Code Commands · English / 日本語 / 中文"),
+        ("property", "og:title", "Claude Code Commands · " + names),
         ("property", "og:description", desc),
         ("property", "og:url", META["site"]),
         ("name", "twitter:card", "summary"),
@@ -344,7 +345,7 @@ def main():
     groups = ordered(cats, cmds)
     for lang in LANGS:
         (ROOT / T[lang]["file"]).write_text(readme(lang, cats, groups, scens, d["risks"], d["disclaimer"]), encoding="utf-8")
-    body = page(cats, groups, scens, d["risks"], d["disclaimer"])
+    body = page(cats, groups, scens, d["risks"], d["disclaimer"], d["ui"])
     (ROOT / "dist").mkdir(exist_ok=True)
     (ROOT / "docs").mkdir(exist_ok=True)
     # The artifact host supplies its own document skeleton; GitHub Pages needs a full one.
@@ -355,7 +356,7 @@ def main():
         f'<meta http-equiv="Content-Security-Policy" content="{csp(body)}">\n'
         + social()
         + body + "\n</html>\n", encoding="utf-8")
-    print(f"OK: {len(cmds)} commands, {len(cats)} categories, {len(scens)} scenarios; wrote 3 READMEs, docs/index.html, dist/artifact.html")
+    print(f"OK: {len(cmds)} commands, {len(cats)} categories, {len(scens)} scenarios; wrote {len(LANGS)} READMEs, docs/index.html, dist/artifact.html")
     if placeholder:
         print("Note: repository links use the placeholder OWNER. Run again with --repo OWNER/NAME.")
 
