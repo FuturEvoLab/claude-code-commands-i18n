@@ -2,6 +2,7 @@
 
 ## 1.1.0 — 2026-11-03
 
+- Full-dark themes Cyberpunk, Matrix (with a digital-rain banner that respects reduced motion) and Midnight keep the whole page dark.
 - Eight more color themes besides the default Terminal: Graphite, Indigo, Ocean, Ember, Rose and Mono with a dark banner, and Paper and Frost, which stay light even in system dark mode. The choice is remembered per browser.
 - Language and theme switches are dropdowns; the language one stays in the top bar on phones.
 - The hero's terminal demo keeps a fixed height, so the headline no longer shifts while it types.

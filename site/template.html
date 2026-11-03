@@ -97,6 +97,34 @@
   --term-bg:#0f1f1d; --term-ink:#e3efed; --term-muted:#93aba6; --term-line:#1f3a36; --term-accent:#5eead4;
   --term-shadow:0 18px 40px rgba(16,32,30,.18)}
 
+/* Full-dark skins: the whole page stays dark whatever the system setting. */
+:root[data-skin="cyberpunk"],:root[data-skin="matrix"],:root[data-skin="midnight"]{
+  --star:#f5b94a; --star-soft:#3a2b12; --info:#9db4f0; --info-soft:#1d2741;
+  --r-cost:#f5b94a; --r-cost-bg:#3a2b12; --r-external:#8fb0f5; --r-external-bg:#1b2742; --r-secrets:#c4a5fb; --r-secrets-bg:#2a1f45;
+  --r-files:#fb9a6b; --r-files-bg:#3d2216; --r-perms:#f38b82; --r-perms-bg:#3f1c1a;
+  --hue-s:70%; --hue-l:66%; --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 22px rgba(0,0,0,.35); color-scheme:dark}
+:root[data-skin="cyberpunk"]{
+  --bg:#0c0717; --surface:#150d25; --surface-2:#1c1231; --ink:#f4eaff; --muted:#b39fd2; --line:#2f1e4a;
+  --accent:#00f0ff; --accent-ink:#07031a; --accent-soft:#0d2a3a;
+  --hero:#0a0614; --hero-2:#140b26; --hero-line:#3a1f5c; --hero-ink:#f7ecff; --hero-muted:#b9a3da;
+  --phos:#00f0ff; --phos-ink:#07031a; --phos-soft:rgba(0,240,255,.12); --phos-glow:rgba(255,43,214,.22); --amber:#ff2bd6;
+  --term-accent:#ff2bd6}
+:root[data-skin="cyberpunk"] h1{text-shadow:2px 0 rgba(255,43,214,.55),-2px 0 rgba(0,240,255,.45)}
+:root[data-skin="cyberpunk"] .card:hover,:root[data-skin="cyberpunk"] .scen:hover{border-color:#ff2bd6;box-shadow:0 0 0 1px #ff2bd6,0 0 22px rgba(255,43,214,.25)}
+:root[data-skin="matrix"]{
+  --bg:#020804; --surface:#06120a; --surface-2:#0a1a0f; --ink:#c9f7d5; --muted:#6faf81; --line:#103a1c;
+  --accent:#00ff41; --accent-ink:#001a08; --accent-soft:#0a2a14;
+  --hero:#000000; --hero-2:#03100a; --hero-line:#0d3518; --hero-ink:#d6ffe0; --hero-muted:#6fbf85;
+  --phos:#00ff41; --phos-ink:#001a08; --phos-soft:rgba(0,255,65,.1); --phos-glow:rgba(0,255,65,.12);
+  --hue-s:60%; --hue-l:62%}
+:root[data-skin="matrix"] h1,:root[data-skin="matrix"] .sec-head h2,:root[data-skin="matrix"] .h-sec h2,:root[data-skin="matrix"] .stat b{font-family:var(--font-mono),var(--body-font)}
+:root[data-skin="midnight"]{
+  --bg:#0a0e18; --surface:#111726; --surface-2:#161e30; --ink:#e7ebf3; --muted:#98a2b8; --line:#222c42;
+  --accent:#f5c46a; --accent-ink:#1d1406; --accent-soft:#2e2615;
+  --hero:#070a12; --hero-2:#0f1524; --hero-line:#1f2940; --hero-ink:#eef1f7; --hero-muted:#97a1b7;
+  --phos:#f5c46a; --phos-ink:#1d1406; --phos-soft:rgba(245,196,106,.12); --phos-glow:rgba(245,196,106,.12)}
+.rain{position:absolute;inset:0;width:100%;height:100%;opacity:.45;pointer-events:none;mask-image:linear-gradient(90deg,transparent,#000 35%,#000);-webkit-mask-image:linear-gradient(90deg,transparent,#000 35%,#000)}
+
 .h0{--h:168}.h1{--h:212}.h2{--h:262}.h3{--h:350}.h4{--h:24}.h5{--h:42}.h6{--h:140}.h7{--h:300}
 .h8{--h:4}.h9{--h:196}.h10{--h:226}.h11{--h:88}.h12{--h:30}.h13{--h:220}.h14{--h:0}
 [class*=" h"],[class^="h"]{--c:hsl(var(--h) var(--hue-s) var(--hue-l))}
@@ -288,7 +316,7 @@ footer a{color:var(--accent);word-break:break-all}
 .noscript{background:var(--r-perms-bg);color:var(--r-perms);padding:12px 16px;border-radius:8px;margin-top:16px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.caret{animation:none}.card,.scen,.toast{transition:none}.card:hover,.scen:hover{transform:none}}
 </style>
-<script>try{var s=localStorage.getItem("skin");if(/^(graphite|indigo|ocean|ember|rose|mono|paper|frost)$/.test(s))document.documentElement.setAttribute("data-skin",s)}catch(e){}</script>
+<script>try{var s=localStorage.getItem("skin");if(/^(cyberpunk|matrix|midnight|graphite|indigo|ocean|ember|rose|mono|paper|frost)$/.test(s))document.documentElement.setAttribute("data-skin",s)}catch(e){}</script>
 
 <div class="bar" id="bar">
   <div class="wrap bar-row">
@@ -300,7 +328,7 @@ footer a{color:var(--accent);word-break:break-all}
       <button type="button" class="qclear" id="qclear" hidden>×</button>
       <kbd class="khint" id="khint">/</kbd>
     </div>
-    <label class="sel-wrap skin-wrap bar-skin"><select class="sel skin-sel" aria-label="Theme"><optgroup label="Dark" data-g="dark"><option value="terminal">Terminal</option><option value="graphite">Graphite</option><option value="indigo">Indigo</option><option value="ocean">Ocean</option><option value="ember">Ember</option><option value="rose">Rose</option><option value="mono">Mono</option></optgroup><optgroup label="Light" data-g="light"><option value="paper">Paper</option><option value="frost">Frost</option></optgroup></select></label>
+    <label class="sel-wrap skin-wrap bar-skin"><select class="sel skin-sel" aria-label="Theme"><optgroup label="Dark page" data-g="full"><option value="cyberpunk">Cyberpunk</option><option value="matrix">Matrix</option><option value="midnight">Midnight</option></optgroup><optgroup label="Dark" data-g="dark"><option value="terminal">Terminal</option><option value="graphite">Graphite</option><option value="indigo">Indigo</option><option value="ocean">Ocean</option><option value="ember">Ember</option><option value="rose">Rose</option><option value="mono">Mono</option></optgroup><optgroup label="Light" data-g="light"><option value="paper">Paper</option><option value="frost">Frost</option></optgroup></select></label>
     <label class="sel-wrap lang-wrap"><select id="lang" class="sel" aria-label="Language"></select></label>
   </div>
   <div class="wrap"><div class="hint" id="hint"></div><div class="chips" id="chips" role="group"></div></div>
@@ -310,7 +338,7 @@ footer a{color:var(--accent);word-break:break-all}
 <div class="wrap">
   <div class="topline">
     <span class="badge" id="badge"></span>
-    <label class="sel-wrap skin-wrap hero-skin"><select class="sel skin-sel" aria-label="Theme"><optgroup label="Dark" data-g="dark"><option value="terminal">Terminal</option><option value="graphite">Graphite</option><option value="indigo">Indigo</option><option value="ocean">Ocean</option><option value="ember">Ember</option><option value="rose">Rose</option><option value="mono">Mono</option></optgroup><optgroup label="Light" data-g="light"><option value="paper">Paper</option><option value="frost">Frost</option></optgroup></select></label>
+    <label class="sel-wrap skin-wrap hero-skin"><select class="sel skin-sel" aria-label="Theme"><optgroup label="Dark page" data-g="full"><option value="cyberpunk">Cyberpunk</option><option value="matrix">Matrix</option><option value="midnight">Midnight</option></optgroup><optgroup label="Dark" data-g="dark"><option value="terminal">Terminal</option><option value="graphite">Graphite</option><option value="indigo">Indigo</option><option value="ocean">Ocean</option><option value="ember">Ember</option><option value="rose">Rose</option><option value="mono">Mono</option></optgroup><optgroup label="Light" data-g="light"><option value="paper">Paper</option><option value="frost">Frost</option></optgroup></select></label>
   </div>
   <div class="hero-grid">
     <div>
@@ -610,7 +638,35 @@ function demoNext(){
 }
 
 $("lang").addEventListener("change", e => setLang(e.target.value));
+// Digital rain behind the banner for the Matrix theme. Skips frames while the banner is
+// off screen or hidden (search mode) and never runs with reduced motion.
+const rain = (() => {
+  const hero = $("hero"), cv = document.createElement("canvas");
+  cv.className = "rain"; cv.setAttribute("aria-hidden", "true"); hero.prepend(cv);
+  const glyphs = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホ0123456789".split("");
+  let raf = 0, last = 0, drops = [];
+  const size = () => { cv.width = hero.clientWidth; cv.height = hero.clientHeight; drops = Array.from({length: Math.ceil(cv.width / 16)}, () => Math.random() * cv.height / 16 | 0); };
+  const frame = t => {
+    raf = requestAnimationFrame(frame);
+    if (t - last < 66 || scrollY > cv.height || !hero.offsetParent) return;
+    last = t;
+    const g = cv.getContext("2d");
+    g.fillStyle = "rgba(0,0,0,.09)"; g.fillRect(0, 0, cv.width, cv.height);
+    g.font = "14px monospace";
+    drops.forEach((y, i) => {
+      g.fillStyle = Math.random() > .9 ? "#d6ffe0" : "#00ff41";  // an occasional bright head
+      g.fillText(glyphs[Math.random() * glyphs.length | 0], i * 16, y * 16);
+      drops[i] = y * 16 > cv.height && Math.random() > .95 ? 0 : y + 1;
+    });
+  };
+  addEventListener("resize", () => { if (raf) size(); }, {passive: true});
+  return {
+    on() { if (raf || REDUCED) return; size(); raf = requestAnimationFrame(frame); },
+    off() { cancelAnimationFrame(raf); raf = 0; cv.getContext("2d").clearRect(0, 0, cv.width, cv.height); }
+  };
+})();
 function setSkin(k){
+  if (k === "matrix") rain.on(); else rain.off();
   if (k === "terminal") document.documentElement.removeAttribute("data-skin");
   else document.documentElement.setAttribute("data-skin", k);
   document.querySelectorAll(".skin-sel").forEach(sel => { sel.value = k; });
