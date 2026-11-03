@@ -1,0 +1,15 @@
+The written content of this project (data/*.json, README*.md and the text of
+docs/index.html) is licensed under the Creative Commons Attribution 4.0
+International License (CC BY 4.0).
+
+Full legal text: https://creativecommons.org/licenses/by/4.0/legalcode
+
+You may share and adapt the content for any purpose, provided you give
+appropriate credit, link to the license, and indicate if changes were made.
+
+The descriptions are paraphrased summaries of the official Claude Code
+documentation (https://code.claude.com/docs/en/commands). This project is not
+affiliated with or endorsed by Anthropic. "Claude" and "Claude Code" are
+trademarks of Anthropic.
+
+The code (scripts/ and site/) is licensed under the MIT License; see LICENSE.

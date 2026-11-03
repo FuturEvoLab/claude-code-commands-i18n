@@ -1,0 +1,635 @@
+<title>Claude Code Commands · English / 日本語 / 中文</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="An unofficial trilingual (English / Japanese / Chinese) plain-language reference to every Claude Code slash command.">
+<meta name="referrer" content="no-referrer">
+<style>
+/* Layout: terminal-style hero band → onboarding + scenarios → sticky prompt bar → sidebar nav + card grid → disclaimer footer.
+   Category hues come from static .h0–.h14 classes so the page needs no inline style attributes (CSP-safe). */
+:root{
+  --bg:#f4f6f8; --surface:#ffffff; --surface-2:#eef1f5; --ink:#141a24; --muted:#586374; --line:#dbe0e8;
+  --accent:#0f766e; --accent-ink:#ffffff; --accent-soft:#dcf2ef;
+  --hero:#111827; --hero-2:#1b2537; --hero-ink:#e8edf6; --hero-muted:#93a1b8; --hero-line:#2a3650; --phos:#5eead4; --amber:#fbbf24;
+  --star:#a15c00; --star-soft:#fdf0d9; --info:#3557b7; --info-soft:#e3e9fa;
+  --r-cost:#a15c00; --r-cost-bg:#fdf0d9; --r-external:#2f5fc4; --r-external-bg:#e2eafb; --r-secrets:#7c3aed; --r-secrets-bg:#efe7fd;
+  --r-files:#c2410c; --r-files-bg:#fde8dc; --r-perms:#b42318; --r-perms-bg:#fde3e1;
+  --hue-s:52%; --hue-l:40%; --shadow:0 1px 2px rgba(20,26,36,.06),0 6px 18px rgba(20,26,36,.06);
+  --font-zh:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC","Source Han Sans SC",sans-serif;
+  --font-ja:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic","Meiryo","Noto Sans CJK JP",sans-serif;
+  --font-en:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+  --font-mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0c1118; --surface:#141b26; --surface-2:#1a2330; --ink:#e6ebf3; --muted:#97a3b6; --line:#263142;
+  --accent:#5eead4; --accent-ink:#06201d; --accent-soft:#12302d;
+  --hero:#0a0f17; --hero-2:#121a27; --hero-line:#223047;
+  --star:#f5b94a; --star-soft:#3a2b12; --info:#9db4f0; --info-soft:#1d2741;
+  --r-cost:#f5b94a; --r-cost-bg:#3a2b12; --r-external:#8fb0f5; --r-external-bg:#1b2742; --r-secrets:#c4a5fb; --r-secrets-bg:#2a1f45;
+  --r-files:#fb9a6b; --r-files-bg:#3d2216; --r-perms:#f38b82; --r-perms-bg:#3f1c1a;
+  --hue-s:62%; --hue-l:68%; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 22px rgba(0,0,0,.25); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c1118; --surface:#141b26; --surface-2:#1a2330; --ink:#e6ebf3; --muted:#97a3b6; --line:#263142;
+  --accent:#5eead4; --accent-ink:#06201d; --accent-soft:#12302d;
+  --hero:#0a0f17; --hero-2:#121a27; --hero-line:#223047;
+  --star:#f5b94a; --star-soft:#3a2b12; --info:#9db4f0; --info-soft:#1d2741;
+  --r-cost:#f5b94a; --r-cost-bg:#3a2b12; --r-external:#8fb0f5; --r-external-bg:#1b2742; --r-secrets:#c4a5fb; --r-secrets-bg:#2a1f45;
+  --r-files:#fb9a6b; --r-files-bg:#3d2216; --r-perms:#f38b82; --r-perms-bg:#3f1c1a;
+  --hue-s:62%; --hue-l:68%; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 22px rgba(0,0,0,.25); color-scheme:dark}
+.h0{--h:168}.h1{--h:212}.h2{--h:262}.h3{--h:350}.h4{--h:24}.h5{--h:42}.h6{--h:140}.h7{--h:300}
+.h8{--h:4}.h9{--h:196}.h10{--h:226}.h11{--h:88}.h12{--h:30}.h13{--h:220}.h14{--h:0}
+[class*=" h"],[class^="h"]{--c:hsl(var(--h) var(--hue-s) var(--hue-l))}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-zh);font-size:15px;line-height:1.7;margin:0;-webkit-font-smoothing:antialiased}
+html[lang="ja"] body{font-family:var(--font-ja)}
+html[lang="en"] body{font-family:var(--font-en)}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+code{font-family:var(--font-mono);font-size:.86em;background:var(--accent-soft);color:var(--accent);padding:1px 5px;border-radius:4px;word-break:break-word}
+kbd{font-family:var(--font-mono);font-size:.8em;border:1px solid currentColor;border-bottom-width:2px;border-radius:4px;padding:0 5px;opacity:.85}
+button{font:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:20;background:var(--bg)}
+
+/* Hero: always dark, a deliberate terminal look in both themes */
+.hero{background:radial-gradient(1200px 400px at 85% -10%,rgba(94,234,212,.16),transparent 60%),linear-gradient(var(--hero),var(--hero));color:var(--hero-ink);position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--hero-line) 1px,transparent 1px),linear-gradient(90deg,var(--hero-line) 1px,transparent 1px);background-size:32px 32px;opacity:.35;mask-image:linear-gradient(180deg,#000,transparent 85%);-webkit-mask-image:linear-gradient(180deg,#000,transparent 85%);pointer-events:none}
+.hero .wrap{position:relative;z-index:1;padding-block:20px 72px}
+.topline{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.badge{font-size:12px;color:var(--hero-muted);border:1px solid var(--hero-line);border-radius:999px;padding:3px 12px;background:rgba(255,255,255,.03)}
+.badge::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--amber);margin-right:7px;vertical-align:1px}
+.langs{display:flex;border:1px solid var(--hero-line);border-radius:10px;overflow:hidden;background:rgba(255,255,255,.04)}
+.langs button{border:0;background:transparent;color:var(--hero-ink);padding:6px 14px;cursor:pointer;font-size:14px}
+.langs button[aria-pressed="true"]{background:var(--phos);color:#06201d;font-weight:700}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:40px;align-items:center;margin-top:34px}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr;gap:26px;margin-top:24px}}
+h1{font-size:clamp(32px,5.4vw,58px);font-weight:900;line-height:1.08;margin:0 0 14px;letter-spacing:-.02em;text-wrap:balance}
+h1 .slash{font-family:var(--font-mono);color:var(--phos);font-weight:700;margin-right:.08em;text-shadow:0 0 24px rgba(94,234,212,.45)}
+.lead{color:var(--hero-muted);margin:0;max-width:60ch;font-size:15.5px}
+.lead small{display:block;margin-top:10px;font-size:13px}
+.stats{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:22px}
+.stat b{display:block;font-family:var(--font-mono);font-size:30px;line-height:1.1;color:var(--hero-ink);font-variant-numeric:tabular-nums}
+.stat span{font-size:12.5px;color:var(--hero-muted);letter-spacing:.04em}
+.term{background:linear-gradient(var(--hero-2),var(--hero-2));border:1px solid var(--hero-line);border-radius:14px;box-shadow:0 20px 50px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.05);overflow:hidden;min-width:0}
+.term-bar{display:flex;align-items:center;gap:7px;padding:10px 14px;border-bottom:1px solid var(--hero-line);font-size:12px;color:var(--hero-muted)}
+.term-bar i{width:11px;height:11px;border-radius:50%;background:#3a465c;display:inline-block}
+.term-bar i:nth-child(1){background:#f87171}.term-bar i:nth-child(2){background:#fbbf24}.term-bar i:nth-child(3){background:#34d399}
+.term-bar span{margin-left:8px;font-family:var(--font-mono)}
+.term-body{padding:18px 18px 20px;font-family:var(--font-mono);font-size:14px;min-height:226px}
+.prompt-line{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.prompt-line .p{color:var(--phos)}
+.typed{color:var(--hero-ink);font-weight:700}
+.caret{display:inline-block;width:8px;height:1.1em;background:var(--phos);vertical-align:-2px;margin-left:2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.menu{margin:12px 0 0;padding:0;list-style:none;border-left:2px solid var(--hero-line)}
+.menu li{display:flex;gap:14px;padding:4px 12px;font-size:13px;color:var(--hero-muted);min-width:0}
+.menu li b{color:var(--hero-ink);font-weight:600;flex:none;min-width:8.5em}
+.menu li.on{background:rgba(94,234,212,.1);border-left:2px solid var(--phos);margin-left:-2px}
+.menu li.on b{color:var(--phos)}
+.menu li span{min-width:0;font-family:var(--font-zh)}
+html[lang="ja"] .menu li span{font-family:var(--font-ja)}
+html[lang="en"] .menu li span{font-family:var(--font-en)}
+
+/* Onboarding */
+.intro{padding-block:28px 6px}
+.howto{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:-58px;position:relative;z-index:2}
+@media (max-width:1000px){.howto{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.howto{grid-template-columns:1fr}}
+.howto div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow);min-width:0}
+.howto .ic{font-family:var(--font-mono);font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:8px;display:inline-grid;place-items:center;min-width:34px;height:30px;padding:0 6px;font-size:13px;margin-bottom:8px}
+.howto b{display:block;font-size:14.5px;margin-bottom:3px}
+.howto p{margin:0;color:var(--muted);font-size:13.5px}
+.h-sec{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:38px 0 14px}
+.h-sec h2{font-size:21px;margin:0;letter-spacing:-.01em}
+.h-sec p{margin:0;color:var(--muted);font-size:13.5px}
+.scens{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,268px),1fr));gap:10px}
+.scen{text-align:left;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:13px 15px;cursor:pointer;display:flex;flex-direction:column;gap:8px;min-width:0;transition:transform .15s,border-color .15s,box-shadow .15s}
+.scen:hover{transform:translateY(-2px);border-color:var(--accent);box-shadow:var(--shadow)}
+.scen[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.scen .q{font-weight:600;font-size:14.5px;display:flex;justify-content:space-between;gap:8px}
+.scen .q::after{content:"→";color:var(--accent);font-family:var(--font-mono)}
+.scen .pills{display:flex;flex-wrap:wrap;gap:4px}
+.scen .pills span{font-family:var(--font-mono);font-size:11.5px;background:var(--surface-2);color:var(--muted);border-radius:5px;padding:0 6px}
+@media (max-width:560px){.howto{gap:10px}.howto div{display:grid;grid-template-columns:auto 1fr;column-gap:12px;padding:12px 14px}.howto .ic{margin:0;grid-row:span 2}.howto p{grid-column:2}}
+.safety{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:0;padding:0}
+@media (max-width:1000px){.safety{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.safety{grid-template-columns:1fr}}
+.safety li{list-style:none;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:13px;color:var(--muted);min-width:0}
+.safety li b{display:flex;align-items:center;gap:8px;color:var(--ink);font-size:13.5px;margin-bottom:4px}
+.safety ul{margin:0;padding:0;display:contents}
+
+/* Prompt bar: pinned to the top from the first frame */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--hero) 92%,transparent);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--hero-line)}
+.bar-row{display:flex;align-items:center;gap:14px;padding-block:10px}
+.brand{flex:none;border:0;background:transparent;color:var(--hero-ink);font-family:var(--font-mono);font-weight:700;font-size:17px;cursor:pointer;padding:6px 4px}
+.brand span{color:var(--phos)}
+.bar .search{flex:1;min-width:0}
+.bar-langs{flex:none}
+.hero-langs{display:none}
+@media (max-width:720px){.brand,.bar-langs,.khint{display:none}.hero-langs{display:flex}}
+.qclear{flex:none;border:0;background:var(--hero-line);color:var(--hero-ink);width:28px;height:28px;border-radius:8px;cursor:pointer;font-size:16px;line-height:1}
+.khint{color:var(--hero-muted);margin-right:6px;flex:none}
+.hint{display:none;font-size:12px;color:var(--hero-muted);padding:0 2px 8px;font-family:var(--font-mono)}
+body.searching .hint{display:block}
+@media (pointer:coarse){.hint{display:none!important}}
+body.searching .hero,body.searching .intro{display:none}
+.search{display:flex;align-items:center;gap:10px;background:var(--hero);border:1px solid var(--hero-line);border-radius:12px;padding:4px 6px 4px 14px;box-shadow:var(--shadow)}
+.search:focus-within{border-color:var(--phos);box-shadow:0 0 0 3px rgba(94,234,212,.25)}
+.search .p{font-family:var(--font-mono);color:var(--phos);font-weight:700}
+#q{flex:1;min-width:0;font:inherit;font-size:16px;padding:8px 4px;border:0;background:transparent;color:var(--hero-ink);outline:none}
+#q::placeholder{color:var(--hero-muted)}
+#count{color:var(--hero-muted);font-size:12.5px;white-space:nowrap;font-variant-numeric:tabular-nums;padding-right:4px}
+.chips{display:none;gap:6px;overflow-x:auto;padding-bottom:10px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+@media (max-width:900px){.chips{display:flex}}
+.chip{flex:none;font-size:13px;padding:5px 12px;border-radius:999px;border:1px solid var(--hero-line);background:rgba(255,255,255,.04);color:var(--hero-ink);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.chip[aria-pressed="true"]{background:var(--phos);border-color:var(--phos);color:#06201d}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--c,var(--muted));flex:none}
+
+/* Body: sidebar + list */
+.body{display:grid;grid-template-columns:230px minmax(0,1fr);gap:32px;padding-block:28px 40px}
+@media (max-width:900px){.body{grid-template-columns:1fr}.side{display:none}}
+.side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 76px);align-self:start;max-height:calc(100vh - 96px);overflow:auto;padding-right:4px}
+.side button{display:flex;align-items:center;gap:9px;width:100%;text-align:left;border:0;background:transparent;color:var(--muted);padding:6px 10px;border-radius:8px;cursor:pointer;font-size:13.5px}
+.side button:hover{background:var(--surface-2);color:var(--ink)}
+.side button[aria-pressed="true"]{background:var(--surface);color:var(--ink);font-weight:700;box-shadow:var(--shadow)}
+.side button em{margin-left:auto;font-style:normal;font-family:var(--font-mono);font-size:11.5px;color:var(--muted)}
+.side hr{border:0;border-top:1px solid var(--line);margin:8px 0}
+main section{margin-bottom:40px}
+.sec-head{display:flex;align-items:center;gap:12px;margin-bottom:4px;flex-wrap:wrap}
+.sec-head .sw{width:12px;height:12px;border-radius:4px;background:var(--c);box-shadow:0 0 0 4px color-mix(in srgb,var(--c) 22%,transparent)}
+.sec-head h2{font-size:21px;margin:0;letter-spacing:-.01em}
+.sec-head small{font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.sec-desc{color:var(--muted);font-size:13.5px;margin:0 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:0;display:flex;flex-direction:column;min-width:0;overflow:hidden;transition:transform .15s,box-shadow .15s;scroll-margin-top:84px;border-top:3px solid var(--c,var(--line))}
+.card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.card.flash,.card.active{outline:3px solid var(--accent);outline-offset:3px}
+mark{background:color-mix(in srgb,var(--amber) 45%,transparent);color:inherit;border-radius:3px;padding:0 1px}
+.cmd mark{background:rgba(251,191,36,.35);color:var(--phos)}
+.empty-s{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}
+.empty-s button{font-size:13px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 14px;cursor:pointer}
+@media (pointer:coarse){.chip{padding:8px 14px;font-size:14px}.link{padding:6px 12px;font-size:13px}.langs button{padding:9px 14px}.scen{padding:15px 16px}.side button{padding:10px}.cmd{padding:7px 13px}.qclear{width:34px;height:34px}}
+.card-head{padding:14px 16px 10px;display:flex;flex-direction:column;gap:8px}
+.top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.cmd{font-family:var(--font-mono);font-weight:700;font-size:16px;background:var(--hero);color:var(--phos);padding:4px 11px;border-radius:7px;cursor:pointer;border:0;text-align:left;position:relative}
+.cmd:hover::after{content:"⧉";margin-left:8px;font-size:12px;color:var(--hero-muted)}
+.args{font-family:var(--font-mono);font-size:12.5px;color:var(--muted);word-break:break-word;min-width:0}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{font-size:11.5px;padding:1px 8px;border-radius:999px;white-space:nowrap;font-weight:600}
+.tag.pick{background:var(--star-soft);color:var(--star)}
+.tag.skill,.tag.workflow{background:var(--accent-soft);color:var(--accent)}
+.tag.removed{background:var(--r-perms-bg);color:var(--r-perms)}
+.tag.ver{background:var(--info-soft);color:var(--info);font-family:var(--font-mono);font-weight:500}
+.tag.risk{cursor:help}
+.r-cost{background:var(--r-cost-bg);color:var(--r-cost)}.r-external{background:var(--r-external-bg);color:var(--r-external)}
+.r-secrets{background:var(--r-secrets-bg);color:var(--r-secrets)}.r-files{background:var(--r-files-bg);color:var(--r-files)}
+.r-perms{background:var(--r-perms-bg);color:var(--r-perms)}
+.ri{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:6px;font-size:12px;flex:none}
+.gloss{font-size:12.5px;color:var(--muted)}
+.gloss b{font-family:var(--font-mono);font-weight:600;color:var(--ink)}
+.what{margin:0 16px 12px}
+.ex{margin:0 16px 14px;background:var(--surface-2);border-radius:10px;padding:10px 12px;font-size:13.5px}
+.ex .lbl{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.08em;display:block;margin-bottom:2px;text-transform:uppercase}
+.ex code{background:transparent;padding:0;color:var(--ink);font-weight:700}
+.card-foot{margin-top:auto;display:flex;align-items:center;gap:8px;padding:9px 16px;border-top:1px dashed var(--line);font-size:12.5px;color:var(--muted)}
+.card-foot code{background:transparent;color:var(--muted);padding:0}
+.link{margin-left:auto;font-size:12px;color:var(--muted);background:transparent;border:1px solid var(--line);border-radius:6px;padding:1px 8px;cursor:pointer;white-space:nowrap}
+.link:hover{color:var(--accent);border-color:var(--accent)}
+.scen-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.scen-bar h2{margin:0;font-size:21px}
+.clear{font-size:13px;border:1px solid var(--line);background:var(--surface);color:var(--accent);border-radius:999px;padding:3px 12px;cursor:pointer}
+.empty{color:var(--muted);text-align:center;padding:60px 0;font-family:var(--font-mono)}
+
+footer{border-top:1px solid var(--line);background:var(--surface);color:var(--muted);font-size:13px}
+footer .wrap{padding-block:30px 48px}
+footer h2{font-size:18px;color:var(--ink);margin:0 0 14px}
+.disc{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:12px;margin:0 0 22px;padding:0;list-style:none;counter-reset:d}
+.disc li{counter-increment:d;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--bg);min-width:0}
+.disc li b{display:block;color:var(--ink);font-size:13.5px;margin-bottom:3px}
+.disc li b::before{content:counter(d,decimal-leading-zero) "  ";font-family:var(--font-mono);color:var(--accent)}
+footer p{margin:8px 0;max-width:100ch}
+footer a{color:var(--accent);word-break:break-all}
+.toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom,0px));transform:translate(-50%,10px);background:var(--hero);color:var(--phos);font-family:var(--font-mono);padding:9px 16px;border-radius:10px;font-size:13.5px;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;z-index:30;border:1px solid var(--hero-line);max-width:calc(100vw - 32px);overflow-wrap:anywhere}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.totop{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(22px + env(safe-area-inset-bottom,0px));z-index:15;width:42px;height:42px;border-radius:12px;border:1px solid var(--hero-line);background:var(--hero);color:var(--phos);font-family:var(--font-mono);font-size:18px;cursor:pointer;box-shadow:var(--shadow)}
+.noscript{background:var(--r-perms-bg);color:var(--r-perms);padding:12px 16px;border-radius:8px;margin-top:16px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.caret{animation:none}.card,.scen,.toast{transition:none}.card:hover,.scen:hover{transform:none}}
+</style>
+
+<div class="bar" id="bar">
+  <div class="wrap bar-row">
+    <button type="button" class="brand" id="brand" aria-label="Top"><span>/</span>cc</button>
+    <div class="search" role="search">
+      <span class="p" aria-hidden="true">❯ /</span>
+      <input id="q" type="search" autocomplete="off" spellcheck="false" enterkeyhint="search">
+      <span id="count" aria-live="polite"></span>
+      <button type="button" class="qclear" id="qclear" hidden>×</button>
+      <kbd class="khint" id="khint">/</kbd>
+    </div>
+    <div class="langs bar-langs" role="group" aria-label="Language">
+      <button type="button" data-lang="en">English</button><button type="button" data-lang="ja">日本語</button><button type="button" data-lang="zh">中文</button>
+    </div>
+  </div>
+  <div class="wrap"><div class="hint" id="hint"></div><div class="chips" id="chips" role="group"></div></div>
+</div>
+
+<div class="hero" id="hero">
+<div class="wrap">
+  <div class="topline">
+    <span class="badge" id="badge"></span>
+    <div class="langs hero-langs" role="group" aria-label="Language">
+      <button type="button" data-lang="en">English</button><button type="button" data-lang="ja">日本語</button><button type="button" data-lang="zh">中文</button>
+    </div>
+  </div>
+  <div class="hero-grid">
+    <div>
+      <h1><span class="slash">/</span><span id="h1"></span></h1>
+      <p class="lead" id="lead"></p>
+      <noscript><p class="noscript">This page needs JavaScript. このページには JavaScript が必要です。 本页需要 JavaScript。 → README.md / README.ja.md / README.zh-CN.md</p></noscript>
+      <div class="stats" id="stats"></div>
+    </div>
+    <div class="term" aria-hidden="true">
+      <div class="term-bar"><i></i><i></i><i></i><span>claude</span></div>
+      <div class="term-body">
+        <div class="prompt-line"><span class="p">❯</span><span><span class="typed" id="typed"></span><span class="caret"></span></span></div>
+        <ul class="menu" id="menu"></ul>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="wrap intro" id="intro">
+  <div class="howto" id="howto"></div>
+  <div class="h-sec"><h2 id="scen-h"></h2><p id="scen-d"></p></div>
+  <div class="scens" id="scens"></div>
+  <div class="h-sec"><h2 id="safety-h"></h2><p id="safety-d"></p></div>
+  <ul class="safety" id="safety"></ul>
+</div>
+
+
+<div class="wrap body">
+  <nav class="side" id="side" aria-label="Categories"></nav>
+  <main id="list"></main>
+</div>
+<footer><div class="wrap" id="foot"></div></footer>
+<button type="button" class="totop" id="totop" hidden>↑</button>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const META = /*META*/null;
+const CATS = /*CATS*/[];
+const CMDS = /*CMDS*/[];
+const SCENS = /*SCENS*/[];
+const RISKS = /*RISKS*/[];
+const DISC = /*DISC*/null;
+const RISK = Object.fromEntries(RISKS.map(r => [r.id, r]));
+const HUE = Object.fromEntries(CATS.map((c, i) => [c.id, "h" + (i % 15)]));
+
+const UI = {
+  zh: {
+    badge: "非官方 · 社区整理",
+    results: "搜索结果",
+    hint: "↑↓ 选择 · Enter 复制命令 · Esc 清空", qclear: "清空搜索", suggest: "试试这些场景：",
+    h1: "Claude Code 命令大全",
+    lead: "Claude Code 里所有以 / 开头的命令，用简单中文逐条讲清楚：英文原意、能做什么、什么时候用最合适。",
+    keys: "随时按 <kbd>/</kbd> 或 <kbd>⌘K</kbd> 搜索 · 点命令名复制",
+    stats: ["个命令", "个场景", "个风险标记", "种语言"],
+    howto: [
+      ["/", "打开命令列表", "在输入框输入 <code>/</code> 就会弹出命令列表；继续输入几个字母可以筛选，例如 <code>/mo</code> 只剩 /model。"],
+      ["[ ]", "看懂参数写法", "命令后空一格再写的内容叫「参数」。<code>[ ]</code> 可写可不写，<code>&lt; &gt;</code> 必须写，<code>|</code> 几选一。参数可以直接用中文写。"],
+      ["◇", "命令、技能、工作流", "普通命令是程序内置功能；「技能」是一套写好的提示流程，交给 Claude 执行；「工作流」会派出多个代理在后台运行。"],
+      ["?", "看不到某个命令？", "很多命令只在特定版本、套餐、平台或开启某功能后才出现。以你自己输入 <code>/</code> 看到的列表为准；先用 <code>/status</code> 查看版本。"]
+    ],
+    scen: "按场景找命令", scenD: "选你想做的事，命令按建议尝试的顺序排列。", back: "× 显示全部命令",
+    safety: "安全标记", safetyD: "带这些标记的命令请格外小心。",
+    link: "复制链接", copiedLink: "已复制本命令的链接",
+    riskChip: "需注意", disc: "免责声明", nav: "分类", top: "回到顶部",
+    search: "搜索命令、中文说明或英文，例如：撤销、省钱、model",
+    all: "全部命令", picks: "新手推荐", count: n => `${n} 个`,
+    pick: "★ 新手推荐", skill: "技能", workflow: "工作流", removed: "已移除",
+    since: v => `v${v}+`, removedIn: v => `v${v} 移除`,
+    word: "英文", use: "最佳用法", alias: "同义命令",
+    empty: "没有找到。换个关键词试试，例如「撤销」「模型」「后台」。",
+    copied: c => `已复制 ${c}`, selected: "已选中，请按 ⌘C / Ctrl+C 复制",
+    foot: m => `<p><b>数据来源：</b>依据 Claude Code 官方命令文档 <a href="${m.source}" target="_blank" rel="noopener noreferrer">${m.source}</a> 整理，核对日期 ${m.checked}。说明为意译和简化，不是官方翻译；如有出入，以官方文档为准。</p><p><b>参与改进：</b>发现错误或命令有更新，欢迎在仓库提交 Issue 或 Pull Request。<a href="${m.repo}" target="_blank" rel="noopener noreferrer">${m.repo}</a> · 内容许可 CC BY 4.0，代码许可 MIT。</p>`
+  },
+  ja: {
+    badge: "非公式 · コミュニティ作成",
+    results: "検索結果",
+    hint: "↑↓ で選択 · Enter でコマンドをコピー · Esc でクリア", qclear: "検索をクリア", suggest: "こんな場面から探す：",
+    h1: "Claude Code コマンド一覧",
+    lead: "Claude Code の / で始まるコマンドすべてを、やさしい日本語で説明します。英語の意味、できること、いちばん役立つ使い方がわかります。",
+    keys: "いつでも <kbd>/</kbd> か <kbd>⌘K</kbd> で検索 · コマンド名をクリックでコピー",
+    stats: ["コマンド", "シーン", "注意マーク", "言語"],
+    howto: [
+      ["/", "コマンド一覧を出す", "入力欄に <code>/</code> と打つと一覧が出ます。続けて数文字打つと絞り込めます。例：<code>/mo</code> で /model だけに。"],
+      ["[ ]", "引数の読み方", "コマンドの後ろにスペースを空けて書く内容が「引数」です。<code>[ ]</code> は省略可、<code>&lt; &gt;</code> は必須、<code>|</code> は「どれか 1 つ」。日本語で書いてかまいません。"],
+      ["◇", "コマンド・スキル・ワークフロー", "普通のコマンドは組み込みの機能。「スキル」は Claude に渡す手順書、「ワークフロー」は複数のエージェントをバックグラウンドで動かします。"],
+      ["?", "コマンドが見つからない？", "バージョン・プラン・環境・機能の有効化によって表示が変わります。自分で <code>/</code> と打って出る一覧が正です。まず <code>/status</code> でバージョンを確認。"]
+    ],
+    scen: "やりたいことから探す", scenD: "状況を選んでください。コマンドは試す順に並んでいます。", back: "× すべてのコマンドを表示",
+    safety: "安全マーク", safetyD: "次のマークが付いたコマンドは慎重に使ってください。",
+    link: "リンクをコピー", copiedLink: "このコマンドへのリンクをコピーしました",
+    riskChip: "注意が必要", disc: "免責事項", nav: "カテゴリー", top: "ページの先頭へ",
+    search: "コマンド名・日本語・英語で検索（例：巻き戻し、使用量、model）",
+    all: "すべてのコマンド", picks: "初心者向け", count: n => `${n} 件`,
+    pick: "★ 初心者向け", skill: "スキル", workflow: "ワークフロー", removed: "削除済み",
+    since: v => `v${v} 以降`, removedIn: v => `v${v} で削除`,
+    word: "英語", use: "おすすめの使い方", alias: "別名",
+    empty: "見つかりませんでした。「巻き戻し」「モデル」「バックグラウンド」などで試してください。",
+    copied: c => `${c} をコピーしました`, selected: "選択しました。⌘C / Ctrl+C でコピーしてください",
+    foot: m => `<p><b>出典：</b>Claude Code 公式のコマンドリファレンス <a href="${m.source}" target="_blank" rel="noopener noreferrer">${m.source}</a> をもとに作成（確認日 ${m.checked}）。説明は意訳・簡略化したもので、公式の翻訳ではありません。違いがある場合は公式ドキュメントが優先です。</p><p><b>改善への参加：</b>誤りやコマンドの変更に気づいたら、Issue や Pull Request を歓迎します。<a href="${m.repo}" target="_blank" rel="noopener noreferrer">${m.repo}</a> · 内容は CC BY 4.0、コードは MIT ライセンス。</p>`
+  },
+  en: {
+    badge: "Unofficial · Community-maintained",
+    results: "Results",
+    hint: "↑↓ to select · Enter to copy the command · Esc to clear", qclear: "Clear search", suggest: "Try one of these:",
+    h1: "Claude Code Commands",
+    lead: "Every Claude Code slash command in plain language: what it does, and when it is most useful.",
+    keys: "Press <kbd>/</kbd> or <kbd>⌘K</kbd> to search anytime · click a command to copy",
+    stats: ["commands", "scenarios", "safety labels", "languages"],
+    howto: [
+      ["/", "Open the menu", "Type <code>/</code> in the prompt to open the command menu; keep typing to filter, e.g. <code>/mo</code> narrows to /model."],
+      ["[ ]", "Read the syntax", "Text after the command is its argument. <code>[ ]</code> optional, <code>&lt; &gt;</code> required, <code>|</code> one of. Arguments can be in any language."],
+      ["◇", "Commands, skills, workflows", "Built-in commands are coded into the CLI. Skills are bundled prompts handed to Claude. Workflows fan work out to several background agents."],
+      ["?", "Missing a command?", "Many commands depend on version, plan, platform or an enabled feature. The list you see after typing <code>/</code> is authoritative; check your version with <code>/status</code>."]
+    ],
+    scen: "Find a command by what you want to do", scenD: "Pick a situation; commands are listed in the order to try them.", back: "× Show all commands",
+    safety: "Safety labels", safetyD: "Take extra care with commands marked like this.",
+    link: "Copy link", copiedLink: "Copied a link to this command",
+    riskChip: "Use with care", disc: "Disclaimer", nav: "Categories", top: "Back to top",
+    search: "Search commands or descriptions, e.g. rewind, cost, background",
+    all: "All commands", picks: "Start here", count: n => `${n}`,
+    pick: "★ Start here", skill: "Skill", workflow: "Workflow", removed: "Removed",
+    since: v => `v${v}+`, removedIn: v => `removed in v${v}`,
+    word: "", use: "Best use", alias: "Aliases",
+    empty: "No matches. Try another word, such as “rewind”, “model” or “background”.",
+    copied: c => `Copied ${c}`, selected: "Selected. Press ⌘C / Ctrl+C to copy",
+    foot: m => `<p><b>Source:</b> paraphrased from the official Claude Code commands reference, <a href="${m.source}" target="_blank" rel="noopener noreferrer">${m.source}</a>, checked ${m.checked}. Descriptions are simplified; where they differ, the official docs win.</p><p><b>Contribute:</b> corrections and updates are welcome as issues or pull requests at <a href="${m.repo}" target="_blank" rel="noopener noreferrer">${m.repo}</a>. Content CC BY 4.0, code MIT.</p>`
+  }
+};
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const md = s => esc(s).replace(/`([^`]+)`/g, "<code>$1</code>");
+const LANGS = ["en","ja","zh"];
+const REDUCED = matchMedia("(prefers-reduced-motion: reduce)").matches;
+let lang = "en", cat = "all", scen = null;
+
+const slug = c => c.cmd.slice(1).replace(/ /g, "-");
+const HASH = /^(zh|ja|en)(?:-([a-z0-9-]+))?$/.exec(location.hash.slice(1)) || [];
+const TARGET = HASH[2] && CMDS.find(c => slug(c) === HASH[2]);
+
+function pickLang(){
+  if (HASH[1]) return HASH[1];
+  // A link's #en/#ja/#zh or the visitor's last choice wins; otherwise English.
+  try { const s = localStorage.getItem("lang"); if (LANGS.includes(s)) return s; } catch(e) {}
+  return "en";
+}
+
+function riskTag(r, withName){
+  const k = RISK[r];
+  return `<span class="tag risk r-${r}" title="${esc(k.desc[lang].replace(/`/g, ""))}">${esc(k.icon)}${withName ? " " + esc(k.name[lang]) : ""}</span>`;
+}
+
+function setLang(l){
+  lang = l;
+  document.documentElement.lang = l === "zh" ? "zh-CN" : l;
+  try { localStorage.setItem("lang", l); } catch(e) {}
+  document.querySelectorAll(".langs button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === l));
+  const t = UI[l];
+  $("hint").textContent = t.hint;
+  $("qclear").setAttribute("aria-label", t.qclear); $("qclear").title = t.qclear;
+  $("badge").textContent = t.badge;
+  $("h1").textContent = t.h1;
+  $("lead").innerHTML = esc(t.lead) + "<small>" + t.keys + "</small>";
+  const live = CMDS.filter(c => c.kind !== "removed");
+  const nums = [live.length, SCENS.length, CMDS.filter(c => (c.risk || []).length).length, 3];
+  $("stats").innerHTML = nums.map((n, i) => `<div class="stat"><b>${n}</b><span>${esc(t.stats[i])}</span></div>`).join("");
+  $("howto").innerHTML = t.howto.map(([ic, b, p]) => `<div><span class="ic">${esc(ic)}</span><b>${b}</b><p>${p}</p></div>`).join("");
+  $("scen-h").textContent = t.scen; $("scen-d").textContent = t.scenD;
+  $("safety-h").textContent = t.safety; $("safety-d").textContent = t.safetyD;
+  $("safety").innerHTML = RISKS.map(r => `<li><b><span class="ri r-${r.id}">${esc(r.icon)}</span>${esc(r.name[l])}</b>${md(r.desc[l])}</li>`).join("");
+  buildScens();
+  $("q").placeholder = t.search;
+  $("q").setAttribute("aria-label", t.search);
+  $("totop").setAttribute("aria-label", t.top); $("totop").title = t.top;
+  $("side").setAttribute("aria-label", t.nav);
+  $("foot").innerHTML = `<h2>${t.disc}</h2><ol class="disc">${DISC[l].map(d => `<li><b>${esc(d.t)}</b>${esc(d.b)}</li>`).join("")}</ol>` + t.foot(META);
+  buildNav();
+  render();
+  demoReset();
+}
+
+function buildScens(){
+  $("scens").innerHTML = SCENS.map(s => `<button type="button" class="scen" data-s="${esc(s.id)}" aria-pressed="${s.id === scen}"><span class="q">${esc(s.q[lang])}</span><span class="pills">${s.cmds.map(c => `<span>${esc(c)}</span>`).join("")}</span></button>`).join("");
+}
+$("scens").addEventListener("click", e => {
+  const b = e.target.closest(".scen"); if (!b) return;
+  scen = scen === b.dataset.s ? null : b.dataset.s;
+  buildScens(); render();
+  if (scen) scrollToList();
+});
+
+// One nav model, drawn as sidebar (desktop) and chips (phone).
+function navItems(){
+  const t = UI[lang];
+  return [
+    {id: "all", label: t.all, n: CMDS.length},
+    {id: "picks", label: "★ " + t.picks, n: CMDS.filter(c => c.pick).length},
+    {id: "risky", label: "⚠ " + t.riskChip, n: CMDS.filter(c => (c.risk || []).length).length},
+    null,
+    ...CATS.map(c => ({id: c.id, label: c.name[lang], n: CMDS.filter(x => x.cat === c.id).length, hue: HUE[c.id]}))
+  ];
+}
+function buildNav(){
+  const items = navItems();
+  const btn = (it, cls) => `<button type="button" class="${cls}${it.hue ? " " + it.hue : ""}" data-cat="${it.id}" aria-pressed="${it.id === cat}">${it.hue ? '<span class="dot"></span>' : ""}<span>${esc(it.label)}</span>${cls === "" ? `<em>${it.n}</em>` : ""}</button>`;
+  $("side").innerHTML = items.map(it => it ? btn(it, "") : "<hr>").join("");
+  $("chips").innerHTML = items.filter(Boolean).map(it => btn(it, "chip")).join("");
+}
+function pickCat(id){
+  cat = id; if (scen) { scen = null; buildScens(); }
+  document.querySelectorAll("[data-cat]").forEach(b => b.setAttribute("aria-pressed", b.dataset.cat === id));
+  render();
+  scrollToList();
+}
+["side", "chips"].forEach(id => $(id).addEventListener("click", e => { const b = e.target.closest("[data-cat]"); if (b) pickCat(b.dataset.cat); }));
+
+function card(c){
+  const t = UI[lang];
+  const tags = [
+    c.pick ? `<span class="tag pick">${t.pick}</span>` : "",
+    c.kind === "skill" ? `<span class="tag skill">${t.skill}</span>` : "",
+    c.kind === "workflow" ? `<span class="tag workflow">${t.workflow}</span>` : "",
+    c.kind === "removed" ? `<span class="tag removed">${c.removedIn ? t.removedIn(c.removedIn) : t.removed}</span>` : "",
+    c.since ? `<span class="tag ver">${t.since(c.since)}</span>` : "",
+    ...(c.risk || []).map(r => riskTag(r, true))
+  ].join("");
+  const gloss = lang === "en" ? "" : `<div class="gloss">${t.word} <b>${esc(c.word)}</b> ＝ ${esc(c.gloss[lang])}</div>`;
+  const alias = c.aliases.length ? `<span>${t.alias}: ${c.aliases.map(a => `<code>${esc(a)}</code>`).join(" · ")}</span>` : "";
+  return `<article class="card ${HUE[c.cat]}" id="c-${slug(c)}">
+    <div class="card-head">
+      <div class="top"><button class="cmd" type="button" data-c="${esc(c.cmd)}" title="${esc(t.copied(c.cmd))}">${esc(c.cmd)}</button>${c.args ? `<span class="args">${esc(c.args)}</span>` : ""}</div>
+      ${tags ? `<div class="tags">${tags}</div>` : ""}
+      ${gloss}
+    </div>
+    <p class="what">${md(c.desc[lang])}</p>
+    <div class="ex"><span class="lbl">${t.use}</span>${md(c.use[lang])}</div>
+    <div class="card-foot">${alias}<button class="link" type="button" data-l="${slug(c)}" aria-label="${t.link}: ${esc(c.cmd)}">${t.link}</button></div>
+  </article>`;
+}
+
+function matches(c, k){
+  if (!k) return true;
+  const scenQ = SCENS.filter(s => s.cmds.includes(c.cmd)).map(s => s.q[lang]);
+  const hay = [c.cmd, c.args, c.word, ...c.aliases, ...(c.risk || []).map(r => RISK[r].name[lang]), c.desc[lang], c.use[lang], c.short ? c.short[lang] : "", ...scenQ, lang !== "en" ? c.gloss[lang] : "", c.desc.en].join(" ").toLowerCase();
+  return k.split(/\s+/).every(w => hay.includes(w));
+}
+
+function render(){
+  const t = UI[lang], k = $("q").value.trim().toLowerCase().replace(/^\//, "");
+  let html = "", n = 0;
+  const sc = SCENS.find(s => s.id === scen);
+  if (sc) {
+    const rows = sc.cmds.map(name => CMDS.find(c => c.cmd === name));
+    $("list").innerHTML = `<section><div class="scen-bar"><h2>${esc(sc.q[lang])}</h2><button type="button" class="clear" id="clear-scen">${t.back}</button></div><div class="grid">${rows.map(card).join("")}</div></section>`;
+    $("count").textContent = t.count(rows.length);
+    $("clear-scen").onclick = () => { scen = null; buildScens(); render(); };
+    return;
+  }
+  if (k) {
+    // While searching: one flat grid, best matches first (name, then alias, then text).
+    const inCat = c => ["all", "picks", "risky"].includes(cat) || c.cat === cat;
+    const rank = c => { const n = c.cmd.slice(1); return n.startsWith(k) ? 0 : n.includes(k) ? 1 : c.aliases.some(a => a.includes(k)) ? 2 : c.pick ? 3 : 4; };
+    const rows = CMDS.filter(c => inCat(c) && (cat !== "picks" || c.pick) && (cat !== "risky" || (c.risk || []).length) && matches(c, k))
+      .sort((a, b) => rank(a) - rank(b));
+    n = rows.length;
+    if (n) html = `<section><div class="sec-head"><h2>${t.results}</h2><small>${t.count(n)}</small></div><div class="grid">${rows.map(card).join("")}</div></section>`;
+  } else CATS.forEach(cg => {
+    if (!["all", "picks", "risky"].includes(cat) && cat !== cg.id) return;
+    const rows = CMDS.filter(c => c.cat === cg.id && (cat !== "picks" || c.pick) && (cat !== "risky" || (c.risk || []).length) && matches(c, k));
+    if (!rows.length) return;
+    n += rows.length;
+    html += `<section class="${HUE[cg.id]}"><div class="sec-head"><span class="sw"></span><h2>${esc(cg.name[lang])}</h2><small>${t.count(rows.length)}</small></div><p class="sec-desc">${esc(cg.desc[lang])}</p><div class="grid">${rows.map(card).join("")}</div></section>`;
+  });
+  $("list").innerHTML = html || `<div class="empty"><p>${t.empty}</p><p>${t.suggest}</p><div class="empty-s">${SCENS.slice(0, 6).map(s => `<button type="button" data-s="${esc(s.id)}">${esc(s.q[lang])}</button>`).join("")}</div></div>`;
+  $("count").textContent = t.count(n);
+  active = -1;
+  if (k) highlight(k.split(/\s+/).filter(Boolean));
+}
+
+// Wrap matches in <mark> by splitting text nodes, never by rewriting HTML.
+function highlight(words){
+  const re = new RegExp("(" + words.map(w => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|") + ")", "gi");
+  $("list").querySelectorAll(".cmd, .what, .ex, .gloss").forEach(root => {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    const nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(node => {
+      const parts = node.nodeValue.split(re);
+      if (parts.length < 2) return;
+      const frag = document.createDocumentFragment();
+      parts.forEach((part, i) => {
+        if (!part) return;
+        if (i % 2) { const m = document.createElement("mark"); m.textContent = part; frag.appendChild(m); }
+        else frag.appendChild(document.createTextNode(part));
+      });
+      node.parentNode.replaceChild(frag, node);
+    });
+  });
+}
+
+// Search mode: while there is a query, hide the intro so results sit right under the bar.
+let active = -1;
+function syncSearchMode(){
+  const on = $("q").value.trim() !== "";
+  const was = document.body.classList.contains("searching");
+  document.body.classList.toggle("searching", on);
+  $("qclear").hidden = !on;
+  $("khint").hidden = on;
+  if (on && !was) scrollTo({top: 0, behavior: "instant"});
+}
+function setActive(i){
+  const cards = [...$("list").querySelectorAll(".card")];
+  if (!cards.length) return;
+  active = Math.max(0, Math.min(cards.length - 1, i));
+  cards.forEach((c, j) => c.classList.toggle("active", j === active));
+  cards[active].scrollIntoView({block: "nearest", behavior: "instant"});
+}
+function copyCmd(c){
+  try { navigator.clipboard.writeText(c).then(() => say(UI[lang].copied(c))).catch(() => say(c)); } catch(err) { say(c); }
+}
+function clearSearch(){ $("q").value = ""; syncSearchMode(); render(); }
+function scrollToList(){
+  const y = $("list").getBoundingClientRect().top + scrollY - $("bar").offsetHeight - 12;
+  if (scrollY > y || y - scrollY > innerHeight * .4) scrollTo({top: y, behavior: REDUCED ? "auto" : "smooth"});
+}
+
+// Hero terminal: types an editor's pick, then shows a slash-menu of related commands.
+const DEMO = CMDS.filter(c => c.pick);
+let demoI = 0, demoTimer = null;
+function menuFor(c){
+  const rest = CMDS.filter(x => x.cat === c.cat && x !== c && x.kind !== "removed").slice(0, 3);
+  return [c, ...rest].map((x, i) => `<li class="${i ? "" : "on"}"><b>${esc(x.cmd)}</b><span>${esc((x.short || x.desc)[lang].replace(/`/g, "").split(/[。．.]\s?/)[0])}</span></li>`).join("");
+}
+function demoShow(c, typed){ $("typed").textContent = typed; $("menu").innerHTML = typed === c.cmd ? menuFor(c) : ""; }
+function demoReset(){
+  clearTimeout(demoTimer);
+  const c = DEMO[demoI % DEMO.length];
+  demoShow(c, c.cmd);  // complete at rest
+  if (!REDUCED) demoTimer = setTimeout(demoNext, 3200);
+}
+function demoNext(){
+  const c = DEMO[++demoI % DEMO.length];
+  let i = 1;
+  const step = () => {
+    demoShow(c, c.cmd.slice(0, i));
+    if (i++ < c.cmd.length) demoTimer = setTimeout(step, 70);
+    else demoTimer = setTimeout(demoNext, 3200);
+  };
+  step();
+}
+
+document.querySelectorAll(".langs button").forEach(b => b.onclick = () => setLang(b.dataset.lang));
+$("list").addEventListener("click", e => {
+  const s = e.target.closest(".empty-s button"); if (!s) return;
+  $("q").value = ""; syncSearchMode(); scen = s.dataset.s; buildScens(); render();
+});
+$("q").addEventListener("input", () => { if (scen) { scen = null; buildScens(); } syncSearchMode(); render(); });
+$("q").addEventListener("keydown", e => {
+  const cards = $("list").querySelectorAll(".card");
+  if (e.key === "ArrowDown") { e.preventDefault(); setActive(active + 1); }
+  else if (e.key === "ArrowUp") { e.preventDefault(); setActive(active - 1); }
+  else if (e.key === "Enter" && !e.isComposing && cards.length) { e.preventDefault(); copyCmd(cards[Math.max(active, 0)].querySelector(".cmd").dataset.c); }
+  else if (e.key === "Escape") { if ($("q").value) clearSearch(); else $("q").blur(); }
+});
+$("qclear").onclick = () => { clearSearch(); $("q").focus(); };
+$("brand").onclick = () => { clearSearch(); scrollTo({top: 0, behavior: REDUCED ? "auto" : "smooth"}); };
+const toast = $("toast"); let tt;
+function say(s){ toast.textContent = s; toast.classList.add("on"); clearTimeout(tt); tt = setTimeout(() => toast.classList.remove("on"), 1600); }
+$("list").addEventListener("click", e => {
+  const lk = e.target.closest(".link");
+  if (lk) {
+    const url = META.site + "#" + lang + "-" + lk.dataset.l;
+    try { navigator.clipboard.writeText(url).then(() => say(UI[lang].copiedLink)).catch(() => say(url)); } catch(err) { say(url); }
+    return;
+  }
+  const b = e.target.closest(".cmd"); if (!b) return;
+  const c = b.dataset.c;
+  const fallback = () => { const r = document.createRange(); r.selectNodeContents(b); const s = getSelection(); s.removeAllRanges(); s.addRange(r); say(UI[lang].selected); };
+  try { navigator.clipboard.writeText(c).then(() => say(UI[lang].copied(c))).catch(fallback); } catch(err) { fallback(); }
+});
+document.addEventListener("keydown", e => {
+  const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName);
+  if ((e.key === "/" && !typing && !e.metaKey && !e.ctrlKey) || (e.key.toLowerCase() === "k" && (e.metaKey || e.ctrlKey))) { e.preventDefault(); $("q").focus(); $("q").select(); }
+});
+const totop = $("totop");
+addEventListener("scroll", () => { totop.hidden = scrollY < 900; }, {passive: true});
+totop.onclick = () => scrollTo({top: 0, behavior: REDUCED ? "auto" : "smooth"});
+setLang(pickLang());
+if (TARGET) {
+  const el = $("c-" + slug(TARGET));
+  if (el) { el.scrollIntoView({block: "start", behavior: "instant"}); el.classList.add("flash"); setTimeout(() => el.classList.remove("flash"), 2500); }
+}
+</script>

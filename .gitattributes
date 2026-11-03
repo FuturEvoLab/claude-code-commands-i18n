@@ -1,0 +1,7 @@
+* text=auto eol=lf
+*.png binary
+# Generated files: collapse in diffs, count as generated on GitHub
+README.md linguist-generated
+README.zh-CN.md linguist-generated
+README.ja.md linguist-generated
+docs/index.html linguist-generated
