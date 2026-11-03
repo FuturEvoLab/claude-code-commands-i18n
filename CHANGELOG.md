@@ -2,7 +2,7 @@
 
 ## 1.1.0 — 2026-11-03
 
-- Three more color themes besides the default Terminal: Graphite, Indigo and Paper (Paper stays light even in system dark mode). The choice is remembered per browser.
+- Eight more color themes besides the default Terminal: Graphite, Indigo, Ocean, Ember, Rose and Mono with a dark banner, and Paper and Frost, which stay light even in system dark mode. The choice is remembered per browser.
 - Language and theme switches are dropdowns; the language one stays in the top bar on phones.
 - The hero's terminal demo keeps a fixed height, so the headline no longer shifts while it types.
 
