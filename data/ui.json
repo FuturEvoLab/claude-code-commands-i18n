@@ -84,7 +84,8 @@
   "empty": "No matches. Try another word, such as “rewind”, “model” or “background”.",
   "copied": "Copied {c}",
   "selected": "Selected. Press ⌘C / Ctrl+C to copy",
-  "foot": "<p><b>Source:</b> paraphrased from the official Claude Code commands reference, {sourceLink}, checked {checked}. Descriptions are simplified, not official translations; where they differ, the official docs win.</p><p><b>Contribute:</b> corrections and updates are welcome as issues or pull requests at {repoLink}. Content CC BY 4.0, code MIT.</p>"
+  "foot": "<p><b>Source:</b> paraphrased from the official Claude Code commands reference, {sourceLink}, checked {checked}. Descriptions are simplified, not official translations; where they differ, the official docs win.</p><p><b>Contribute:</b> corrections and updates are welcome as issues or pull requests at {repoLink}. Content CC BY 4.0, code MIT.</p>",
+  "skip": "Skip to the command list"
  },
  "ja": {
   "badge": "非公式 · コミュニティ作成",
@@ -171,7 +172,8 @@
   "empty": "見つかりませんでした。「巻き戻し」「モデル」「バックグラウンド」などで試してください。",
   "copied": "{c} をコピーしました",
   "selected": "選択しました。⌘C / Ctrl+C でコピーしてください",
-  "foot": "<p><b>出典：</b>Claude Code 公式のコマンドリファレンス {sourceLink} をもとに作成（確認日 {checked}）。説明は意訳・簡略化したもので、公式の翻訳ではありません。違いがある場合は公式ドキュメントが優先です。</p><p><b>改善への参加：</b>誤りやコマンドの変更に気づいたら、Issue や Pull Request を歓迎します。{repoLink} · 内容は CC BY 4.0、コードは MIT ライセンス。</p>"
+  "foot": "<p><b>出典：</b>Claude Code 公式のコマンドリファレンス {sourceLink} をもとに作成（確認日 {checked}）。説明は意訳・簡略化したもので、公式の翻訳ではありません。違いがある場合は公式ドキュメントが優先です。</p><p><b>改善への参加：</b>誤りやコマンドの変更に気づいたら、Issue や Pull Request を歓迎します。{repoLink} · 内容は CC BY 4.0、コードは MIT ライセンス。</p>",
+  "skip": "コマンド一覧へスキップ"
  },
  "zh": {
   "badge": "非官方 · 社区整理",
@@ -258,7 +260,8 @@
   "empty": "没有找到。换个关键词试试，例如「撤销」「模型」「后台」。",
   "copied": "已复制 {c}",
   "selected": "已选中，请按 ⌘C / Ctrl+C 复制",
-  "foot": "<p><b>数据来源：</b>依据 Claude Code 官方命令文档 {sourceLink} 整理，核对日期 {checked}。说明为意译和简化，不是官方翻译；如有出入，以官方文档为准。</p><p><b>参与改进：</b>发现错误或命令有更新，欢迎在仓库提交 Issue 或 Pull Request。{repoLink} · 内容许可 CC BY 4.0，代码许可 MIT。</p>"
+  "foot": "<p><b>数据来源：</b>依据 Claude Code 官方命令文档 {sourceLink} 整理，核对日期 {checked}。说明为意译和简化，不是官方翻译；如有出入，以官方文档为准。</p><p><b>参与改进：</b>发现错误或命令有更新，欢迎在仓库提交 Issue 或 Pull Request。{repoLink} · 内容许可 CC BY 4.0，代码许可 MIT。</p>",
+  "skip": "跳到命令列表"
  },
  "zh-hant": {
   "badge": "非官方 · 社群維護",
@@ -345,7 +348,8 @@
   "empty": "找不到符合的結果。換個關鍵字試試，例如「復原」、「模型」或「背景」。",
   "copied": "已複製 {c}",
   "selected": "已選取，請按 ⌘C / Ctrl+C 複製",
-  "foot": "<p><b>資料來源：</b>依據 Claude Code 官方指令參考文件 {sourceLink} 改寫，查核日期 {checked}。說明經過簡化，不是官方翻譯；如有出入，以官方文件為準。</p><p><b>參與貢獻：</b>歡迎在 {repoLink} 以 issue 或 pull request 提出更正和更新。內容採用 CC BY 4.0，程式碼採用 MIT。</p>"
+  "foot": "<p><b>資料來源：</b>依據 Claude Code 官方指令參考文件 {sourceLink} 改寫，查核日期 {checked}。說明經過簡化，不是官方翻譯；如有出入，以官方文件為準。</p><p><b>參與貢獻：</b>歡迎在 {repoLink} 以 issue 或 pull request 提出更正和更新。內容採用 CC BY 4.0，程式碼採用 MIT。</p>",
+  "skip": "跳到指令列表"
  },
  "ko": {
   "badge": "비공식 · 커뮤니티 관리",
@@ -432,7 +436,8 @@
   "empty": "결과가 없습니다. “되감기”, “모델”, “백그라운드” 같은 다른 단어로 검색해 보세요.",
   "copied": "{c} 복사됨",
   "selected": "선택했습니다. ⌘C / Ctrl+C로 복사하세요",
-  "foot": "<p><b>출처:</b> Claude Code 공식 명령 참고 문서 {sourceLink}를 바탕으로 풀어 썼습니다(확인일 {checked}). 설명은 간략화한 것이며 공식 번역이 아닙니다. 차이가 있으면 공식 문서가 우선합니다.</p><p><b>참여하기:</b> 수정과 업데이트는 {repoLink}의 Issue나 Pull Request로 환영합니다. 내용은 CC BY 4.0, 코드는 MIT.</p>"
+  "foot": "<p><b>출처:</b> Claude Code 공식 명령 참고 문서 {sourceLink}를 바탕으로 풀어 썼습니다(확인일 {checked}). 설명은 간략화한 것이며 공식 번역이 아닙니다. 차이가 있으면 공식 문서가 우선합니다.</p><p><b>참여하기:</b> 수정과 업데이트는 {repoLink}의 Issue나 Pull Request로 환영합니다. 내용은 CC BY 4.0, 코드는 MIT.</p>",
+  "skip": "명령 목록으로 건너뛰기"
  },
  "ru": {
   "badge": "Неофициально · Поддерживается сообществом",
@@ -519,7 +524,8 @@
   "empty": "Ничего не найдено. Попробуйте другое слово, например «rewind», «model» или «фон».",
   "copied": "Скопировано: {c}",
   "selected": "Выбрано. Нажмите ⌘C / Ctrl+C, чтобы скопировать",
-  "foot": "<p><b>Источник:</b> пересказ официального справочника команд Claude Code, {sourceLink}, проверено {checked}. Описания упрощены и не являются официальным переводом; если они расходятся, верна официальная документация.</p><p><b>Участие:</b> исправления и обновления принимаются в виде issues или pull request на {repoLink}. Контент — CC BY 4.0, код — MIT.</p>"
+  "foot": "<p><b>Источник:</b> пересказ официального справочника команд Claude Code, {sourceLink}, проверено {checked}. Описания упрощены и не являются официальным переводом; если они расходятся, верна официальная документация.</p><p><b>Участие:</b> исправления и обновления принимаются в виде issues или pull request на {repoLink}. Контент — CC BY 4.0, код — MIT.</p>",
+  "skip": "Перейти к списку команд"
  },
  "es": {
   "badge": "No oficial · Mantenido por la comunidad",
@@ -606,6 +612,7 @@
   "empty": "Sin resultados. Prueba con otra palabra, como «rewind», «model» o «background».",
   "copied": "Copiado: {c}",
   "selected": "Seleccionado. Pulsa ⌘C / Ctrl+C para copiar",
-  "foot": "<p><b>Fuente:</b> paráfrasis de la referencia oficial de comandos de Claude Code, {sourceLink}, revisada el {checked}. Las descripciones están simplificadas y no son traducciones oficiales; si no coinciden, manda la documentación oficial.</p><p><b>Colabora:</b> las correcciones y actualizaciones son bienvenidas como issues o pull requests en {repoLink}. Contenido CC BY 4.0, código MIT.</p>"
+  "foot": "<p><b>Fuente:</b> paráfrasis de la referencia oficial de comandos de Claude Code, {sourceLink}, revisada el {checked}. Las descripciones están simplificadas y no son traducciones oficiales; si no coinciden, manda la documentación oficial.</p><p><b>Colabora:</b> las correcciones y actualizaciones son bienvenidas como issues o pull requests en {repoLink}. Contenido CC BY 4.0, código MIT.</p>",
+  "skip": "Saltar a la lista de comandos"
  }
 }

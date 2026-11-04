@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.2.0 — 2026-11-05
+
+- Checked against the official changelog up to 2.1.318: no commands missing. Updated `/permissions` (Recently blocked tab), `/usage` (warnings with one-line fixes, `f` applies them) and `/claude-api` (`api-version` subcommand) in all seven languages.
+- Link previews: a 1200×630 share image (`docs/assets/social.png`) and large-image cards.
+- Favicon, canonical URL and `hreflang` links for each language; a multilingual `404.html` with its own CSP.
+- Keyboard: a translated "Skip to the command list" link appears on the first Tab.
+- Screenshots are about 60% smaller; `scripts/optimize_images.py` (needs Pillow) makes the share image and shrinks the PNGs.
+- CI uses `actions/checkout` v7.0.1, pinned by commit SHA.
+
 ## 1.1.0 — 2026-11-03
 
 - Live preview on GitHub Pages; `?theme=` and `?lang=` in the link open a theme or language directly. README screenshots are now in English, with the default and Matrix themes side by side.

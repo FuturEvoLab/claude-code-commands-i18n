@@ -315,9 +315,12 @@ footer a{color:var(--accent);word-break:break-all}
 .totop{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(22px + env(safe-area-inset-bottom,0px));z-index:15;width:42px;height:42px;border-radius:12px;border:1px solid var(--hero-line);background:var(--hero);color:var(--phos);font-family:var(--font-mono);font-size:18px;cursor:pointer;box-shadow:var(--shadow)}
 .noscript{background:var(--r-perms-bg);color:var(--r-perms);padding:12px 16px;border-radius:8px;margin-top:16px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.caret{animation:none}.card,.scen,.toast{transition:none}.card:hover,.scen:hover{transform:none}}
+.skip{position:fixed;left:8px;top:-60px;z-index:200;padding:8px 14px;border-radius:8px;background:var(--accent);color:var(--accent-ink);font-weight:700;text-decoration:none}.skip:focus{top:8px}
+#list:focus{outline:none}
 </style>
 <script>(function(){var ok=/^(cyberpunk|matrix|midnight|graphite|indigo|ocean|ember|rose|mono|paper|frost)$/,s=null;try{s=new URLSearchParams(location.search).get("theme")}catch(e){}if(!s||!(ok.test(s)||s==="terminal")){try{s=localStorage.getItem("skin")}catch(e){}}if(ok.test(s))document.documentElement.setAttribute("data-skin",s)})()</script>
 
+<a class="skip" id="skip" href="#list"></a>
 <div class="bar" id="bar">
   <div class="wrap bar-row">
     <button type="button" class="brand" id="brand" aria-label="Top"><span>/</span>cc</button>
@@ -369,7 +372,7 @@ footer a{color:var(--accent);word-break:break-all}
 
 <div class="wrap body">
   <nav class="side" id="side" aria-label="Categories"></nav>
-  <main id="list"></main>
+  <main id="list" tabindex="-1"></main>
 </div>
 <footer><div class="wrap" id="foot"></div></footer>
 <button type="button" class="totop" id="totop" hidden>↑</button>
@@ -443,6 +446,7 @@ function setLang(l){
     sel.querySelectorAll("optgroup").forEach(g => { g.label = t.skinGroups[g.dataset.g]; });
   });
   $("hint").textContent = t.hint;
+  $("skip").textContent = t.skip;
   $("qclear").setAttribute("aria-label", t.qclear); $("qclear").title = t.qclear;
   $("badge").textContent = t.badge;
   $("h1").textContent = t.h1;
@@ -469,6 +473,7 @@ function setLang(l){
 function buildScens(){
   $("scens").innerHTML = SCENS.map(s => `<button type="button" class="scen" data-s="${esc(s.id)}" aria-pressed="${s.id === scen}"><span class="q">${esc(s.q[lang])}</span><span class="pills">${s.cmds.map(c => `<span>${esc(c)}</span>`).join("")}</span></button>`).join("");
 }
+$("skip").addEventListener("click", e => { e.preventDefault(); $("list").focus(); $("list").scrollIntoView(); });
 $("scens").addEventListener("click", e => {
   const b = e.target.closest(".scen"); if (!b) return;
   scen = scen === b.dataset.s ? null : b.dataset.s;

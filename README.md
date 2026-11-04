@@ -209,7 +209,7 @@ Extend Claude with plugins, skills, MCP servers, browser and IDE integrations
 |---|---|---|
 | `/mcp`<br>`[reconnect (<server>\|all)\|enable\|disable [<server>\|all]]`<br>★ | Manages MCP server connections and OAuth. No argument opens the list; `reconnect`, `enable` or `disable` with a server name or `all` acts directly. | A connector failed or needs auth: `/mcp reconnect all`. |
 | `/chrome` | Configures Claude in Chrome settings. | When first connecting the Chrome extension. |
-| `/claude-api`<br>`[subcommand]`<br>Skill | Loads Claude API and Managed Agents reference for your project's language; activates automatically when code imports `anthropic`. Subcommands include `migrate`, `upgrade`, `cost-optimize`, `build-eval`, `prompt-audit`. | Cut API spend in your app: `/claude-api cost-optimize`. |
+| `/claude-api`<br>`[subcommand]`<br>Skill | Loads Claude API and Managed Agents reference for your project's language; activates automatically when code imports `anthropic`. Subcommands include `migrate`, `upgrade`, `api-version`, `cost-optimize`, `build-eval`, `prompt-audit`. | Cut API spend in your app: `/claude-api cost-optimize`. |
 | `/claude-in-chrome`<br>`[task]`<br>Skill · ↗ Sends data out | Has Claude carry out a task in your browser through Claude in Chrome, such as testing a page or reading console logs. Requires Chrome integration (e.g. `claude --chrome`). | `/claude-in-chrome test the sign-up flow on my local site and report errors`. |
 | `/ide` | Manages IDE integrations and shows status. | Check the connection when edits don't show in your editor. |
 | `/install-github-app`<br>↗ Sends data out · ⚑ Changes safety settings | Installs the Claude GitHub App for a repository, optionally setting up GitHub Actions workflows and secrets. github.com only. | To mention Claude in issues and PRs and have it work there. |
@@ -227,7 +227,7 @@ Control what Claude may do and what needs your approval
 
 | Command | What it does | Best use |
 |---|---|---|
-| `/permissions`<br>★ · ⚑ Changes safety settings | Manages allow, ask and deny rules for tools: view by scope, add or remove rules, manage working directories, review recent auto mode denials and classifier rules.<br>Aliases: `/allowed-tools` | Tired of approving `npm test` every time: allow it here. |
+| `/permissions`<br>★ · ⚑ Changes safety settings | Manages allow, ask and deny rules for tools: view by scope, add or remove rules, manage working directories, and check the Recently blocked tab (calls auto mode refused) and classifier rules.<br>Aliases: `/allowed-tools` | Tired of approving `npm test` every time: allow it here. |
 | `/auto-mode-setup`<br>⚑ Changes safety settings | Drafts `autoMode.environment` entries from your project and recent sessions for you to review and save. Has version and plan requirements. | When auto mode keeps blocking routine actions. |
 | `/fewer-permission-prompts`<br>Skill · ⚑ Changes safety settings | Scans transcripts for common read-only Bash and MCP calls and adds a prioritized allowlist to project `.claude/settings.json`. | Run once when approval prompts keep interrupting you. |
 | `/hooks` | Views hook configurations. | Check what's configured when a hook seems to break every edit. |
@@ -258,7 +258,7 @@ Sign in, check limits and cost, upgrade
 
 | Command | What it does | Best use |
 |---|---|---|
-| `/usage`<br>★ | Shows session cost, plan usage limits and activity stats, including what counts against plan limits on subscriptions. `/stats` opens the Stats tab.<br>Aliases: `/cost`, `/stats` | Check `/usage` before deciding whether to switch to a cheaper model. |
+| `/usage`<br>★ | Shows session cost, plan usage limits and activity stats, including what counts against plan limits on subscriptions. `/stats` opens the Stats tab. Each warning names its cause and a one-line fix; press `f` to apply the fixes.<br>Aliases: `/cost`, `/stats` | Check `/usage` before deciding whether to switch to a cheaper model. |
 | `/login` | Signs in to your Anthropic account. | New machine or expired session. |
 | `/logout` | Signs out of your Anthropic account. | After using a shared computer. |
 | `/passes` | Shares a free week of Claude Code with friends; only shown to eligible accounts. | Invite a friend to try it. |
@@ -330,7 +330,7 @@ Still mentioned in older guides but no longer available
 
 ## About this project
 
-- **Source**: paraphrased from the official [commands reference](https://code.claude.com/docs/en/commands), checked 2026-11-03. Descriptions are simplified, not official translations; where they differ, the official docs win.
+- **Source**: paraphrased from the official [commands reference](https://code.claude.com/docs/en/commands), checked 2026-11-05. Descriptions are simplified, not official translations; where they differ, the official docs win.
 - **Data**: everything is generated from [`data/commands.json`](data/commands.json). Edit the JSON, then run `python3 scripts/build.py`.
 - **Contributing**: see [CONTRIBUTING.md](CONTRIBUTING.md).
 - **License**: content [CC BY 4.0](LICENSE-CONTENT), code [MIT](LICENSE).

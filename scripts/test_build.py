@@ -83,7 +83,15 @@ class OutputTests(unittest.TestCase):
 
     def test_page_loads_nothing_from_other_sites(self):
         for tag in re.findall(r"<(?:script|link|img|iframe)\b[^>]*>", self.page):
+            if re.search(r'rel="(canonical|alternate)"', tag):
+                self.assertRegex(tag, r'href="https://[\w-]+\.github\.io/', tag)  # metadata only, never fetched
+                continue
             self.assertNotRegex(tag, r"(src|href)=\"https?:", tag)
+
+    def test_404_page_is_built_with_its_own_csp(self):
+        page = (ROOT / "docs/404.html").read_text(encoding="utf-8")
+        self.assertIn("default-src 'none'", page)
+        self.assertEqual(len(re.findall(r'\?lang=', page)), len(build.LANGINFO))
 
     def test_every_command_appears_in_every_readme(self):
         for lang, text in self.readmes.items():

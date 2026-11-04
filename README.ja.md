@@ -209,7 +209,7 @@ Claude に新しい機能を追加：プラグイン、スキル、MCP、ブラ�
 |---|---|---|---|
 | `/mcp`<br>`[reconnect (<server>\|all)\|enable\|disable [<server>\|all]]`<br>★ | MCP (Model Context Protocol)<br>Model Context Protocol（外部ツール連携の標準） | MCP サーバーの接続と OAuth 認証を管理します。引数なしで一覧、`reconnect`・`enable`・`disable` とサーバー名か `all` で直接操作。 | コネクターのエラーや再ログインが必要なとき：`/mcp reconnect all`。 |
 | `/chrome` | Chrome<br>Chrome ブラウザー | Claude in Chrome の設定を行います。 | Chrome 拡張と初めて接続するとき。 |
-| `/claude-api`<br>`[subcommand]`<br>スキル | Claude API<br>Claude の API | プロジェクトの言語に合った Claude API と Managed Agents の資料を読み込みます。コードが `anthropic` を import していると自動で有効。サブコマンドは `migrate`・`upgrade`・`cost-optimize`・`build-eval`・`prompt-audit` など。 | 自作 AI アプリの API 費用を下げたい：`/claude-api cost-optimize`。 |
+| `/claude-api`<br>`[subcommand]`<br>スキル | Claude API<br>Claude の API | プロジェクトの言語に合った Claude API と Managed Agents の資料を読み込みます。コードが `anthropic` を import していると自動で有効。サブコマンドは `migrate`・`upgrade`・`api-version`・`cost-optimize`・`build-eval`・`prompt-audit` など。 | 自作 AI アプリの API 費用を下げたい：`/claude-api cost-optimize`。 |
 | `/claude-in-chrome`<br>`[task]`<br>スキル · ↗ 外部に送信 | Claude in Chrome<br>Chrome で動く Claude | Claude in Chrome 拡張を通して、ページのテスト・フォーム入力・コンソールログの確認などをブラウザーで行います。Chrome 連携の有効化（例：`claude --chrome`）が必要です。 | `/claude-in-chrome ローカルのサイトで会員登録の流れを試してエラーを報告して`。 |
 | `/ide` | IDE (integrated development environment)<br>統合開発環境（コードエディター） | VS Code や JetBrains などのエディターとの連携を管理し、状態を表示します。 | エディターに Claude の変更が出ないとき、接続を確認。 |
 | `/install-github-app`<br>↗ 外部に送信 · ⚑ 安全設定を変更 | install GitHub app<br>GitHub アプリのインストール | リポジトリに Claude GitHub App を入れ、必要なら GitHub Actions のワークフローとシークレットも設定します。github.com のリポジトリのみ。 | GitHub の issue や PR で @claude と呼んで作業させたいとき。 |
@@ -227,7 +227,7 @@ Claude にできること・事前確認が必要なことを決める
 
 | コマンド | 英語の意味 | 説明 | おすすめの使い方 |
 |---|---|---|---|
-| `/permissions`<br>★ · ⚑ 安全設定を変更 | permissions<br>権限 | ツール権限の「許可・確認・拒否」ルールを管理します。範囲ごとの確認、ルールの追加・削除、作業ディレクトリの管理、自動モードの最近の拒否と分類ルールの確認ができます。<br>別名: `/allowed-tools` | 毎回「npm test を実行してよいか」と聞かれるのが面倒なら、ここで許可に。 |
+| `/permissions`<br>★ · ⚑ 安全設定を変更 | permissions<br>権限 | ツール権限の「許可・確認・拒否」ルールを管理します。範囲ごとの確認、ルールの追加・削除、作業ディレクトリの管理、「Recently blocked」タブ（自動モードが止めた操作）と分類ルールの確認ができます。<br>別名: `/allowed-tools` | 毎回「npm test を実行してよいか」と聞かれるのが面倒なら、ここで許可に。 |
 | `/auto-mode-setup`<br>⚑ 安全設定を変更 | auto mode setup<br>自動モードの設定 | プロジェクトと最近のセッションから `autoMode.environment` の項目を下書きし、確認後ユーザー設定に保存します。自動モードの判断精度が上がります。バージョンとプランの条件あり。 | 自動モードがいつもの操作を誤って止めるとき。 |
 | `/fewer-permission-prompts`<br>スキル · ⚑ 安全設定を変更 | fewer permission prompts<br>確認ダイアログを減らす | 履歴からよく使う読み取り専用の Bash・MCP 呼び出しを探し、優先度順にプロジェクトの `.claude/settings.json` の許可リストへ追加します。 | 確認ダイアログで何度も止められるときに一度実行。 |
 | `/hooks` | hooks<br>フック（決まったタイミングで自動実行されるスクリプト） | フックの設定を確認します。 | フックのせいで編集のたびにエラーが出ていそうなとき、設定内容を確認。 |
@@ -258,7 +258,7 @@ Claude にできること・事前確認が必要なことを決める
 
 | コマンド | 英語の意味 | 説明 | おすすめの使い方 |
 |---|---|---|---|
-| `/usage`<br>★ | usage<br>使用量 | このセッションの費用、プランの使用量上限、利用統計を表示します。サブスクリプションでは上限に数えられる内訳も表示。`/stats` は統計タブで開きます。<br>別名: `/cost`, `/stats` | 上限が心配なら `/usage` で確認し、安いモデルに替えるか判断。 |
+| `/usage`<br>★ | usage<br>使用量 | このセッションの費用、プランの使用量上限、利用統計を表示します。サブスクリプションでは上限に数えられる内訳も表示。`/stats` は統計タブで開きます。警告にはそれぞれ原因と一行の対処法が表示され、`f` で対処をまとめて適用できます。<br>別名: `/cost`, `/stats` | 上限が心配なら `/usage` で確認し、安いモデルに替えるか判断。 |
 | `/login` | log in<br>ログイン | Anthropic アカウントにログインします。 | パソコンを替えたとき、ログインが切れたとき。 |
 | `/logout` | log out<br>ログアウト | Anthropic アカウントからログアウトします。 | 共用パソコンで使い終わったとき。 |
 | `/passes` | passes<br>招待パス | Claude Code の 1 週間無料体験を友人に共有します。対象アカウントのみ表示。 | 友人に試してもらう。 |
@@ -330,7 +330,7 @@ Claude にできること・事前確認が必要なことを決める
 
 ## このプロジェクトについて
 
-- **出典**：公式の[コマンドリファレンス](https://code.claude.com/docs/en/commands)をもとに意訳（確認日 2026-11-03）。説明は簡略化したもので公式の翻訳ではありません。違いがある場合は公式ドキュメントが優先です。
+- **出典**：公式の[コマンドリファレンス](https://code.claude.com/docs/en/commands)をもとに意訳（確認日 2026-11-05）。説明は簡略化したもので公式の翻訳ではありません。違いがある場合は公式ドキュメントが優先です。
 - **データ**：すべて [`data/commands.json`](data/commands.json) から生成しています。JSON を編集して `python3 scripts/build.py` を実行してください。
 - **貢献**：[CONTRIBUTING.md](CONTRIBUTING.md) を参照。
 - **ライセンス**：内容は [CC BY 4.0](LICENSE-CONTENT)、コードは [MIT](LICENSE)。

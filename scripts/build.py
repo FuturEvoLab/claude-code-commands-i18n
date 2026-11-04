@@ -17,7 +17,7 @@ KINDS = ("builtin", "skill", "workflow", "removed")
 
 META = {
     "source": "https://code.claude.com/docs/en/commands",
-    "checked": "2026-11-03",
+    "checked": "2026-11-05",
 }
 REPO_FILE = ROOT / "repo.txt"  # holds OWNER/NAME so later builds remember it
 
@@ -308,8 +308,43 @@ def social():
         ("property", "og:title", "Claude Code Commands · " + names),
         ("property", "og:description", desc),
         ("property", "og:url", META["site"]),
-        ("name", "twitter:card", "summary"),
-    ))
+        ("property", "og:image", META["site"] + "assets/social.png"),
+        ("property", "og:image:width", "1200"),
+        ("property", "og:image:height", "630"),
+        ("property", "og:image:alt", "Claude Code Commands: searchable guide in " + str(len(LANGINFO)) + " languages"),
+        ("name", "twitter:card", "summary_large_image"),
+    )) + links()
+
+
+# A "/" mark in the theme accent; a data: URL, so the CSP needs nothing new.
+FAVICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E"
+           "%3Crect width='32' height='32' rx='7' fill='%230b0f0c'/%3E"
+           "%3Cpath d='M19.5 6 12.5 26' stroke='%2335e06f' stroke-width='3.4' stroke-linecap='round'/%3E%3C/svg%3E")
+
+
+def links():
+    """Favicon, canonical URL and one alternate per language for search engines."""
+    out = [f'<link rel="icon" href="{FAVICON}">', f'<link rel="canonical" href="{META["site"]}">']
+    out += [f'<link rel="alternate" hreflang="{x["html"]}" href="{META["site"]}?lang={x["code"]}">' for x in LANGINFO]
+    out.append(f'<link rel="alternate" hreflang="x-default" href="{META["site"]}">')
+    return "\n".join(out) + "\n"
+
+
+def not_found(ui):
+    """docs/404.html: GitHub Pages serves it for any unknown path."""
+    msg = {"en": "Page not found", "ja": "ページが見つかりません", "zh": "找不到页面", "zh-hant": "找不到頁面",
+           "ko": "페이지를 찾을 수 없습니다", "ru": "Страница не найдена", "es": "Página no encontrada"}
+    css = ("body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0b0f0c;color:#d7e3da;"
+           "font:16px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace}main{padding:24px;max-width:36em}"
+           "h1{color:#35e06f;font-size:28px;margin:0 0 12px}a{color:#35e06f}ul{padding-left:1.2em}")
+    items = "".join(f'<li lang="{x["html"]}">{msg[x["code"]]} · <a href="{META["site"]}?lang={x["code"]}">{ui[x["code"]]["h1"]}</a></li>'
+                    for x in LANGINFO)
+    body = f'<style>{css}</style>\n<main><h1>/404</h1><ul>{items}</ul></main>'
+    return ('<!doctype html>\n<html lang="en">\n<meta charset="utf-8">\n'
+            '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
+            f'<meta http-equiv="Content-Security-Policy" content="{csp(body)}">\n'
+            f'<meta name="robots" content="noindex">\n<title>404 · Claude Code Commands</title>\n'
+            f'<link rel="icon" href="{FAVICON}">\n{body}\n</html>\n')
 
 
 def csp(body):
@@ -359,6 +394,7 @@ def main():
         f'<meta http-equiv="Content-Security-Policy" content="{csp(body)}">\n'
         + social()
         + body + "\n</html>\n", encoding="utf-8")
+    (ROOT / "docs/404.html").write_text(not_found(d["ui"]), encoding="utf-8")
     print(f"OK: {len(cmds)} commands, {len(cats)} categories, {len(scens)} scenarios; wrote {len(LANGS)} READMEs, docs/index.html, dist/artifact.html")
     if placeholder:
         print("Note: repository links use the placeholder OWNER. Run again with --repo OWNER/NAME.")

@@ -35,3 +35,6 @@ shot preview-matrix 1366,900 "file://$TMP/matrix.html#en"
 shot preview-search 1366,900 "file://$TMP/search.html#en" --force-prefers-reduced-motion
 shot preview-mobile 500,1000 "$PAGE#en" --force-prefers-reduced-motion
 ls -la "$OUT"
+
+# Optional: shrink the PNGs and refresh the social card (needs Pillow).
+python3 -c "import PIL" 2>/dev/null && python3 scripts/optimize_images.py || echo "Pillow not installed: skipped scripts/optimize_images.py"

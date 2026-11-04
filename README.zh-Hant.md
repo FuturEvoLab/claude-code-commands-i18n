@@ -209,7 +209,7 @@
 |---|---|---|---|
 | `/mcp`<br>`[reconnect (<server>\|all)\|enable\|disable [<server>\|all]]`<br>★ | MCP (Model Context Protocol)<br>MCP（Model Context Protocol，模型上下文協定） | 管理 MCP 伺服器連線和 OAuth。不加參數會開啟清單；`reconnect`、`enable` 或 `disable` 加上伺服器名稱或 `all` 可直接操作。 | 連接器失敗或需要驗證：`/mcp reconnect all`。 |
 | `/chrome` | Chrome<br>Chrome 瀏覽器 | 設定 Claude in Chrome。 | 第一次連接 Chrome 擴充功能時。 |
-| `/claude-api`<br>`[subcommand]`<br>技能 | Claude API<br>Claude API（Claude 程式介面） | 載入適合你專案程式語言的 Claude API 和 Managed Agents 參考資料；程式碼匯入 `anthropic` 時會自動啟用。子指令包括 `migrate`、`upgrade`、`cost-optimize`、`build-eval`、`prompt-audit`。 | 降低你的應用程式的 API 花費：`/claude-api cost-optimize`。 |
+| `/claude-api`<br>`[subcommand]`<br>技能 | Claude API<br>Claude API（Claude 程式介面） | 載入適合你專案程式語言的 Claude API 和 Managed Agents 參考資料；程式碼匯入 `anthropic` 時會自動啟用。子指令包括 `migrate`、`upgrade`、`api-version`、`cost-optimize`、`build-eval`、`prompt-audit`。 | 降低你的應用程式的 API 花費：`/claude-api cost-optimize`。 |
 | `/claude-in-chrome`<br>`[task]`<br>技能 · ↗ 會傳送到外部 | Claude in Chrome<br>Claude in Chrome（在 Chrome 瀏覽器中使用 Claude） | 透過 Claude in Chrome 讓 Claude 在你的瀏覽器中執行工作，例如測試網頁或讀取主控台紀錄。需要啟用 Chrome 整合（例如 `claude --chrome`）。 | `/claude-in-chrome 測試我本機網站的註冊流程並回報錯誤`。 |
 | `/ide` | IDE (integrated development environment)<br>IDE（整合開發環境，程式碼編輯器） | 管理 IDE 整合並顯示狀態。 | 編輯器裡看不到修改時，檢查連線狀態。 |
 | `/install-github-app`<br>↗ 會傳送到外部 · ⚑ 會變更安全設定 | install GitHub app<br>安裝 GitHub 應用程式 | 為儲存庫安裝 Claude GitHub App，也可以順便設定 GitHub Actions 工作流程和機密（secrets）。只適用於 github.com。 | 想在 issue 和 PR 中提及 Claude，讓它在那裡工作。 |
@@ -227,7 +227,7 @@
 
 | 指令 | 英文原意 | 功能 | 最佳用法 |
 |---|---|---|---|
-| `/permissions`<br>★ · ⚑ 會變更安全設定 | permissions<br>權限 | 管理工具的允許、詢問和拒絕規則：依範圍檢視、新增或移除規則、管理工作資料夾、查看自動模式最近的拒絕紀錄和分類器規則。<br>別名: `/allowed-tools` | 每次都要核准 `npm test` 很煩：在這裡把它設為允許。 |
+| `/permissions`<br>★ · ⚑ 會變更安全設定 | permissions<br>權限 | 管理工具的允許、詢問和拒絕規則：依範圍檢視、新增或移除規則、管理工作資料夾，查看「Recently blocked」分頁（自動模式擋下的操作）和分類器規則。<br>別名: `/allowed-tools` | 每次都要核准 `npm test` 很煩：在這裡把它設為允許。 |
 | `/auto-mode-setup`<br>⚑ 會變更安全設定 | auto mode setup<br>自動模式設定 | 根據你的專案和最近的工作階段，草擬 `autoMode.environment` 項目，讓你檢查後儲存。有版本和方案的限制。 | 自動模式一直擋下例行操作時。 |
 | `/fewer-permission-prompts`<br>技能 · ⚑ 會變更安全設定 | fewer permission prompts<br>減少權限提示 | 掃描對話紀錄中常見的唯讀 Bash 和 MCP 呼叫，依優先順序把允許清單加到專案的 `.claude/settings.json`。 | 核准提示一直打斷你時，執行一次。 |
 | `/hooks` | hooks<br>hook（在特定時機自動執行的腳本） | 檢視 hook 設定。 | 某個 hook 似乎讓每次編輯都出錯時，看看設定了什麼。 |
@@ -258,7 +258,7 @@
 
 | 指令 | 英文原意 | 功能 | 最佳用法 |
 |---|---|---|---|
-| `/usage`<br>★ | usage<br>用量 | 顯示這次工作階段的費用、方案用量上限和活動統計，包括訂閱方案中哪些項目會計入上限。`/stats` 會開啟統計分頁。<br>別名: `/cost`, `/stats` | 決定要不要換成比較便宜的模型之前，先看一下 `/usage`。 |
+| `/usage`<br>★ | usage<br>用量 | 顯示這次工作階段的費用、方案用量上限和活動統計，包括訂閱方案中哪些項目會計入上限。`/stats` 會開啟統計分頁。每則警告都會寫明原因和一句話的解決方法，按 `f` 即可套用這些修正。<br>別名: `/cost`, `/stats` | 決定要不要換成比較便宜的模型之前，先看一下 `/usage`。 |
 | `/login` | log in<br>登入 | 登入你的 Anthropic 帳號。 | 換新電腦或登入過期時。 |
 | `/logout` | log out<br>登出 | 登出你的 Anthropic 帳號。 | 用完共用電腦之後。 |
 | `/passes` | passes<br>體驗券 | 和朋友分享一週免費的 Claude Code；只有符合資格的帳號才會顯示。 | 邀請朋友試用。 |
@@ -330,7 +330,7 @@
 
 ## 關於本專案
 
-- **來源**：依據官方[指令參考文件](https://code.claude.com/docs/en/commands)改寫，查核日期 2026-11-03。說明經過簡化，並非官方翻譯；如有出入，以官方文件為準。
+- **來源**：依據官方[指令參考文件](https://code.claude.com/docs/en/commands)改寫，查核日期 2026-11-05。說明經過簡化，並非官方翻譯；如有出入，以官方文件為準。
 - **資料**：所有內容都由 [`data/commands.json`](data/commands.json) 產生。編輯 JSON 後，執行 `python3 scripts/build.py`。
 - **參與貢獻**：請見 [CONTRIBUTING.md](CONTRIBUTING.md)。
 - **授權**：內容採用 [CC BY 4.0](LICENSE-CONTENT)，程式碼採用 [MIT](LICENSE)。
