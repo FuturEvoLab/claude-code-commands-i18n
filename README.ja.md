@@ -209,7 +209,7 @@ Claude に新しい機能を追加：プラグイン、スキル、MCP、ブラ�
 |---|---|---|---|
 | `/mcp`<br>`[reconnect (<server>\|all)\|enable\|disable [<server>\|all]]`<br>★ | MCP (Model Context Protocol)<br>Model Context Protocol（外部ツール連携の標準） | MCP サーバーの接続と OAuth 認証を管理します。引数なしで一覧、`reconnect`・`enable`・`disable` とサーバー名か `all` で直接操作。 | コネクターのエラーや再ログインが必要なとき：`/mcp reconnect all`。 |
 | `/chrome` | Chrome<br>Chrome ブラウザー | Claude in Chrome の設定を行います。 | Chrome 拡張と初めて接続するとき。 |
-| `/claude-api`<br>`[subcommand]`<br>スキル | Claude API<br>Claude の API | プロジェクトの言語に合った Claude API と Managed Agents の資料を読み込みます。コードが `anthropic` を import していると自動で有効。サブコマンドは `migrate`・`upgrade`・`api-version`・`cost-optimize`・`build-eval`・`prompt-audit` など。 | 自作 AI アプリの API 費用を下げたい：`/claude-api cost-optimize`。 |
+| `/claude-api`<br>`[subcommand]`<br>スキル | Claude API<br>Claude の API | プロジェクトの言語に合った Claude API と Managed Agents の資料を読み込みます。コードが `anthropic` を import していると自動で有効。サブコマンドは `migrate`・`upgrade`・`api-version`・`cost-optimize`・`latency-optimize`・`build-eval`・`prompt-audit` など。 | 自作 AI アプリの API 費用を下げたい：`/claude-api cost-optimize`。 |
 | `/claude-in-chrome`<br>`[task]`<br>スキル · ↗ 外部に送信 | Claude in Chrome<br>Chrome で動く Claude | Claude in Chrome 拡張を通して、ページのテスト・フォーム入力・コンソールログの確認などをブラウザーで行います。Chrome 連携の有効化（例：`claude --chrome`）が必要です。 | `/claude-in-chrome ローカルのサイトで会員登録の流れを試してエラーを報告して`。 |
 | `/ide` | IDE (integrated development environment)<br>統合開発環境（コードエディター） | VS Code や JetBrains などのエディターとの連携を管理し、状態を表示します。 | エディターに Claude の変更が出ないとき、接続を確認。 |
 | `/install-github-app`<br>↗ 外部に送信 · ⚑ 安全設定を変更 | install GitHub app<br>GitHub アプリのインストール | リポジトリに Claude GitHub App を入れ、必要なら GitHub Actions のワークフローとシークレットも設定します。github.com のリポジトリのみ。 | GitHub の issue や PR で @claude と呼んで作業させたいとき。 |
@@ -258,7 +258,7 @@ Claude にできること・事前確認が必要なことを決める
 
 | コマンド | 英語の意味 | 説明 | おすすめの使い方 |
 |---|---|---|---|
-| `/usage`<br>★ | usage<br>使用量 | このセッションの費用、プランの使用量上限、利用統計を表示します。サブスクリプションでは上限に数えられる内訳も表示。`/stats` は統計タブで開きます。警告にはそれぞれ原因と一行の対処法が表示され、`f` で対処をまとめて適用できます。<br>別名: `/cost`, `/stats` | 上限が心配なら `/usage` で確認し、安いモデルに替えるか判断。 |
+| `/usage`<br>★ | usage<br>使用量 | このセッションの費用、今日・今週・今月の支出、プランの使用量上限、利用統計を表示します。サブスクリプションでは上限に数えられる内訳も表示。`/stats` は統計タブで開きます。警告にはそれぞれ原因と一行の対処法が表示され、`f` で対処をまとめて適用できます。<br>別名: `/cost`, `/stats` | 上限が心配なら `/usage` で確認し、安いモデルに替えるか判断。 |
 | `/login` | log in<br>ログイン | Anthropic アカウントにログインします。 | パソコンを替えたとき、ログインが切れたとき。 |
 | `/logout` | log out<br>ログアウト | Anthropic アカウントからログアウトします。 | 共用パソコンで使い終わったとき。 |
 | `/passes` | passes<br>招待パス | Claude Code の 1 週間無料体験を友人に共有します。対象アカウントのみ表示。 | 友人に試してもらう。 |
@@ -330,7 +330,7 @@ Claude にできること・事前確認が必要なことを決める
 
 ## このプロジェクトについて
 
-- **出典**：公式の[コマンドリファレンス](https://code.claude.com/docs/en/commands)をもとに意訳（確認日 2026-11-05）。説明は簡略化したもので公式の翻訳ではありません。違いがある場合は公式ドキュメントが優先です。
+- **出典**：公式の[コマンドリファレンス](https://code.claude.com/docs/en/commands)をもとに意訳（確認日 2026-11-07）。説明は簡略化したもので公式の翻訳ではありません。違いがある場合は公式ドキュメントが優先です。
 - **データ**：すべて [`data/commands.json`](data/commands.json) から生成しています。JSON を編集して `python3 scripts/build.py` を実行してください。
 - **貢献**：[CONTRIBUTING.md](CONTRIBUTING.md) を参照。
 - **ライセンス**：内容は [CC BY 4.0](LICENSE-CONTENT)、コードは [MIT](LICENSE)。

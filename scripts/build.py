@@ -17,7 +17,7 @@ KINDS = ("builtin", "skill", "workflow", "removed")
 
 META = {
     "source": "https://code.claude.com/docs/en/commands",
-    "checked": "2026-11-05",
+    "checked": "2026-11-07",
 }
 REPO_FILE = ROOT / "repo.txt"  # holds OWNER/NAME so later builds remember it
 

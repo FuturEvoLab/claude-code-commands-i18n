@@ -209,7 +209,7 @@ Claude Code를 처음 쓰는 첫 주를 위해 편집자가 고른 명령입니�
 |---|---|---|---|
 | `/mcp`<br>`[reconnect (<server>\|all)\|enable\|disable [<server>\|all]]`<br>★ | MCP (Model Context Protocol)<br>MCP (Model Context Protocol, 외부 도구 연결 표준) | MCP 서버 연결과 OAuth를 관리합니다. 인수 없이 실행하면 목록이 열리고, `reconnect`, `enable`, `disable`에 서버 이름이나 `all`을 붙이면 바로 실행합니다. | 커넥터가 실패했거나 인증이 필요할 때: `/mcp reconnect all`. |
 | `/chrome` | Chrome<br>Chrome 브라우저 | Claude in Chrome 설정을 구성합니다. | Chrome 확장 프로그램을 처음 연결할 때. |
-| `/claude-api`<br>`[subcommand]`<br>스킬 | Claude API<br>Claude API | 프로젝트 언어에 맞는 Claude API와 Managed Agents 참고 자료를 불러옵니다. 코드가 `anthropic`을 import하면 자동으로 활성화됩니다. 하위 명령으로 `migrate`, `upgrade`, `api-version`, `cost-optimize`, `build-eval`, `prompt-audit` 등이 있습니다. | 앱의 API 비용을 줄이고 싶을 때: `/claude-api cost-optimize`. |
+| `/claude-api`<br>`[subcommand]`<br>스킬 | Claude API<br>Claude API | 프로젝트 언어에 맞는 Claude API와 Managed Agents 참고 자료를 불러옵니다. 코드가 `anthropic`을 import하면 자동으로 활성화됩니다. 하위 명령으로 `migrate`, `upgrade`, `api-version`, `cost-optimize`, `latency-optimize`, `build-eval`, `prompt-audit` 등이 있습니다. | 앱의 API 비용을 줄이고 싶을 때: `/claude-api cost-optimize`. |
 | `/claude-in-chrome`<br>`[task]`<br>스킬 · ↗ 외부로 데이터 전송 | Claude in Chrome<br>Chrome에서 동작하는 Claude | Claude in Chrome을 통해 브라우저에서 Claude가 작업을 수행하게 합니다. 예: 페이지 테스트, 콘솔 로그 읽기. Chrome 연동이 필요합니다(예: `claude --chrome`). | `/claude-in-chrome 로컬 사이트에서 회원가입 흐름을 테스트하고 오류를 알려 줘`. |
 | `/ide` | IDE (integrated development environment)<br>IDE (통합 개발 환경, 코드 편집기) | IDE 연동을 관리하고 상태를 보여 줍니다. | 편집기에 Claude의 수정 내용이 보이지 않을 때 연결을 확인합니다. |
 | `/install-github-app`<br>↗ 외부로 데이터 전송 · ⚑ 안전 설정 변경 | install GitHub app<br>GitHub 앱 설치 | 저장소에 Claude GitHub App을 설치하고, 원하면 GitHub Actions 워크플로와 시크릿도 설정합니다. github.com 전용입니다. | 이슈와 PR에서 Claude를 멘션해 그곳에서 작업하게 하고 싶을 때. |
@@ -258,7 +258,7 @@ Claude가 할 수 있는 일과 내 승인이 필요한 일을 정합니다
 
 | 명령 | 영어 단어 | 하는 일 | 추천 사용법 |
 |---|---|---|---|
-| `/usage`<br>★ | usage<br>사용량 | 세션 비용, 플랜 사용 한도, 활동 통계를 보여 줍니다. 구독 플랜에서 무엇이 한도에 포함되는지도 표시합니다. `/stats`는 Stats 탭을 엽니다. 경고마다 원인과 한 줄 해결책이 표시되며, `f`를 누르면 해결책이 적용됩니다.<br>별칭: `/cost`, `/stats` | 더 저렴한 모델로 바꿀지 정하기 전에 `/usage`를 확인합니다. |
+| `/usage`<br>★ | usage<br>사용량 | 세션 비용, 오늘·이번 주·이번 달 지출, 플랜 사용 한도, 활동 통계를 보여 줍니다. 구독 플랜에서 무엇이 한도에 포함되는지도 표시합니다. `/stats`는 Stats 탭을 엽니다. 경고마다 원인과 한 줄 해결책이 표시되며, `f`를 누르면 해결책이 적용됩니다.<br>별칭: `/cost`, `/stats` | 더 저렴한 모델로 바꿀지 정하기 전에 `/usage`를 확인합니다. |
 | `/login` | log in<br>로그인 | Anthropic 계정에 로그인합니다. | 새 컴퓨터를 쓸 때나 세션이 만료되었을 때. |
 | `/logout` | log out<br>로그아웃 | Anthropic 계정에서 로그아웃합니다. | 공용 컴퓨터를 쓴 뒤에. |
 | `/passes` | passes<br>초대 패스 | 친구에게 Claude Code 무료 1주일 이용권을 공유합니다. 자격이 있는 계정에만 표시됩니다. | 친구가 써 볼 수 있게 초대합니다. |
@@ -330,7 +330,7 @@ Claude가 할 수 있는 일과 내 승인이 필요한 일을 정합니다
 
 ## 이 프로젝트에 대해
 
-- **출처**: 공식 [명령 참고 문서](https://code.claude.com/docs/en/commands)를 바탕으로 풀어 썼습니다(확인일 2026-11-05). 설명은 간략화한 것이며 공식 번역이 아닙니다. 차이가 있으면 공식 문서가 우선합니다.
+- **출처**: 공식 [명령 참고 문서](https://code.claude.com/docs/en/commands)를 바탕으로 풀어 썼습니다(확인일 2026-11-07). 설명은 간략화한 것이며 공식 번역이 아닙니다. 차이가 있으면 공식 문서가 우선합니다.
 - **데이터**: 모든 내용은 [`data/commands.json`](data/commands.json)에서 생성됩니다. JSON을 편집한 뒤 `python3 scripts/build.py`를 실행하세요.
 - **기여**: [CONTRIBUTING.md](CONTRIBUTING.md)를 참고하세요.
 - **라이선스**: 내용은 [CC BY 4.0](LICENSE-CONTENT), 코드는 [MIT](LICENSE).

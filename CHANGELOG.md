@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.1 — 2026-11-07
+
+- Fixed: on phones the command list was laid out 1200px wide and the page scrolled sideways.
+- Phones: the four stats stay on one row, and "Copy link" buttons are 36px tall for easier tapping.
+- Contrast: every text color now meets WCAG AA (4.5:1) in all 12 themes, light and dark; the "file changes" label and the Ember accent were darkened slightly.
+- Checked against Claude Code 2.1.319: `/usage` shows spend for today, this week and this month; `/claude-api` has `latency-optimize`. All seven languages updated.
+
 ## 1.2.0 — 2026-11-05
 
 - Checked against the official changelog up to 2.1.318: no commands missing. Updated `/permissions` (Recently blocked tab), `/usage` (warnings with one-line fixes, `f` applies them) and `/claude-api` (`api-version` subcommand) in all seven languages.

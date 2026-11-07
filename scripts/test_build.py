@@ -88,6 +88,12 @@ class OutputTests(unittest.TestCase):
                 continue
             self.assertNotRegex(tag, r"(src|href)=\"https?:", tag)
 
+    def test_phone_layout_cannot_overflow_sideways(self):
+        # A 1fr column grows to its widest child, and contain-intrinsic-size with one
+        # length also sets a placeholder width; either one made phones scroll sideways.
+        self.assertNotRegex(self.page, r"grid-template-columns:1fr[;}]")
+        self.assertNotIn("contain-intrinsic-size:", self.page)
+
     def test_404_page_is_built_with_its_own_csp(self):
         page = (ROOT / "docs/404.html").read_text(encoding="utf-8")
         self.assertIn("default-src 'none'", page)

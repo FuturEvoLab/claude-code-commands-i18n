@@ -2373,13 +2373,13 @@
    "es": "API de Claude"
   },
   "desc": {
-   "en": "Loads Claude API and Managed Agents reference for your project's language; activates automatically when code imports `anthropic`. Subcommands include `migrate`, `upgrade`, `api-version`, `cost-optimize`, `build-eval`, `prompt-audit`.",
-   "ja": "プロジェクトの言語に合った Claude API と Managed Agents の資料を読み込みます。コードが `anthropic` を import していると自動で有効。サブコマンドは `migrate`・`upgrade`・`api-version`・`cost-optimize`・`build-eval`・`prompt-audit` など。",
-   "zh": "加载与你项目语言对应的 Claude API 和 Managed Agents 资料；代码导入 `anthropic` 时会自动启用。子命令包括 `migrate`、`upgrade`、`api-version`、`cost-optimize`、`build-eval`、`prompt-audit` 等。",
-   "zh-hant": "載入適合你專案程式語言的 Claude API 和 Managed Agents 參考資料；程式碼匯入 `anthropic` 時會自動啟用。子指令包括 `migrate`、`upgrade`、`api-version`、`cost-optimize`、`build-eval`、`prompt-audit`。",
-   "ko": "프로젝트 언어에 맞는 Claude API와 Managed Agents 참고 자료를 불러옵니다. 코드가 `anthropic`을 import하면 자동으로 활성화됩니다. 하위 명령으로 `migrate`, `upgrade`, `api-version`, `cost-optimize`, `build-eval`, `prompt-audit` 등이 있습니다.",
-   "ru": "Загружает справку по Claude API и Managed Agents для языка вашего проекта; включается автоматически, когда код импортирует `anthropic`. Подкоманды: `migrate`, `upgrade`, `api-version`, `cost-optimize`, `build-eval`, `prompt-audit` и другие.",
-   "es": "Carga la referencia de la API de Claude y de Managed Agents para el lenguaje de tu proyecto; se activa sola cuando el código importa `anthropic`. Los subcomandos incluyen `migrate`, `upgrade`, `api-version`, `cost-optimize`, `build-eval`, `prompt-audit`."
+   "en": "Loads Claude API and Managed Agents reference for your project's language; activates automatically when code imports `anthropic`. Subcommands include `migrate`, `upgrade`, `api-version`, `cost-optimize`, `latency-optimize`, `build-eval`, `prompt-audit`.",
+   "ja": "プロジェクトの言語に合った Claude API と Managed Agents の資料を読み込みます。コードが `anthropic` を import していると自動で有効。サブコマンドは `migrate`・`upgrade`・`api-version`・`cost-optimize`・`latency-optimize`・`build-eval`・`prompt-audit` など。",
+   "zh": "加载与你项目语言对应的 Claude API 和 Managed Agents 资料；代码导入 `anthropic` 时会自动启用。子命令包括 `migrate`、`upgrade`、`api-version`、`cost-optimize`、`latency-optimize`、`build-eval`、`prompt-audit` 等。",
+   "zh-hant": "載入適合你專案程式語言的 Claude API 和 Managed Agents 參考資料；程式碼匯入 `anthropic` 時會自動啟用。子指令包括 `migrate`、`upgrade`、`api-version`、`cost-optimize`、`latency-optimize`、`build-eval`、`prompt-audit`。",
+   "ko": "프로젝트 언어에 맞는 Claude API와 Managed Agents 참고 자료를 불러옵니다. 코드가 `anthropic`을 import하면 자동으로 활성화됩니다. 하위 명령으로 `migrate`, `upgrade`, `api-version`, `cost-optimize`, `latency-optimize`, `build-eval`, `prompt-audit` 등이 있습니다.",
+   "ru": "Загружает справку по Claude API и Managed Agents для языка вашего проекта; включается автоматически, когда код импортирует `anthropic`. Подкоманды: `migrate`, `upgrade`, `api-version`, `cost-optimize`, `latency-optimize`, `build-eval`, `prompt-audit` и другие.",
+   "es": "Carga la referencia de la API de Claude y de Managed Agents para el lenguaje de tu proyecto; se activa sola cuando el código importa `anthropic`. Los subcomandos incluyen `migrate`, `upgrade`, `api-version`, `cost-optimize`, `latency-optimize`, `build-eval`, `prompt-audit`."
   },
   "use": {
    "en": "Cut API spend in your app: `/claude-api cost-optimize`.",
@@ -3295,13 +3295,13 @@
    "es": "uso"
   },
   "desc": {
-   "en": "Shows session cost, plan usage limits and activity stats, including what counts against plan limits on subscriptions. `/stats` opens the Stats tab. Each warning names its cause and a one-line fix; press `f` to apply the fixes.",
-   "ja": "このセッションの費用、プランの使用量上限、利用統計を表示します。サブスクリプションでは上限に数えられる内訳も表示。`/stats` は統計タブで開きます。警告にはそれぞれ原因と一行の対処法が表示され、`f` で対処をまとめて適用できます。",
-   "zh": "显示本次会话费用、套餐用量上限和活动统计。订阅套餐会显示哪些消耗计入套餐上限。`/stats` 打开统计标签页。每条警告都会写明原因和一句话的解决办法，按 `f` 即可应用这些修复。",
-   "zh-hant": "顯示這次工作階段的費用、方案用量上限和活動統計，包括訂閱方案中哪些項目會計入上限。`/stats` 會開啟統計分頁。每則警告都會寫明原因和一句話的解決方法，按 `f` 即可套用這些修正。",
-   "ko": "세션 비용, 플랜 사용 한도, 활동 통계를 보여 줍니다. 구독 플랜에서 무엇이 한도에 포함되는지도 표시합니다. `/stats`는 Stats 탭을 엽니다. 경고마다 원인과 한 줄 해결책이 표시되며, `f`를 누르면 해결책이 적용됩니다.",
-   "ru": "Показывает стоимость сессии, лимиты тарифа и статистику активности, в том числе что учитывается в лимитах подписки. `/stats` открывает вкладку Stats. Каждое предупреждение называет причину и исправление в одну строку; `f` применяет исправления.",
-   "es": "Muestra el costo de la sesión, los límites de uso del plan y estadísticas de actividad, incluido lo que cuenta para los límites del plan en las suscripciones. `/stats` abre la pestaña Stats. Cada aviso indica su causa y un arreglo de una línea; pulsa `f` para aplicar los arreglos."
+   "en": "Shows session cost, spend for today, this week and this month, plan usage limits and activity stats, including what counts against plan limits on subscriptions. `/stats` opens the Stats tab. Each warning names its cause and a one-line fix; press `f` to apply the fixes.",
+   "ja": "このセッションの費用、今日・今週・今月の支出、プランの使用量上限、利用統計を表示します。サブスクリプションでは上限に数えられる内訳も表示。`/stats` は統計タブで開きます。警告にはそれぞれ原因と一行の対処法が表示され、`f` で対処をまとめて適用できます。",
+   "zh": "显示本次会话费用、今天 / 本周 / 本月的花费、套餐用量上限和活动统计。订阅套餐会显示哪些消耗计入套餐上限。`/stats` 打开统计标签页。每条警告都会写明原因和一句话的解决办法，按 `f` 即可应用这些修复。",
+   "zh-hant": "顯示這次工作階段的費用、今天／本週／本月的花費、方案用量上限和活動統計，包括訂閱方案中哪些項目會計入上限。`/stats` 會開啟統計分頁。每則警告都會寫明原因和一句話的解決方法，按 `f` 即可套用這些修正。",
+   "ko": "세션 비용, 오늘·이번 주·이번 달 지출, 플랜 사용 한도, 활동 통계를 보여 줍니다. 구독 플랜에서 무엇이 한도에 포함되는지도 표시합니다. `/stats`는 Stats 탭을 엽니다. 경고마다 원인과 한 줄 해결책이 표시되며, `f`를 누르면 해결책이 적용됩니다.",
+   "ru": "Показывает стоимость сессии, расходы за сегодня, неделю и месяц, лимиты тарифа и статистику активности, в том числе что учитывается в лимитах подписки. `/stats` открывает вкладку Stats. Каждое предупреждение называет причину и исправление в одну строку; `f` применяет исправления.",
+   "es": "Muestra el costo de la sesión, el gasto de hoy, de esta semana y de este mes, los límites de uso del plan y estadísticas de actividad, incluido lo que cuenta para los límites del plan en las suscripciones. `/stats` abre la pestaña Stats. Cada aviso indica su causa y un arreglo de una línea; pulsa `f` para aplicar los arreglos."
   },
   "use": {
    "en": "Check `/usage` before deciding whether to switch to a cheaper model.",
