@@ -324,7 +324,7 @@ footer a{color:var(--accent);word-break:break-all}
 <a class="skip" id="skip" href="#list"></a>
 <div class="bar" id="bar">
   <div class="wrap bar-row">
-    <button type="button" class="brand" id="brand" aria-label="Top"><span>/</span>cc</button>
+    <button type="button" class="brand" id="brand" aria-label="/cc · Top"><span>/</span>cc</button>
     <div class="search" role="search">
       <span class="p" aria-hidden="true">❯ /</span>
       <input id="q" type="search" autocomplete="off" spellcheck="false" enterkeyhint="search">
@@ -450,6 +450,7 @@ function setLang(l){
     sel.querySelectorAll("optgroup").forEach(g => { g.label = t.skinGroups[g.dataset.g]; });
   });
   $("hint").textContent = t.hint;
+  $("brand").setAttribute("aria-label", "/cc · " + t.top);
   $("skip").textContent = t.skip;
   $("qclear").setAttribute("aria-label", t.qclear); $("qclear").title = t.qclear;
   $("badge").textContent = t.badge;
@@ -550,9 +551,13 @@ function matches(c, k){
   return k.split(/\s+/).every(w => hay.includes(w));
 }
 
+// The full list is ~2,000 elements; build it a few sections per task so a phone stays responsive.
+// A deep link (#ja-rewind) renders everything at once so the target card exists to scroll to.
+let renderGen = 0, syncOnce = !!TARGET;
 function render(){
-  const t = UI[lang], k = $("q").value.trim().toLowerCase().replace(/^\//, "");
+  const t = UI[lang], k = $("q").value.trim().toLowerCase().replace(/^\//, ""), gen = ++renderGen;
   let html = "", n = 0;
+  const parts = [];
   const sc = SCENS.find(s => s.id === scen);
   if (sc) {
     const rows = sc.cmds.map(name => CMDS.find(c => c.cmd === name));
@@ -574,8 +579,18 @@ function render(){
     const rows = CMDS.filter(c => c.cat === cg.id && (cat !== "picks" || c.pick) && (cat !== "risky" || (c.risk || []).length) && matches(c, k));
     if (!rows.length) return;
     n += rows.length;
-    html += `<section class="${HUE[cg.id]}"><div class="sec-head"><span class="sw"></span><h2>${esc(cg.name[lang])}</h2><small>${t.count(rows.length)}</small></div><p class="sec-desc">${esc(cg.desc[lang])}</p><div class="grid">${rows.map(card).join("")}</div></section>`;
+    parts.push(`<section class="${HUE[cg.id]}"><div class="sec-head"><span class="sw"></span><h2>${esc(cg.name[lang])}</h2><small>${t.count(rows.length)}</small></div><p class="sec-desc">${esc(cg.desc[lang])}</p><div class="grid">${rows.map(card).join("")}</div></section>`);
   });
+  if (parts.length > 3 && !syncOnce) {
+    html = parts.slice(0, 2).join("");
+    let i = 2;
+    const step = () => {
+      if (gen !== renderGen) return;  // a newer render replaced the list
+      $("list").insertAdjacentHTML("beforeend", parts.slice(i, i + 2).join(""));
+      if ((i += 2) < parts.length) setTimeout(step, 0);
+    };
+    setTimeout(step, 0);
+  } else html = html || parts.join("");
   $("list").innerHTML = html || `<div class="empty"><p>${t.empty}</p><p>${t.suggest}</p><div class="empty-s">${SCENS.slice(0, 6).map(s => `<button type="button" data-s="${esc(s.id)}">${esc(s.q[lang])}</button>`).join("")}</div></div>`;
   $("count").textContent = t.count(n);
   active = -1;
@@ -659,16 +674,29 @@ function demoNext(){
 
 // On the published site each language has its own address (/, /ja/, /zh-cn/ ...); keep the
 // address bar in step so a reload or a shared link opens the same language.
-function syncPath(l){
-  if (!document.querySelector('link[rel="canonical"]')) return;  // e.g. the artifact copy
-  try {
-    const segs = LANGINFO.filter(x => x.code !== "en").map(x => x.html.toLowerCase());
-    const base = location.pathname.replace(new RegExp("(" + segs.join("|") + ")/(index\\.html)?$"), "").replace(/index\.html$/, "");
-    const info = LANGINFO.find(x => x.code === l);
-    history.replaceState(null, "", base + (l === "en" ? "" : info.html.toLowerCase() + "/"));
-  } catch(e) {}
+// On the published site each language has its own address (/, /ja/, /zh-cn/ ...) and carries
+// only its own text plus English, so pages stay small. Switching language keeps the address in
+// step, or opens the other language's page when this one does not carry it.
+const SEG = l => l === "en" ? "" : LANGINFO.find(x => x.code === l).html.toLowerCase() + "/";
+const PUBLISHED = !!document.querySelector('link[rel="canonical"]');  // false in the artifact copy
+function pathFor(l){
+  const segs = LANGINFO.filter(x => x.code !== "en").map(x => x.html.toLowerCase());
+  return location.pathname.replace(new RegExp("(" + segs.join("|") + ")/(index\\.html)?$"), "").replace(/index\.html$/, "") + SEG(l);
 }
-$("lang").addEventListener("change", e => { setLang(e.target.value); syncPath(e.target.value); });
+function openLang(l, keepHash){
+  const q = new URLSearchParams(location.search); q.delete("lang");
+  const target = pathFor(l) + (q.toString() ? "?" + q : "") + (keepHash ? location.hash : "");
+  if (keepHash) location.replace(target); else location.href = target;
+}
+function syncPath(l){
+  if (!PUBLISHED) return;
+  try { history.replaceState(null, "", pathFor(l) + location.search.replace(/[?&]lang=[^&]*/, "").replace(/^&/, "?")); } catch(e) {}
+}
+$("lang").addEventListener("change", e => {
+  const l = e.target.value;
+  if (UI[l]) { setLang(l); syncPath(l); }
+  else { try { localStorage.setItem("lang", l); } catch(err) {} openLang(l, false); }
+});
 // Digital rain behind the banner for the Matrix theme: each column spells real slash
 // commands top to bottom. Skips frames while the banner is off screen or hidden (search
 // mode) and never runs with reduced motion.
@@ -744,7 +772,7 @@ function say(s){ toast.textContent = s; toast.classList.add("on"); clearTimeout(
 $("list").addEventListener("click", e => {
   const lk = e.target.closest(".link");
   if (lk) {
-    const url = META.site + "#" + lang + "-" + lk.dataset.l;
+    const url = META.site + SEG(lang) + "#" + lang + "-" + lk.dataset.l;
     try { navigator.clipboard.writeText(url).then(() => say(UI[lang].copiedLink)).catch(() => say(url)); } catch(err) { say(url); }
     return;
   }
@@ -760,7 +788,10 @@ document.addEventListener("keydown", e => {
 const totop = $("totop");
 addEventListener("scroll", () => { totop.hidden = scrollY < 900; }, {passive: true});
 totop.onclick = () => scrollTo({top: 0, behavior: REDUCED ? "auto" : "smooth"});
-setLang(pickLang());
+const START = pickLang();
+if (!UI[START]) openLang(START, true);  // e.g. a saved choice or a #ko-… link on another language's page
+else setLang(START);
+syncOnce = false;
 if (TARGET) {
   const el = $("c-" + slug(TARGET));
   if (el) { el.scrollIntoView({block: "start", behavior: "instant"}); el.classList.add("flash"); setTimeout(() => el.classList.remove("flash"), 2500); }

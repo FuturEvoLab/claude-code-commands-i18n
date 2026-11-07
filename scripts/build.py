@@ -296,8 +296,23 @@ def readme(lang, cats, groups, scens, risk_list, disc):
     return "\n".join(out)
 
 
-def page(cats, groups, scens, risks, disc, ui):
+def only(v, keep):
+    """Copy of v with every per-language dict cut down to the languages in keep."""
+    if isinstance(v, dict):
+        if len(v) > 1 and set(v) <= set(LANGS):
+            return {l: only(x, keep) for l, x in v.items() if l in keep}
+        return {k: only(x, keep) for k, x in v.items()}
+    if isinstance(v, list):
+        return [only(x, keep) for x in v]
+    return v
+
+
+def page(cats, groups, scens, risks, disc, ui, keep=None):
+    """The page body. keep=("ja", "en") embeds only those languages' text (a published
+    language page); None embeds all of them (the self-contained artifact copy)."""
     flat = [c for _, rows in groups for c in rows]
+    if keep:
+        cats, flat, scens, risks, disc = (only(x, keep) for x in (cats, flat, scens, risks, disc))
     tpl = (ROOT / "site/template.html").read_text(encoding="utf-8")
     dump = lambda x: json.dumps(x, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     return (tpl.replace("/*META*/null", dump(META))
@@ -306,7 +321,7 @@ def page(cats, groups, scens, risks, disc, ui):
                .replace("/*SCENS*/[]", dump(scens))
                .replace("/*RISKS*/[]", dump(risks))
                .replace("/*DISC*/null", dump(disc))
-               .replace("/*UI*/null", dump({l: ui[l] for l in LANGS}))
+               .replace("/*UI*/null", dump({l: ui[l] for l in LANGS if not keep or l in keep}))
                .replace("/*LANGS*/[]", dump(LANGINFO))
                .replace("/*TITLES*/{}", dump({l: seo_text(l, "title", flat) for l in LANGS})))
 
@@ -569,13 +584,14 @@ def main():
     SEO.update(d["seo"])
     for lang in LANGS:
         (ROOT / T[lang]["file"]).write_text(readme(lang, cats, groups, scens, d["risks"], d["disclaimer"]), encoding="utf-8")
-    body = page(cats, groups, scens, d["risks"], d["disclaimer"], d["ui"])
+    body = page(cats, groups, scens, d["risks"], d["disclaimer"], d["ui"])  # all languages
     (ROOT / "dist").mkdir(exist_ok=True)
     (ROOT / "docs").mkdir(exist_ok=True)
     # The artifact host supplies its own document skeleton; GitHub Pages needs a full one.
     (ROOT / "dist/artifact.html").write_text(localize(body, "en", cmds, groups, scens, d["ui"]), encoding="utf-8")
     for x in LANGINFO:
-        lb = localize(body, x["code"], cmds, groups, scens, d["ui"])
+        own = page(cats, groups, scens, d["risks"], d["disclaimer"], d["ui"], keep=(x["code"], "en"))
+        lb = localize(own, x["code"], cmds, groups, scens, d["ui"])
         out = ROOT / "docs" / page_path(x["code"]) / "index.html"
         out.parent.mkdir(exist_ok=True)
         out.write_text(

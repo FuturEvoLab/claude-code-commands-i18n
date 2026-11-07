@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.3.1 — 2026-11-07
+
+- Faster pages: each language page now carries only its own text plus English (the Japanese page went from 484 KB to 267 KB, 78 KB compressed). Picking a language the page does not carry opens that language's page; a saved choice or a `#ko-…` link redirects to the right page and keeps `?theme=`.
+- The full command list is built a few sections at a time, so phones stay responsive while it loads; deep links still render everything at once.
+- Copied card links point at the language's own page.
+- Accessibility: the "/cc" button's spoken name now includes its visible text.
+
 ## 1.3.0 — 2026-11-07
 
 - Search engines (SEO): each language now has its own address (`/`, `/ja/`, `/zh-cn/`, `/zh-hant/`, `/ko/`, `/ru/`, `/es/`) with its own canonical URL, reciprocal `hreflang` links, `og:locale`, and a search-result title and description written for that language (`data/seo.json`, length-checked by the build).

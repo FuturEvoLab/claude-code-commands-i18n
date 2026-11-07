@@ -132,6 +132,18 @@ class OutputTests(unittest.TestCase):
             self.assertEqual(len(graph["FAQPage"]["mainEntity"]), len(json.loads((ROOT / "data/scenarios.json").read_text())))
             self.assertEqual(graph["TechArticle"]["inLanguage"], x["html"])
 
+    def test_each_page_embeds_only_its_language_and_english(self):
+        ui = json.loads((ROOT / "data/ui.json").read_text(encoding="utf-8"))
+        for x, page in self.lang_pages():
+            script = page[page.index("const UI ="):]
+            keep = {x["code"], "en"}
+            for l in build.LANGS:
+                found = f'"{l}":{{"badge"' in script
+                self.assertEqual(found, l in keep, f"{l} UI on the {x['code']} page")
+        artifact = (ROOT / "dist/artifact.html").read_text(encoding="utf-8")
+        for l in build.LANGS:  # the self-contained copy still switches language in place
+            self.assertIn(ui[l]["h1"], artifact)
+
     def test_sitemap_and_llms_txt_list_every_language_page(self):
         sitemap = (ROOT / "docs/sitemap.xml").read_text(encoding="utf-8")
         llms = (ROOT / "docs/llms.txt").read_text(encoding="utf-8")
