@@ -336,7 +336,8 @@ def esc(text):
 
 def code_html(text):
     """Prose with `code` spans as HTML (prose is already validated free of markup)."""
-    return re.sub(r"`([^`]+)`", r"<code>\1</code>", esc(text))
+    nw = lambda c: ('<code class="nw">' if len(c) <= 24 else "<code>") + c + "</code>"  # as md() in the page
+    return re.sub(r"`([^`]+)`", lambda m: nw(m.group(1)), esc(text))
 
 
 def plain(text):
@@ -462,7 +463,12 @@ def localize(body, lang, cmds, groups, scens, ui):
         (re.compile(r'<meta name="description" content="[^"]*">'),
          f'<meta name="description" content="{esc(seo_text(lang, "description", cmds))}">'),
         ("/*PAGELANG*/null", json.dumps(lang) if lang != "en" else "null"),  # the root keeps a visitor's saved choice
+        ('<span class="badge" id="badge"></span>', f'<span class="badge" id="badge">{esc(t["badge"])}</span>'),
+        ('<h2 id="scen-h"></h2><p id="scen-d"></p>', f'<h2 id="scen-h">{esc(t["scen"])}</h2><p id="scen-d">{esc(t["scenD"])}</p>'),
+        ('<h2 id="safety-h"></h2><p id="safety-d"></p>', f'<h2 id="safety-h">{esc(t["safety"])}</h2><p id="safety-d">{esc(t["safetyD"])}</p>'),
         ('<span id="h1"></span>', f'<span id="h1">{esc(t["h1"])}</span>'),
+        (re.compile(r'<noscript><p class="noscript">.*?</p></noscript>'),
+         f'<noscript><p class="noscript">{esc(t["noscript"])}</p></noscript>'),
         ('<p class="lead" id="lead"></p>', f'<p class="lead" id="lead">{esc(t["lead"])}</p>'),
         ('<main id="list" tabindex="-1"></main>', f'<main id="list" tabindex="-1">{lst}</main>'),
         ('<div class="scens" id="scens"></div>', f'<div class="scens" id="scens">{scen}</div>'),

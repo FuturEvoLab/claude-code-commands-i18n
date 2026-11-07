@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.3.2 — 2026-11-07
+
+- Counts agree everywhere: "All commands" and the search bar now show 115 like the banner; the 3 removed commands appear under their own "Removed" heading and in search.
+- Short code such as `-diagnostics.json` or `--dry-run` no longer breaks at a hyphen; long examples still wrap.
+- Phones: the search box gets more room (the idle count is hidden and the language menu is narrower), and the keyboard-shortcut hint is hidden on touch screens. On Windows and Linux the hint says Ctrl K instead of ⌘K.
+- Without JavaScript: the notice is translated and says the full list is below; the badge and section headings are filled in; search, menus and the terminal demo are hidden instead of showing empty.
+
 ## 1.3.1 — 2026-11-07
 
 - Faster pages: each language page now carries only its own text plus English (the Japanese page went from 484 KB to 267 KB, 78 KB compressed). Picking a language the page does not carry opens that language's page; a saved choice or a `#ko-…` link redirects to the right page and keeps `?theme=`.
