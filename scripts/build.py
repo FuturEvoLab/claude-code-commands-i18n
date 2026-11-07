@@ -2,7 +2,8 @@
 """Validate data/*.json and generate one README per language and the web page.
 
 Usage: python3 scripts/build.py [--repo OWNER/NAME]
-Outputs: README*.md (see data/languages.json), docs/index.html, dist/artifact.html
+Outputs: README*.md (see data/languages.json), one docs/ page per language,
+         docs/404.html, sitemap.xml, robots.txt, llms.txt, llms-full.txt, dist/artifact.html
 """
 import argparse
 import base64
@@ -35,7 +36,7 @@ LANG_LINKS = " · ".join(f"[{x['name']}]({x['readme']})" for x in LANGINFO)
 
 def load():
     read = lambda f: json.loads((ROOT / "data" / f).read_text(encoding="utf-8"))
-    return {k: read(f"{k}.json") for k in ("categories", "commands", "scenarios", "risks", "disclaimer", "ui", "readme")}
+    return {k: read(f"{k}.json") for k in ("categories", "commands", "scenarios", "risks", "disclaimer", "ui", "readme", "seo")}
 
 
 # Prose fields may use `code` spans but no raw HTML, Markdown links or URLs, so a
@@ -106,6 +107,15 @@ def check_ui_markup(errors, where, text):
         errors.append(f"{where}: only <b>, <code>, <kbd>, <p>, <small> without attributes are allowed")
 
 
+def check_seo_text(errors, where, text):
+    # Plain text only; titles over ~70 and descriptions over ~170 characters get cut in results.
+    if UNSAFE.search(text):
+        errors.append(f"{where}: plain text only")
+    limit = 70 if where.endswith(".title") else 170
+    if len(text.replace("{n}", "000")) > limit:
+        errors.append(f"{where}: longer than {limit} characters")
+
+
 def check_readme_markup(errors, where, text):
     if re.search(r"<|>|javascript:", re.sub(r"`[^`]*`", "", text)):
         errors.append(f"{where}: HTML is not allowed")
@@ -119,6 +129,7 @@ def validate(d):
     errors = []
     check_strings(errors, "ui", d["ui"], check_ui_markup)
     check_strings(errors, "readme", d["readme"], check_readme_markup)
+    check_strings(errors, "seo", d["seo"], check_seo_text)
     risk_ids = {r["id"] for r in risks}
     for r in risks:
         check_prose(errors, f"risk {r['id']}.name", r.get("name"))
@@ -236,7 +247,7 @@ def readme(lang, cats, groups, scens, risk_list, disc):
     out = [f"# {t['title']}", "", LANG_LINKS, "", badges, "",
            f"> {t['intro']}", "",
            f"## {t['preview']}", "", t["preview_note"], "",
-           f"### [{t['web']} →]({META['site']})", "",
+           f"### [{t['web']} →]({page_url(lang)})", "",
            f"| {t['theme_default']} | {t['theme_matrix']} |", "|---|---|",
            f"| [![{t['theme_default']}](docs/assets/preview-en.png)]({META['site']}?theme=terminal) "
            f"| [![{t['theme_matrix']}](docs/assets/preview-matrix.png)]({META['site']}?theme=matrix) |", "",
@@ -296,24 +307,42 @@ def page(cats, groups, scens, risks, disc, ui):
                .replace("/*RISKS*/[]", dump(risks))
                .replace("/*DISC*/null", dump(disc))
                .replace("/*UI*/null", dump({l: ui[l] for l in LANGS}))
-               .replace("/*LANGS*/[]", dump(LANGINFO)))
+               .replace("/*LANGS*/[]", dump(LANGINFO))
+               .replace("/*TITLES*/{}", dump({l: seo_text(l, "title", flat) for l in LANGS})))
 
 
-def social():
-    """Link-preview tags for community posts (Open Graph / Twitter)."""
-    names = " / ".join(x["name"] for x in LANGINFO)
-    desc = f"Every Claude Code slash command explained in {len(LANGINFO)} languages: {names}. Unofficial."
-    return "".join(f'<meta {k}="{n}" content="{v}">\n' for k, n, v in (
-        ("property", "og:type", "website"),
-        ("property", "og:title", "Claude Code Commands · " + names),
-        ("property", "og:description", desc),
-        ("property", "og:url", META["site"]),
-        ("property", "og:image", META["site"] + "assets/social.png"),
-        ("property", "og:image:width", "1200"),
-        ("property", "og:image:height", "630"),
-        ("property", "og:image:alt", "Claude Code Commands: searchable guide in " + str(len(LANGINFO)) + " languages"),
-        ("name", "twitter:card", "summary_large_image"),
-    )) + links()
+SEO = _read("seo.json")  # replaced by validated data in main()
+HTML_ESC = str.maketrans({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"})
+
+
+def esc(text):
+    return text.translate(HTML_ESC)
+
+
+def code_html(text):
+    """Prose with `code` spans as HTML (prose is already validated free of markup)."""
+    return re.sub(r"`([^`]+)`", r"<code>\1</code>", esc(text))
+
+
+def plain(text):
+    return text.replace("`", "")
+
+
+def page_path(lang):
+    """URL path of a language's page: English at the root, others in /ja/, /zh-cn/ ..."""
+    return "" if lang == "en" else next(x["html"] for x in LANGINFO if x["code"] == lang).lower() + "/"
+
+
+def page_url(lang):
+    return META["site"] + page_path(lang)
+
+
+def live_count(cmds):
+    return sum(c["kind"] != "removed" for c in cmds)
+
+
+def seo_text(lang, key, cmds):
+    return SEO[lang][key].replace("{n}", str(live_count(cmds)))
 
 
 # A "/" mark in the theme accent; a data: URL, so the CSP needs nothing new.
@@ -322,12 +351,168 @@ FAVICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox
            "%3Cpath d='M19.5 6 12.5 26' stroke='%2335e06f' stroke-width='3.4' stroke-linecap='round'/%3E%3C/svg%3E")
 
 
-def links():
-    """Favicon, canonical URL and one alternate per language for search engines."""
-    out = [f'<link rel="icon" href="{FAVICON}">', f'<link rel="canonical" href="{META["site"]}">']
-    out += [f'<link rel="alternate" hreflang="{x["html"]}" href="{META["site"]}?lang={x["code"]}">' for x in LANGINFO]
+def head(lang, cmds):
+    """Per-language link-preview tags, canonical URL and hreflang alternates."""
+    info = next(x for x in LANGINFO if x["code"] == lang)
+    title, desc = seo_text(lang, "title", cmds), seo_text(lang, "description", cmds)
+    locale = lambda x: x["html"].replace("-", "_")
+    metas = [
+        ("property", "og:type", "website"),
+        ("property", "og:site_name", "Claude Code Commands"),
+        ("property", "og:title", title),
+        ("property", "og:description", desc),
+        ("property", "og:url", page_url(lang)),
+        ("property", "og:locale", locale(info)),
+        *[("property", "og:locale:alternate", locale(x)) for x in LANGINFO if x is not info],
+        ("property", "og:image", META["site"] + "assets/social.png"),
+        ("property", "og:image:width", "1200"),
+        ("property", "og:image:height", "630"),
+        ("property", "og:image:alt", "Claude Code Commands: searchable guide in " + str(len(LANGINFO)) + " languages"),
+        ("name", "twitter:card", "summary_large_image"),
+        ("name", "twitter:title", title),
+        ("name", "twitter:description", desc),
+        ("name", "robots", "index, follow, max-snippet:-1, max-image-preview:large"),
+    ]
+    out = [f'<meta {k}="{n}" content="{esc(v)}">' for k, n, v in metas]
+    out += [f'<link rel="icon" href="{FAVICON}">', f'<link rel="canonical" href="{page_url(lang)}">']
+    out += [f'<link rel="alternate" hreflang="{x["html"]}" href="{page_url(x["code"])}">' for x in LANGINFO]
     out.append(f'<link rel="alternate" hreflang="x-default" href="{META["site"]}">')
     return "\n".join(out) + "\n"
+
+
+def slug(c):
+    return c["cmd"][1:].replace(" ", "-")
+
+
+def first_sentence(text):
+    m = re.match(r"(.+?[.。！？!?])(\s|$)", text)
+    return (m.group(1) if m else text).strip()
+
+
+def json_ld(lang, groups, scens, ui):
+    """schema.org graph: the site, this page, every command as a DefinedTerm, scenarios as an FAQ."""
+    info = next(x for x in LANGINFO if x["code"] == lang)
+    url, cmds = page_url(lang), [c for _, rows in groups for c in rows]
+    by_cmd = {c["cmd"]: c for c in cmds}
+    org = {"@type": "Organization", "@id": META["site"] + "#org", "name": META["repo"].split("/")[-2],
+           "url": META["repo"].rsplit("/", 1)[0]}
+    graph = [
+        org,
+        {"@type": "WebSite", "@id": META["site"] + "#website", "url": META["site"], "name": "Claude Code Commands",
+         "inLanguage": [x["html"] for x in LANGINFO], "publisher": {"@id": org["@id"]}},
+        {"@type": "TechArticle", "@id": url + "#article", "url": url, "mainEntityOfPage": url,
+         "headline": seo_text(lang, "title", cmds), "description": seo_text(lang, "description", cmds),
+         "inLanguage": info["html"], "dateModified": META["checked"], "image": META["site"] + "assets/social.png",
+         "isPartOf": {"@id": META["site"] + "#website"}, "author": {"@id": org["@id"]}, "publisher": {"@id": org["@id"]},
+         "license": "https://creativecommons.org/licenses/by/4.0/", "isBasedOn": META["source"],
+         "about": {"@type": "SoftwareApplication", "name": "Claude Code", "applicationCategory": "DeveloperApplication",
+                   "url": "https://code.claude.com/"},
+         "hasPart": {"@id": url + "#commands"}},
+        {"@type": "DefinedTermSet", "@id": url + "#commands", "name": ui[lang]["h1"], "inLanguage": info["html"],
+         "hasDefinedTerm": [{"@type": "DefinedTerm", "name": c["cmd"], "termCode": c["cmd"],
+                             "description": plain(c["desc"][lang]), "url": f"{url}#{lang}-{slug(c)}"}
+                            for c in cmds if c["kind"] != "removed"]},
+        {"@type": "FAQPage", "@id": url + "#faq", "inLanguage": info["html"],
+         "mainEntity": [{"@type": "Question", "name": s["q"][lang],
+                         "acceptedAnswer": {"@type": "Answer", "text": " ".join(
+                             f"{c}: {plain(first_sentence(by_cmd[c]['desc'][lang]))}" for c in s["cmds"] if c in by_cmd)}}
+                        for s in scens]},
+    ]
+    data = json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False, separators=(",", ":"))
+    return '<script type="application/ld+json">' + data.replace("</", "<\\/") + "</script>\n"
+
+
+def prerender(lang, groups, scens, ui):
+    """Static HTML of the list and scenarios, so crawlers and AI tools that do not run
+    JavaScript still read every command. The page script replaces it on load."""
+    t = ui[lang]
+    secs = []
+    for cg, rows in groups:
+        arts = "".join(
+            f'<article id="{lang}-{slug(c)}"><h3><code>{esc(c["cmd"])}</code>'
+            + (f' <code>{esc(c["args"])}</code>' if c.get("args") else "")
+            + (f' <small>{esc(t["removed"])}</small>' if c["kind"] == "removed" else "")
+            + f'</h3><p>{code_html(c["desc"][lang])}</p><p><b>{esc(t["use"])}:</b> {code_html(c["use"][lang])}</p></article>'
+            for c in rows)
+        secs.append(f'<section><h2>{esc(cg["name"][lang])}</h2><p>{esc(cg["desc"][lang])}</p>{arts}</section>')
+    scen = "<ul>" + "".join(f'<li>{esc(s["q"][lang])}: {esc(" ".join(s["cmds"]))}</li>' for s in scens) + "</ul>"
+    return "".join(secs), scen
+
+
+def localize(body, lang, cmds, groups, scens, ui):
+    """Fill one language's title, description, hero text and pre-rendered content into the page."""
+    t, (lst, scen) = ui[lang], prerender(lang, groups, scens, ui)
+    swaps = [
+        (re.compile(r"<title>.*?</title>"), f"<title>{esc(seo_text(lang, 'title', cmds))}</title>"),
+        (re.compile(r'<meta name="description" content="[^"]*">'),
+         f'<meta name="description" content="{esc(seo_text(lang, "description", cmds))}">'),
+        ("/*PAGELANG*/null", json.dumps(lang) if lang != "en" else "null"),  # the root keeps a visitor's saved choice
+        ('<span id="h1"></span>', f'<span id="h1">{esc(t["h1"])}</span>'),
+        ('<p class="lead" id="lead"></p>', f'<p class="lead" id="lead">{esc(t["lead"])}</p>'),
+        ('<main id="list" tabindex="-1"></main>', f'<main id="list" tabindex="-1">{lst}</main>'),
+        ('<div class="scens" id="scens"></div>', f'<div class="scens" id="scens">{scen}</div>'),
+    ]
+    for old, new in swaps:
+        if isinstance(old, str):
+            assert old in body, old
+            body = body.replace(old, new, 1)
+        else:
+            body, n = old.subn(lambda _m, new=new: new, body, count=1)
+            assert n == 1, old.pattern
+    return body
+
+
+def sitemap():
+    alts = "".join(f'<xhtml:link rel="alternate" hreflang="{x["html"]}" href="{page_url(x["code"])}"/>' for x in LANGINFO)
+    alts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{META["site"]}"/>'
+    urls = "".join(f'<url><loc>{page_url(x["code"])}</loc><lastmod>{META["checked"]}</lastmod>{alts}</url>\n' for x in LANGINFO)
+    return ('<?xml version="1.0" encoding="UTF-8"?>\n'
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
+            + urls + "</urlset>\n")
+
+
+def llms_txt(cmds):
+    """llms.txt (llmstxt.org): a short map of the site for AI assistants and answer engines."""
+    raw = META["repo"].replace("https://github.com/", "https://raw.githubusercontent.com/") + "/main/"
+    lines = [
+        "# Claude Code Commands",
+        "",
+        f"> Unofficial, plain-language guide to all {live_count(cmds)} Claude Code slash commands, in "
+        f"{len(LANGINFO)} languages. For each command: what it does, its best use, and safety notes. "
+        f"Checked against the official commands reference ({META['source']}) on {META['checked']}; "
+        "where they differ, the official docs win.",
+        "",
+        "## Pages",
+        "",
+        *[f"- [{x['name']}]({page_url(x['code'])}): {SEO[x['code']]['title'].replace('{n}', str(live_count(cmds)))}" for x in LANGINFO],
+        "",
+        "## Full text (Markdown)",
+        "",
+        f"- [All commands, English]({META['site']}llms-full.txt): every command with description and best use",
+        *[f"- [{x['name']}]({raw}{x['readme']})" for x in LANGINFO],
+        "",
+        "## Optional",
+        "",
+        f"- [Source data, JSON]({raw}data/commands.json)",
+        f"- [Repository]({META['repo']}): content CC BY 4.0, code MIT",
+        "",
+    ]
+    return "\n".join(lines)
+
+
+def llms_full(groups, cmds, ui):
+    t = ui["en"]
+    out = [f"# Claude Code Commands: all {live_count(cmds)} slash commands in plain English", "",
+           f"Unofficial guide. Source: {META['source']} (checked {META['checked']}). Site: {META['site']}", ""]
+    for cg, rows in groups:
+        out += [f"## {cg['name']['en']}", "", cg["desc"]["en"], ""]
+        for c in rows:
+            name = c["cmd"] + (f" {c['args']}" if c.get("args") else "")
+            out += [f"### {name}" + (" (removed)" if c["kind"] == "removed" else ""), "", c["desc"]["en"], "",
+                    f"{t['use']}: {c['use']['en']}", ""]
+            if c.get("aliases"):
+                out += [f"{t['alias']}: {', '.join(c['aliases'])}", ""]
+    return "\n".join(out)
 
 
 def not_found(ui):
@@ -337,7 +522,7 @@ def not_found(ui):
     css = ("body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0b0f0c;color:#d7e3da;"
            "font:16px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace}main{padding:24px;max-width:36em}"
            "h1{color:#35e06f;font-size:28px;margin:0 0 12px}a{color:#35e06f}ul{padding-left:1.2em}")
-    items = "".join(f'<li lang="{x["html"]}">{msg[x["code"]]} · <a href="{META["site"]}?lang={x["code"]}">{ui[x["code"]]["h1"]}</a></li>'
+    items = "".join(f'<li lang="{x["html"]}">{msg[x["code"]]} · <a href="{page_url(x["code"])}">{ui[x["code"]]["h1"]}</a></li>'
                     for x in LANGINFO)
     body = f'<style>{css}</style>\n<main><h1>/404</h1><ul>{items}</ul></main>'
     return ('<!doctype html>\n<html lang="en">\n<meta charset="utf-8">\n'
@@ -381,21 +566,30 @@ def main():
         print("Data errors:\n  " + "\n  ".join(errors), file=sys.stderr)
         sys.exit(1)
     groups = ordered(cats, cmds)
+    SEO.update(d["seo"])
     for lang in LANGS:
         (ROOT / T[lang]["file"]).write_text(readme(lang, cats, groups, scens, d["risks"], d["disclaimer"]), encoding="utf-8")
     body = page(cats, groups, scens, d["risks"], d["disclaimer"], d["ui"])
     (ROOT / "dist").mkdir(exist_ok=True)
     (ROOT / "docs").mkdir(exist_ok=True)
     # The artifact host supplies its own document skeleton; GitHub Pages needs a full one.
-    (ROOT / "dist/artifact.html").write_text(body, encoding="utf-8")
-    (ROOT / "docs/index.html").write_text(
-        '<!doctype html>\n<html lang="en">\n<meta charset="utf-8">\n'
-        '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
-        f'<meta http-equiv="Content-Security-Policy" content="{csp(body)}">\n'
-        + social()
-        + body + "\n</html>\n", encoding="utf-8")
+    (ROOT / "dist/artifact.html").write_text(localize(body, "en", cmds, groups, scens, d["ui"]), encoding="utf-8")
+    for x in LANGINFO:
+        lb = localize(body, x["code"], cmds, groups, scens, d["ui"])
+        out = ROOT / "docs" / page_path(x["code"]) / "index.html"
+        out.parent.mkdir(exist_ok=True)
+        out.write_text(
+            f'<!doctype html>\n<html lang="{x["html"]}">\n<meta charset="utf-8">\n'
+            '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
+            f'<meta http-equiv="Content-Security-Policy" content="{csp(lb)}">\n'
+            + head(x["code"], cmds) + json_ld(x["code"], groups, scens, d["ui"])
+            + lb + "\n</html>\n", encoding="utf-8")
     (ROOT / "docs/404.html").write_text(not_found(d["ui"]), encoding="utf-8")
-    print(f"OK: {len(cmds)} commands, {len(cats)} categories, {len(scens)} scenarios; wrote {len(LANGS)} READMEs, docs/index.html, dist/artifact.html")
+    (ROOT / "docs/sitemap.xml").write_text(sitemap(), encoding="utf-8")
+    (ROOT / "docs/robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {META['site']}sitemap.xml\n", encoding="utf-8")
+    (ROOT / "docs/llms.txt").write_text(llms_txt(cmds), encoding="utf-8")
+    (ROOT / "docs/llms-full.txt").write_text(llms_full(groups, cmds, d["ui"]), encoding="utf-8")
+    print(f"OK: {len(cmds)} commands, {len(cats)} categories, {len(scens)} scenarios; wrote {len(LANGS)} READMEs, {len(LANGS)} pages, sitemap, llms.txt, dist/artifact.html")
     if placeholder:
         print("Note: repository links use the placeholder OWNER. Run again with --repo OWNER/NAME.")
 

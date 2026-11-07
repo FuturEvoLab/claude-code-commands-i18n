@@ -33,7 +33,7 @@ Field reference (one object per command):
 
 ### Add a language
 
-1. Copy the shape of an existing language into `data/i18n/<code>.json`: `language` (`code`, `name`, `html`, `readme`), then every string keyed by command, category, scenario and risk id, plus `disclaimer`, `ui` and `readme`. The fastest way is to ask in an issue and a maintainer will generate a template.
+1. Copy the shape of an existing language into `data/i18n/<code>.json`: `language` (`code`, `name`, `html`, `readme`), then every string keyed by command, category, scenario and risk id, plus `disclaimer`, `ui`, `readme` and `seo` (the search-result title and description; keep `{n}` for the command count). The fastest way is to ask in an issue and a maintainer will generate a template.
 2. Run `python3 scripts/language_tool.py check data/i18n/<code>.json` until it prints OK. It runs every build check with your language added.
 3. Run `python3 scripts/language_tool.py merge data/i18n/<code>.json`, place the language where it belongs in `data/languages.json`, delete the `data/i18n/` file, then run the build and tests.
 
@@ -44,6 +44,7 @@ Right-to-left languages (Arabic, Hebrew) also need layout work; open an issue fi
 - **Publish the site**: Settings → Pages → Deploy from a branch → `main` / `/docs`. The page is then live at the URL in the README.
 - **Enable private vulnerability reporting** (Settings → Code security), which `SECURITY.md` points reporters to.
 - **Refresh screenshots** after visual changes: `scripts/screenshots.sh` (needs Google Chrome; with Pillow installed it also runs `scripts/optimize_images.py`, which shrinks the PNGs and remakes `docs/assets/social.png`).
+- **Search engines**: each language has its own page (`/`, `/ja/`, `/zh-cn/` …) with pre-rendered content, `hreflang` links and JSON-LD. Submit `sitemap.xml` once in Google Search Console and Bing Webmaster Tools; `llms.txt` and `llms-full.txt` give AI assistants a plain-text map of the site.
 - **Preview links**: `?theme=<name>` and `?lang=<code>` open the page in a given theme or language, e.g. `?theme=matrix&lang=ja`.
 - **Release**: update `CHANGELOG.md` and `META.checked` in `scripts/build.py`, then tag `vX.Y.Z`.
 

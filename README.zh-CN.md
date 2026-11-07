@@ -10,7 +10,7 @@
 
 一个可以直接打开试用的静态页面：搜索、切换语言和主题、复制命令，无需安装。
 
-### [可搜索的网页版 →](https://futurevolab.github.io/claude-code-commands-i18n/)
+### [可搜索的网页版 →](https://futurevolab.github.io/claude-code-commands-i18n/zh-cn/)
 
 | 默认主题 | 黑客帝国主题 |
 |---|---|

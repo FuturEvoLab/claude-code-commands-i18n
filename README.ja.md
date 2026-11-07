@@ -10,7 +10,7 @@
 
 すぐに試せる静的ページです。検索、言語やテーマの切り替え、コマンドのコピーができます。インストールは不要です。
 
-### [検索できる Web 版 →](https://futurevolab.github.io/claude-code-commands-i18n/)
+### [検索できる Web 版 →](https://futurevolab.github.io/claude-code-commands-i18n/ja/)
 
 | 標準テーマ | マトリックステーマ |
 |---|---|

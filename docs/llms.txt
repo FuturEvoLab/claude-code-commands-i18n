@@ -1,0 +1,29 @@
+# Claude Code Commands
+
+> Unofficial, plain-language guide to all 115 Claude Code slash commands, in 7 languages. For each command: what it does, its best use, and safety notes. Checked against the official commands reference (https://code.claude.com/docs/en/commands) on 2026-11-07; where they differ, the official docs win.
+
+## Pages
+
+- [English](https://futurevolab.github.io/claude-code-commands-i18n/): All 115 Claude Code Slash Commands, Explained in Plain English
+- [日本語](https://futurevolab.github.io/claude-code-commands-i18n/ja/): Claude Code スラッシュコマンド一覧｜全115コマンドをやさしい日本語で解説
+- [简体中文](https://futurevolab.github.io/claude-code-commands-i18n/zh-cn/): Claude Code 斜杠命令大全｜全部 115 个命令中文详解与最佳用法
+- [繁體中文](https://futurevolab.github.io/claude-code-commands-i18n/zh-hant/): Claude Code 斜線指令大全｜全部 115 個指令中文說明與最佳用法
+- [한국어](https://futurevolab.github.io/claude-code-commands-i18n/ko/): Claude Code 슬래시 명령어 총정리 | 115개 명령어를 쉬운 한국어로
+- [Русский](https://futurevolab.github.io/claude-code-commands-i18n/ru/): Команды Claude Code: полный список слэш-команд (115) простым языком
+- [Español](https://futurevolab.github.io/claude-code-commands-i18n/es/): Comandos de Claude Code: lista completa de los 115 comandos de barra
+
+## Full text (Markdown)
+
+- [All commands, English](https://futurevolab.github.io/claude-code-commands-i18n/llms-full.txt): every command with description and best use
+- [English](https://raw.githubusercontent.com/FuturEvoLab/claude-code-commands-i18n/main/README.md)
+- [日本語](https://raw.githubusercontent.com/FuturEvoLab/claude-code-commands-i18n/main/README.ja.md)
+- [简体中文](https://raw.githubusercontent.com/FuturEvoLab/claude-code-commands-i18n/main/README.zh-CN.md)
+- [繁體中文](https://raw.githubusercontent.com/FuturEvoLab/claude-code-commands-i18n/main/README.zh-Hant.md)
+- [한국어](https://raw.githubusercontent.com/FuturEvoLab/claude-code-commands-i18n/main/README.ko.md)
+- [Русский](https://raw.githubusercontent.com/FuturEvoLab/claude-code-commands-i18n/main/README.ru.md)
+- [Español](https://raw.githubusercontent.com/FuturEvoLab/claude-code-commands-i18n/main/README.es.md)
+
+## Optional
+
+- [Source data, JSON](https://raw.githubusercontent.com/FuturEvoLab/claude-code-commands-i18n/main/data/commands.json)
+- [Repository](https://github.com/FuturEvoLab/claude-code-commands-i18n): content CC BY 4.0, code MIT

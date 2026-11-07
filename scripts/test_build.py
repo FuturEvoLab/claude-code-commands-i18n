@@ -72,6 +72,7 @@ class GuardTests(unittest.TestCase):
 class OutputTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
+        build.repo_meta(None)  # fills META["site"] from repo.txt, as the build does
         cls.page = (ROOT / "docs/index.html").read_text(encoding="utf-8")
         cls.readmes = {l: (ROOT / build.T[l]["file"]).read_text(encoding="utf-8") for l in build.LANGS}
         cls.cmds = json.loads((ROOT / "data/commands.json").read_text(encoding="utf-8"))
@@ -97,7 +98,49 @@ class OutputTests(unittest.TestCase):
     def test_404_page_is_built_with_its_own_csp(self):
         page = (ROOT / "docs/404.html").read_text(encoding="utf-8")
         self.assertIn("default-src 'none'", page)
-        self.assertEqual(len(re.findall(r'\?lang=', page)), len(build.LANGINFO))
+        self.assertEqual(len(re.findall(r'<li lang=', page)), len(build.LANGINFO))
+
+    # --- search engines and AI answer engines -------------------------------------
+
+    def lang_pages(self):
+        for x in build.LANGINFO:
+            yield x, (ROOT / "docs" / build.page_path(x["code"]) / "index.html").read_text(encoding="utf-8")
+
+    def test_every_language_has_its_own_page_with_its_own_canonical(self):
+        for x, page in self.lang_pages():
+            self.assertIn(f'<html lang="{x["html"]}">', page)
+            canon = re.search(r'<link rel="canonical" href="([^"]+)">', page).group(1)
+            self.assertEqual(canon, build.page_url(x["code"]))
+            # hreflang must be reciprocal: every page lists every language plus x-default.
+            self.assertEqual(len(re.findall(r'rel="alternate" hreflang=', page)), len(build.LANGINFO) + 1)
+            csp = re.search(r'http-equiv="Content-Security-Policy" content="([^"]+)"', page).group(1)
+            self.assertEqual(csp, build.csp(page), x["code"])
+
+    def test_pages_are_readable_without_javascript(self):
+        for x, page in self.lang_pages():
+            main = re.search(r'<main id="list"[^>]*>(.*?)</main>', page, re.S).group(1)
+            for c in self.cmds:
+                self.assertIn(f"<code>{c['cmd']}</code>", main, f"{c['cmd']} not pre-rendered on {x['code']}")
+            self.assertRegex(page, r'<span id="h1">[^<]+</span>')
+
+    def test_structured_data_parses_and_covers_every_command(self):
+        live = {c["cmd"] for c in self.cmds if c["kind"] != "removed"}
+        for x, page in self.lang_pages():
+            blob = re.search(r'<script type="application/ld\+json">(.*?)</script>', page, re.S).group(1)
+            graph = {n["@type"]: n for n in json.loads(blob.replace("<\\/", "</"))["@graph"]}
+            self.assertEqual({t["name"] for t in graph["DefinedTermSet"]["hasDefinedTerm"]}, live)
+            self.assertEqual(len(graph["FAQPage"]["mainEntity"]), len(json.loads((ROOT / "data/scenarios.json").read_text())))
+            self.assertEqual(graph["TechArticle"]["inLanguage"], x["html"])
+
+    def test_sitemap_and_llms_txt_list_every_language_page(self):
+        sitemap = (ROOT / "docs/sitemap.xml").read_text(encoding="utf-8")
+        llms = (ROOT / "docs/llms.txt").read_text(encoding="utf-8")
+        full = (ROOT / "docs/llms-full.txt").read_text(encoding="utf-8")
+        for x in build.LANGINFO:
+            self.assertIn(f"<loc>{build.page_url(x['code'])}</loc>", sitemap)
+            self.assertIn(f"]({build.page_url(x['code'])})", llms)
+        for c in self.cmds:
+            self.assertIn(f"### {c['cmd']}", full)
 
     def test_every_command_appears_in_every_readme(self):
         for lang, text in self.readmes.items():

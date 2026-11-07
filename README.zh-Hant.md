@@ -10,7 +10,7 @@
 
 一個可以直接開啟試用的靜態頁面：搜尋、切換語言和主題、複製指令，不需要安裝。
 
-### [可搜尋的網頁版 →](https://futurevolab.github.io/claude-code-commands-i18n/)
+### [可搜尋的網頁版 →](https://futurevolab.github.io/claude-code-commands-i18n/zh-hant/)
 
 | 預設主題 | 駭客任務主題 |
 |---|---|

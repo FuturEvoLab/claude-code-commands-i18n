@@ -1,0 +1,813 @@
+# Claude Code Commands: all 115 slash commands in plain English
+
+Unofficial guide. Source: https://code.claude.com/docs/en/commands (checked 2026-11-07). Site: https://futurevolab.github.io/claude-code-commands-i18n/
+
+## Conversation & context
+
+Start, compact, rewind and resume conversations; manage the context window
+
+### /clear [name]
+
+Starts a new conversation with empty context while keeping project memory. The previous conversation is kept and can be reopened with `/resume`; pass a name to label it in the picker.
+
+Best use: When you finish one feature and move to an unrelated task: `/clear login-feature`. Old context stops interfering and usage drops.
+
+Aliases: /reset, /new
+
+### /compact [instructions]
+
+Summarizes the conversation so far to free context space, continuing the same conversation. Optional instructions steer what the summary keeps.
+
+Best use: After a long session: `/compact keep the database schema and the list of open bugs`.
+
+### /context [all]
+
+Shows context usage as a colored grid with optimization suggestions and capacity warnings. `all` expands the per-item breakdown.
+
+Best use: When Claude seems forgetful or usage climbs fast, run `/context` to see whether large files or tool output are filling the window.
+
+### /plan [description]
+
+Enters plan mode, where Claude researches and proposes a plan before editing. Pass a description to start on that task immediately.
+
+Best use: Before a big change: `/plan fix the auth bug`, review, then approve.
+
+### /resume [session]
+
+Resumes a conversation by ID or name, or opens the session picker. Background sessions are marked `bg`.
+
+Best use: You closed the laptop mid-task yesterday: `/resume` and pick yesterday's conversation.
+
+Aliases: /continue
+
+### /rewind
+
+Rolls the conversation and/or code back to an earlier checkpoint, or summarizes from a selected message.
+
+Best use: Claude broke several files: run `/rewind`, pick the message before the edits, and restore both code and conversation.
+
+Aliases: /checkpoint, /undo
+
+### /autocompact [auto|<tokens>]
+
+Sets how full the context window gets before automatic compaction, e.g. `500k`; `auto` restores the model-tuned default. Saved to user settings and applied immediately.
+
+Best use: Long task interrupted by frequent compaction: `/autocompact 500k`.
+
+### /branch [name]
+
+Creates a branch of the conversation at this point and switches into it; the original is preserved and reachable via `/resume`. (A conversation branch, not a Git branch.)
+
+Best use: Unsure between two approaches: `/branch try-plan-b`; if it fails, go back and continue plan A.
+
+### /btw [question]
+
+Asks a side question about the current session without adding it to the conversation. Without a question, shows your most recent side question.
+
+Best use: Mid-task you want to understand an error: `/btw what does this 404 mean` without derailing the main thread.
+
+### /copy [N]
+
+Copies the last response to the clipboard; `/copy 2` copies the second-to-last. With code blocks, a picker lets you copy one block; press `w` to write to a file instead (useful over SSH).
+
+Best use: Claude drafted a snippet or command: `/copy` and paste it wherever you need it.
+
+### /export [filename]
+
+Exports the conversation as plain text, directly to a file if you give a name, otherwise via a copy/save dialog.
+
+Best use: Archive a valuable debugging session: `/export debugging-notes.txt`.
+
+### /goal [condition|clear]
+
+Sets a goal: Claude keeps working across turns until the condition is met or the goal clears. No argument shows the current goal; `clear` (or `stop`, `off`, …) removes it.
+
+Best use: `/goal all tests pass`, then let it iterate until the suite is green.
+
+### /memory
+
+Edits `CLAUDE.md` memory files, toggles auto memory, and shows auto memory entries.
+
+Best use: Want every answer in your language: open `/memory` and add a line such as “Always reply in Japanese.”
+
+### /recap
+
+Generates a one-line summary of the current session on demand.
+
+Best use: Back from a meeting and lost track: `/recap`.
+
+### /rename [name]
+
+Renames the session and shows the name on the prompt bar; without a name, generates one from the conversation.
+
+Best use: With many sessions open: `/rename backtest` so it stands out in `/resume`.
+
+## Model & reasoning
+
+Switch models, reasoning effort and speed
+
+### /model [model]
+
+Switches the model and saves it as the default for new sessions. No argument opens a picker; left/right adjusts effort on supported models; press `s` on a row to switch for this session only.
+
+Best use: Use a faster model for small edits; switch with `/model opus` when a bug gets hard.
+
+### /advisor [model|off]
+
+Enables or disables the advisor tool, which consults a second model at key moments. Accepts `fable`, `opus`, `sonnet` or a full model ID (`fable` requires access). No argument opens a picker.
+
+Best use: Work on a faster model but get a stronger second opinion at key decisions: `/advisor opus`.
+
+### /effort [level|auto|status|ultracode [on|off]]
+
+Sets the effort level: `low` to `xhigh`, `max`, or `auto`; `status` prints it. `max` is session-only. `ultracode on|off` toggles ultracode.
+
+Best use: Hunting a flaky bug: `/effort high`; fixing a typo: `/effort low`.
+
+### /fast [on|off]
+
+Toggles fast mode (same model, faster output). It can be toggled mid-response; the running turn finishes at its original speed. See the official fast mode docs for pricing.
+
+Best use: Under time pressure: `/fast on`; otherwise `/fast off`.
+
+### /output-style [style]
+
+Lists output styles or switches to one, e.g. `/output-style concise`.
+
+Best use: Run `/output-style` with no argument to see what is available, then pick one (for example a more concise style).
+
+## Project & files
+
+Set up project memory, add directories, review changes
+
+### /init
+
+Initializes the project with a `CLAUDE.md` guide that every new session reads. Offers `/import` if it finds Codex or Gemini CLI configuration.
+
+Best use: First thing in a new repo: `/init`, then refine it with `/memory`.
+
+### /add-dir <path>
+
+Adds a working directory for file access this session without moving. Partial paths autocomplete with `Tab`. Most `.claude/` config in the added directory isn't discovered, and most network paths can't be added.
+
+Best use: Frontend and backend live side by side: `/add-dir ../backend`.
+
+### /cd <path>
+
+Moves the session to a new working directory, keeping the conversation. Unlike `/add-dir`, `/cd` changes where the session lives.
+
+Best use: Started in the wrong folder: `/cd ~/projects/website` instead of starting over.
+
+### /diff
+
+Reviews changes in your working tree, including Claude's edits so far.
+
+Best use: Before committing, `/diff` to see exactly what changed.
+
+### /import [codex|gemini|cursor] [--dry-run] [--yes]
+
+Imports instruction files, MCP servers, commands, subagents and skills from OpenAI Codex, Gemini CLI or Cursor. `--dry-run` previews. Unavailable on some cloud providers; Cursor import requires v2.1.265+.
+
+Best use: Moving from Cursor: `/import cursor --dry-run` first, then import for real.
+
+### /insights
+
+Generates an HTML report of your recent sessions on this machine: projects, habits, where things go wrong, features to try. Not available in cloud sessions.
+
+Best use: After a few weeks, run `/insights` to discover features you never tried.
+
+### /team-onboarding
+
+Analyzes your last 30 days of sessions, commands and MCP usage and writes a Markdown guide a teammate can paste as their first message.
+
+Best use: A new teammate joins: run `/team-onboarding` and send them the guide.
+
+## Review & verification
+
+Find bugs and vulnerabilities, clean up code, run the app to verify
+
+### /code-review [low|medium|high|xhigh|max|ultra] [--fix] [--comment] [--max-findings n|all|default] [pr#|branch|path]
+
+Reviews the current diff, or a PR, branch or path, for correctness bugs. `--fix` applies findings, `--comment` posts to the GitHub PR or GitLab MR, `ultra` runs a deep cloud review.
+
+Best use: Before committing: `/code-review high --fix`. For a PR: `/code-review high 1234`.
+
+Aliases: /review
+
+### /run
+
+Launches and drives your project's app to see a change working.
+
+Best use: `/run` to start the site and screenshot the new homepage.
+
+### /run-skill-generator
+
+Writes a per-project skill that teaches `/run` and `/verify` how to build, launch and drive your app from a clean environment.
+
+Best use: Startup needs several steps (database first, etc.): run this once, then `/run` just works.
+
+### /security-review
+
+Analyzes your branch's diff against origin's default branch for vulnerabilities such as injection, auth issues and data exposure. Needs an `origin` remote.
+
+Best use: Before shipping anything touching auth, payments or user data.
+
+### /simplify [target]
+
+Four parallel agents review changed code for reuse, simplification, efficiency and abstraction level, then apply fixes. It does not look for correctness bugs; use `/code-review` for that.
+
+Best use: The feature works and you want cleaner code: `/simplify`.
+
+### /ultrareview [PR or branch]
+
+Deep multi-agent review in a cloud sandbox. The preferred form is `/code-review ultra`; `/ultrareview` is an alias. Includes 3 free runs on Pro, Max and Ultra, then requires usage credits.
+
+Best use: Before a major release: `/code-review ultra`.
+
+### /verify
+
+Builds, runs and observes your app to confirm a change works, rather than relying on tests or type checks. Runs only when you invoke it.
+
+Best use: Changed a button's behavior: `/verify` so it actually clicks it.
+
+## Parallel & background work
+
+Run several agents at once or detach work to the background
+
+### /agents
+
+Prints a reminder to ask Claude to create or manage subagents, or to edit `.claude/agents/` directly. On v2.1.197 and earlier, opened an interactive manager.
+
+Best use: Just ask: “Create a subagent that only writes tests.”
+
+### /background [prompt]
+
+Detaches the session to run as a background agent and frees the terminal. Optionally sends one more instruction first. Monitor with `claude agents`.
+
+Best use: A 30-minute job: `/bg write the results to report.md when done`.
+
+Aliases: /bg
+
+### /batch <instruction>
+
+Orchestrates large changes in parallel: researches the codebase, decomposes the work into 5–30 independent units and presents a plan; after approval, one background subagent per unit implements and tests it in its own worktree. Requires a git repository or a WorktreeCreate hook.
+
+Best use: `/batch migrate src/ from JavaScript to TypeScript`.
+
+### /fork [prompt]
+
+Copies the conversation into a new background session while you keep working here. With a prompt, the copy starts immediately; it is normally told to create its own worktree first.
+
+Best use: Working on feature A and want a side fix in parallel: `/fork fix the footer alignment`.
+
+### /list-agents
+
+Lists subagents, teammates and other sessions Claude can message, with the name to use for each. Only where cross-session messaging is enabled.
+
+Best use: Coordinating several sessions: check what each is called.
+
+Aliases: /peers
+
+### /stop
+
+Stops the background session you're attached to; transcript and worktree are kept. To detach without stopping, use `/exit` or press `←`.
+
+Best use: A background job went off course: `/stop`.
+
+### /subtask <task>
+
+Spawns a forked subagent that inherits the conversation and reports its result back here. The difference from `/fork`: `/subtask` reports back here, while `/fork` starts a separate session.
+
+Best use: `/subtask document these API endpoints` while you keep coding.
+
+### /tasks
+
+Views and manages background work in this session, including finished subagents.
+
+Best use: Check progress on background tests or subagents with `/tasks`.
+
+Aliases: /bashes
+
+### /workflow-authoring
+
+Loads the reference for writing dynamic workflow scripts. Claude normally loads it itself; run it before hand-editing a saved script. Only where dynamic workflows are enabled.
+
+Best use: Before hand-editing a saved workflow script.
+
+### /workflows
+
+Opens the workflow progress view to watch, pause, resume or save running and completed workflows.
+
+Best use: Keep an eye on a long-running workflow.
+
+## Automation & scheduling
+
+Repeat on an interval, run on a schedule, auto-fix pull requests
+
+### /loop [interval] [prompt]
+
+Runs a prompt repeatedly while the session stays open. Omit the interval and Claude self-paces; omit the prompt and it runs the built-in maintenance prompt or your `loop.md`.
+
+Best use: `/loop 5m check if the deploy finished`. For runs that continue when your computer is off, use `/schedule`.
+
+Aliases: /proactive
+
+### /autofix-pr [prompt]
+
+Spawns a cloud session that watches the current branch's PR and pushes fixes on CI failures or review comments. Requires the `gh` CLI and cloud sessions.
+
+Best use: `/autofix-pr only fix lint and type errors`.
+
+### /deep-research <question>
+
+A bundled workflow that fans out web searches, fetches and cross-checks sources, and writes a cited report. Runs in the background.
+
+Best use: `/deep-research compare pricing and quality of leading AI video tools`.
+
+### /schedule [description]
+
+Creates, updates, lists or runs cloud scheduled tasks (formerly routines) through a guided conversation. Not available with a Console API key.
+
+Best use: `/schedule every weekday at 9am, summarize new issues in the repo`.
+
+Aliases: /routines
+
+## Artifacts, slides & design
+
+Produce shareable pages, decks, designs and charts
+
+### /artifact-capabilities
+
+Loads the reference for artifact runtime capabilities, such as calling connectors or offering downloads, and which your account has. Claude usually loads it itself.
+
+Best use: Before building a page that many people fill in.
+
+### /artifact-diagramming
+
+Loads diagramming guidance for artifacts: when a diagram helps, what to draw, and SVG that stays legible in light and dark themes.
+
+Best use: When you need a clear architecture diagram.
+
+### /artifacts
+
+Lists artifacts you own or that are shared with you, then attaches one, opens it, or copies its link. Where artifacts are available.
+
+Best use: Find last week's dashboard and keep editing it.
+
+### /dataviz [request]
+
+Chart design guidance: picks the chart form, assigns color by role, and validates the palette for colorblind safety and contrast with a bundled script.
+
+Best use: `/dataviz turn this monthly sales table into a trend chart`.
+
+### /design [brief]
+
+Drafts UI mockups, flows, landing pages or posters as artboards on one canvas (a Claude Design artifact); edit in a desktop browser and export PNG or PDF. Unavailable on Bedrock, Vertex and other third-party platforms.
+
+Best use: `/design a settings screen for a mobile banking app`.
+
+### /design consent
+
+Grants or withdraws Claude's access to Claude Design. When Claude asks you to run `/design consent`, type it yourself.
+
+Best use: When prompted, type `/design consent` yourself.
+
+Aliases: /design revoke
+
+### /design-login
+
+Authorizes design-system access for `/design-sync` with your claude.ai account, when `/design-sync` or `/design consent` asks you to.
+
+Best use: Run it when `/design-sync` asks you to sign in.
+
+### /design-sync [hint]
+
+Converts and uploads your repo's React design system to Claude Design so designs use your real components. First sync can take hours on large repos. It targets the standalone claude.ai/design site, which closes by December 14, 2026.
+
+Best use: `/design-sync Acme DS` (mind the closing date above).
+
+### /slides [brief]
+
+Makes a Claude Slides artifact from your brief. Requires a session with artifacts and an account where the Slides template is available.
+
+Best use: `/slides a quarterly review for leadership, 8 slides`.
+
+## Plugins, skills & integrations
+
+Extend Claude with plugins, skills, MCP servers, browser and IDE integrations
+
+### /mcp [reconnect (<server>|all)|enable|disable [<server>|all]]
+
+Manages MCP server connections and OAuth. No argument opens the list; `reconnect`, `enable` or `disable` with a server name or `all` acts directly.
+
+Best use: A connector failed or needs auth: `/mcp reconnect all`.
+
+### /chrome
+
+Configures Claude in Chrome settings.
+
+Best use: When first connecting the Chrome extension.
+
+### /claude-api [subcommand]
+
+Loads Claude API and Managed Agents reference for your project's language; activates automatically when code imports `anthropic`. Subcommands include `migrate`, `upgrade`, `api-version`, `cost-optimize`, `latency-optimize`, `build-eval`, `prompt-audit`.
+
+Best use: Cut API spend in your app: `/claude-api cost-optimize`.
+
+### /claude-in-chrome [task]
+
+Has Claude carry out a task in your browser through Claude in Chrome, such as testing a page or reading console logs. Requires Chrome integration (e.g. `claude --chrome`).
+
+Best use: `/claude-in-chrome test the sign-up flow on my local site and report errors`.
+
+### /ide
+
+Manages IDE integrations and shows status.
+
+Best use: Check the connection when edits don't show in your editor.
+
+### /install-github-app
+
+Installs the Claude GitHub App for a repository, optionally setting up GitHub Actions workflows and secrets. github.com only.
+
+Best use: To mention Claude in issues and PRs and have it work there.
+
+### /install-slack-app
+
+Installs the Claude Slack app via a browser OAuth flow.
+
+Best use: Your team wants Claude in Slack.
+
+### /plugin [subcommand]
+
+Manages plugins. No argument opens the menu; `list`, `install`, `enable`, `disable` act directly. Run `/reload-plugins` if the install summary says so.
+
+Best use: Browse with `/plugin` and install one that fits your work.
+
+### /plugin-authoring
+
+Loads the reference for writing a mod. A skill from a built-in plugin, which you can turn off in `/plugin`.
+
+Best use: When you want a small side panel that stays beside the chat.
+
+### /reload-plugins [--force]
+
+Reloads active plugins without restarting and reports load errors. If the reload would change loaded MCP tools and invalidate the prompt cache, it warns and skips unless you pass `--force`.
+
+Best use: Right after installing a plugin that asks for it.
+
+### /reload-skills
+
+Re-scans skill and command directories so skills added or changed during the session are available without restarting.
+
+Best use: You just wrote a custom skill and want it now.
+
+### /skill-doctor
+
+Shows each skill's context cost and usage so you can find skills to turn off.
+
+Best use: Run periodically to prune unused skills.
+
+### /skills
+
+Lists skills with filtering. `t` sorts by token count, `Space`/`Enter` cycles a skill's visibility to Claude and the `/` menu, `Esc` saves and closes.
+
+Best use: Too many skills: `/skills`, press `t`, hide the heavy unused ones.
+
+## Permissions & safety
+
+Control what Claude may do and what needs your approval
+
+### /permissions
+
+Manages allow, ask and deny rules for tools: view by scope, add or remove rules, manage working directories, and check the Recently blocked tab (calls auto mode refused) and classifier rules.
+
+Best use: Tired of approving `npm test` every time: allow it here.
+
+Aliases: /allowed-tools
+
+### /auto-mode-setup
+
+Drafts `autoMode.environment` entries from your project and recent sessions for you to review and save. Has version and plan requirements.
+
+Best use: When auto mode keeps blocking routine actions.
+
+### /fewer-permission-prompts
+
+Scans transcripts for common read-only Bash and MCP calls and adds a prioritized allowlist to project `.claude/settings.json`.
+
+Best use: Run once when approval prompts keep interrupting you.
+
+### /hooks
+
+Views hook configurations.
+
+Best use: Check what's configured when a hook seems to break every edit.
+
+### /privacy-settings
+
+Views and updates privacy settings. Pro, Max and Ultra only.
+
+Best use: To check how your data is used.
+
+### /sandbox
+
+Toggles sandbox mode, on supported platforms only.
+
+Best use: Turn it on before running unfamiliar scripts.
+
+### /update-config [request]
+
+Describe a settings change (allow a command, set an env var, add a hook) and Claude edits the matching `settings.json`. Use `/config` for theme and model.
+
+Best use: `/update-config run prettier after every file edit`.
+
+## Settings & interface
+
+Theme, colors, status line, keybindings, voice
+
+### /color [color|default]
+
+Sets the prompt bar color for this session: `red`, `blue`, `green`, `yellow`, `purple`, `orange`, `pink` or `cyan`; `default` resets, no argument picks a random color.
+
+Best use: Mark a production session with `/color red`.
+
+### /config [key=value ...]
+
+Opens Settings for theme, model, output style and more, or sets `key=value` pairs directly, e.g. `/config theme=dark`. `/config --help` lists keys.
+
+Best use: `/config theme=dark`.
+
+Aliases: /settings
+
+### /focus
+
+Toggles a view showing only your last prompt, a one-line tool summary and the final response. Fullscreen rendering only.
+
+Best use: Hide intermediate steps and see only the result.
+
+### /keybindings
+
+Opens your keyboard shortcuts file.
+
+Best use: Rebind actions to keys you're used to.
+
+### /scroll-speed
+
+Adjusts mouse wheel scroll speed. Fullscreen rendering only; not in the JetBrains terminal.
+
+Best use: Slow it down when one notch jumps too far.
+
+### /statusline
+
+Configures the status line; describe what you want, or run without arguments to derive it from your shell prompt.
+
+Best use: `/statusline show the model and git branch`.
+
+### /terminal-setup
+
+Installs Shift+Enter for newlines in VS Code, Cursor, Devin Desktop, Alacritty or Zed; in Apple Terminal enables Option+Enter and disables the bell; in iTerm2 enables clipboard access for `/copy`.
+
+Best use: Enter keeps sending half-written prompts: run this once.
+
+### /theme
+
+Changes the color theme: `auto`, light and dark, colorblind-accessible, ANSI and custom themes.
+
+Best use: Switch to a dark theme at night.
+
+### /tui [default|fullscreen]
+
+Sets the terminal renderer and relaunches with the conversation intact. `fullscreen` is the flicker-free renderer. No argument shows the current renderer.
+
+Best use: Screen flickers: `/tui fullscreen`.
+
+### /voice [hold|tap|off]
+
+Toggles voice dictation or sets a mode (`hold`, `tap`). Requires a Claude.ai account.
+
+Best use: Dictate instructions instead of typing.
+
+## Account & usage
+
+Sign in, check limits and cost, upgrade
+
+### /usage
+
+Shows session cost, spend for today, this week and this month, plan usage limits and activity stats, including what counts against plan limits on subscriptions. `/stats` opens the Stats tab. Each warning names its cause and a one-line fix; press `f` to apply the fixes.
+
+Best use: Check `/usage` before deciding whether to switch to a cheaper model.
+
+Aliases: /cost, /stats
+
+### /login
+
+Signs in to your Anthropic account.
+
+Best use: New machine or expired session.
+
+### /logout
+
+Signs out of your Anthropic account.
+
+Best use: After using a shared computer.
+
+### /passes
+
+Shares a free week of Claude Code with friends; only shown to eligible accounts.
+
+Best use: Invite a friend to try it.
+
+### /rate-limit-options
+
+Shows ways to keep working when a claude.ai limit blocks you: wait and auto-continue, add usage credits, or upgrade. Requires a claude.ai subscription.
+
+Best use: Blocked overnight: choose auto-continue after reset.
+
+### /status
+
+Opens Settings on the Status tab: version, model, account, connectivity. Works while Claude is responding.
+
+Best use: Screenshot `/status` before asking for help.
+
+### /upgrade
+
+Opens the upgrade page in your browser.
+
+Best use: When you keep hitting limits.
+
+### /usage-credits
+
+Configures or requests usage credits; Team and Enterprise members without billing access send a request to their admin. Previously `/extra-usage`.
+
+Best use: Request credits from your admin when the team runs out.
+
+## Cloud, remote & other devices
+
+Hand work between desktop, mobile, web and cloud
+
+### /desktop
+
+Continues the session in the Claude Code Desktop app. Requires macOS or x64 Windows and a Claude subscription.
+
+Best use: Move from the terminal to the desktop app.
+
+Aliases: /app
+
+### /mobile
+
+Shows a QR code to download the Claude mobile app.
+
+Best use: To follow along from your phone.
+
+Aliases: /ios, /android
+
+### /remote-control
+
+Makes this session available for Remote Control from claude.ai. Requires a claude.ai subscription.
+
+Best use: Leave the task running and steer it from your phone: `/rc`.
+
+Aliases: /rc
+
+### /remote-env
+
+Chooses the default cloud environment for cloud sessions started from the CLI.
+
+Best use: Pick a default when you have several environments.
+
+### /setup-bedrock
+
+Configures Amazon Bedrock auth, region and model pins via a wizard. Hidden from the menu until `CLAUDE_CODE_USE_BEDROCK=1` is set; type it in full.
+
+Best use: Your company uses Claude through AWS.
+
+### /setup-vertex
+
+Configures Google Cloud's Agent Platform via a wizard. Hidden until `CLAUDE_CODE_USE_VERTEX=1` is set; type it in full.
+
+Best use: Your company uses Claude through Google Cloud.
+
+### /teleport
+
+Pulls a cloud session into this terminal, fetching its branch and conversation. Requires a claude.ai subscription.
+
+Best use: Continue a web-started task locally.
+
+Aliases: /tp
+
+### /web-setup
+
+Connects GitHub for cloud sessions using your local `gh` credentials.
+
+Best use: Before your first cloud session.
+
+## Diagnostics & feedback
+
+Start here when something is wrong
+
+### /doctor [prompt-audit [path]]
+
+Runs a setup checkup for installation, settings, extensions and `CLAUDE.md`, proposing fixes Claude applies after you confirm. `prompt-audit` audits your instructions instead.
+
+Best use: Something feels broken: start with `/doctor`.
+
+Aliases: /checkup
+
+### /help
+
+Shows help and available commands.
+
+Best use: Forgot a command: `/help`, or type `/` plus a few letters.
+
+### /powerup
+
+Interactive lessons with animated demos that teach Claude Code features.
+
+Best use: The best structured starting point for newcomers.
+
+### /bug [report]
+
+Reports a bug or shares your conversation; you choose how much history to include and confirm before anything is sent.
+
+Best use: When Claude Code itself misbehaves.
+
+Aliases: /share
+
+### /debug [description]
+
+Enables debug logging from this point and troubleshoots by reading the session debug log. Optionally describe the issue.
+
+Best use: `/debug the MCP server keeps failing to connect`.
+
+### /exit
+
+Exits the CLI. In an attached background session it detaches and the session keeps running.
+
+Best use: Done for the day.
+
+Aliases: /quit
+
+### /feedback [report]
+
+Sends product feedback using the same dialog and consent step as `/bug`.
+
+Best use: Request a feature.
+
+### /heapdump
+
+Writes a heap snapshot and memory breakdown to the Desktop for diagnosing high memory. Share only the `-diagnostics.json`; the `.heapsnapshot` contains your conversation and credentials. Hidden from the menu.
+
+Best use: Report a memory blow-up.
+
+### /release-notes
+
+Views the changelog in a version picker; notes appear without entering Claude's context.
+
+Best use: See what's new after an update.
+
+### /restart
+
+Restarts Claude Code and resumes the session to apply an installed update. Requires Pro, Max or Ultra and a native macOS or Linux install (not WSL).
+
+Best use: When the footer offers it after an update.
+
+Aliases: /update
+
+## Other
+
+Small extras
+
+### /radio
+
+Opens Claude FM lo-fi radio in your browser, or prints the stream URL.
+
+Best use: Background music while you work.
+
+### /stickers
+
+Orders Claude Code stickers.
+
+Best use: Decorate your laptop.
+
+## Removed
+
+Still mentioned in older guides but no longer available
+
+### /pr-comments [PR] (removed)
+
+Removed in v2.1.91. Ask Claude directly to view pull request comments.
+
+Best use: Ask in plain language.
+
+### /ultraplan <prompt> (removed)
+
+Removed. Use plan mode (`/plan`) instead.
+
+Best use: Use `/plan`.
+
+### /vim (removed)
+
+Removed in v2.1.92. Use `/config` → Editor mode.
+
+Best use: Use `/config`.

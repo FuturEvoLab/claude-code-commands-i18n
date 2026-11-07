@@ -44,6 +44,7 @@ def apply(d, langs, x):
     d["disclaimer"][code] = x["disclaimer"]
     d["ui"][code] = x["ui"]
     d["readme"][code] = x["readme"]
+    d["seo"][code] = x.get("seo", {})
     extra = sorted(set(by_cmd) - {c["cmd"] for c in d["commands"]})
     return d, langs, code, extra
 
@@ -64,7 +65,7 @@ def merge(path):
     check(path)
     x = json.loads(Path(path).read_text(encoding="utf-8"))
     d, langs, _, _ = apply(build.load(), build.LANGINFO, x)
-    for name in ("commands", "categories", "scenarios", "risks", "disclaimer", "ui", "readme"):
+    for name in ("commands", "categories", "scenarios", "risks", "disclaimer", "ui", "readme", "seo"):
         (DATA / f"{name}.json").write_text(json.dumps(d[name], ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     (DATA / "languages.json").write_text(json.dumps(langs, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     print(f"Merged {x['language']['code']}; reorder data/languages.json if needed, then run scripts/build.py")

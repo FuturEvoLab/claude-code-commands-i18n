@@ -414,6 +414,8 @@ const LANGS = LANGINFO.map(x => x.code);
 $("lang").innerHTML = LANGINFO.map(x => `<option value="${esc(x.code)}" lang="${esc(x.html)}">${esc(x.name)}</option>`).join("");
 const REDUCED = matchMedia("(prefers-reduced-motion: reduce)").matches;
 let lang = "en", cat = "all", scen = null;
+const PAGE_LANG = /*PAGELANG*/null;
+const TITLES = /*TITLES*/{};  // set on /ja/, /ko/ ... pages by the build
 
 const slug = c => c.cmd.slice(1).replace(/ /g, "-");
 // #ja or #ja-rewind; longer codes first so "zh-hant-…" is not read as "zh".
@@ -424,6 +426,7 @@ const TARGET = HASH[2] && CMDS.find(c => slug(c) === HASH[2]);
 function pickLang(){
   if (HASH[1]) return HASH[1];
   try { const q = new URLSearchParams(location.search).get("lang"); if (LANGS.includes(q)) return q; } catch(e) {}
+  if (PAGE_LANG) return PAGE_LANG;  // a language page always opens in its own language
   // A link's #en/#ja/#zh or the visitor's last choice wins; otherwise English.
   try { const s = localStorage.getItem("lang"); if (LANGS.includes(s)) return s; } catch(e) {}
   return "en";
@@ -451,7 +454,7 @@ function setLang(l){
   $("qclear").setAttribute("aria-label", t.qclear); $("qclear").title = t.qclear;
   $("badge").textContent = t.badge;
   $("h1").textContent = t.h1;
-  document.title = t.h1;
+  document.title = TITLES[l] || t.h1;  // the same title search engines index for this language
   $("lead").innerHTML = esc(t.lead) + "<small>" + t.keys + "</small>";
   const live = CMDS.filter(c => c.kind !== "removed");
   const nums = [live.length, SCENS.length, CMDS.filter(c => (c.risk || []).length).length, LANGINFO.length];
@@ -654,7 +657,18 @@ function demoNext(){
   step();
 }
 
-$("lang").addEventListener("change", e => setLang(e.target.value));
+// On the published site each language has its own address (/, /ja/, /zh-cn/ ...); keep the
+// address bar in step so a reload or a shared link opens the same language.
+function syncPath(l){
+  if (!document.querySelector('link[rel="canonical"]')) return;  // e.g. the artifact copy
+  try {
+    const segs = LANGINFO.filter(x => x.code !== "en").map(x => x.html.toLowerCase());
+    const base = location.pathname.replace(new RegExp("(" + segs.join("|") + ")/(index\\.html)?$"), "").replace(/index\.html$/, "");
+    const info = LANGINFO.find(x => x.code === l);
+    history.replaceState(null, "", base + (l === "en" ? "" : info.html.toLowerCase() + "/"));
+  } catch(e) {}
+}
+$("lang").addEventListener("change", e => { setLang(e.target.value); syncPath(e.target.value); });
 // Digital rain behind the banner for the Matrix theme: each column spells real slash
 // commands top to bottom. Skips frames while the banner is off screen or hidden (search
 // mode) and never runs with reduced motion.

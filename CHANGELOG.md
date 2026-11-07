@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.3.0 — 2026-11-07
+
+- Search engines (SEO): each language now has its own address (`/`, `/ja/`, `/zh-cn/`, `/zh-hant/`, `/ko/`, `/ru/`, `/es/`) with its own canonical URL, reciprocal `hreflang` links, `og:locale`, and a search-result title and description written for that language (`data/seo.json`, length-checked by the build).
+- Every command, category and scenario is pre-rendered as plain HTML, so crawlers and AI tools that do not run JavaScript read the full guide; the script then takes over as before.
+- AI answer engines (GEO): JSON-LD with the site, the article, every command as a `DefinedTerm` and the 16 scenarios as an `FAQPage`; `llms.txt` and `llms-full.txt` (all commands in Markdown); `sitemap.xml` and `robots.txt`.
+- Switching language updates the address, so a reload or shared link keeps the language. Each README links to its own language page.
+
 ## 1.2.1 — 2026-11-07
 
 - Fixed: on phones the command list was laid out 1200px wide and the page scrolled sideways.

@@ -10,7 +10,7 @@
 
 바로 써 볼 수 있는 정적 페이지입니다. 검색, 언어·테마 전환, 명령어 복사를 할 수 있으며 설치는 필요 없습니다.
 
-### [검색 가능한 웹 버전 →](https://futurevolab.github.io/claude-code-commands-i18n/)
+### [검색 가능한 웹 버전 →](https://futurevolab.github.io/claude-code-commands-i18n/ko/)
 
 | 기본 테마 | 매트릭스 테마 |
 |---|---|

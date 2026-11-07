@@ -1,0 +1,30 @@
+{
+ "en": {
+  "title": "All {n} Claude Code Slash Commands, Explained in Plain English",
+  "description": "Every Claude Code slash command ({n}) explained in plain English: what it does, the best way to use it, and safety notes. Searchable, free and unofficial, in 7 languages."
+ },
+ "ja": {
+  "title": "Claude Code スラッシュコマンド一覧｜全{n}コマンドをやさしい日本語で解説",
+  "description": "Claude Code の全スラッシュコマンド（{n}個）を、やさしい日本語で解説。何ができるか、いちばん役立つ使い方、注意点まで。検索できる無料の非公式ガイド（7言語対応）。"
+ },
+ "zh": {
+  "title": "Claude Code 斜杠命令大全｜全部 {n} 个命令中文详解与最佳用法",
+  "description": "Claude Code 全部 {n} 个斜杠命令的中文说明：每个命令能做什么、最佳用法和安全提示，支持搜索。免费的非官方指南，提供 7 种语言。"
+ },
+ "zh-hant": {
+  "title": "Claude Code 斜線指令大全｜全部 {n} 個指令中文說明與最佳用法",
+  "description": "Claude Code 全部 {n} 個斜線指令的中文說明：每個指令能做什麼、最佳用法和安全提示，支援搜尋。免費的非官方指南，提供 7 種語言。"
+ },
+ "ko": {
+  "title": "Claude Code 슬래시 명령어 총정리 | {n}개 명령어를 쉬운 한국어로",
+  "description": "Claude Code 슬래시 명령어 {n}개를 쉬운 한국어로 설명합니다. 무엇을 하는지, 가장 좋은 사용법, 주의할 점까지. 검색할 수 있는 무료 비공식 가이드(7개 언어)."
+ },
+ "ru": {
+  "title": "Команды Claude Code: полный список слэш-команд ({n}) простым языком",
+  "description": "Все {n} слэш-команд Claude Code простым языком: что делает каждая, как её лучше применять и чего остерегаться. Бесплатный неофициальный справочник на 7 языках."
+ },
+ "es": {
+  "title": "Comandos de Claude Code: lista completa de los {n} comandos de barra",
+  "description": "Los {n} comandos de barra de Claude Code, explicados con sencillez: qué hace cada uno, su mejor uso y avisos de seguridad. Guía gratuita y no oficial en 7 idiomas."
+ }
+}

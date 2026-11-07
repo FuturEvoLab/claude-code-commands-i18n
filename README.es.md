@@ -10,7 +10,7 @@
 
 Una página estática que puedes probar ya: busca, cambia de idioma y de tema y copia comandos. No hay nada que instalar.
 
-### [Versión web con búsqueda →](https://futurevolab.github.io/claude-code-commands-i18n/)
+### [Versión web con búsqueda →](https://futurevolab.github.io/claude-code-commands-i18n/es/)
 
 | Tema predeterminado | Tema Matrix |
 |---|---|
