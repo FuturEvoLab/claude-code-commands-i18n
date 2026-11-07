@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ja">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'self'; script-src 'sha256-7K1R3Fz+BSV0a/QJXs0vSy3v3JwseyGjrXgf+3sABX8='; base-uri 'none'; form-action 'none'">
+<title>Claude Code の /deep-research コマンド</title>
+<meta name="description" content="マルチエージェントのワークフローです。Web を広く検索し、情報源を取得・照合して、出典付きのレポートにまとめます。バックグラウンドで動きます。">
+<meta name="referrer" content="no-referrer">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Claude Code Commands">
+<meta property="og:title" content="Claude Code の /deep-research コマンド">
+<meta property="og:description" content="マルチエージェントのワークフローです。Web を広く検索し、情報源を取得・照合して、出典付きのレポートにまとめます。バックグラウンドで動きます。">
+<meta property="og:url" content="https://futurevolab.github.io/claude-code-commands-i18n/ja/commands/deep-research/">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://futurevolab.github.io/claude-code-commands-i18n/assets/social.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Claude Code の /deep-research コマンド">
+<meta name="twitter:description" content="マルチエージェントのワークフローです。Web を広く検索し、情報源を取得・照合して、出典付きのレポートにまとめます。バックグラウンドで動きます。">
+<meta name="robots" content="index, follow, max-snippet:-1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b0f0c'/%3E%3Cpath d='M19.5 6 12.5 26' stroke='%2335e06f' stroke-width='3.4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="canonical" href="https://futurevolab.github.io/claude-code-commands-i18n/ja/commands/deep-research/">
+<link rel="alternate" hreflang="en" href="https://futurevolab.github.io/claude-code-commands-i18n/commands/deep-research/">
+<link rel="alternate" hreflang="ja" href="https://futurevolab.github.io/claude-code-commands-i18n/ja/commands/deep-research/">
+<link rel="alternate" hreflang="zh-CN" href="https://futurevolab.github.io/claude-code-commands-i18n/zh-cn/commands/deep-research/">
+<link rel="alternate" hreflang="zh-Hant" href="https://futurevolab.github.io/claude-code-commands-i18n/zh-hant/commands/deep-research/">
+<link rel="alternate" hreflang="ko" href="https://futurevolab.github.io/claude-code-commands-i18n/ko/commands/deep-research/">
+<link rel="alternate" hreflang="ru" href="https://futurevolab.github.io/claude-code-commands-i18n/ru/commands/deep-research/">
+<link rel="alternate" hreflang="es" href="https://futurevolab.github.io/claude-code-commands-i18n/es/commands/deep-research/">
+<link rel="alternate" hreflang="x-default" href="https://futurevolab.github.io/claude-code-commands-i18n/commands/deep-research/">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","@id":"https://futurevolab.github.io/claude-code-commands-i18n/ja/commands/deep-research/#article","url":"https://futurevolab.github.io/claude-code-commands-i18n/ja/commands/deep-research/","headline":"Claude Code の /deep-research コマンド","description":"マルチエージェントのワークフローです。Web を広く検索し、情報源を取得・照合して、出典付きのレポートにまとめます。バックグラウンドで動きます。","inLanguage":"ja","dateModified":"2026-11-07","image":"https://futurevolab.github.io/claude-code-commands-i18n/assets/social.png","isPartOf":{"@id":"https://futurevolab.github.io/claude-code-commands-i18n/#website"},"author":{"@id":"https://futurevolab.github.io/claude-code-commands-i18n/#org"},"license":"https://creativecommons.org/licenses/by/4.0/","isBasedOn":"https://code.claude.com/docs/en/commands","about":{"@type":"DefinedTerm","name":"/deep-research","termCode":"/deep-research","description":"マルチエージェントのワークフローです。Web を広く検索し、情報源を取得・照合して、出典付きのレポートにまとめます。バックグラウンドで動きます。","inDefinedTermSet":"https://futurevolab.github.io/claude-code-commands-i18n/ja/#commands"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Claude Code コマンド一覧","item":"https://futurevolab.github.io/claude-code-commands-i18n/ja/"},{"@type":"ListItem","position":2,"name":"自動化とスケジュール","item":"https://futurevolab.github.io/claude-code-commands-i18n/ja/#ja-deep-research"},{"@type":"ListItem","position":3,"name":"/deep-research","item":"https://futurevolab.github.io/claude-code-commands-i18n/ja/commands/deep-research/"}]}]}</script>
+<script>(function(){document.documentElement.className+=" js";var ok=/^(cyberpunk|matrix|midnight|graphite|indigo|ocean|ember|rose|mono|paper|frost)$/,s=null;try{s=new URLSearchParams(location.search).get("theme")}catch(e){}if(!s||!(ok.test(s)||s==="terminal")){try{s=localStorage.getItem("skin")}catch(e){}}if(ok.test(s))document.documentElement.setAttribute("data-skin",s)})()</script>
+<link rel="stylesheet" href="../../../assets/command.css">
+<header class="top"><div class="in"><a class="brand" href="../../">/cc <span>· Claude Code コマンド一覧</span></a><ul class="langs" aria-label="言語"><li><a href="../../../commands/deep-research/" lang="en" hreflang="en">English</a></li><li><a href="../../../ja/commands/deep-research/" lang="ja" hreflang="ja" aria-current="page">日本語</a></li><li><a href="../../../zh-cn/commands/deep-research/" lang="zh-CN" hreflang="zh-CN">简体中文</a></li><li><a href="../../../zh-hant/commands/deep-research/" lang="zh-Hant" hreflang="zh-Hant">繁體中文</a></li><li><a href="../../../ko/commands/deep-research/" lang="ko" hreflang="ko">한국어</a></li><li><a href="../../../ru/commands/deep-research/" lang="ru" hreflang="ru">Русский</a></li><li><a href="../../../es/commands/deep-research/" lang="es" hreflang="es">Español</a></li></ul></div></header>
+<main class="in"><ol class="crumb"><li><a href="../../">ホーム</a></li><li><a href="../../#ja-deep-research">自動化とスケジュール</a></li><li aria-current="page">/deep-research</li></ol><h1>/deep-research<span class="args">&lt;question&gt;</span></h1><p class="gloss">英語 <b>deep research</b> ＝ 詳細リサーチ</p><div class="tags"><span class="tag workflow">ワークフロー</span></div><section class="box"><p>マルチエージェントのワークフローです。Web を広く検索し、情報源を取得・照合して、出典付きのレポートにまとめます。バックグラウンドで動きます。</p></section><section class="box"><h2>おすすめの使い方</h2><p><code>/deep-research 主要な AI 動画生成ツールの料金と画質の比較</code>。</p></section><section class="box"><h2>関連するコマンド · 自動化とスケジュール</h2><ul class="list"><li><a href="../loop/">/loop</a><small>一定間隔で指示を繰り返す</small></li><li><a href="../autofix-pr/">/autofix-pr</a><small>現在のブランチの PR をクラウドセッションが見張り、CI の失敗やレビューコメントがあれば修正を push します。gh CLI とクラウドセッションの利用権が必要です。</small></li><li><a href="../schedule/">/schedule</a><small>クラウドの定期実行タスク（旧 routines）を作成・変更・一覧・実行します。会話形式で設定でき、最近の実行結果も聞けます。Console の API キーでは使えません。</small></li></ul></section><nav class="pn" aria-label="カテゴリー"><a class="prev" href="../autofix-pr/" rel="prev">← /autofix-pr</a><a class="next" href="../schedule/" rel="next">/schedule →</a></nav><a class="all" href="../../#ja-deep-research">← すべてのコマンドを見る</a></main>
+<footer class="in"><p><b>出典：</b>Claude Code 公式のコマンドリファレンス <a href="https://code.claude.com/docs/en/commands" rel="noopener noreferrer">https://code.claude.com/docs/en/commands</a> をもとに作成（確認日 2026-11-07）。説明は意訳・簡略化したもので、公式の翻訳ではありません。違いがある場合は公式ドキュメントが優先です。</p><p><b>改善への参加：</b>誤りやコマンドの変更に気づいたら、Issue や Pull Request を歓迎します。<a href="https://github.com/FuturEvoLab/claude-code-commands-i18n" rel="noopener noreferrer">https://github.com/FuturEvoLab/claude-code-commands-i18n</a> · 内容は CC BY 4.0、コードは MIT ライセンス。</p></footer>
+</html>

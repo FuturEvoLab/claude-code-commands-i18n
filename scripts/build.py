@@ -3,7 +3,7 @@
 
 Usage: python3 scripts/build.py [--repo OWNER/NAME]
 Outputs: README*.md (see data/languages.json), one docs/ page per language,
-         docs/404.html, sitemap.xml, robots.txt, llms.txt, llms-full.txt, dist/artifact.html
+         one page per command and language (docs/[lang/]commands/NAME/), docs/404.html, sitemap.xml, robots.txt, llms.txt, llms-full.txt, dist/artifact.html
 """
 import argparse
 import base64
@@ -353,6 +353,15 @@ def page_url(lang):
     return META["site"] + page_path(lang)
 
 
+def cmd_path(lang, c):
+    """URL path of one command's page: commands/compact/ (English), ja/commands/compact/ ..."""
+    return page_path(lang) + "commands/" + slug(c) + "/"
+
+
+def cmd_url(lang, c):
+    return META["site"] + cmd_path(lang, c)
+
+
 def live_count(cmds):
     return sum(c["kind"] != "removed" for c in cmds)
 
@@ -426,7 +435,7 @@ def json_ld(lang, groups, scens, ui):
          "hasPart": {"@id": url + "#commands"}},
         {"@type": "DefinedTermSet", "@id": url + "#commands", "name": ui[lang]["h1"], "inLanguage": info["html"],
          "hasDefinedTerm": [{"@type": "DefinedTerm", "name": c["cmd"], "termCode": c["cmd"],
-                             "description": plain(c["desc"][lang]), "url": f"{url}#{lang}-{slug(c)}"}
+                             "description": plain(c["desc"][lang]), "url": cmd_url(lang, c)}
                             for c in cmds if c["kind"] != "removed"]},
         {"@type": "FAQPage", "@id": url + "#faq", "inLanguage": info["html"],
          "mainEntity": [{"@type": "Question", "name": s["q"][lang],
@@ -445,7 +454,7 @@ def prerender(lang, groups, scens, ui):
     secs = []
     for cg, rows in groups:
         arts = "".join(
-            f'<article id="{lang}-{slug(c)}"><h3><code>{esc(c["cmd"])}</code>'
+            f'<article id="{lang}-{slug(c)}"><h3><a href="commands/{slug(c)}/"><code>{esc(c["cmd"])}</code></a>'
             + (f' <code>{esc(c["args"])}</code>' if c.get("args") else "")
             + (f' <small>{esc(t["removed"])}</small>' if c["kind"] == "removed" else "")
             + f'</h3><p>{code_html(c["desc"][lang])}</p><p><b>{esc(t["use"])}:</b> {code_html(c["use"][lang])}</p></article>'
@@ -483,10 +492,12 @@ def localize(body, lang, cmds, groups, scens, ui):
     return body
 
 
-def sitemap():
-    alts = "".join(f'<xhtml:link rel="alternate" hreflang="{x["html"]}" href="{page_url(x["code"])}"/>' for x in LANGINFO)
-    alts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{META["site"]}"/>'
-    urls = "".join(f'<url><loc>{page_url(x["code"])}</loc><lastmod>{META["checked"]}</lastmod>{alts}</url>\n' for x in LANGINFO)
+def sitemap(cmds):
+    def block(url_of):
+        alts = "".join(f'<xhtml:link rel="alternate" hreflang="{x["html"]}" href="{url_of(x["code"])}"/>' for x in LANGINFO)
+        alts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{url_of("en")}"/>'
+        return "".join(f'<url><loc>{url_of(x["code"])}</loc><lastmod>{META["checked"]}</lastmod>{alts}</url>\n' for x in LANGINFO)
+    urls = block(page_url) + "".join(block(lambda l, c=c: cmd_url(l, c)) for c in cmds)
     return ('<?xml version="1.0" encoding="UTF-8"?>\n'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
             + urls + "</urlset>\n")
@@ -506,6 +517,11 @@ def llms_txt(cmds):
         "## Pages",
         "",
         *[f"- [{x['name']}]({page_url(x['code'])}): {SEO[x['code']]['title'].replace('{n}', str(live_count(cmds)))}" for x in LANGINFO],
+        "",
+        "## Commands (English; each page links its other languages)",
+        "",
+        *[f"- [{c['cmd']}]({cmd_url('en', c)}): {plain(first_sentence(c['desc']['en']))}"
+          + (" (removed)" if c["kind"] == "removed" else "") for c in cmds],
         "",
         "## Full text (Markdown)",
         "",
@@ -530,7 +546,7 @@ def llms_full(groups, cmds, ui):
         for c in rows:
             name = c["cmd"] + (f" {c['args']}" if c.get("args") else "")
             out += [f"### {name}" + (" (removed)" if c["kind"] == "removed" else ""), "", c["desc"]["en"], "",
-                    f"{t['use']}: {c['use']['en']}", ""]
+                    f"{t['use']}: {c['use']['en']}", "", f"Page: {cmd_url('en', c)}", ""]
             if c.get("aliases"):
                 out += [f"{t['alias']}: {', '.join(c['aliases'])}", ""]
     return "\n".join(out)
@@ -553,13 +569,200 @@ def not_found(ui):
             f'<link rel="icon" href="{FAVICON}">\n{body}\n</html>\n')
 
 
-def csp(body):
+# --- one page per command ---------------------------------------------------------
+
+CMD_CSS = """
+*{box-sizing:border-box}
+html{--body-font:var(--font-en)}
+html[lang="ja"]{--body-font:var(--font-ja)}
+html[lang="zh-CN"]{--body-font:var(--font-zh)}
+html[lang="zh-Hant"]{--body-font:var(--font-tc)}
+html[lang="ko"]{--body-font:var(--font-ko)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.75 var(--body-font);-webkit-text-size-adjust:100%}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+code{font-family:var(--font-mono);font-size:.9em;background:var(--surface-2);border:1px solid var(--line);padding:0 5px;border-radius:5px;overflow-wrap:anywhere}
+code.nw{white-space:nowrap}
+.top{background:var(--hero);color:var(--hero-ink);border-bottom:1px solid var(--hero-line)}
+.in{max-width:820px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right))}
+.top .in{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;padding-top:12px;padding-bottom:12px}
+.brand{color:var(--phos);font:700 15px/1.4 var(--font-mono);text-decoration:none}
+.brand span{color:var(--hero-muted);font-weight:500}
+.langs{margin:0 0 0 auto;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:2px 12px;font-size:13px}
+.langs a{font-family:var(--font-en);color:var(--hero-muted);text-decoration:none;display:inline-block;padding:4px 0}
+.langs a:hover{color:var(--hero-ink)}
+.langs a[aria-current]{color:var(--phos);font-weight:600}
+main{padding-top:20px;padding-bottom:28px}
+.crumb{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:4px;font-size:13px;color:var(--muted)}
+.crumb li+li::before{content:"›";margin-right:4px}
+.crumb a{color:var(--muted)}
+h1{font:700 clamp(30px,7vw,44px)/1.15 var(--font-mono);margin:14px 0 4px;overflow-wrap:anywhere}
+h1 .args{display:block;font-size:.45em;font-weight:500;color:var(--muted);margin-top:6px}
+.lead{font-size:18px;margin:8px 0 0}
+.gloss{font-size:14px;color:var(--muted);margin:6px 0 0}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0}
+.tag{font-size:12.5px;line-height:1.6;padding:1px 9px;border-radius:999px;background:var(--surface-2);color:var(--muted)}
+.tag.pick{background:var(--star-soft);color:var(--star)}
+.tag.skill,.tag.workflow{background:var(--info-soft);color:var(--info)}
+.tag.removed{background:var(--r-perms-bg);color:var(--r-perms)}
+/*RISKTAGS*/
+.box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin:16px 0 0;box-shadow:var(--shadow)}
+.box h2{font-size:13px;letter-spacing:.04em;text-transform:uppercase;margin:0 0 4px;color:var(--accent)}
+.box p{margin:0}
+.box.warn{border-left:4px solid var(--r-perms)}
+.risk+.risk{margin-top:8px}
+.list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.list a{font:600 15px var(--font-mono);text-decoration:none}
+.list a:hover{text-decoration:underline}
+.list small{display:block;color:var(--muted);font-size:14px;line-height:1.55}
+.pn{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:22px 0 0}
+.pn a{display:block;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--surface);font-family:var(--font-mono);text-decoration:none;overflow-wrap:anywhere}
+.pn a:hover{border-color:var(--accent)}
+.pn .next{text-align:right;grid-column:2}
+.all{display:inline-block;margin-top:20px;font-weight:600}
+footer{border-top:1px solid var(--line);margin-top:8px;padding-top:16px;padding-bottom:40px;font-size:13px;color:var(--muted)}
+footer a{color:var(--muted)}
+footer p{margin:0 0 8px}
+"""
+
+
+def theme_script():
+    """The page's own skin loader, so a command page shows the theme the visitor picked."""
+    tpl = (ROOT / "site/template.html").read_text(encoding="utf-8")
+    return re.search(r"<script>\(function\(\)\{document\.documentElement\.className.*?</script>", tpl, re.S).group(0)
+
+
+def command_css(risks):
+    """docs/assets/command.css: the theme palette of the main page plus the command-page layout.
+    One shared file, so the browser caches it across all command pages."""
+    tpl = (ROOT / "site/template.html").read_text(encoding="utf-8")
+    style = re.search(r"<style>(.*?)</style>", tpl, re.S).group(1)
+    palette = style[style.index(":root{"):style.index("\n.rain{")]
+    palette = re.sub(r"\n:root\[data-skin=\"[a-z]+\"\] [^{\n]*\{[^}\n]*\}", "", palette)  # page-specific flourishes
+    tags = "\n".join(f".tag.r-{r['id']}{{background:var(--r-{r['id']}-bg);color:var(--r-{r['id']})}}" for r in risks)
+    return "/* Generated by scripts/build.py from site/template.html. */\n" + palette.strip() + "\n" + CMD_CSS.replace("/*RISKTAGS*/", tags)
+
+
+def cmd_head_title(lang, c):
+    base = SEO[lang]["cmd_title"].replace("{cmd}", c["cmd"])
+    extra = (c.get("short") or {}).get(lang) or plain(first_sentence(c["desc"][lang])).rstrip(".。")
+    sep = "｜" if lang in ("ja", "zh", "zh-hant") else " – "
+    for title in (base + sep + extra, c["cmd"] + sep + extra + sep + "Claude Code", base):
+        if len(title) <= 70:
+            return title
+
+
+def clip(text, n=160):
+    text = plain(text)
+    return text if len(text) <= n else text[:n - 1].rsplit(" ", 1)[0].rstrip(",，、;；") + "…" if " " in text[:n] else text[:n - 1] + "…"
+
+
+def command_page(lang, c, i, flat, cats, scens, risks, ui, theme):
+    """Static HTML for one command in one language. No script but the theme loader."""
+    t, info = ui[lang], next(x for x in LANGINFO if x["code"] == lang)
+    cat = next(cg for cg in cats if cg["id"] == c["cat"])
+    by_cmd = {x["cmd"]: x for x in flat}
+    home = "../../"  # the language page, relative so local previews stay local
+    link = lambda x: f"../{slug(x)}/"
+    summary = lambda x: (x.get("short") or {}).get(lang) or plain(first_sentence(x["desc"][lang]))
+    title = cmd_head_title(lang, c)
+    desc = clip(((c.get("short") or {}).get(lang, "") + " " if c.get("short") else "") + c["desc"][lang])
+    url = cmd_url(lang, c)
+    risk_by = {r["id"]: r for r in risks}
+
+    tags = []
+    if c["pick"]:
+        tags.append(f'<span class="tag pick">{esc(t["pick"])}</span>')
+    if c["kind"] in ("skill", "workflow"):
+        tags.append(f'<span class="tag {c["kind"]}">{esc(t[c["kind"]])}</span>')
+    if c["kind"] == "removed":
+        tags.append(f'<span class="tag removed">{esc(t["removedIn"].replace("{v}", c["removedIn"]) if c.get("removedIn") else t["removed"])}</span>')
+    if c.get("since"):
+        tags.append(f'<span class="tag">{esc(t["since"].replace("{v}", c["since"]))}</span>')
+    tags += [f'<span class="tag r-{r}">{esc(risk_by[r]["icon"] + " " + risk_by[r]["name"][lang])}</span>' for r in c.get("risk", [])]
+
+    parts = [f'<p class="lead">{esc(c["short"][lang])}</p>' if c.get("short") else "",
+             f'<p class="gloss">{esc(t["word"])} <b>{esc(c["word"])}</b> ＝ {esc(c["gloss"][lang])}</p>' if lang != "en" else "",
+             f'<div class="tags">{"".join(tags)}</div>' if tags else "",
+             f'<section class="box"><p>{code_html(c["desc"][lang])}</p></section>',
+             f'<section class="box"><h2>{esc(t["use"])}</h2><p>{code_html(c["use"][lang])}</p></section>']
+    if c["aliases"]:
+        parts.append(f'<section class="box"><h2>{esc(t["alias"])}</h2><p>{" · ".join(f"<code>{esc(a)}</code>" for a in c["aliases"])}</p></section>')
+    if c.get("risk"):
+        parts.append(f'<section class="box warn"><h2>{esc(t["safety"])}</h2>' + "".join(
+            f'<p class="risk"><b>{esc(risk_by[r]["icon"] + " " + risk_by[r]["name"][lang])}</b>: {code_html(risk_by[r]["desc"][lang])}</p>'
+            for r in c["risk"]) + "</section>")
+    seen = [s for s in scens if c["cmd"] in s["cmds"]]
+    if seen:
+        parts.append(f'<section class="box"><h2>{esc(t["inScen"])}</h2><ul class="list">' + "".join(
+            f'<li>{esc(s["q"][lang])}<small>' + " → ".join(
+                f'<code>{esc(n)}</code>' if n == c["cmd"] else f'<a href="{link(by_cmd[n])}">{esc(n)}</a>' for n in s["cmds"])
+            + "</small></li>" for s in seen) + "</ul></section>")
+    rel = [x for x in flat if x["cat"] == c["cat"] and x is not c and (x["kind"] != "removed" or c["kind"] == "removed")][:8]
+    if rel:
+        parts.append(f'<section class="box"><h2>{esc(t["related"])} · {esc(cat["name"][lang])}</h2><ul class="list">' + "".join(
+            f'<li><a href="{link(x)}">{esc(x["cmd"])}</a><small>{esc(summary(x))}</small></li>' for x in rel) + "</ul></section>")
+    prev, nxt = (flat[i - 1] if i else None), (flat[i + 1] if i + 1 < len(flat) else None)
+    parts.append('<nav class="pn" aria-label="' + esc(t["nav"]) + '">'
+                 + (f'<a class="prev" href="{link(prev)}" rel="prev">← {esc(prev["cmd"])}</a>' if prev else "")
+                 + (f'<a class="next" href="{link(nxt)}" rel="next">{esc(nxt["cmd"])} →</a>' if nxt else "") + "</nav>")
+    parts.append(f'<a class="all" href="{home}#{lang}-{slug(c)}">← {esc(t["allCmds"])}</a>')
+
+    langs = "".join(
+        f'<li><a href="../../{"../" if lang != "en" else ""}{cmd_path(x["code"], c)}" lang="{x["html"]}" hreflang="{x["html"]}"'
+        + (' aria-current="page"' if x is info else "") + f'>{esc(x["name"])}</a></li>' for x in LANGINFO)
+    foot = (t["foot"].replace("{sourceLink}", f'<a href="{esc(META["source"])}" rel="noopener noreferrer">{esc(META["source"])}</a>')
+                     .replace("{repoLink}", f'<a href="{esc(META["repo"])}" rel="noopener noreferrer">{esc(META["repo"])}</a>')
+                     .replace("{checked}", META["checked"]))
+    body = (f'{theme}\n<link rel="stylesheet" href="{"../" * (3 if lang != "en" else 2)}assets/command.css">\n'
+            f'<header class="top"><div class="in"><a class="brand" href="{home}">/cc <span>· {esc(t["h1"])}</span></a>'
+            f'<ul class="langs" aria-label="{esc(t["langLabel"])}">{langs}</ul></div></header>\n'
+            f'<main class="in"><ol class="crumb"><li><a href="{home}">{esc(t["home"])}</a></li>'
+            f'<li><a href="{home}#{lang}-{slug(c)}">{esc(cat["name"][lang])}</a></li><li aria-current="page">{esc(c["cmd"])}</li></ol>'
+            f'<h1>{esc(c["cmd"])}' + (f'<span class="args">{esc(c["args"])}</span>' if c.get("args") else "") + "</h1>"
+            + "".join(parts) + "</main>\n"
+            f'<footer class="in">{foot}</footer>')
+
+    ld = {"@context": "https://schema.org", "@graph": [
+        {"@type": "TechArticle", "@id": url + "#article", "url": url, "headline": title, "description": desc,
+         "inLanguage": info["html"], "dateModified": META["checked"], "image": META["site"] + "assets/social.png",
+         "isPartOf": {"@id": META["site"] + "#website"}, "author": {"@id": META["site"] + "#org"},
+         "license": "https://creativecommons.org/licenses/by/4.0/", "isBasedOn": META["source"],
+         "about": {"@type": "DefinedTerm", "name": c["cmd"], "termCode": c["cmd"], "description": plain(c["desc"][lang]),
+                   "inDefinedTermSet": page_url(lang) + "#commands"}},
+        {"@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": t["h1"], "item": page_url(lang)},
+            {"@type": "ListItem", "position": 2, "name": cat["name"][lang], "item": page_url(lang) + f"#{lang}-{slug(c)}"},
+            {"@type": "ListItem", "position": 3, "name": c["cmd"], "item": url}]}]}
+    metas = [("property", "og:type", "article"), ("property", "og:site_name", "Claude Code Commands"),
+             ("property", "og:title", title), ("property", "og:description", desc), ("property", "og:url", url),
+             ("property", "og:locale", info["html"].replace("-", "_")),
+             ("property", "og:image", META["site"] + "assets/social.png"),
+             ("property", "og:image:width", "1200"), ("property", "og:image:height", "630"),
+             ("name", "twitter:card", "summary_large_image"), ("name", "twitter:title", title),
+             ("name", "twitter:description", desc), ("name", "robots", "index, follow, max-snippet:-1")]
+    head_tags = "\n".join(
+        [f'<title>{esc(title)}</title>', f'<meta name="description" content="{esc(desc)}">',
+         '<meta name="referrer" content="no-referrer">',
+         *[f'<meta {k}="{n}" content="{esc(v)}">' for k, n, v in metas],
+         f'<link rel="icon" href="{FAVICON}">', f'<link rel="canonical" href="{url}">',
+         *[f'<link rel="alternate" hreflang="{x["html"]}" href="{cmd_url(x["code"], c)}">' for x in LANGINFO],
+         f'<link rel="alternate" hreflang="x-default" href="{cmd_url("en", c)}">',
+         '<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/") + "</script>"])
+    return (f'<!doctype html>\n<html lang="{info["html"]}">\n<meta charset="utf-8">\n'
+            '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
+            f'<meta http-equiv="Content-Security-Policy" content="{csp(body, style_self=True)}">\n'
+            f"{head_tags}\n{body}\n</html>\n")
+
+
+def csp(body, style_self=False):
     """Content-Security-Policy that allows only this page's own inline style and script."""
     h = lambda src: "'sha256-" + base64.b64encode(hashlib.sha256(src.encode("utf-8")).digest()).decode() + "'"
     styles = re.findall(r"<style>(.*?)</style>", body, re.S)
     scripts = re.findall(r"<script>(.*?)</script>", body, re.S)
+    style = "'self'" if style_self else " ".join(map(h, styles))  # command pages share one stylesheet
     return ("default-src 'none'; img-src 'self' data:; "
-            f"style-src {' '.join(map(h, styles))}; script-src {' '.join(map(h, scripts))}; "
+            f"style-src {style}; script-src {' '.join(map(h, scripts))}; "
             "base-uri 'none'; form-action 'none'")
 
 
@@ -587,6 +790,9 @@ def main():
         print("Data errors:\n  " + "\n  ".join(errors), file=sys.stderr)
         sys.exit(1)
     groups = ordered(cats, cmds)
+    flat_cmds = [c for _, rows in groups for c in rows]
+    if len({slug(c) for c in cmds}) != len(cmds):
+        sys.exit("Two commands share a page name (slug)")
     SEO.update(d["seo"])
     for lang in LANGS:
         (ROOT / T[lang]["file"]).write_text(readme(lang, cats, groups, scens, d["risks"], d["disclaimer"]), encoding="utf-8")
@@ -606,12 +812,23 @@ def main():
             f'<meta http-equiv="Content-Security-Policy" content="{csp(lb)}">\n'
             + head(x["code"], cmds) + json_ld(x["code"], groups, scens, d["ui"])
             + lb + "\n</html>\n", encoding="utf-8")
+    theme = theme_script()
+    (ROOT / "docs/assets/command.css").write_text(command_css(d["risks"]), encoding="utf-8")
+    for x in LANGINFO:
+        root = ROOT / "docs" / page_path(x["code"]) / "commands"
+        for old in root.glob("*/index.html") if root.exists() else []:  # a renamed or dropped command leaves no stale page
+            old.unlink()
+            old.parent.rmdir()
+        for i, c in enumerate(flat_cmds):
+            out = ROOT / "docs" / cmd_path(x["code"], c) / "index.html"
+            out.parent.mkdir(parents=True, exist_ok=True)
+            out.write_text(command_page(x["code"], c, i, flat_cmds, cats, scens, d["risks"], d["ui"], theme), encoding="utf-8")
     (ROOT / "docs/404.html").write_text(not_found(d["ui"]), encoding="utf-8")
-    (ROOT / "docs/sitemap.xml").write_text(sitemap(), encoding="utf-8")
+    (ROOT / "docs/sitemap.xml").write_text(sitemap(flat_cmds), encoding="utf-8")
     (ROOT / "docs/robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {META['site']}sitemap.xml\n", encoding="utf-8")
-    (ROOT / "docs/llms.txt").write_text(llms_txt(cmds), encoding="utf-8")
+    (ROOT / "docs/llms.txt").write_text(llms_txt(flat_cmds), encoding="utf-8")
     (ROOT / "docs/llms-full.txt").write_text(llms_full(groups, cmds, d["ui"]), encoding="utf-8")
-    print(f"OK: {len(cmds)} commands, {len(cats)} categories, {len(scens)} scenarios; wrote {len(LANGS)} READMEs, {len(LANGS)} pages, sitemap, llms.txt, dist/artifact.html")
+    print(f"OK: {len(cmds)} commands, {len(cats)} categories, {len(scens)} scenarios; wrote {len(LANGS)} READMEs, {len(LANGS)} pages, {len(LANGS) * len(cmds)} command pages, sitemap, llms.txt, dist/artifact.html")
     if placeholder:
         print("Note: repository links use the placeholder OWNER. Run again with --repo OWNER/NAME.")
 

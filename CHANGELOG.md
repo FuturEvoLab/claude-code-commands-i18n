@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.4.0 — 2026-11-08
+
+- Every command now has its own page in every language (826 pages): `/commands/compact/`, `/ja/commands/compact/` and so on. Each shows what the command does, its best use, aliases, safety notes, the situations it helps with, related commands in the same category, and previous/next links, with its own search title, description, canonical URL, `hreflang` links and JSON-LD (`TechArticle` and `BreadcrumbList`).
+- The pages are static HTML with one shared stylesheet (`docs/assets/command.css`, generated from the main page's themes), so they load fast and follow the theme the visitor picked.
+- Cards on the main page have a "Details" link, and "Copy link" now copies the command's own page, which shows a proper preview when shared.
+- `sitemap.xml` lists every command page with its other languages; `llms.txt` lists every command page; `llms-full.txt` gives each command's address.
+
 ## 1.3.2 — 2026-11-07
 
 - Counts agree everywhere: "All commands" and the search bar now show 115 like the banner; the 3 removed commands appear under their own "Removed" heading and in search.

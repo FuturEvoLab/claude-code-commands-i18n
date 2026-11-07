@@ -12,6 +12,8 @@ Starts a new conversation with empty context while keeping project memory. The p
 
 Best use: When you finish one feature and move to an unrelated task: `/clear login-feature`. Old context stops interfering and usage drops.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/clear/
+
 Aliases: /reset, /new
 
 ### /compact [instructions]
@@ -20,11 +22,15 @@ Summarizes the conversation so far to free context space, continuing the same co
 
 Best use: After a long session: `/compact keep the database schema and the list of open bugs`.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/compact/
+
 ### /context [all]
 
 Shows context usage as a colored grid with optimization suggestions and capacity warnings. `all` expands the per-item breakdown.
 
 Best use: When Claude seems forgetful or usage climbs fast, run `/context` to see whether large files or tool output are filling the window.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/context/
 
 ### /plan [description]
 
@@ -32,11 +38,15 @@ Enters plan mode, where Claude researches and proposes a plan before editing. Pa
 
 Best use: Before a big change: `/plan fix the auth bug`, review, then approve.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/plan/
+
 ### /resume [session]
 
 Resumes a conversation by ID or name, or opens the session picker. Background sessions are marked `bg`.
 
 Best use: You closed the laptop mid-task yesterday: `/resume` and pick yesterday's conversation.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/resume/
 
 Aliases: /continue
 
@@ -46,6 +56,8 @@ Rolls the conversation and/or code back to an earlier checkpoint, or summarizes 
 
 Best use: Claude broke several files: run `/rewind`, pick the message before the edits, and restore both code and conversation.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/rewind/
+
 Aliases: /checkpoint, /undo
 
 ### /autocompact [auto|<tokens>]
@@ -54,11 +66,15 @@ Sets how full the context window gets before automatic compaction, e.g. `500k`; 
 
 Best use: Long task interrupted by frequent compaction: `/autocompact 500k`.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/autocompact/
+
 ### /branch [name]
 
 Creates a branch of the conversation at this point and switches into it; the original is preserved and reachable via `/resume`. (A conversation branch, not a Git branch.)
 
 Best use: Unsure between two approaches: `/branch try-plan-b`; if it fails, go back and continue plan A.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/branch/
 
 ### /btw [question]
 
@@ -66,11 +82,15 @@ Asks a side question about the current session without adding it to the conversa
 
 Best use: Mid-task you want to understand an error: `/btw what does this 404 mean` without derailing the main thread.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/btw/
+
 ### /copy [N]
 
 Copies the last response to the clipboard; `/copy 2` copies the second-to-last. With code blocks, a picker lets you copy one block; press `w` to write to a file instead (useful over SSH).
 
 Best use: Claude drafted a snippet or command: `/copy` and paste it wherever you need it.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/copy/
 
 ### /export [filename]
 
@@ -78,11 +98,15 @@ Exports the conversation as plain text, directly to a file if you give a name, o
 
 Best use: Archive a valuable debugging session: `/export debugging-notes.txt`.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/export/
+
 ### /goal [condition|clear]
 
 Sets a goal: Claude keeps working across turns until the condition is met or the goal clears. No argument shows the current goal; `clear` (or `stop`, `off`, …) removes it.
 
 Best use: `/goal all tests pass`, then let it iterate until the suite is green.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/goal/
 
 ### /memory
 
@@ -90,17 +114,23 @@ Edits `CLAUDE.md` memory files, toggles auto memory, and shows auto memory entri
 
 Best use: Want every answer in your language: open `/memory` and add a line such as “Always reply in Japanese.”
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/memory/
+
 ### /recap
 
 Generates a one-line summary of the current session on demand.
 
 Best use: Back from a meeting and lost track: `/recap`.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/recap/
+
 ### /rename [name]
 
 Renames the session and shows the name on the prompt bar; without a name, generates one from the conversation.
 
 Best use: With many sessions open: `/rename backtest` so it stands out in `/resume`.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/rename/
 
 ## Model & reasoning
 
@@ -112,11 +142,15 @@ Switches the model and saves it as the default for new sessions. No argument ope
 
 Best use: Use a faster model for small edits; switch with `/model opus` when a bug gets hard.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/model/
+
 ### /advisor [model|off]
 
 Enables or disables the advisor tool, which consults a second model at key moments. Accepts `fable`, `opus`, `sonnet` or a full model ID (`fable` requires access). No argument opens a picker.
 
 Best use: Work on a faster model but get a stronger second opinion at key decisions: `/advisor opus`.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/advisor/
 
 ### /effort [level|auto|status|ultracode [on|off]]
 
@@ -124,17 +158,23 @@ Sets the effort level: `low` to `xhigh`, `max`, or `auto`; `status` prints it. `
 
 Best use: Hunting a flaky bug: `/effort high`; fixing a typo: `/effort low`.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/effort/
+
 ### /fast [on|off]
 
 Toggles fast mode (same model, faster output). It can be toggled mid-response; the running turn finishes at its original speed. See the official fast mode docs for pricing.
 
 Best use: Under time pressure: `/fast on`; otherwise `/fast off`.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/fast/
+
 ### /output-style [style]
 
 Lists output styles or switches to one, e.g. `/output-style concise`.
 
 Best use: Run `/output-style` with no argument to see what is available, then pick one (for example a more concise style).
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/output-style/
 
 ## Project & files
 
@@ -146,11 +186,15 @@ Initializes the project with a `CLAUDE.md` guide that every new session reads. O
 
 Best use: First thing in a new repo: `/init`, then refine it with `/memory`.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/init/
+
 ### /add-dir <path>
 
 Adds a working directory for file access this session without moving. Partial paths autocomplete with `Tab`. Most `.claude/` config in the added directory isn't discovered, and most network paths can't be added.
 
 Best use: Frontend and backend live side by side: `/add-dir ../backend`.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/add-dir/
 
 ### /cd <path>
 
@@ -158,11 +202,15 @@ Moves the session to a new working directory, keeping the conversation. Unlike `
 
 Best use: Started in the wrong folder: `/cd ~/projects/website` instead of starting over.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/cd/
+
 ### /diff
 
 Reviews changes in your working tree, including Claude's edits so far.
 
 Best use: Before committing, `/diff` to see exactly what changed.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/diff/
 
 ### /import [codex|gemini|cursor] [--dry-run] [--yes]
 
@@ -170,17 +218,23 @@ Imports instruction files, MCP servers, commands, subagents and skills from Open
 
 Best use: Moving from Cursor: `/import cursor --dry-run` first, then import for real.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/import/
+
 ### /insights
 
 Generates an HTML report of your recent sessions on this machine: projects, habits, where things go wrong, features to try. Not available in cloud sessions.
 
 Best use: After a few weeks, run `/insights` to discover features you never tried.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/insights/
+
 ### /team-onboarding
 
 Analyzes your last 30 days of sessions, commands and MCP usage and writes a Markdown guide a teammate can paste as their first message.
 
 Best use: A new teammate joins: run `/team-onboarding` and send them the guide.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/team-onboarding/
 
 ## Review & verification
 
@@ -192,6 +246,8 @@ Reviews the current diff, or a PR, branch or path, for correctness bugs. `--fix`
 
 Best use: Before committing: `/code-review high --fix`. For a PR: `/code-review high 1234`.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/code-review/
+
 Aliases: /review
 
 ### /run
@@ -200,11 +256,15 @@ Launches and drives your project's app to see a change working.
 
 Best use: `/run` to start the site and screenshot the new homepage.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/run/
+
 ### /run-skill-generator
 
 Writes a per-project skill that teaches `/run` and `/verify` how to build, launch and drive your app from a clean environment.
 
 Best use: Startup needs several steps (database first, etc.): run this once, then `/run` just works.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/run-skill-generator/
 
 ### /security-review
 
@@ -212,11 +272,15 @@ Analyzes your branch's diff against origin's default branch for vulnerabilities 
 
 Best use: Before shipping anything touching auth, payments or user data.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/security-review/
+
 ### /simplify [target]
 
 Four parallel agents review changed code for reuse, simplification, efficiency and abstraction level, then apply fixes. It does not look for correctness bugs; use `/code-review` for that.
 
 Best use: The feature works and you want cleaner code: `/simplify`.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/simplify/
 
 ### /ultrareview [PR or branch]
 
@@ -224,11 +288,15 @@ Deep multi-agent review in a cloud sandbox. The preferred form is `/code-review 
 
 Best use: Before a major release: `/code-review ultra`.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/ultrareview/
+
 ### /verify
 
 Builds, runs and observes your app to confirm a change works, rather than relying on tests or type checks. Runs only when you invoke it.
 
 Best use: Changed a button's behavior: `/verify` so it actually clicks it.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/verify/
 
 ## Parallel & background work
 
@@ -240,11 +308,15 @@ Prints a reminder to ask Claude to create or manage subagents, or to edit `.clau
 
 Best use: Just ask: “Create a subagent that only writes tests.”
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/agents/
+
 ### /background [prompt]
 
 Detaches the session to run as a background agent and frees the terminal. Optionally sends one more instruction first. Monitor with `claude agents`.
 
 Best use: A 30-minute job: `/bg write the results to report.md when done`.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/background/
 
 Aliases: /bg
 
@@ -254,17 +326,23 @@ Orchestrates large changes in parallel: researches the codebase, decomposes the 
 
 Best use: `/batch migrate src/ from JavaScript to TypeScript`.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/batch/
+
 ### /fork [prompt]
 
 Copies the conversation into a new background session while you keep working here. With a prompt, the copy starts immediately; it is normally told to create its own worktree first.
 
 Best use: Working on feature A and want a side fix in parallel: `/fork fix the footer alignment`.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/fork/
+
 ### /list-agents
 
 Lists subagents, teammates and other sessions Claude can message, with the name to use for each. Only where cross-session messaging is enabled.
 
 Best use: Coordinating several sessions: check what each is called.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/list-agents/
 
 Aliases: /peers
 
@@ -274,17 +352,23 @@ Stops the background session you're attached to; transcript and worktree are kep
 
 Best use: A background job went off course: `/stop`.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/stop/
+
 ### /subtask <task>
 
 Spawns a forked subagent that inherits the conversation and reports its result back here. The difference from `/fork`: `/subtask` reports back here, while `/fork` starts a separate session.
 
 Best use: `/subtask document these API endpoints` while you keep coding.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/subtask/
+
 ### /tasks
 
 Views and manages background work in this session, including finished subagents.
 
 Best use: Check progress on background tests or subagents with `/tasks`.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/tasks/
 
 Aliases: /bashes
 
@@ -294,11 +378,15 @@ Loads the reference for writing dynamic workflow scripts. Claude normally loads 
 
 Best use: Before hand-editing a saved workflow script.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/workflow-authoring/
+
 ### /workflows
 
 Opens the workflow progress view to watch, pause, resume or save running and completed workflows.
 
 Best use: Keep an eye on a long-running workflow.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/workflows/
 
 ## Automation & scheduling
 
@@ -310,6 +398,8 @@ Runs a prompt repeatedly while the session stays open. Omit the interval and Cla
 
 Best use: `/loop 5m check if the deploy finished`. For runs that continue when your computer is off, use `/schedule`.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/loop/
+
 Aliases: /proactive
 
 ### /autofix-pr [prompt]
@@ -318,17 +408,23 @@ Spawns a cloud session that watches the current branch's PR and pushes fixes on 
 
 Best use: `/autofix-pr only fix lint and type errors`.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/autofix-pr/
+
 ### /deep-research <question>
 
 A bundled workflow that fans out web searches, fetches and cross-checks sources, and writes a cited report. Runs in the background.
 
 Best use: `/deep-research compare pricing and quality of leading AI video tools`.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/deep-research/
+
 ### /schedule [description]
 
 Creates, updates, lists or runs cloud scheduled tasks (formerly routines) through a guided conversation. Not available with a Console API key.
 
 Best use: `/schedule every weekday at 9am, summarize new issues in the repo`.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/schedule/
 
 Aliases: /routines
 
@@ -342,11 +438,15 @@ Loads the reference for artifact runtime capabilities, such as calling connector
 
 Best use: Before building a page that many people fill in.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/artifact-capabilities/
+
 ### /artifact-diagramming
 
 Loads diagramming guidance for artifacts: when a diagram helps, what to draw, and SVG that stays legible in light and dark themes.
 
 Best use: When you need a clear architecture diagram.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/artifact-diagramming/
 
 ### /artifacts
 
@@ -354,11 +454,15 @@ Lists artifacts you own or that are shared with you, then attaches one, opens it
 
 Best use: Find last week's dashboard and keep editing it.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/artifacts/
+
 ### /dataviz [request]
 
 Chart design guidance: picks the chart form, assigns color by role, and validates the palette for colorblind safety and contrast with a bundled script.
 
 Best use: `/dataviz turn this monthly sales table into a trend chart`.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/dataviz/
 
 ### /design [brief]
 
@@ -366,11 +470,15 @@ Drafts UI mockups, flows, landing pages or posters as artboards on one canvas (a
 
 Best use: `/design a settings screen for a mobile banking app`.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/design/
+
 ### /design consent
 
 Grants or withdraws Claude's access to Claude Design. When Claude asks you to run `/design consent`, type it yourself.
 
 Best use: When prompted, type `/design consent` yourself.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/design-consent/
 
 Aliases: /design revoke
 
@@ -380,17 +488,23 @@ Authorizes design-system access for `/design-sync` with your claude.ai account, 
 
 Best use: Run it when `/design-sync` asks you to sign in.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/design-login/
+
 ### /design-sync [hint]
 
 Converts and uploads your repo's React design system to Claude Design so designs use your real components. First sync can take hours on large repos. It targets the standalone claude.ai/design site, which closes by December 14, 2026.
 
 Best use: `/design-sync Acme DS` (mind the closing date above).
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/design-sync/
+
 ### /slides [brief]
 
 Makes a Claude Slides artifact from your brief. Requires a session with artifacts and an account where the Slides template is available.
 
 Best use: `/slides a quarterly review for leadership, 8 slides`.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/slides/
 
 ## Plugins, skills & integrations
 
@@ -402,11 +516,15 @@ Manages MCP server connections and OAuth. No argument opens the list; `reconnect
 
 Best use: A connector failed or needs auth: `/mcp reconnect all`.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/mcp/
+
 ### /chrome
 
 Configures Claude in Chrome settings.
 
 Best use: When first connecting the Chrome extension.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/chrome/
 
 ### /claude-api [subcommand]
 
@@ -414,11 +532,15 @@ Loads Claude API and Managed Agents reference for your project's language; activ
 
 Best use: Cut API spend in your app: `/claude-api cost-optimize`.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/claude-api/
+
 ### /claude-in-chrome [task]
 
 Has Claude carry out a task in your browser through Claude in Chrome, such as testing a page or reading console logs. Requires Chrome integration (e.g. `claude --chrome`).
 
 Best use: `/claude-in-chrome test the sign-up flow on my local site and report errors`.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/claude-in-chrome/
 
 ### /ide
 
@@ -426,11 +548,15 @@ Manages IDE integrations and shows status.
 
 Best use: Check the connection when edits don't show in your editor.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/ide/
+
 ### /install-github-app
 
 Installs the Claude GitHub App for a repository, optionally setting up GitHub Actions workflows and secrets. github.com only.
 
 Best use: To mention Claude in issues and PRs and have it work there.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/install-github-app/
 
 ### /install-slack-app
 
@@ -438,11 +564,15 @@ Installs the Claude Slack app via a browser OAuth flow.
 
 Best use: Your team wants Claude in Slack.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/install-slack-app/
+
 ### /plugin [subcommand]
 
 Manages plugins. No argument opens the menu; `list`, `install`, `enable`, `disable` act directly. Run `/reload-plugins` if the install summary says so.
 
 Best use: Browse with `/plugin` and install one that fits your work.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/plugin/
 
 ### /plugin-authoring
 
@@ -450,11 +580,15 @@ Loads the reference for writing a mod. A skill from a built-in plugin, which you
 
 Best use: When you want a small side panel that stays beside the chat.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/plugin-authoring/
+
 ### /reload-plugins [--force]
 
 Reloads active plugins without restarting and reports load errors. If the reload would change loaded MCP tools and invalidate the prompt cache, it warns and skips unless you pass `--force`.
 
 Best use: Right after installing a plugin that asks for it.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/reload-plugins/
 
 ### /reload-skills
 
@@ -462,17 +596,23 @@ Re-scans skill and command directories so skills added or changed during the ses
 
 Best use: You just wrote a custom skill and want it now.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/reload-skills/
+
 ### /skill-doctor
 
 Shows each skill's context cost and usage so you can find skills to turn off.
 
 Best use: Run periodically to prune unused skills.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/skill-doctor/
+
 ### /skills
 
 Lists skills with filtering. `t` sorts by token count, `Space`/`Enter` cycles a skill's visibility to Claude and the `/` menu, `Esc` saves and closes.
 
 Best use: Too many skills: `/skills`, press `t`, hide the heavy unused ones.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/skills/
 
 ## Permissions & safety
 
@@ -484,6 +624,8 @@ Manages allow, ask and deny rules for tools: view by scope, add or remove rules,
 
 Best use: Tired of approving `npm test` every time: allow it here.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/permissions/
+
 Aliases: /allowed-tools
 
 ### /auto-mode-setup
@@ -492,11 +634,15 @@ Drafts `autoMode.environment` entries from your project and recent sessions for 
 
 Best use: When auto mode keeps blocking routine actions.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/auto-mode-setup/
+
 ### /fewer-permission-prompts
 
 Scans transcripts for common read-only Bash and MCP calls and adds a prioritized allowlist to project `.claude/settings.json`.
 
 Best use: Run once when approval prompts keep interrupting you.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/fewer-permission-prompts/
 
 ### /hooks
 
@@ -504,11 +650,15 @@ Views hook configurations.
 
 Best use: Check what's configured when a hook seems to break every edit.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/hooks/
+
 ### /privacy-settings
 
 Views and updates privacy settings. Pro, Max and Ultra only.
 
 Best use: To check how your data is used.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/privacy-settings/
 
 ### /sandbox
 
@@ -516,11 +666,15 @@ Toggles sandbox mode, on supported platforms only.
 
 Best use: Turn it on before running unfamiliar scripts.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/sandbox/
+
 ### /update-config [request]
 
 Describe a settings change (allow a command, set an env var, add a hook) and Claude edits the matching `settings.json`. Use `/config` for theme and model.
 
 Best use: `/update-config run prettier after every file edit`.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/update-config/
 
 ## Settings & interface
 
@@ -532,11 +686,15 @@ Sets the prompt bar color for this session: `red`, `blue`, `green`, `yellow`, `p
 
 Best use: Mark a production session with `/color red`.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/color/
+
 ### /config [key=value ...]
 
 Opens Settings for theme, model, output style and more, or sets `key=value` pairs directly, e.g. `/config theme=dark`. `/config --help` lists keys.
 
 Best use: `/config theme=dark`.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/config/
 
 Aliases: /settings
 
@@ -546,11 +704,15 @@ Toggles a view showing only your last prompt, a one-line tool summary and the fi
 
 Best use: Hide intermediate steps and see only the result.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/focus/
+
 ### /keybindings
 
 Opens your keyboard shortcuts file.
 
 Best use: Rebind actions to keys you're used to.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/keybindings/
 
 ### /scroll-speed
 
@@ -558,11 +720,15 @@ Adjusts mouse wheel scroll speed. Fullscreen rendering only; not in the JetBrain
 
 Best use: Slow it down when one notch jumps too far.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/scroll-speed/
+
 ### /statusline
 
 Configures the status line; describe what you want, or run without arguments to derive it from your shell prompt.
 
 Best use: `/statusline show the model and git branch`.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/statusline/
 
 ### /terminal-setup
 
@@ -570,11 +736,15 @@ Installs Shift+Enter for newlines in VS Code, Cursor, Devin Desktop, Alacritty o
 
 Best use: Enter keeps sending half-written prompts: run this once.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/terminal-setup/
+
 ### /theme
 
 Changes the color theme: `auto`, light and dark, colorblind-accessible, ANSI and custom themes.
 
 Best use: Switch to a dark theme at night.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/theme/
 
 ### /tui [default|fullscreen]
 
@@ -582,11 +752,15 @@ Sets the terminal renderer and relaunches with the conversation intact. `fullscr
 
 Best use: Screen flickers: `/tui fullscreen`.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/tui/
+
 ### /voice [hold|tap|off]
 
 Toggles voice dictation or sets a mode (`hold`, `tap`). Requires a Claude.ai account.
 
 Best use: Dictate instructions instead of typing.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/voice/
 
 ## Account & usage
 
@@ -598,6 +772,8 @@ Shows session cost, spend for today, this week and this month, plan usage limits
 
 Best use: Check `/usage` before deciding whether to switch to a cheaper model.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/usage/
+
 Aliases: /cost, /stats
 
 ### /login
@@ -606,11 +782,15 @@ Signs in to your Anthropic account.
 
 Best use: New machine or expired session.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/login/
+
 ### /logout
 
 Signs out of your Anthropic account.
 
 Best use: After using a shared computer.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/logout/
 
 ### /passes
 
@@ -618,11 +798,15 @@ Shares a free week of Claude Code with friends; only shown to eligible accounts.
 
 Best use: Invite a friend to try it.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/passes/
+
 ### /rate-limit-options
 
 Shows ways to keep working when a claude.ai limit blocks you: wait and auto-continue, add usage credits, or upgrade. Requires a claude.ai subscription.
 
 Best use: Blocked overnight: choose auto-continue after reset.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/rate-limit-options/
 
 ### /status
 
@@ -630,17 +814,23 @@ Opens Settings on the Status tab: version, model, account, connectivity. Works w
 
 Best use: Screenshot `/status` before asking for help.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/status/
+
 ### /upgrade
 
 Opens the upgrade page in your browser.
 
 Best use: When you keep hitting limits.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/upgrade/
+
 ### /usage-credits
 
 Configures or requests usage credits; Team and Enterprise members without billing access send a request to their admin. Previously `/extra-usage`.
 
 Best use: Request credits from your admin when the team runs out.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/usage-credits/
 
 ## Cloud, remote & other devices
 
@@ -652,6 +842,8 @@ Continues the session in the Claude Code Desktop app. Requires macOS or x64 Wind
 
 Best use: Move from the terminal to the desktop app.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/desktop/
+
 Aliases: /app
 
 ### /mobile
@@ -659,6 +851,8 @@ Aliases: /app
 Shows a QR code to download the Claude mobile app.
 
 Best use: To follow along from your phone.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/mobile/
 
 Aliases: /ios, /android
 
@@ -668,6 +862,8 @@ Makes this session available for Remote Control from claude.ai. Requires a claud
 
 Best use: Leave the task running and steer it from your phone: `/rc`.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/remote-control/
+
 Aliases: /rc
 
 ### /remote-env
@@ -676,11 +872,15 @@ Chooses the default cloud environment for cloud sessions started from the CLI.
 
 Best use: Pick a default when you have several environments.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/remote-env/
+
 ### /setup-bedrock
 
 Configures Amazon Bedrock auth, region and model pins via a wizard. Hidden from the menu until `CLAUDE_CODE_USE_BEDROCK=1` is set; type it in full.
 
 Best use: Your company uses Claude through AWS.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/setup-bedrock/
 
 ### /setup-vertex
 
@@ -688,11 +888,15 @@ Configures Google Cloud's Agent Platform via a wizard. Hidden until `CLAUDE_CODE
 
 Best use: Your company uses Claude through Google Cloud.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/setup-vertex/
+
 ### /teleport
 
 Pulls a cloud session into this terminal, fetching its branch and conversation. Requires a claude.ai subscription.
 
 Best use: Continue a web-started task locally.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/teleport/
 
 Aliases: /tp
 
@@ -701,6 +905,8 @@ Aliases: /tp
 Connects GitHub for cloud sessions using your local `gh` credentials.
 
 Best use: Before your first cloud session.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/web-setup/
 
 ## Diagnostics & feedback
 
@@ -712,6 +918,8 @@ Runs a setup checkup for installation, settings, extensions and `CLAUDE.md`, pro
 
 Best use: Something feels broken: start with `/doctor`.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/doctor/
+
 Aliases: /checkup
 
 ### /help
@@ -720,17 +928,23 @@ Shows help and available commands.
 
 Best use: Forgot a command: `/help`, or type `/` plus a few letters.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/help/
+
 ### /powerup
 
 Interactive lessons with animated demos that teach Claude Code features.
 
 Best use: The best structured starting point for newcomers.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/powerup/
+
 ### /bug [report]
 
 Reports a bug or shares your conversation; you choose how much history to include and confirm before anything is sent.
 
 Best use: When Claude Code itself misbehaves.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/bug/
 
 Aliases: /share
 
@@ -740,11 +954,15 @@ Enables debug logging from this point and troubleshoots by reading the session d
 
 Best use: `/debug the MCP server keeps failing to connect`.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/debug/
+
 ### /exit
 
 Exits the CLI. In an attached background session it detaches and the session keeps running.
 
 Best use: Done for the day.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/exit/
 
 Aliases: /quit
 
@@ -754,11 +972,15 @@ Sends product feedback using the same dialog and consent step as `/bug`.
 
 Best use: Request a feature.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/feedback/
+
 ### /heapdump
 
 Writes a heap snapshot and memory breakdown to the Desktop for diagnosing high memory. Share only the `-diagnostics.json`; the `.heapsnapshot` contains your conversation and credentials. Hidden from the menu.
 
 Best use: Report a memory blow-up.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/heapdump/
 
 ### /release-notes
 
@@ -766,11 +988,15 @@ Views the changelog in a version picker; notes appear without entering Claude's 
 
 Best use: See what's new after an update.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/release-notes/
+
 ### /restart
 
 Restarts Claude Code and resumes the session to apply an installed update. Requires Pro, Max or Ultra and a native macOS or Linux install (not WSL).
 
 Best use: When the footer offers it after an update.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/restart/
 
 Aliases: /update
 
@@ -784,11 +1010,15 @@ Opens Claude FM lo-fi radio in your browser, or prints the stream URL.
 
 Best use: Background music while you work.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/radio/
+
 ### /stickers
 
 Orders Claude Code stickers.
 
 Best use: Decorate your laptop.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/stickers/
 
 ## Removed
 
@@ -800,14 +1030,20 @@ Removed in v2.1.91. Ask Claude directly to view pull request comments.
 
 Best use: Ask in plain language.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/pr-comments/
+
 ### /ultraplan <prompt> (removed)
 
 Removed. Use plan mode (`/plan`) instead.
 
 Best use: Use `/plan`.
 
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/ultraplan/
+
 ### /vim (removed)
 
 Removed in v2.1.92. Use `/config` → Editor mode.
 
 Best use: Use `/config`.
+
+Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/vim/

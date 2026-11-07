@@ -297,6 +297,8 @@ mark{background:color-mix(in srgb,var(--amber) 45%,transparent);color:inherit;bo
 .card-foot code{background:transparent;color:var(--muted);padding:0}
 .link{margin-left:auto;font-size:12px;color:var(--muted);background:transparent;border:1px solid var(--line);border-radius:6px;padding:1px 8px;cursor:pointer;white-space:nowrap}
 .link:hover{color:var(--accent);border-color:var(--accent)}
+.link.more{text-decoration:none}
+.link.more+.link{margin-left:0}
 .scen-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
 .scen-bar h2{margin:0;font-size:21px}
 .clear{font-size:13px;border:1px solid var(--line);background:var(--surface);color:var(--accent);border-radius:999px;padding:3px 12px;cursor:pointer}
@@ -518,6 +520,8 @@ function pickCat(id){
 }
 ["side", "chips"].forEach(id => $(id).addEventListener("click", e => { const b = e.target.closest("[data-cat]"); if (b) pickCat(b.dataset.cat); }));
 
+// Each command has its own page: commands/NAME/ under the language's page.
+const cmdHref = c => (PUBLISHED ? "" : META.site + SEG(lang)) + "commands/" + slug(c) + "/";
 function card(c){
   const t = UI[lang];
   const tags = [
@@ -538,7 +542,7 @@ function card(c){
     </div>
     <p class="what">${md(c.desc[lang])}</p>
     <div class="ex"><span class="lbl">${t.use}</span>${md(c.use[lang])}</div>
-    <div class="card-foot">${alias}<button class="link" type="button" data-l="${slug(c)}" aria-label="${t.link}: ${esc(c.cmd)}">${t.link}</button></div>
+    <div class="card-foot">${alias}<a class="link more" href="${cmdHref(c)}" aria-label="${t.open}: ${esc(c.cmd)}">${t.open} →</a><button class="link" type="button" data-l="${slug(c)}" aria-label="${t.link}: ${esc(c.cmd)}">${t.link}</button></div>
   </article>`;
 }
 
@@ -780,7 +784,7 @@ function say(s){ toast.textContent = s; toast.classList.add("on"); clearTimeout(
 $("list").addEventListener("click", e => {
   const lk = e.target.closest(".link");
   if (lk) {
-    const url = META.site + SEG(lang) + "#" + lang + "-" + lk.dataset.l;
+    const url = META.site + SEG(lang) + "commands/" + lk.dataset.l + "/";
     try { navigator.clipboard.writeText(url).then(() => say(UI[lang].copiedLink)).catch(() => say(url)); } catch(err) { say(url); }
     return;
   }

@@ -154,6 +154,55 @@ class OutputTests(unittest.TestCase):
         for c in self.cmds:
             self.assertIn(f"### {c['cmd']}", full)
 
+    # --- one page per command -------------------------------------------------------
+
+    def command_pages(self):
+        for x in build.LANGINFO:
+            for c in self.cmds:
+                path = ROOT / "docs" / build.page_path(x["code"]) / "commands" / build.slug(c) / "index.html"
+                yield x, c, path, path.read_text(encoding="utf-8")
+
+    def test_every_command_has_a_page_in_every_language(self):
+        n = 0
+        for x, c, path, page in self.command_pages():
+            n += 1
+            where = f"{x['code']} {c['cmd']}"
+            self.assertIn(f'<html lang="{x["html"]}">', page, where)
+            self.assertIn(f'<link rel="canonical" href="{build.cmd_url(x["code"], c)}">', page, where)
+            self.assertEqual(len(re.findall(r'rel="alternate" hreflang=', page)), len(build.LANGINFO) + 1, where)
+            self.assertRegex(page, rf"<h1>{re.escape(c['cmd'])}[<]", where)
+            title = re.search(r"<title>([^<]*)</title>", page).group(1)
+            self.assertLessEqual(len(title), 70, where)
+            csp = re.search(r'http-equiv="Content-Security-Policy" content="([^"]+)"', page).group(1)
+            self.assertEqual(csp, build.csp(page, style_self=True), where)
+            json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>', page, re.S).group(1).replace("<\\/", "</"))
+        self.assertEqual(n, len(build.LANGINFO) * len(self.cmds))
+        self.assertEqual(sum(1 for _ in (ROOT / "docs").glob("**/commands/*/index.html")), n)  # no stale pages
+
+    def test_command_page_links_all_resolve(self):
+        for x, c, path, page in self.command_pages():
+            for href in re.findall(r'<a [^>]*href="([^"#]*)(?:#[^"]*)?"', page) + re.findall(r'<link rel="stylesheet" href="([^"]+)"', page):
+                if href.startswith("https://"):
+                    continue
+                target = (path.parent / href).resolve()
+                if href == "" or href.endswith("/"):
+                    target = target / "index.html"
+                self.assertTrue(target.exists(), f"{x['code']} {c['cmd']}: broken link {href}")
+
+    def test_language_pages_link_every_command_page(self):
+        for x, page in self.lang_pages():
+            main = re.search(r'<main id="list"[^>]*>(.*?)</main>', page, re.S).group(1)
+            for c in self.cmds:
+                self.assertIn(f'href="commands/{build.slug(c)}/"', main, f"{x['code']} {c['cmd']}")
+
+    def test_sitemap_and_llms_txt_list_every_command_page(self):
+        sitemap = (ROOT / "docs/sitemap.xml").read_text(encoding="utf-8")
+        llms = (ROOT / "docs/llms.txt").read_text(encoding="utf-8")
+        for c in self.cmds:
+            for x in build.LANGINFO:
+                self.assertIn(f"<loc>{build.cmd_url(x['code'], c)}</loc>", sitemap)
+            self.assertIn(f"]({build.cmd_url('en', c)})", llms)
+
     def test_every_command_appears_in_every_readme(self):
         for lang, text in self.readmes.items():
             for c in self.cmds:
