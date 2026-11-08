@@ -10,11 +10,11 @@
 
 One static page you can try right away: search, switch language and theme, copy commands. Nothing to install.
 
-### [Searchable web version →](https://futurevolab.github.io/claude-code-commands-i18n/)
+### [Searchable web version →](https://commands.futurevolab.com/)
 
 | Default theme | Matrix theme |
 |---|---|
-| [![Default theme](docs/assets/preview-en.png)](https://futurevolab.github.io/claude-code-commands-i18n/?theme=terminal) | [![Matrix theme](docs/assets/preview-matrix.png)](https://futurevolab.github.io/claude-code-commands-i18n/?theme=matrix) |
+| [![Default theme](docs/assets/preview-en.png)](https://commands.futurevolab.com/?theme=terminal) | [![Matrix theme](docs/assets/preview-matrix.png)](https://commands.futurevolab.com/?theme=matrix) |
 
 <p><img src="docs/assets/preview-search.png" alt="search" width="68%"> <img src="docs/assets/preview-mobile.png" alt="mobile" width="28%"></p>
 

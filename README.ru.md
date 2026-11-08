@@ -10,11 +10,11 @@
 
 Одна статическая страница, которую можно сразу попробовать: поиск, смена языка и темы, копирование команд. Ничего не нужно устанавливать.
 
-### [Веб-версия с поиском →](https://futurevolab.github.io/claude-code-commands-i18n/ru/)
+### [Веб-версия с поиском →](https://commands.futurevolab.com/ru/)
 
 | Тема по умолчанию | Тема «Матрица» |
 |---|---|
-| [![Тема по умолчанию](docs/assets/preview-en.png)](https://futurevolab.github.io/claude-code-commands-i18n/?theme=terminal) | [![Тема «Матрица»](docs/assets/preview-matrix.png)](https://futurevolab.github.io/claude-code-commands-i18n/?theme=matrix) |
+| [![Тема по умолчанию](docs/assets/preview-en.png)](https://commands.futurevolab.com/?theme=terminal) | [![Тема «Матрица»](docs/assets/preview-matrix.png)](https://commands.futurevolab.com/?theme=matrix) |
 
 <p><img src="docs/assets/preview-search.png" alt="search" width="68%"> <img src="docs/assets/preview-mobile.png" alt="mobile" width="28%"></p>
 

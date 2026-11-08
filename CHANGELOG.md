@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.5.0 — 2026-11-09
+
+- The site moves to its own address: https://commands.futurevolab.com/ (for example `/ja/commands/rewind/`). Old `futurevolab.github.io/claude-code-commands-i18n/` links redirect there.
+- Canonical URLs, `hreflang` links, JSON-LD, `sitemap.xml`, `robots.txt`, `llms.txt` and the READMEs all use the new address. `robots.txt` now sits at the root of its host, as search engines expect.
+- The build reads the custom domain from `docs/CNAME`; without that file it uses the GitHub Pages address as before.
+
 ## 1.4.1 — 2026-11-09
 
 - Re-checked against the official commands reference and Claude Code 2.1.319: no commands added or removed.

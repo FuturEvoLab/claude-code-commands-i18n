@@ -10,11 +10,11 @@
 
 바로 써 볼 수 있는 정적 페이지입니다. 검색, 언어·테마 전환, 명령어 복사를 할 수 있으며 설치는 필요 없습니다.
 
-### [검색 가능한 웹 버전 →](https://futurevolab.github.io/claude-code-commands-i18n/ko/)
+### [검색 가능한 웹 버전 →](https://commands.futurevolab.com/ko/)
 
 | 기본 테마 | 매트릭스 테마 |
 |---|---|
-| [![기본 테마](docs/assets/preview-en.png)](https://futurevolab.github.io/claude-code-commands-i18n/?theme=terminal) | [![매트릭스 테마](docs/assets/preview-matrix.png)](https://futurevolab.github.io/claude-code-commands-i18n/?theme=matrix) |
+| [![기본 테마](docs/assets/preview-en.png)](https://commands.futurevolab.com/?theme=terminal) | [![매트릭스 테마](docs/assets/preview-matrix.png)](https://commands.futurevolab.com/?theme=matrix) |
 
 <p><img src="docs/assets/preview-search.png" alt="search" width="68%"> <img src="docs/assets/preview-mobile.png" alt="mobile" width="28%"></p>
 

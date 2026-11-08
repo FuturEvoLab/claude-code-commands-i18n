@@ -85,7 +85,7 @@ class OutputTests(unittest.TestCase):
     def test_page_loads_nothing_from_other_sites(self):
         for tag in re.findall(r"<(?:script|link|img|iframe)\b[^>]*>", self.page):
             if re.search(r'rel="(canonical|alternate)"', tag):
-                self.assertRegex(tag, r'href="https://[\w-]+\.github\.io/', tag)  # metadata only, never fetched
+                self.assertIn(f'href="{build.META["site"]}', tag)  # metadata only, never fetched
                 continue
             self.assertNotRegex(tag, r"(src|href)=\"https?:", tag)
 

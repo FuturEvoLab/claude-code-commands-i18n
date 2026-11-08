@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://futurevolab.github.io/claude-code-commands-i18n/sitemap.xml
+Sitemap: https://commands.futurevolab.com/sitemap.xml

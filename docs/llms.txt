@@ -4,138 +4,138 @@
 
 ## Pages
 
-- [English](https://futurevolab.github.io/claude-code-commands-i18n/): All 115 Claude Code Slash Commands, Explained in Plain English
-- [日本語](https://futurevolab.github.io/claude-code-commands-i18n/ja/): Claude Code スラッシュコマンド一覧｜全115コマンドをやさしい日本語で解説
-- [简体中文](https://futurevolab.github.io/claude-code-commands-i18n/zh-cn/): Claude Code 斜杠命令大全｜全部 115 个命令中文详解与最佳用法
-- [繁體中文](https://futurevolab.github.io/claude-code-commands-i18n/zh-hant/): Claude Code 斜線指令大全｜全部 115 個指令中文說明與最佳用法
-- [한국어](https://futurevolab.github.io/claude-code-commands-i18n/ko/): Claude Code 슬래시 명령어 총정리 | 115개 명령어를 쉬운 한국어로
-- [Русский](https://futurevolab.github.io/claude-code-commands-i18n/ru/): Команды Claude Code: полный список слэш-команд (115) простым языком
-- [Español](https://futurevolab.github.io/claude-code-commands-i18n/es/): Comandos de Claude Code: lista completa de los 115 comandos de barra
+- [English](https://commands.futurevolab.com/): All 115 Claude Code Slash Commands, Explained in Plain English
+- [日本語](https://commands.futurevolab.com/ja/): Claude Code スラッシュコマンド一覧｜全115コマンドをやさしい日本語で解説
+- [简体中文](https://commands.futurevolab.com/zh-cn/): Claude Code 斜杠命令大全｜全部 115 个命令中文详解与最佳用法
+- [繁體中文](https://commands.futurevolab.com/zh-hant/): Claude Code 斜線指令大全｜全部 115 個指令中文說明與最佳用法
+- [한국어](https://commands.futurevolab.com/ko/): Claude Code 슬래시 명령어 총정리 | 115개 명령어를 쉬운 한국어로
+- [Русский](https://commands.futurevolab.com/ru/): Команды Claude Code: полный список слэш-команд (115) простым языком
+- [Español](https://commands.futurevolab.com/es/): Comandos de Claude Code: lista completa de los 115 comandos de barra
 
 ## Commands (English; each page links its other languages)
 
-- [/clear](https://futurevolab.github.io/claude-code-commands-i18n/commands/clear/): Starts a new conversation with empty context while keeping project memory.
-- [/compact](https://futurevolab.github.io/claude-code-commands-i18n/commands/compact/): Summarizes the conversation so far to free context space, continuing the same conversation.
-- [/context](https://futurevolab.github.io/claude-code-commands-i18n/commands/context/): Shows context usage as a colored grid with optimization suggestions and capacity warnings.
-- [/plan](https://futurevolab.github.io/claude-code-commands-i18n/commands/plan/): Enters plan mode, where Claude researches and proposes a plan before editing.
-- [/resume](https://futurevolab.github.io/claude-code-commands-i18n/commands/resume/): Resumes a conversation by ID or name, or opens the session picker.
-- [/rewind](https://futurevolab.github.io/claude-code-commands-i18n/commands/rewind/): Rolls the conversation and/or code back to an earlier checkpoint, or summarizes from a selected message.
-- [/autocompact](https://futurevolab.github.io/claude-code-commands-i18n/commands/autocompact/): Sets how full the context window gets before automatic compaction, e.g.
-- [/branch](https://futurevolab.github.io/claude-code-commands-i18n/commands/branch/): Creates a branch of the conversation at this point and switches into it; the original is preserved and reachable via /resume.
-- [/btw](https://futurevolab.github.io/claude-code-commands-i18n/commands/btw/): Asks a side question about the current session without adding it to the conversation.
-- [/copy](https://futurevolab.github.io/claude-code-commands-i18n/commands/copy/): Copies the last response to the clipboard; /copy 2 copies the second-to-last.
-- [/export](https://futurevolab.github.io/claude-code-commands-i18n/commands/export/): Exports the conversation as plain text, directly to a file if you give a name, otherwise via a copy/save dialog.
-- [/goal](https://futurevolab.github.io/claude-code-commands-i18n/commands/goal/): Sets a goal: Claude keeps working across turns until the condition is met or the goal clears.
-- [/memory](https://futurevolab.github.io/claude-code-commands-i18n/commands/memory/): Edits CLAUDE.md memory files, toggles auto memory, and shows auto memory entries.
-- [/recap](https://futurevolab.github.io/claude-code-commands-i18n/commands/recap/): Generates a one-line summary of the current session on demand.
-- [/rename](https://futurevolab.github.io/claude-code-commands-i18n/commands/rename/): Renames the session and shows the name on the prompt bar; without a name, generates one from the conversation.
-- [/model](https://futurevolab.github.io/claude-code-commands-i18n/commands/model/): Switches the model and saves it as the default for new sessions.
-- [/advisor](https://futurevolab.github.io/claude-code-commands-i18n/commands/advisor/): Enables or disables the advisor tool, which consults a second model at key moments.
-- [/effort](https://futurevolab.github.io/claude-code-commands-i18n/commands/effort/): Sets the effort level: low to xhigh, max, or auto; status prints it.
-- [/fast](https://futurevolab.github.io/claude-code-commands-i18n/commands/fast/): Toggles fast mode (same model, faster output).
-- [/output-style](https://futurevolab.github.io/claude-code-commands-i18n/commands/output-style/): Lists output styles or switches to one, e.g.
-- [/init](https://futurevolab.github.io/claude-code-commands-i18n/commands/init/): Initializes the project with a CLAUDE.md guide that every new session reads.
-- [/add-dir](https://futurevolab.github.io/claude-code-commands-i18n/commands/add-dir/): Adds a working directory for file access this session without moving.
-- [/cd](https://futurevolab.github.io/claude-code-commands-i18n/commands/cd/): Moves the session to a new working directory, keeping the conversation.
-- [/diff](https://futurevolab.github.io/claude-code-commands-i18n/commands/diff/): Reviews changes in your working tree, including Claude's edits so far.
-- [/import](https://futurevolab.github.io/claude-code-commands-i18n/commands/import/): Imports instruction files, MCP servers, commands, subagents and skills from OpenAI Codex, Gemini CLI or Cursor.
-- [/insights](https://futurevolab.github.io/claude-code-commands-i18n/commands/insights/): Generates an HTML report of your recent sessions on this machine: projects, habits, where things go wrong, features to try.
-- [/team-onboarding](https://futurevolab.github.io/claude-code-commands-i18n/commands/team-onboarding/): Analyzes your last 30 days of sessions, commands and MCP usage and writes a Markdown guide a teammate can paste as their first message.
-- [/code-review](https://futurevolab.github.io/claude-code-commands-i18n/commands/code-review/): Reviews the current diff, or a PR, branch or path, for correctness bugs.
-- [/run](https://futurevolab.github.io/claude-code-commands-i18n/commands/run/): Launches and drives your project's app to see a change working.
-- [/run-skill-generator](https://futurevolab.github.io/claude-code-commands-i18n/commands/run-skill-generator/): Writes a per-project skill that teaches /run and /verify how to build, launch and drive your app from a clean environment.
-- [/security-review](https://futurevolab.github.io/claude-code-commands-i18n/commands/security-review/): Analyzes your branch's diff against origin's default branch for vulnerabilities such as injection, auth issues and data exposure.
-- [/simplify](https://futurevolab.github.io/claude-code-commands-i18n/commands/simplify/): Four parallel agents review changed code for reuse, simplification, efficiency and abstraction level, then apply fixes.
-- [/ultrareview](https://futurevolab.github.io/claude-code-commands-i18n/commands/ultrareview/): Deep multi-agent review in a cloud sandbox.
-- [/verify](https://futurevolab.github.io/claude-code-commands-i18n/commands/verify/): Builds, runs and observes your app to confirm a change works, rather than relying on tests or type checks.
-- [/agents](https://futurevolab.github.io/claude-code-commands-i18n/commands/agents/): Prints a reminder to ask Claude to create or manage subagents, or to edit .claude/agents/ directly.
-- [/background](https://futurevolab.github.io/claude-code-commands-i18n/commands/background/): Detaches the session to run as a background agent and frees the terminal.
-- [/batch](https://futurevolab.github.io/claude-code-commands-i18n/commands/batch/): Orchestrates large changes in parallel: researches the codebase, decomposes the work into 5–30 independent units and presents a plan; after approval, one background subagent per unit implements and tests it in its own worktree.
-- [/fork](https://futurevolab.github.io/claude-code-commands-i18n/commands/fork/): Copies the conversation into a new background session while you keep working here.
-- [/list-agents](https://futurevolab.github.io/claude-code-commands-i18n/commands/list-agents/): Lists subagents, teammates and other sessions Claude can message, with the name to use for each.
-- [/stop](https://futurevolab.github.io/claude-code-commands-i18n/commands/stop/): Stops the background session you're attached to; transcript and worktree are kept.
-- [/subtask](https://futurevolab.github.io/claude-code-commands-i18n/commands/subtask/): Spawns a forked subagent that inherits the conversation and reports its result back here.
-- [/tasks](https://futurevolab.github.io/claude-code-commands-i18n/commands/tasks/): Views and manages background work in this session, including finished subagents.
-- [/workflow-authoring](https://futurevolab.github.io/claude-code-commands-i18n/commands/workflow-authoring/): Loads the reference for writing dynamic workflow scripts.
-- [/workflows](https://futurevolab.github.io/claude-code-commands-i18n/commands/workflows/): Opens the workflow progress view to watch, pause, resume or save running and completed workflows.
-- [/loop](https://futurevolab.github.io/claude-code-commands-i18n/commands/loop/): Runs a prompt repeatedly while the session stays open.
-- [/autofix-pr](https://futurevolab.github.io/claude-code-commands-i18n/commands/autofix-pr/): Spawns a cloud session that watches the current branch's PR and pushes fixes on CI failures or review comments.
-- [/deep-research](https://futurevolab.github.io/claude-code-commands-i18n/commands/deep-research/): A bundled workflow that fans out web searches, fetches and cross-checks sources, and writes a cited report.
-- [/schedule](https://futurevolab.github.io/claude-code-commands-i18n/commands/schedule/): Creates, updates, lists or runs cloud scheduled tasks (formerly routines) through a guided conversation.
-- [/artifact-capabilities](https://futurevolab.github.io/claude-code-commands-i18n/commands/artifact-capabilities/): Loads the reference for artifact runtime capabilities, such as calling connectors or offering downloads, and which your account has.
-- [/artifact-diagramming](https://futurevolab.github.io/claude-code-commands-i18n/commands/artifact-diagramming/): Loads diagramming guidance for artifacts: when a diagram helps, what to draw, and SVG that stays legible in light and dark themes.
-- [/artifacts](https://futurevolab.github.io/claude-code-commands-i18n/commands/artifacts/): Lists artifacts you own or that are shared with you, then attaches one, opens it, or copies its link.
-- [/dataviz](https://futurevolab.github.io/claude-code-commands-i18n/commands/dataviz/): Chart design guidance: picks the chart form, assigns color by role, and validates the palette for colorblind safety and contrast with a bundled script.
-- [/design](https://futurevolab.github.io/claude-code-commands-i18n/commands/design/): Drafts UI mockups, flows, landing pages or posters as artboards on one canvas (a Claude Design artifact); edit in a desktop browser and export PNG or PDF.
-- [/design consent](https://futurevolab.github.io/claude-code-commands-i18n/commands/design-consent/): Grants or withdraws Claude's access to Claude Design.
-- [/design-login](https://futurevolab.github.io/claude-code-commands-i18n/commands/design-login/): Authorizes design-system access for /design-sync with your claude.ai account, when /design-sync or /design consent asks you to.
-- [/design-sync](https://futurevolab.github.io/claude-code-commands-i18n/commands/design-sync/): Converts and uploads your repo's React design system to Claude Design so designs use your real components.
-- [/slides](https://futurevolab.github.io/claude-code-commands-i18n/commands/slides/): Makes a Claude Slides artifact from your brief.
-- [/mcp](https://futurevolab.github.io/claude-code-commands-i18n/commands/mcp/): Manages MCP server connections and OAuth.
-- [/chrome](https://futurevolab.github.io/claude-code-commands-i18n/commands/chrome/): Configures Claude in Chrome settings.
-- [/claude-api](https://futurevolab.github.io/claude-code-commands-i18n/commands/claude-api/): Loads Claude API and Managed Agents reference for your project's language; activates automatically when code imports anthropic.
-- [/claude-in-chrome](https://futurevolab.github.io/claude-code-commands-i18n/commands/claude-in-chrome/): Has Claude carry out a task in your browser through Claude in Chrome, such as testing a page or reading console logs.
-- [/ide](https://futurevolab.github.io/claude-code-commands-i18n/commands/ide/): Manages IDE integrations and shows status.
-- [/install-github-app](https://futurevolab.github.io/claude-code-commands-i18n/commands/install-github-app/): Installs the Claude GitHub App for a repository, optionally setting up GitHub Actions workflows and secrets.
-- [/install-slack-app](https://futurevolab.github.io/claude-code-commands-i18n/commands/install-slack-app/): Installs the Claude Slack app via a browser OAuth flow.
-- [/plugin](https://futurevolab.github.io/claude-code-commands-i18n/commands/plugin/): Manages plugins.
-- [/plugin-authoring](https://futurevolab.github.io/claude-code-commands-i18n/commands/plugin-authoring/): Loads the reference for writing a mod.
-- [/reload-plugins](https://futurevolab.github.io/claude-code-commands-i18n/commands/reload-plugins/): Reloads active plugins without restarting and reports load errors.
-- [/reload-skills](https://futurevolab.github.io/claude-code-commands-i18n/commands/reload-skills/): Re-scans skill and command directories so skills added or changed during the session are available without restarting.
-- [/skill-doctor](https://futurevolab.github.io/claude-code-commands-i18n/commands/skill-doctor/): Shows each skill's context cost and usage so you can find skills to turn off.
-- [/skills](https://futurevolab.github.io/claude-code-commands-i18n/commands/skills/): Lists skills with filtering.
-- [/permissions](https://futurevolab.github.io/claude-code-commands-i18n/commands/permissions/): Manages allow, ask and deny rules for tools: view by scope, add or remove rules, manage working directories, and check the Recently blocked tab (calls auto mode refused) and classifier rules.
-- [/auto-mode-setup](https://futurevolab.github.io/claude-code-commands-i18n/commands/auto-mode-setup/): Drafts autoMode.environment entries from your project and recent sessions for you to review and save.
-- [/fewer-permission-prompts](https://futurevolab.github.io/claude-code-commands-i18n/commands/fewer-permission-prompts/): Scans transcripts for common read-only Bash and MCP calls and adds a prioritized allowlist to project .claude/settings.json.
-- [/hooks](https://futurevolab.github.io/claude-code-commands-i18n/commands/hooks/): Views hook configurations.
-- [/privacy-settings](https://futurevolab.github.io/claude-code-commands-i18n/commands/privacy-settings/): Views and updates privacy settings.
-- [/sandbox](https://futurevolab.github.io/claude-code-commands-i18n/commands/sandbox/): Toggles sandbox mode, on supported platforms only.
-- [/update-config](https://futurevolab.github.io/claude-code-commands-i18n/commands/update-config/): Describe a settings change (allow a command, set an env var, add a hook) and Claude edits the matching settings.json.
-- [/color](https://futurevolab.github.io/claude-code-commands-i18n/commands/color/): Sets the prompt bar color for this session: red, blue, green, yellow, purple, orange, pink or cyan; default resets, no argument picks a random color.
-- [/config](https://futurevolab.github.io/claude-code-commands-i18n/commands/config/): Opens Settings for theme, model, output style and more, or sets key=value pairs directly, e.g.
-- [/focus](https://futurevolab.github.io/claude-code-commands-i18n/commands/focus/): Toggles a view showing only your last prompt, a one-line tool summary and the final response.
-- [/keybindings](https://futurevolab.github.io/claude-code-commands-i18n/commands/keybindings/): Opens your keyboard shortcuts file.
-- [/scroll-speed](https://futurevolab.github.io/claude-code-commands-i18n/commands/scroll-speed/): Adjusts mouse wheel scroll speed.
-- [/statusline](https://futurevolab.github.io/claude-code-commands-i18n/commands/statusline/): Configures the status line; describe what you want, or run without arguments to derive it from your shell prompt.
-- [/terminal-setup](https://futurevolab.github.io/claude-code-commands-i18n/commands/terminal-setup/): Installs Shift+Enter for newlines in VS Code, Cursor, Devin Desktop, Alacritty or Zed; in Apple Terminal enables Option+Enter and disables the bell; in iTerm2 enables clipboard access for /copy.
-- [/theme](https://futurevolab.github.io/claude-code-commands-i18n/commands/theme/): Changes the color theme: auto, light and dark, colorblind-accessible, ANSI and custom themes.
-- [/tui](https://futurevolab.github.io/claude-code-commands-i18n/commands/tui/): Sets the terminal renderer and relaunches with the conversation intact.
-- [/voice](https://futurevolab.github.io/claude-code-commands-i18n/commands/voice/): Toggles voice dictation or sets a mode (hold, tap).
-- [/usage](https://futurevolab.github.io/claude-code-commands-i18n/commands/usage/): Shows session cost, spend for today, this week and this month, plan usage limits and activity stats, including what counts against plan limits on subscriptions.
-- [/login](https://futurevolab.github.io/claude-code-commands-i18n/commands/login/): Signs in to your Anthropic account.
-- [/logout](https://futurevolab.github.io/claude-code-commands-i18n/commands/logout/): Signs out of your Anthropic account.
-- [/passes](https://futurevolab.github.io/claude-code-commands-i18n/commands/passes/): Shares a free week of Claude Code with friends; only shown to eligible accounts.
-- [/rate-limit-options](https://futurevolab.github.io/claude-code-commands-i18n/commands/rate-limit-options/): Shows ways to keep working when a claude.ai limit blocks you: wait and auto-continue, add usage credits, or upgrade.
-- [/status](https://futurevolab.github.io/claude-code-commands-i18n/commands/status/): Opens Settings on the Status tab: version, model, account, connectivity.
-- [/upgrade](https://futurevolab.github.io/claude-code-commands-i18n/commands/upgrade/): Opens the upgrade page in your browser.
-- [/usage-credits](https://futurevolab.github.io/claude-code-commands-i18n/commands/usage-credits/): Configures or requests usage credits; Team and Enterprise members without billing access send a request to their admin.
-- [/desktop](https://futurevolab.github.io/claude-code-commands-i18n/commands/desktop/): Continues the session in the Claude Code Desktop app.
-- [/mobile](https://futurevolab.github.io/claude-code-commands-i18n/commands/mobile/): Shows a QR code to download the Claude mobile app.
-- [/remote-control](https://futurevolab.github.io/claude-code-commands-i18n/commands/remote-control/): Makes this session available for Remote Control from claude.ai.
-- [/remote-env](https://futurevolab.github.io/claude-code-commands-i18n/commands/remote-env/): Chooses the default cloud environment for cloud sessions started from the CLI.
-- [/setup-bedrock](https://futurevolab.github.io/claude-code-commands-i18n/commands/setup-bedrock/): Configures Amazon Bedrock auth, region and model pins via a wizard.
-- [/setup-vertex](https://futurevolab.github.io/claude-code-commands-i18n/commands/setup-vertex/): Configures Google Cloud's Agent Platform via a wizard.
-- [/teleport](https://futurevolab.github.io/claude-code-commands-i18n/commands/teleport/): Pulls a cloud session into this terminal, fetching its branch and conversation.
-- [/web-setup](https://futurevolab.github.io/claude-code-commands-i18n/commands/web-setup/): Connects GitHub for cloud sessions using your local gh credentials.
-- [/doctor](https://futurevolab.github.io/claude-code-commands-i18n/commands/doctor/): Runs a setup checkup for installation, settings, extensions and CLAUDE.md, proposing fixes Claude applies after you confirm.
-- [/help](https://futurevolab.github.io/claude-code-commands-i18n/commands/help/): Shows help and available commands.
-- [/powerup](https://futurevolab.github.io/claude-code-commands-i18n/commands/powerup/): Interactive lessons with animated demos that teach Claude Code features.
-- [/bug](https://futurevolab.github.io/claude-code-commands-i18n/commands/bug/): Reports a bug or shares your conversation; you choose how much history to include and confirm before anything is sent.
-- [/debug](https://futurevolab.github.io/claude-code-commands-i18n/commands/debug/): Enables debug logging from this point and troubleshoots by reading the session debug log.
-- [/exit](https://futurevolab.github.io/claude-code-commands-i18n/commands/exit/): Exits the CLI.
-- [/feedback](https://futurevolab.github.io/claude-code-commands-i18n/commands/feedback/): Sends product feedback using the same dialog and consent step as /bug.
-- [/heapdump](https://futurevolab.github.io/claude-code-commands-i18n/commands/heapdump/): Writes a heap snapshot and memory breakdown to the Desktop for diagnosing high memory.
-- [/release-notes](https://futurevolab.github.io/claude-code-commands-i18n/commands/release-notes/): Views the changelog in a version picker; notes appear without entering Claude's context.
-- [/restart](https://futurevolab.github.io/claude-code-commands-i18n/commands/restart/): Restarts Claude Code and resumes the session to apply an installed update.
-- [/radio](https://futurevolab.github.io/claude-code-commands-i18n/commands/radio/): Opens Claude FM lo-fi radio in your browser, or prints the stream URL.
-- [/stickers](https://futurevolab.github.io/claude-code-commands-i18n/commands/stickers/): Orders Claude Code stickers.
-- [/pr-comments](https://futurevolab.github.io/claude-code-commands-i18n/commands/pr-comments/): Removed in v2.1.91. (removed)
-- [/ultraplan](https://futurevolab.github.io/claude-code-commands-i18n/commands/ultraplan/): Removed. (removed)
-- [/vim](https://futurevolab.github.io/claude-code-commands-i18n/commands/vim/): Removed in v2.1.92. (removed)
+- [/clear](https://commands.futurevolab.com/commands/clear/): Starts a new conversation with empty context while keeping project memory.
+- [/compact](https://commands.futurevolab.com/commands/compact/): Summarizes the conversation so far to free context space, continuing the same conversation.
+- [/context](https://commands.futurevolab.com/commands/context/): Shows context usage as a colored grid with optimization suggestions and capacity warnings.
+- [/plan](https://commands.futurevolab.com/commands/plan/): Enters plan mode, where Claude researches and proposes a plan before editing.
+- [/resume](https://commands.futurevolab.com/commands/resume/): Resumes a conversation by ID or name, or opens the session picker.
+- [/rewind](https://commands.futurevolab.com/commands/rewind/): Rolls the conversation and/or code back to an earlier checkpoint, or summarizes from a selected message.
+- [/autocompact](https://commands.futurevolab.com/commands/autocompact/): Sets how full the context window gets before automatic compaction, e.g.
+- [/branch](https://commands.futurevolab.com/commands/branch/): Creates a branch of the conversation at this point and switches into it; the original is preserved and reachable via /resume.
+- [/btw](https://commands.futurevolab.com/commands/btw/): Asks a side question about the current session without adding it to the conversation.
+- [/copy](https://commands.futurevolab.com/commands/copy/): Copies the last response to the clipboard; /copy 2 copies the second-to-last.
+- [/export](https://commands.futurevolab.com/commands/export/): Exports the conversation as plain text, directly to a file if you give a name, otherwise via a copy/save dialog.
+- [/goal](https://commands.futurevolab.com/commands/goal/): Sets a goal: Claude keeps working across turns until the condition is met or the goal clears.
+- [/memory](https://commands.futurevolab.com/commands/memory/): Edits CLAUDE.md memory files, toggles auto memory, and shows auto memory entries.
+- [/recap](https://commands.futurevolab.com/commands/recap/): Generates a one-line summary of the current session on demand.
+- [/rename](https://commands.futurevolab.com/commands/rename/): Renames the session and shows the name on the prompt bar; without a name, generates one from the conversation.
+- [/model](https://commands.futurevolab.com/commands/model/): Switches the model and saves it as the default for new sessions.
+- [/advisor](https://commands.futurevolab.com/commands/advisor/): Enables or disables the advisor tool, which consults a second model at key moments.
+- [/effort](https://commands.futurevolab.com/commands/effort/): Sets the effort level: low to xhigh, max, or auto; status prints it.
+- [/fast](https://commands.futurevolab.com/commands/fast/): Toggles fast mode (same model, faster output).
+- [/output-style](https://commands.futurevolab.com/commands/output-style/): Lists output styles or switches to one, e.g.
+- [/init](https://commands.futurevolab.com/commands/init/): Initializes the project with a CLAUDE.md guide that every new session reads.
+- [/add-dir](https://commands.futurevolab.com/commands/add-dir/): Adds a working directory for file access this session without moving.
+- [/cd](https://commands.futurevolab.com/commands/cd/): Moves the session to a new working directory, keeping the conversation.
+- [/diff](https://commands.futurevolab.com/commands/diff/): Reviews changes in your working tree, including Claude's edits so far.
+- [/import](https://commands.futurevolab.com/commands/import/): Imports instruction files, MCP servers, commands, subagents and skills from OpenAI Codex, Gemini CLI or Cursor.
+- [/insights](https://commands.futurevolab.com/commands/insights/): Generates an HTML report of your recent sessions on this machine: projects, habits, where things go wrong, features to try.
+- [/team-onboarding](https://commands.futurevolab.com/commands/team-onboarding/): Analyzes your last 30 days of sessions, commands and MCP usage and writes a Markdown guide a teammate can paste as their first message.
+- [/code-review](https://commands.futurevolab.com/commands/code-review/): Reviews the current diff, or a PR, branch or path, for correctness bugs.
+- [/run](https://commands.futurevolab.com/commands/run/): Launches and drives your project's app to see a change working.
+- [/run-skill-generator](https://commands.futurevolab.com/commands/run-skill-generator/): Writes a per-project skill that teaches /run and /verify how to build, launch and drive your app from a clean environment.
+- [/security-review](https://commands.futurevolab.com/commands/security-review/): Analyzes your branch's diff against origin's default branch for vulnerabilities such as injection, auth issues and data exposure.
+- [/simplify](https://commands.futurevolab.com/commands/simplify/): Four parallel agents review changed code for reuse, simplification, efficiency and abstraction level, then apply fixes.
+- [/ultrareview](https://commands.futurevolab.com/commands/ultrareview/): Deep multi-agent review in a cloud sandbox.
+- [/verify](https://commands.futurevolab.com/commands/verify/): Builds, runs and observes your app to confirm a change works, rather than relying on tests or type checks.
+- [/agents](https://commands.futurevolab.com/commands/agents/): Prints a reminder to ask Claude to create or manage subagents, or to edit .claude/agents/ directly.
+- [/background](https://commands.futurevolab.com/commands/background/): Detaches the session to run as a background agent and frees the terminal.
+- [/batch](https://commands.futurevolab.com/commands/batch/): Orchestrates large changes in parallel: researches the codebase, decomposes the work into 5–30 independent units and presents a plan; after approval, one background subagent per unit implements and tests it in its own worktree.
+- [/fork](https://commands.futurevolab.com/commands/fork/): Copies the conversation into a new background session while you keep working here.
+- [/list-agents](https://commands.futurevolab.com/commands/list-agents/): Lists subagents, teammates and other sessions Claude can message, with the name to use for each.
+- [/stop](https://commands.futurevolab.com/commands/stop/): Stops the background session you're attached to; transcript and worktree are kept.
+- [/subtask](https://commands.futurevolab.com/commands/subtask/): Spawns a forked subagent that inherits the conversation and reports its result back here.
+- [/tasks](https://commands.futurevolab.com/commands/tasks/): Views and manages background work in this session, including finished subagents.
+- [/workflow-authoring](https://commands.futurevolab.com/commands/workflow-authoring/): Loads the reference for writing dynamic workflow scripts.
+- [/workflows](https://commands.futurevolab.com/commands/workflows/): Opens the workflow progress view to watch, pause, resume or save running and completed workflows.
+- [/loop](https://commands.futurevolab.com/commands/loop/): Runs a prompt repeatedly while the session stays open.
+- [/autofix-pr](https://commands.futurevolab.com/commands/autofix-pr/): Spawns a cloud session that watches the current branch's PR and pushes fixes on CI failures or review comments.
+- [/deep-research](https://commands.futurevolab.com/commands/deep-research/): A bundled workflow that fans out web searches, fetches and cross-checks sources, and writes a cited report.
+- [/schedule](https://commands.futurevolab.com/commands/schedule/): Creates, updates, lists or runs cloud scheduled tasks (formerly routines) through a guided conversation.
+- [/artifact-capabilities](https://commands.futurevolab.com/commands/artifact-capabilities/): Loads the reference for artifact runtime capabilities, such as calling connectors or offering downloads, and which your account has.
+- [/artifact-diagramming](https://commands.futurevolab.com/commands/artifact-diagramming/): Loads diagramming guidance for artifacts: when a diagram helps, what to draw, and SVG that stays legible in light and dark themes.
+- [/artifacts](https://commands.futurevolab.com/commands/artifacts/): Lists artifacts you own or that are shared with you, then attaches one, opens it, or copies its link.
+- [/dataviz](https://commands.futurevolab.com/commands/dataviz/): Chart design guidance: picks the chart form, assigns color by role, and validates the palette for colorblind safety and contrast with a bundled script.
+- [/design](https://commands.futurevolab.com/commands/design/): Drafts UI mockups, flows, landing pages or posters as artboards on one canvas (a Claude Design artifact); edit in a desktop browser and export PNG or PDF.
+- [/design consent](https://commands.futurevolab.com/commands/design-consent/): Grants or withdraws Claude's access to Claude Design.
+- [/design-login](https://commands.futurevolab.com/commands/design-login/): Authorizes design-system access for /design-sync with your claude.ai account, when /design-sync or /design consent asks you to.
+- [/design-sync](https://commands.futurevolab.com/commands/design-sync/): Converts and uploads your repo's React design system to Claude Design so designs use your real components.
+- [/slides](https://commands.futurevolab.com/commands/slides/): Makes a Claude Slides artifact from your brief.
+- [/mcp](https://commands.futurevolab.com/commands/mcp/): Manages MCP server connections and OAuth.
+- [/chrome](https://commands.futurevolab.com/commands/chrome/): Configures Claude in Chrome settings.
+- [/claude-api](https://commands.futurevolab.com/commands/claude-api/): Loads Claude API and Managed Agents reference for your project's language; activates automatically when code imports anthropic.
+- [/claude-in-chrome](https://commands.futurevolab.com/commands/claude-in-chrome/): Has Claude carry out a task in your browser through Claude in Chrome, such as testing a page or reading console logs.
+- [/ide](https://commands.futurevolab.com/commands/ide/): Manages IDE integrations and shows status.
+- [/install-github-app](https://commands.futurevolab.com/commands/install-github-app/): Installs the Claude GitHub App for a repository, optionally setting up GitHub Actions workflows and secrets.
+- [/install-slack-app](https://commands.futurevolab.com/commands/install-slack-app/): Installs the Claude Slack app via a browser OAuth flow.
+- [/plugin](https://commands.futurevolab.com/commands/plugin/): Manages plugins.
+- [/plugin-authoring](https://commands.futurevolab.com/commands/plugin-authoring/): Loads the reference for writing a mod.
+- [/reload-plugins](https://commands.futurevolab.com/commands/reload-plugins/): Reloads active plugins without restarting and reports load errors.
+- [/reload-skills](https://commands.futurevolab.com/commands/reload-skills/): Re-scans skill and command directories so skills added or changed during the session are available without restarting.
+- [/skill-doctor](https://commands.futurevolab.com/commands/skill-doctor/): Shows each skill's context cost and usage so you can find skills to turn off.
+- [/skills](https://commands.futurevolab.com/commands/skills/): Lists skills with filtering.
+- [/permissions](https://commands.futurevolab.com/commands/permissions/): Manages allow, ask and deny rules for tools: view by scope, add or remove rules, manage working directories, and check the Recently blocked tab (calls auto mode refused) and classifier rules.
+- [/auto-mode-setup](https://commands.futurevolab.com/commands/auto-mode-setup/): Drafts autoMode.environment entries from your project and recent sessions for you to review and save.
+- [/fewer-permission-prompts](https://commands.futurevolab.com/commands/fewer-permission-prompts/): Scans transcripts for common read-only Bash and MCP calls and adds a prioritized allowlist to project .claude/settings.json.
+- [/hooks](https://commands.futurevolab.com/commands/hooks/): Views hook configurations.
+- [/privacy-settings](https://commands.futurevolab.com/commands/privacy-settings/): Views and updates privacy settings.
+- [/sandbox](https://commands.futurevolab.com/commands/sandbox/): Toggles sandbox mode, on supported platforms only.
+- [/update-config](https://commands.futurevolab.com/commands/update-config/): Describe a settings change (allow a command, set an env var, add a hook) and Claude edits the matching settings.json.
+- [/color](https://commands.futurevolab.com/commands/color/): Sets the prompt bar color for this session: red, blue, green, yellow, purple, orange, pink or cyan; default resets, no argument picks a random color.
+- [/config](https://commands.futurevolab.com/commands/config/): Opens Settings for theme, model, output style and more, or sets key=value pairs directly, e.g.
+- [/focus](https://commands.futurevolab.com/commands/focus/): Toggles a view showing only your last prompt, a one-line tool summary and the final response.
+- [/keybindings](https://commands.futurevolab.com/commands/keybindings/): Opens your keyboard shortcuts file.
+- [/scroll-speed](https://commands.futurevolab.com/commands/scroll-speed/): Adjusts mouse wheel scroll speed.
+- [/statusline](https://commands.futurevolab.com/commands/statusline/): Configures the status line; describe what you want, or run without arguments to derive it from your shell prompt.
+- [/terminal-setup](https://commands.futurevolab.com/commands/terminal-setup/): Installs Shift+Enter for newlines in VS Code, Cursor, Devin Desktop, Alacritty or Zed; in Apple Terminal enables Option+Enter and disables the bell; in iTerm2 enables clipboard access for /copy.
+- [/theme](https://commands.futurevolab.com/commands/theme/): Changes the color theme: auto, light and dark, colorblind-accessible, ANSI and custom themes.
+- [/tui](https://commands.futurevolab.com/commands/tui/): Sets the terminal renderer and relaunches with the conversation intact.
+- [/voice](https://commands.futurevolab.com/commands/voice/): Toggles voice dictation or sets a mode (hold, tap).
+- [/usage](https://commands.futurevolab.com/commands/usage/): Shows session cost, spend for today, this week and this month, plan usage limits and activity stats, including what counts against plan limits on subscriptions.
+- [/login](https://commands.futurevolab.com/commands/login/): Signs in to your Anthropic account.
+- [/logout](https://commands.futurevolab.com/commands/logout/): Signs out of your Anthropic account.
+- [/passes](https://commands.futurevolab.com/commands/passes/): Shares a free week of Claude Code with friends; only shown to eligible accounts.
+- [/rate-limit-options](https://commands.futurevolab.com/commands/rate-limit-options/): Shows ways to keep working when a claude.ai limit blocks you: wait and auto-continue, add usage credits, or upgrade.
+- [/status](https://commands.futurevolab.com/commands/status/): Opens Settings on the Status tab: version, model, account, connectivity.
+- [/upgrade](https://commands.futurevolab.com/commands/upgrade/): Opens the upgrade page in your browser.
+- [/usage-credits](https://commands.futurevolab.com/commands/usage-credits/): Configures or requests usage credits; Team and Enterprise members without billing access send a request to their admin.
+- [/desktop](https://commands.futurevolab.com/commands/desktop/): Continues the session in the Claude Code Desktop app.
+- [/mobile](https://commands.futurevolab.com/commands/mobile/): Shows a QR code to download the Claude mobile app.
+- [/remote-control](https://commands.futurevolab.com/commands/remote-control/): Makes this session available for Remote Control from claude.ai.
+- [/remote-env](https://commands.futurevolab.com/commands/remote-env/): Chooses the default cloud environment for cloud sessions started from the CLI.
+- [/setup-bedrock](https://commands.futurevolab.com/commands/setup-bedrock/): Configures Amazon Bedrock auth, region and model pins via a wizard.
+- [/setup-vertex](https://commands.futurevolab.com/commands/setup-vertex/): Configures Google Cloud's Agent Platform via a wizard.
+- [/teleport](https://commands.futurevolab.com/commands/teleport/): Pulls a cloud session into this terminal, fetching its branch and conversation.
+- [/web-setup](https://commands.futurevolab.com/commands/web-setup/): Connects GitHub for cloud sessions using your local gh credentials.
+- [/doctor](https://commands.futurevolab.com/commands/doctor/): Runs a setup checkup for installation, settings, extensions and CLAUDE.md, proposing fixes Claude applies after you confirm.
+- [/help](https://commands.futurevolab.com/commands/help/): Shows help and available commands.
+- [/powerup](https://commands.futurevolab.com/commands/powerup/): Interactive lessons with animated demos that teach Claude Code features.
+- [/bug](https://commands.futurevolab.com/commands/bug/): Reports a bug or shares your conversation; you choose how much history to include and confirm before anything is sent.
+- [/debug](https://commands.futurevolab.com/commands/debug/): Enables debug logging from this point and troubleshoots by reading the session debug log.
+- [/exit](https://commands.futurevolab.com/commands/exit/): Exits the CLI.
+- [/feedback](https://commands.futurevolab.com/commands/feedback/): Sends product feedback using the same dialog and consent step as /bug.
+- [/heapdump](https://commands.futurevolab.com/commands/heapdump/): Writes a heap snapshot and memory breakdown to the Desktop for diagnosing high memory.
+- [/release-notes](https://commands.futurevolab.com/commands/release-notes/): Views the changelog in a version picker; notes appear without entering Claude's context.
+- [/restart](https://commands.futurevolab.com/commands/restart/): Restarts Claude Code and resumes the session to apply an installed update.
+- [/radio](https://commands.futurevolab.com/commands/radio/): Opens Claude FM lo-fi radio in your browser, or prints the stream URL.
+- [/stickers](https://commands.futurevolab.com/commands/stickers/): Orders Claude Code stickers.
+- [/pr-comments](https://commands.futurevolab.com/commands/pr-comments/): Removed in v2.1.91. (removed)
+- [/ultraplan](https://commands.futurevolab.com/commands/ultraplan/): Removed. (removed)
+- [/vim](https://commands.futurevolab.com/commands/vim/): Removed in v2.1.92. (removed)
 
 ## Full text (Markdown)
 
-- [All commands, English](https://futurevolab.github.io/claude-code-commands-i18n/llms-full.txt): every command with description and best use
+- [All commands, English](https://commands.futurevolab.com/llms-full.txt): every command with description and best use
 - [English](https://raw.githubusercontent.com/FuturEvoLab/claude-code-commands-i18n/main/README.md)
 - [日本語](https://raw.githubusercontent.com/FuturEvoLab/claude-code-commands-i18n/main/README.ja.md)
 - [简体中文](https://raw.githubusercontent.com/FuturEvoLab/claude-code-commands-i18n/main/README.zh-CN.md)

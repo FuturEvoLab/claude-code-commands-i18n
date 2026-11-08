@@ -767,7 +767,8 @@ def csp(body, style_self=False):
 
 
 def repo_meta(arg):
-    """Resolve OWNER/NAME from --repo, else repo.txt, else a placeholder."""
+    """Resolve OWNER/NAME from --repo, else repo.txt, else a placeholder; the site address
+    comes from docs/CNAME when the site has a custom domain."""
     if arg:
         if not re.fullmatch(r"[\w.-]+/[\w.-]+", arg):
             sys.exit("--repo must look like OWNER/NAME")
@@ -776,6 +777,12 @@ def repo_meta(arg):
     owner, name = slug.split("/")
     META["repo"] = f"https://github.com/{slug}"
     META["site"] = f"https://{owner.lower()}.github.io/{name}/"
+    cname = ROOT / "docs/CNAME"  # a custom domain for GitHub Pages, e.g. commands.example.com
+    if cname.exists():
+        domain = cname.read_text(encoding="utf-8").strip().lower()
+        if not re.fullmatch(r"[a-z0-9-]+(\.[a-z0-9-]+)+", domain):
+            sys.exit("docs/CNAME must hold one domain name")
+        META["site"] = f"https://{domain}/"
     return slug.startswith("OWNER/")
 
 

@@ -10,11 +10,11 @@
 
 すぐに試せる静的ページです。検索、言語やテーマの切り替え、コマンドのコピーができます。インストールは不要です。
 
-### [検索できる Web 版 →](https://futurevolab.github.io/claude-code-commands-i18n/ja/)
+### [検索できる Web 版 →](https://commands.futurevolab.com/ja/)
 
 | 標準テーマ | マトリックステーマ |
 |---|---|
-| [![標準テーマ](docs/assets/preview-en.png)](https://futurevolab.github.io/claude-code-commands-i18n/?theme=terminal) | [![マトリックステーマ](docs/assets/preview-matrix.png)](https://futurevolab.github.io/claude-code-commands-i18n/?theme=matrix) |
+| [![標準テーマ](docs/assets/preview-en.png)](https://commands.futurevolab.com/?theme=terminal) | [![マトリックステーマ](docs/assets/preview-matrix.png)](https://commands.futurevolab.com/?theme=matrix) |
 
 <p><img src="docs/assets/preview-search.png" alt="search" width="68%"> <img src="docs/assets/preview-mobile.png" alt="mobile" width="28%"></p>
 

@@ -10,11 +10,11 @@
 
 一个可以直接打开试用的静态页面：搜索、切换语言和主题、复制命令，无需安装。
 
-### [可搜索的网页版 →](https://futurevolab.github.io/claude-code-commands-i18n/zh-cn/)
+### [可搜索的网页版 →](https://commands.futurevolab.com/zh-cn/)
 
 | 默认主题 | 黑客帝国主题 |
 |---|---|
-| [![默认主题](docs/assets/preview-en.png)](https://futurevolab.github.io/claude-code-commands-i18n/?theme=terminal) | [![黑客帝国主题](docs/assets/preview-matrix.png)](https://futurevolab.github.io/claude-code-commands-i18n/?theme=matrix) |
+| [![默认主题](docs/assets/preview-en.png)](https://commands.futurevolab.com/?theme=terminal) | [![黑客帝国主题](docs/assets/preview-matrix.png)](https://commands.futurevolab.com/?theme=matrix) |
 
 <p><img src="docs/assets/preview-search.png" alt="search" width="68%"> <img src="docs/assets/preview-mobile.png" alt="mobile" width="28%"></p>
 
