@@ -209,7 +209,7 @@ Claude Code를 처음 쓰는 첫 주를 위해 편집자가 고른 명령입니�
 |---|---|---|---|
 | `/mcp`<br>`[reconnect (<server>\|all)\|enable\|disable [<server>\|all]]`<br>★ | MCP (Model Context Protocol)<br>MCP (Model Context Protocol, 외부 도구 연결 표준) | MCP 서버 연결과 OAuth를 관리합니다. 인수 없이 실행하면 목록이 열리고, `reconnect`, `enable`, `disable`에 서버 이름이나 `all`을 붙이면 바로 실행합니다. | 커넥터가 실패했거나 인증이 필요할 때: `/mcp reconnect all`. |
 | `/chrome` | Chrome<br>Chrome 브라우저 | Claude in Chrome 설정을 구성합니다. | Chrome 확장 프로그램을 처음 연결할 때. |
-| `/claude-api`<br>`[subcommand]`<br>스킬 | Claude API<br>Claude API | 프로젝트 언어에 맞는 Claude API와 Managed Agents 참고 자료를 불러옵니다. 코드가 `anthropic`을 import하면 자동으로 활성화됩니다. 하위 명령으로 `migrate`, `upgrade`, `api-version`, `cost-optimize`, `latency-optimize`, `build-eval`, `prompt-audit` 등이 있습니다. | 앱의 API 비용을 줄이고 싶을 때: `/claude-api cost-optimize`. |
+| `/claude-api`<br>`[subcommand]`<br>스킬 | Claude API<br>Claude API | 프로젝트 언어에 맞는 Claude API와 Managed Agents 참고 자료를 불러옵니다. 코드가 `anthropic`을 import하면 자동으로 활성화됩니다. 하위 명령으로 `migrate`, `upgrade`, `api-version`, `cost-optimize`, `latency-optimize`, `build-eval`, `prompt-audit`, `managed-agents-onboard`, `managed-agents-secure`, `hillclimb`, `preserved-thinking-migration` 등이 있습니다. | 앱의 API 비용을 줄이고 싶을 때: `/claude-api cost-optimize`. |
 | `/claude-in-chrome`<br>`[task]`<br>스킬 · ↗ 외부로 데이터 전송 | Claude in Chrome<br>Chrome에서 동작하는 Claude | Claude in Chrome을 통해 브라우저에서 Claude가 작업을 수행하게 합니다. 예: 페이지 테스트, 콘솔 로그 읽기. Chrome 연동이 필요합니다(예: `claude --chrome`). | `/claude-in-chrome 로컬 사이트에서 회원가입 흐름을 테스트하고 오류를 알려 줘`. |
 | `/ide` | IDE (integrated development environment)<br>IDE (통합 개발 환경, 코드 편집기) | IDE 연동을 관리하고 상태를 보여 줍니다. | 편집기에 Claude의 수정 내용이 보이지 않을 때 연결을 확인합니다. |
 | `/install-github-app`<br>↗ 외부로 데이터 전송 · ⚑ 안전 설정 변경 | install GitHub app<br>GitHub 앱 설치 | 저장소에 Claude GitHub App을 설치하고, 원하면 GitHub Actions 워크플로와 시크릿도 설정합니다. github.com 전용입니다. | 이슈와 PR에서 Claude를 멘션해 그곳에서 작업하게 하고 싶을 때. |
@@ -330,7 +330,7 @@ Claude가 할 수 있는 일과 내 승인이 필요한 일을 정합니다
 
 ## 이 프로젝트에 대해
 
-- **출처**: 공식 [명령 참고 문서](https://code.claude.com/docs/en/commands)를 바탕으로 풀어 썼습니다(확인일 2026-11-07). 설명은 간략화한 것이며 공식 번역이 아닙니다. 차이가 있으면 공식 문서가 우선합니다.
+- **출처**: 공식 [명령 참고 문서](https://code.claude.com/docs/en/commands)를 바탕으로 풀어 썼습니다(확인일 2026-11-09). 설명은 간략화한 것이며 공식 번역이 아닙니다. 차이가 있으면 공식 문서가 우선합니다.
 - **데이터**: 모든 내용은 [`data/commands.json`](data/commands.json)에서 생성됩니다. JSON을 편집한 뒤 `python3 scripts/build.py`를 실행하세요.
 - **기여**: [CONTRIBUTING.md](CONTRIBUTING.md)를 참고하세요.
 - **라이선스**: 내용은 [CC BY 4.0](LICENSE-CONTENT), 코드는 [MIT](LICENSE).

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.1 — 2026-11-09
+
+- Re-checked against the official commands reference and Claude Code 2.1.319: no commands added or removed.
+- `/claude-api` now lists all its subcommands, adding `managed-agents-onboard`, `managed-agents-secure`, `hillclimb` and `preserved-thinking-migration`, in all seven languages.
+
 ## 1.4.0 — 2026-11-08
 
 - Every command now has its own page in every language (826 pages): `/commands/compact/`, `/ja/commands/compact/` and so on. Each shows what the command does, its best use, aliases, safety notes, the situations it helps with, related commands in the same category, and previous/next links, with its own search title, description, canonical URL, `hreflang` links and JSON-LD (`TechArticle` and `BreadcrumbList`).

@@ -1,6 +1,6 @@
 # Claude Code Commands: all 115 slash commands in plain English
 
-Unofficial guide. Source: https://code.claude.com/docs/en/commands (checked 2026-11-07). Site: https://futurevolab.github.io/claude-code-commands-i18n/
+Unofficial guide. Source: https://code.claude.com/docs/en/commands (checked 2026-11-09). Site: https://futurevolab.github.io/claude-code-commands-i18n/
 
 ## Conversation & context
 
@@ -528,7 +528,7 @@ Page: https://futurevolab.github.io/claude-code-commands-i18n/commands/chrome/
 
 ### /claude-api [subcommand]
 
-Loads Claude API and Managed Agents reference for your project's language; activates automatically when code imports `anthropic`. Subcommands include `migrate`, `upgrade`, `api-version`, `cost-optimize`, `latency-optimize`, `build-eval`, `prompt-audit`.
+Loads Claude API and Managed Agents reference for your project's language; activates automatically when code imports `anthropic`. Subcommands include `migrate`, `upgrade`, `api-version`, `cost-optimize`, `latency-optimize`, `build-eval`, `prompt-audit`, `managed-agents-onboard`, `managed-agents-secure`, `hillclimb`, `preserved-thinking-migration`.
 
 Best use: Cut API spend in your app: `/claude-api cost-optimize`.
 

@@ -209,7 +209,7 @@
 |---|---|---|---|
 | `/mcp`<br>`[reconnect (<server>\|all)\|enable\|disable [<server>\|all]]`<br>★ | MCP (Model Context Protocol)<br>模型上下文协议（连接外部工具的标准） | 管理 MCP 服务器连接和 OAuth 登录。不带参数打开列表；`reconnect`、`enable`、`disable` 加服务器名或 `all` 可直接操作。 | 连接器报错或需要登录：`/mcp reconnect all`。 |
 | `/chrome` | Chrome<br>Chrome 浏览器 | 配置 Claude in Chrome 的设置。 | 第一次连接 Chrome 扩展时。 |
-| `/claude-api`<br>`[subcommand]`<br>技能 | Claude API<br>Claude 编程接口 | 加载与你项目语言对应的 Claude API 和 Managed Agents 资料；代码导入 `anthropic` 时会自动启用。子命令包括 `migrate`、`upgrade`、`api-version`、`cost-optimize`、`latency-optimize`、`build-eval`、`prompt-audit` 等。 | 自己开发 AI 应用、想降低 API 费用：`/claude-api cost-optimize`。 |
+| `/claude-api`<br>`[subcommand]`<br>技能 | Claude API<br>Claude 编程接口 | 加载与你项目语言对应的 Claude API 和 Managed Agents 资料；代码导入 `anthropic` 时会自动启用。子命令包括 `migrate`、`upgrade`、`api-version`、`cost-optimize`、`latency-optimize`、`build-eval`、`prompt-audit`、`managed-agents-onboard`、`managed-agents-secure`、`hillclimb`、`preserved-thinking-migration` 等。 | 自己开发 AI 应用、想降低 API 费用：`/claude-api cost-optimize`。 |
 | `/claude-in-chrome`<br>`[task]`<br>技能 · ↗ 会发送到外部 | Claude in Chrome<br>在 Chrome 浏览器中使用 Claude | 通过 Claude in Chrome 扩展让 Claude 在你的浏览器里执行任务，如测试页面、填写表单、读取控制台日志。需启用 Chrome 集成（如 `claude --chrome`）。 | `/claude-in-chrome 打开本地网站，测试注册流程并报告错误`。 |
 | `/ide` | IDE (integrated development environment)<br>集成开发环境（代码编辑器） | 管理与 VS Code、JetBrains 等编辑器的集成并显示状态。 | 编辑器里看不到 Claude 的改动时，检查是否连上。 |
 | `/install-github-app`<br>↗ 会发送到外部 · ⚑ 会改变安全设置 | install GitHub app<br>安装 GitHub 应用 | 为仓库安装 Claude GitHub App，可选设置 GitHub Actions 工作流和密钥。仅适用于 github.com 仓库。 | 希望在 GitHub 的 issue 或 PR 中 @claude 让它干活。 |
@@ -330,7 +330,7 @@
 
 ## 关于本项目
 
-- **来源**：依据官方[命令文档](https://code.claude.com/docs/en/commands)意译整理，核对日期 2026-11-07。说明经过简化，不是官方翻译；如有出入，以官方文档为准。
+- **来源**：依据官方[命令文档](https://code.claude.com/docs/en/commands)意译整理，核对日期 2026-11-09。说明经过简化，不是官方翻译；如有出入，以官方文档为准。
 - **数据**：所有内容由 [`data/commands.json`](data/commands.json) 生成。修改 JSON 后运行 `python3 scripts/build.py`。
 - **参与贡献**：见 [CONTRIBUTING.md](CONTRIBUTING.md)。
 - **许可**：内容 [CC BY 4.0](LICENSE-CONTENT)，代码 [MIT](LICENSE)。

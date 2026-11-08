@@ -209,7 +209,7 @@ Ampliar Claude con complementos, habilidades, servidores MCP e integraciones con
 |---|---|---|---|
 | `/mcp`<br>`[reconnect (<server>\|all)\|enable\|disable [<server>\|all]]`<br>★ | MCP (Model Context Protocol)<br>MCP (Model Context Protocol, estándar para conectar herramientas externas) | Gestiona las conexiones a servidores MCP y OAuth. Sin argumento abre la lista; `reconnect`, `enable` o `disable` con el nombre de un servidor o `all` actúan directamente. | Un conector falló o necesita autenticación: `/mcp reconnect all`. |
 | `/chrome` | Chrome<br>navegador Chrome | Configura los ajustes de Claude in Chrome. | Al conectar la extensión de Chrome por primera vez. |
-| `/claude-api`<br>`[subcommand]`<br>Habilidad | Claude API<br>API de Claude | Carga la referencia de la API de Claude y de Managed Agents para el lenguaje de tu proyecto; se activa sola cuando el código importa `anthropic`. Los subcomandos incluyen `migrate`, `upgrade`, `api-version`, `cost-optimize`, `latency-optimize`, `build-eval`, `prompt-audit`. | Reduce el gasto de API de tu aplicación: `/claude-api cost-optimize`. |
+| `/claude-api`<br>`[subcommand]`<br>Habilidad | Claude API<br>API de Claude | Carga la referencia de la API de Claude y de Managed Agents para el lenguaje de tu proyecto; se activa sola cuando el código importa `anthropic`. Los subcomandos incluyen `migrate`, `upgrade`, `api-version`, `cost-optimize`, `latency-optimize`, `build-eval`, `prompt-audit`, `managed-agents-onboard`, `managed-agents-secure`, `hillclimb`, `preserved-thinking-migration`. | Reduce el gasto de API de tu aplicación: `/claude-api cost-optimize`. |
 | `/claude-in-chrome`<br>`[task]`<br>Habilidad · ↗ Envía datos fuera | Claude in Chrome<br>Claude en Chrome | Hace que Claude realice una tarea en tu navegador mediante Claude in Chrome, como probar una página o leer los registros de la consola. Requiere la integración con Chrome (por ejemplo, `claude --chrome`). | `/claude-in-chrome prueba el registro de usuarios en mi sitio local e informa de los errores`. |
 | `/ide` | IDE (integrated development environment)<br>IDE (entorno de desarrollo integrado, editor de código) | Gestiona las integraciones con IDE y muestra su estado. | Comprueba la conexión cuando los cambios no aparecen en tu editor. |
 | `/install-github-app`<br>↗ Envía datos fuera · ⚑ Cambia la configuración de seguridad | install GitHub app<br>instalar la app de GitHub | Instala la Claude GitHub App en un repositorio y, si quieres, configura flujos de trabajo y secretos de GitHub Actions. Solo github.com. | Para mencionar a Claude en issues y PR y que trabaje ahí. |
@@ -330,7 +330,7 @@ Aún aparecen en guías antiguas, pero ya no están disponibles
 
 ## Sobre este proyecto
 
-- **Fuente**: paráfrasis de la [referencia oficial de comandos](https://code.claude.com/docs/en/commands), revisada el 2026-11-07. Las descripciones están simplificadas y no son traducciones oficiales; si no coinciden, manda la documentación oficial.
+- **Fuente**: paráfrasis de la [referencia oficial de comandos](https://code.claude.com/docs/en/commands), revisada el 2026-11-09. Las descripciones están simplificadas y no son traducciones oficiales; si no coinciden, manda la documentación oficial.
 - **Datos**: todo se genera a partir de [`data/commands.json`](data/commands.json). Edita el JSON y luego ejecuta `python3 scripts/build.py`.
 - **Cómo colaborar**: consulta [CONTRIBUTING.md](CONTRIBUTING.md).
 - **Licencia**: contenido [CC BY 4.0](LICENSE-CONTENT), código [MIT](LICENSE).

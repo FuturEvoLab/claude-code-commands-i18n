@@ -1,6 +1,6 @@
 # Claude Code Commands
 
-> Unofficial, plain-language guide to all 115 Claude Code slash commands, in 7 languages. For each command: what it does, its best use, and safety notes. Checked against the official commands reference (https://code.claude.com/docs/en/commands) on 2026-11-07; where they differ, the official docs win.
+> Unofficial, plain-language guide to all 115 Claude Code slash commands, in 7 languages. For each command: what it does, its best use, and safety notes. Checked against the official commands reference (https://code.claude.com/docs/en/commands) on 2026-11-09; where they differ, the official docs win.
 
 ## Pages
 

@@ -209,7 +209,7 @@ Extend Claude with plugins, skills, MCP servers, browser and IDE integrations
 |---|---|---|
 | `/mcp`<br>`[reconnect (<server>\|all)\|enable\|disable [<server>\|all]]`<br>★ | Manages MCP server connections and OAuth. No argument opens the list; `reconnect`, `enable` or `disable` with a server name or `all` acts directly. | A connector failed or needs auth: `/mcp reconnect all`. |
 | `/chrome` | Configures Claude in Chrome settings. | When first connecting the Chrome extension. |
-| `/claude-api`<br>`[subcommand]`<br>Skill | Loads Claude API and Managed Agents reference for your project's language; activates automatically when code imports `anthropic`. Subcommands include `migrate`, `upgrade`, `api-version`, `cost-optimize`, `latency-optimize`, `build-eval`, `prompt-audit`. | Cut API spend in your app: `/claude-api cost-optimize`. |
+| `/claude-api`<br>`[subcommand]`<br>Skill | Loads Claude API and Managed Agents reference for your project's language; activates automatically when code imports `anthropic`. Subcommands include `migrate`, `upgrade`, `api-version`, `cost-optimize`, `latency-optimize`, `build-eval`, `prompt-audit`, `managed-agents-onboard`, `managed-agents-secure`, `hillclimb`, `preserved-thinking-migration`. | Cut API spend in your app: `/claude-api cost-optimize`. |
 | `/claude-in-chrome`<br>`[task]`<br>Skill · ↗ Sends data out | Has Claude carry out a task in your browser through Claude in Chrome, such as testing a page or reading console logs. Requires Chrome integration (e.g. `claude --chrome`). | `/claude-in-chrome test the sign-up flow on my local site and report errors`. |
 | `/ide` | Manages IDE integrations and shows status. | Check the connection when edits don't show in your editor. |
 | `/install-github-app`<br>↗ Sends data out · ⚑ Changes safety settings | Installs the Claude GitHub App for a repository, optionally setting up GitHub Actions workflows and secrets. github.com only. | To mention Claude in issues and PRs and have it work there. |
@@ -330,7 +330,7 @@ Still mentioned in older guides but no longer available
 
 ## About this project
 
-- **Source**: paraphrased from the official [commands reference](https://code.claude.com/docs/en/commands), checked 2026-11-07. Descriptions are simplified, not official translations; where they differ, the official docs win.
+- **Source**: paraphrased from the official [commands reference](https://code.claude.com/docs/en/commands), checked 2026-11-09. Descriptions are simplified, not official translations; where they differ, the official docs win.
 - **Data**: everything is generated from [`data/commands.json`](data/commands.json). Edit the JSON, then run `python3 scripts/build.py`.
 - **Contributing**: see [CONTRIBUTING.md](CONTRIBUTING.md).
 - **License**: content [CC BY 4.0](LICENSE-CONTENT), code [MIT](LICENSE).

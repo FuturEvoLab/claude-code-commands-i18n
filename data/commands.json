@@ -2373,13 +2373,13 @@
    "es": "API de Claude"
   },
   "desc": {
-   "en": "Loads Claude API and Managed Agents reference for your project's language; activates automatically when code imports `anthropic`. Subcommands include `migrate`, `upgrade`, `api-version`, `cost-optimize`, `latency-optimize`, `build-eval`, `prompt-audit`.",
-   "ja": "プロジェクトの言語に合った Claude API と Managed Agents の資料を読み込みます。コードが `anthropic` を import していると自動で有効。サブコマンドは `migrate`・`upgrade`・`api-version`・`cost-optimize`・`latency-optimize`・`build-eval`・`prompt-audit` など。",
-   "zh": "加载与你项目语言对应的 Claude API 和 Managed Agents 资料；代码导入 `anthropic` 时会自动启用。子命令包括 `migrate`、`upgrade`、`api-version`、`cost-optimize`、`latency-optimize`、`build-eval`、`prompt-audit` 等。",
-   "zh-hant": "載入適合你專案程式語言的 Claude API 和 Managed Agents 參考資料；程式碼匯入 `anthropic` 時會自動啟用。子指令包括 `migrate`、`upgrade`、`api-version`、`cost-optimize`、`latency-optimize`、`build-eval`、`prompt-audit`。",
-   "ko": "프로젝트 언어에 맞는 Claude API와 Managed Agents 참고 자료를 불러옵니다. 코드가 `anthropic`을 import하면 자동으로 활성화됩니다. 하위 명령으로 `migrate`, `upgrade`, `api-version`, `cost-optimize`, `latency-optimize`, `build-eval`, `prompt-audit` 등이 있습니다.",
-   "ru": "Загружает справку по Claude API и Managed Agents для языка вашего проекта; включается автоматически, когда код импортирует `anthropic`. Подкоманды: `migrate`, `upgrade`, `api-version`, `cost-optimize`, `latency-optimize`, `build-eval`, `prompt-audit` и другие.",
-   "es": "Carga la referencia de la API de Claude y de Managed Agents para el lenguaje de tu proyecto; se activa sola cuando el código importa `anthropic`. Los subcomandos incluyen `migrate`, `upgrade`, `api-version`, `cost-optimize`, `latency-optimize`, `build-eval`, `prompt-audit`."
+   "en": "Loads Claude API and Managed Agents reference for your project's language; activates automatically when code imports `anthropic`. Subcommands include `migrate`, `upgrade`, `api-version`, `cost-optimize`, `latency-optimize`, `build-eval`, `prompt-audit`, `managed-agents-onboard`, `managed-agents-secure`, `hillclimb`, `preserved-thinking-migration`.",
+   "ja": "プロジェクトの言語に合った Claude API と Managed Agents の資料を読み込みます。コードが `anthropic` を import していると自動で有効。サブコマンドは `migrate`・`upgrade`・`api-version`・`cost-optimize`・`latency-optimize`・`build-eval`・`prompt-audit`・`managed-agents-onboard`・`managed-agents-secure`・`hillclimb`・`preserved-thinking-migration` など。",
+   "zh": "加载与你项目语言对应的 Claude API 和 Managed Agents 资料；代码导入 `anthropic` 时会自动启用。子命令包括 `migrate`、`upgrade`、`api-version`、`cost-optimize`、`latency-optimize`、`build-eval`、`prompt-audit`、`managed-agents-onboard`、`managed-agents-secure`、`hillclimb`、`preserved-thinking-migration` 等。",
+   "zh-hant": "載入適合你專案程式語言的 Claude API 和 Managed Agents 參考資料；程式碼匯入 `anthropic` 時會自動啟用。子指令包括 `migrate`、`upgrade`、`api-version`、`cost-optimize`、`latency-optimize`、`build-eval`、`prompt-audit`、`managed-agents-onboard`、`managed-agents-secure`、`hillclimb`、`preserved-thinking-migration`。",
+   "ko": "프로젝트 언어에 맞는 Claude API와 Managed Agents 참고 자료를 불러옵니다. 코드가 `anthropic`을 import하면 자동으로 활성화됩니다. 하위 명령으로 `migrate`, `upgrade`, `api-version`, `cost-optimize`, `latency-optimize`, `build-eval`, `prompt-audit`, `managed-agents-onboard`, `managed-agents-secure`, `hillclimb`, `preserved-thinking-migration` 등이 있습니다.",
+   "ru": "Загружает справку по Claude API и Managed Agents для языка вашего проекта; включается автоматически, когда код импортирует `anthropic`. Подкоманды: `migrate`, `upgrade`, `api-version`, `cost-optimize`, `latency-optimize`, `build-eval`, `prompt-audit`, `managed-agents-onboard`, `managed-agents-secure`, `hillclimb`, `preserved-thinking-migration` и другие.",
+   "es": "Carga la referencia de la API de Claude y de Managed Agents para el lenguaje de tu proyecto; se activa sola cuando el código importa `anthropic`. Los subcomandos incluyen `migrate`, `upgrade`, `api-version`, `cost-optimize`, `latency-optimize`, `build-eval`, `prompt-audit`, `managed-agents-onboard`, `managed-agents-secure`, `hillclimb`, `preserved-thinking-migration`."
   },
   "use": {
    "en": "Cut API spend in your app: `/claude-api cost-optimize`.",

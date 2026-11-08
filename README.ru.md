@@ -209,7 +209,7 @@
 |---|---|---|---|
 | `/mcp`<br>`[reconnect (<server>\|all)\|enable\|disable [<server>\|all]]`<br>★ | MCP (Model Context Protocol)<br>MCP (Model Context Protocol, стандарт подключения внешних инструментов) | Управляет подключениями к серверам MCP и OAuth. Без аргумента открывает список; `reconnect`, `enable` или `disable` с именем сервера или `all` действуют сразу. | Коннектор сломался или требует авторизации: `/mcp reconnect all`. |
 | `/chrome` | Chrome<br>Chrome (браузер) | Настраивает параметры Claude in Chrome. | При первом подключении расширения Chrome. |
-| `/claude-api`<br>`[subcommand]`<br>Навык | Claude API<br>Claude API | Загружает справку по Claude API и Managed Agents для языка вашего проекта; включается автоматически, когда код импортирует `anthropic`. Подкоманды: `migrate`, `upgrade`, `api-version`, `cost-optimize`, `latency-optimize`, `build-eval`, `prompt-audit` и другие. | Снизить расходы на API в вашем приложении: `/claude-api cost-optimize`. |
+| `/claude-api`<br>`[subcommand]`<br>Навык | Claude API<br>Claude API | Загружает справку по Claude API и Managed Agents для языка вашего проекта; включается автоматически, когда код импортирует `anthropic`. Подкоманды: `migrate`, `upgrade`, `api-version`, `cost-optimize`, `latency-optimize`, `build-eval`, `prompt-audit`, `managed-agents-onboard`, `managed-agents-secure`, `hillclimb`, `preserved-thinking-migration` и другие. | Снизить расходы на API в вашем приложении: `/claude-api cost-optimize`. |
 | `/claude-in-chrome`<br>`[task]`<br>Навык · ↗ Отправляет данные наружу | Claude in Chrome<br>Claude в Chrome | Claude выполняет задачу в вашем браузере через Claude in Chrome, например тестирует страницу или читает журнал консоли. Нужна интеграция с Chrome (например, `claude --chrome`). | `/claude-in-chrome протестируй регистрацию на моём локальном сайте и сообщи об ошибках`. |
 | `/ide` | IDE (integrated development environment)<br>IDE (интегрированная среда разработки) | Управляет интеграциями с IDE и показывает их состояние. | Проверьте подключение, если правки не появляются в редакторе. |
 | `/install-github-app`<br>↗ Отправляет данные наружу · ⚑ Меняет настройки безопасности | install GitHub app<br>установить приложение GitHub | Устанавливает приложение Claude GitHub App для репозитория и по желанию настраивает рабочие процессы GitHub Actions и секреты. Только для github.com. | Чтобы упоминать Claude в issues и PR и чтобы он там работал. |
@@ -330,7 +330,7 @@
 
 ## О проекте
 
-- **Источник**: пересказ официального [справочника команд](https://code.claude.com/docs/en/commands), проверено 2026-11-07. Описания упрощены и не являются официальным переводом; если они расходятся, верна официальная документация.
+- **Источник**: пересказ официального [справочника команд](https://code.claude.com/docs/en/commands), проверено 2026-11-09. Описания упрощены и не являются официальным переводом; если они расходятся, верна официальная документация.
 - **Данные**: всё создаётся из [`data/commands.json`](data/commands.json). Отредактируйте JSON, затем запустите `python3 scripts/build.py`.
 - **Участие**: см. [CONTRIBUTING.md](CONTRIBUTING.md).
 - **Лицензия**: контент — [CC BY 4.0](LICENSE-CONTENT), код — [MIT](LICENSE).

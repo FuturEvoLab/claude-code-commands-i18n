@@ -209,7 +209,7 @@
 |---|---|---|---|
 | `/mcp`<br>`[reconnect (<server>\|all)\|enable\|disable [<server>\|all]]`<br>★ | MCP (Model Context Protocol)<br>MCP（Model Context Protocol，模型上下文協定） | 管理 MCP 伺服器連線和 OAuth。不加參數會開啟清單；`reconnect`、`enable` 或 `disable` 加上伺服器名稱或 `all` 可直接操作。 | 連接器失敗或需要驗證：`/mcp reconnect all`。 |
 | `/chrome` | Chrome<br>Chrome 瀏覽器 | 設定 Claude in Chrome。 | 第一次連接 Chrome 擴充功能時。 |
-| `/claude-api`<br>`[subcommand]`<br>技能 | Claude API<br>Claude API（Claude 程式介面） | 載入適合你專案程式語言的 Claude API 和 Managed Agents 參考資料；程式碼匯入 `anthropic` 時會自動啟用。子指令包括 `migrate`、`upgrade`、`api-version`、`cost-optimize`、`latency-optimize`、`build-eval`、`prompt-audit`。 | 降低你的應用程式的 API 花費：`/claude-api cost-optimize`。 |
+| `/claude-api`<br>`[subcommand]`<br>技能 | Claude API<br>Claude API（Claude 程式介面） | 載入適合你專案程式語言的 Claude API 和 Managed Agents 參考資料；程式碼匯入 `anthropic` 時會自動啟用。子指令包括 `migrate`、`upgrade`、`api-version`、`cost-optimize`、`latency-optimize`、`build-eval`、`prompt-audit`、`managed-agents-onboard`、`managed-agents-secure`、`hillclimb`、`preserved-thinking-migration`。 | 降低你的應用程式的 API 花費：`/claude-api cost-optimize`。 |
 | `/claude-in-chrome`<br>`[task]`<br>技能 · ↗ 會傳送到外部 | Claude in Chrome<br>Claude in Chrome（在 Chrome 瀏覽器中使用 Claude） | 透過 Claude in Chrome 讓 Claude 在你的瀏覽器中執行工作，例如測試網頁或讀取主控台紀錄。需要啟用 Chrome 整合（例如 `claude --chrome`）。 | `/claude-in-chrome 測試我本機網站的註冊流程並回報錯誤`。 |
 | `/ide` | IDE (integrated development environment)<br>IDE（整合開發環境，程式碼編輯器） | 管理 IDE 整合並顯示狀態。 | 編輯器裡看不到修改時，檢查連線狀態。 |
 | `/install-github-app`<br>↗ 會傳送到外部 · ⚑ 會變更安全設定 | install GitHub app<br>安裝 GitHub 應用程式 | 為儲存庫安裝 Claude GitHub App，也可以順便設定 GitHub Actions 工作流程和機密（secrets）。只適用於 github.com。 | 想在 issue 和 PR 中提及 Claude，讓它在那裡工作。 |
@@ -330,7 +330,7 @@
 
 ## 關於本專案
 
-- **來源**：依據官方[指令參考文件](https://code.claude.com/docs/en/commands)改寫，查核日期 2026-11-07。說明經過簡化，並非官方翻譯；如有出入，以官方文件為準。
+- **來源**：依據官方[指令參考文件](https://code.claude.com/docs/en/commands)改寫，查核日期 2026-11-09。說明經過簡化，並非官方翻譯；如有出入，以官方文件為準。
 - **資料**：所有內容都由 [`data/commands.json`](data/commands.json) 產生。編輯 JSON 後，執行 `python3 scripts/build.py`。
 - **參與貢獻**：請見 [CONTRIBUTING.md](CONTRIBUTING.md)。
 - **授權**：內容採用 [CC BY 4.0](LICENSE-CONTENT)，程式碼採用 [MIT](LICENSE)。
